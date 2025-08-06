@@ -28,13 +28,14 @@ const Hero = () => {
         start: 'top top',
         end: 'bottom 5%',
         scrub: 0.5,
+        smooth: true,
       },
     })
 
     tl.to(leftCircleRef.current, { y: -150 })
     tl.to(rightCircleRef.current, { y: 150 }, 0)
-    tl.to(leftCircleRef.current, { x: '-105vw', opacity: 0 }, 0.5)
-    tl.to(rightCircleRef.current, { x: '105vw', opacity: 0 }, 0.5)
+    tl.to(leftCircleRef.current, { x: '-105vw', opacity: 0,  }, 0.5)
+    tl.to(rightCircleRef.current, { x: '105vw', opacity: 0,  }, 0.5 )
 
     // Warten bis Bild geladen ist
     const img = imageRef.current
@@ -70,12 +71,12 @@ const Hero = () => {
       <div className="relative overflow-hidden">
         <span
           ref={leftCircleRef}
-          className="fixed w-[300px] h-[300px] blur-[80px] opacity-50 sm:w-[350px] sm:h-[350px] sm:blur-[100px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 bottom-[-100px] left-[-35px] rounded-full bg-gradient-to-tr from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
+          className="fixed will-change-transform w-[300px] h-[300px] blur-[80px] opacity-50 sm:w-[350px] sm:h-[350px] sm:blur-[100px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 bottom-[-100px] left-[-35px] rounded-full bg-gradient-to-tr from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
         ></span>
 
         <span
           ref={rightCircleRef}
-          className="fixed w-[250px] h-[250px] blur-[60px] opacity-50 sm:w-[300px] sm:h-[300px] sm:blur-[80px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 top-[40px] right-[-90px] rounded-full bg-gradient-to-bl from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
+          className="fixed will-change-transform w-[250px] h-[250px] blur-[60px] opacity-50 sm:w-[300px] sm:h-[300px] sm:blur-[80px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 top-[40px] right-[-90px] rounded-full bg-gradient-to-bl from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
         ></span>
       </div>
 
