@@ -9,8 +9,11 @@ gsap.registerPlugin(ScrollTrigger)
 const Hero = () => {
   const leftCircleRef = useRef(null)
   const rightCircleRef = useRef(null)
+  const imageRef = useRef(null)
+  const textRef = useRef(null)
 
   useEffect(() => {
+    // Scroll-Kreise
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: document.body,
@@ -20,19 +23,24 @@ const Hero = () => {
       },
     })
 
-    tl.to(leftCircleRef.current, {
-      y: -120,
-      ease: 'power3.out',
-    })
+    tl.to(leftCircleRef.current, { y: -120, ease: 'power3.out' })
+    tl.to(rightCircleRef.current, { y: 120, ease: 'power3.out' }, 0)
 
-    tl.to(
-      rightCircleRef.current,
-      {
-        y: 120,
-        ease: 'power3.out',
-      },
-      0
-    )
+    // Text & Bild Animation
+    const tlIntro = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } })
+
+    tlIntro
+      .fromTo(
+        textRef.current.querySelectorAll('.text-element'),
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, stagger: 0.15 }
+      )
+      .fromTo(
+        imageRef.current,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0 },
+        '-=0.8'
+      )
   }, [])
 
   return (
@@ -85,6 +93,15 @@ const Hero = () => {
               <CTA2 text="Projects"/>
               <CTA1 />
             </div>
+          </div>
+          <div className="flex-1 flex justify-center lg:justify-end pt-6 lg:pt-0">
+            <img
+              ref={imageRef}
+              src="/src/assets/Hero-Illustration.png"
+              alt="Hero Section Illustration"
+              className="xl:w-full max-w-[500px] xl:max-w-[600px] xl:block md:hidden w-[00px] h-auto"
+              loading="lazy"
+            />
           </div>
         </div>
       </main>
