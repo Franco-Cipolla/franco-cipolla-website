@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --lighter-blue: #003566;
+  --darker-blue: #001D3D;
+  --dark-grey: #000814;
+}
+
+
+@font-face {
+  font-family: "Urbanist";
+  src: local("Urbanist"),
+       url("./fonts/Urbanist/static/Urbanist-Regular.ttf") format("truetype");
+  font-style: normal;
+}
+
+
+body {
+  font-family: "Urbanist", sans-serif;
+}
+
