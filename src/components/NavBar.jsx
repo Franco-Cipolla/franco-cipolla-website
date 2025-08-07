@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Squash as Hamburger } from 'hamburger-react'
 import { Link, useNavigate } from 'react-router-dom'
-import BurgerGesprächBtn from './BurgerGesprächBtn'
 import CTA1 from './CTA1'
 import CTA2 from './CTA2'
 
@@ -125,7 +124,7 @@ const NavBar = () => {
             </button>
           </li>
 
-          <BurgerGesprächBtn />
+          <CTA1 />
         </ul>
       </div>
     </nav>
