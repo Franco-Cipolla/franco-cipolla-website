@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 
-const ProjectCard = ({ image, title, challenge, solution }) => {
+const ProjectCard = ({ image, title, challenge, solution, result }) => {
   const [showFullText, setShowFullText] = useState(false)
 
   return (
@@ -25,12 +25,13 @@ const ProjectCard = ({ image, title, challenge, solution }) => {
           <>
             <p className="text-base text-[#000814] mb-2">{challenge}</p>
             <p className="text-base text-[#000814] mb-5">{solution}</p>
+            <p className="text-base text-[#000814] mb-5">{result}</p>
           </>
         )}
 
         <button
           onClick={() => setShowFullText(!showFullText)}
-          className="border-1 font-bold border-[#240046] hover:border-[#3C096C] hover:text-[#3C096C] text-[#3C096C] px-4 py-1.5 flex items-center gap-1 rounded-2xl cursor-pointer transform hover:-translate-y-1 ease-in transition"
+          className="border-2 font-bold border-[#240046] hover:bg-[#3C096C] hover:text-white text-[#3C096C] px-4 py-1.5 flex items-center gap-1 rounded-2xl cursor-pointer transform hover:-translate-y-1 ease-in transition"
         >
           {showFullText ? 'Weniger' : 'Mehr Lesen'} <FaArrowRight />
         </button>

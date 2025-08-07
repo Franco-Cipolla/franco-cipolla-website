@@ -12,7 +12,6 @@ const Projects = () => {
 
   useEffect(() => {
   ScrollTrigger.matchMedia({
-    // Mobile (bis 768px)
     '(max-width: 768px)': () => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -35,14 +34,17 @@ const Projects = () => {
         { x: '0vw', opacity: 0.6, ease: 'power3.out' },
         0
       )
+
+      // Kreise am Ende nach rechts raus
+      tl.to(leftCircleRef.current, { x: '100vw', opacity: 0, ease: 'power3.inOut' }, '+=0.2')
+      tl.to(rightCircleRef.current, { x: '200vw', opacity: 0, ease: 'power3.inOut' }, '<')
     },
 
-    // Desktop (ab 769px)
     '(min-width: 769px)': () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: projectsRef.current,
-          start: 'top bottom', // späterer Startpunkt
+          start: 'top bottom',
           end: 'bottom top',
           scrub: 0.5,
         },
@@ -60,9 +62,14 @@ const Projects = () => {
         { x: '0vw', opacity: 0.6, ease: 'power3.out' },
         0
       )
+
+      // Kreise am Ende nach rechts raus
+      tl.to(leftCircleRef.current, { x: '-100vw', opacity: 0, ease: 'power3.inOut' }, '+=0.2')
+      tl.to(rightCircleRef.current, { x: '100vw', opacity: 0, ease: 'power3.inOut' }, '<')
     },
   })
 }, [])
+
 
   return (
     <>
@@ -81,8 +88,9 @@ const Projects = () => {
 
       {/* Projects Section */}
       <section
+        id='projects'
         ref={projectsRef}
-        className="w-full mt-5 lg:mt-35 py-16 sm:py-24 md:py-32 xl:py-20 px-4 sm:px-6 xl:px-0 mx-auto max-w-[700px] xl:max-w-[1100px] items-center gap-6"
+        className="w-full mt-5 lg:mt-35 py-16 sm:py-24 md:py-32 xl:py-20 px-4 sm:px-6 mb-20 xl:px-0 mx-auto max-w-[700px] xl:max-w-[1100px] items-center gap-6"
       >
         <h1 className="text-3xl md:text-4xl font-bold text-black text-center leading-tight mb-13">
           Ein Projekt, das für sich spricht
@@ -93,6 +101,7 @@ const Projects = () => {
             title="Meine eigene Website – Strategie trifft Design"
             challenge="Die Challenge: Ich wollte eine Website, die nicht nur gut aussieht, sondern Kunden überzeugt."
             solution="Die Lösung: Ich habe ein klares Designkonzept entwickelt, das Vertrauen schafft und gleichzeitig meine Leistungen auf den Punkt bringt. Mit gezielter Nutzerführung und responsivem Layout wirkt die Seite professionell und einladend."
+            result="Das Ergebnis: Eine Website, die nicht nur meine Persönlichkeit widerspiegelt, sondern auch meine Dienstleistungen klar kommuniziert. Sie ist ein echter Blickfang und hat mir geholfen, neue Kunden zu gewinnen und mein Gewinn zu vervielfachen."
           />
         </div>
       </section>
