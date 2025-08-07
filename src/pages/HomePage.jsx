@@ -17,9 +17,11 @@ const HomePage = () => {
         const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset
         window.scrollTo({ top: y, behavior: 'smooth' })
 
-        // Zustand zurücksetzen, damit es nicht erneut scrollt
-        navigate(location.pathname, { replace: true })
+        navigate(location.pathname, { replace: true }) // Zustand zurücksetzen
       }
+    } else {
+      // 👇 Scroll to top bei normalem Seitenaufruf oder Refresh
+      window.scrollTo({ top: 0, behavior: 'auto' })
     }
   }, [location, navigate])
 

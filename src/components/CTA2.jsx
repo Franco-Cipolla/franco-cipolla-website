@@ -1,9 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-const CTA2 = ({text="Contact"}) => {
+const CTA2 = ({ text = "Contact" }) => {
+  const navigate = useNavigate()
+
   return (
-    <Link to="/contact"><button className={`px-4 py-2 transform hover:-translate-y-1 ease-in  rounded border-[#003566] shadow-md border-2 bg-[#003566] text-white cursor-pointer hover:bg-[#001D3D] hover:border-[#001D3D] transition `}>{text}</button></Link>
+    <button
+      onClick={() => navigate('/', { state: { scrollTo: 'contact' } })}
+      className="px-4 py-2 transform hover:-translate-y-1 ease-in rounded border-[#003566] shadow-md border-2 bg-[#003566] text-white cursor-pointer hover:bg-[#001D3D] hover:border-[#001D3D] transition"
+    >
+      {text}
+    </button>
   )
 }
 

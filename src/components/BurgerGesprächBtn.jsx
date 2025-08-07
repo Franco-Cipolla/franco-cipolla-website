@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
-import { Link } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 
 const BurgerGesprächBtn = () => {
+  const navigate = useNavigate()
   const leftRef = useRef(null)
   const bottomRef = useRef(null)
   const rightRef = useRef(null)
@@ -22,43 +22,17 @@ const BurgerGesprächBtn = () => {
   }, [])
 
   return (
-    <Link to="/contact" className="relative inline-block">
-      <button
+    <button
+      onClick={() => navigate('/', { state: { scrollTo: 'contact' } })}
       className="relative px-6 py-3 my-2 text-[1.3em] font-[500] tracking-[2px] shadow-2xl text-white cursor-pointer bg-gradient-to-r from-[#003566] via-75%-[#001D3D] to-[#001D3D] inline-block overflow-hidden"
     >
       Kostenloses Erstgespräch
 
-      {/* Left Border */}
-      <span
-        ref={leftRef}
-        className="block absolute left-0 bottom-0 w-px h-full bg-white"
-        style={{ transform: "scaleY(0)", transition: "none" }}
-      />
-
-      {/* Bottom Border */}
-      <span
-        ref={bottomRef}
-        className="block absolute left-0 bottom-0 w-full h-px bg-white"
-        style={{ transform: "scaleX(0)", transition: "none" }}
-      />
-
-      {/* Right Border */}
-      <span
-        ref={rightRef}
-        className="block absolute right-0 bottom-0 w-px h-full bg-white"
-        style={{ transform: "scaleY(0)", transition: "none" }}
-      />
-
-      {/* Top Border */}
-      <span
-        ref={topRef}
-        className="block absolute left-0 top-0 w-full h-px bg-white"
-        style={{ transform: "scaleX(0)", transition: "none" }}
-      />
+      <span ref={leftRef} className="block absolute left-0 bottom-0 w-px h-full bg-white" style={{ transform: "scaleY(0)", transition: "none" }} />
+      <span ref={bottomRef} className="block absolute left-0 bottom-0 w-full h-px bg-white" style={{ transform: "scaleX(0)", transition: "none" }} />
+      <span ref={rightRef} className="block absolute right-0 bottom-0 w-px h-full bg-white" style={{ transform: "scaleY(0)", transition: "none" }} />
+      <span ref={topRef} className="block absolute left-0 top-0 w-full h-px bg-white" style={{ transform: "scaleX(0)", transition: "none" }} />
     </button>
-
-    </Link>
-
   )
 }
 
