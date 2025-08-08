@@ -39,14 +39,15 @@ const faqs = [
   }
 ]
 
-
 const FAQSection = () => {
   const sectionRef = useRef(null)
+  const ctaRef = useRef(null)
   const [openIndex, setOpenIndex] = useState(null)
 
   useEffect(() => {
     if (!sectionRef.current) return
 
+    // FAQ-Items einfliegen
     gsap.fromTo(
       sectionRef.current.querySelectorAll('.faq-item'),
       { opacity: 0, y: 30 },
@@ -62,6 +63,24 @@ const FAQSection = () => {
         },
       }
     )
+
+    // CTA-Div einfliegen
+    if (ctaRef.current) {
+      gsap.fromTo(
+        ctaRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: ctaRef.current,
+            start: 'top 90%',
+          },
+        }
+      )
+    }
   }, [])
 
   return (
@@ -70,13 +89,11 @@ const FAQSection = () => {
       id="faq"
       className="py-20 px-6 bg-white text-black"
     >
-         {/* Dekorativer Blur-Kreis */}
-
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
         Häufige Fragen
       </h2>
 
-      <div className="max-w-3xl  mx-auto space-y-6">
+      <div className="max-w-3xl mx-auto space-y-6">
         {faqs.map((faq, index) => (
           <div
             key={index}
@@ -104,12 +121,14 @@ const FAQSection = () => {
           </div>
         ))}
       </div>
-      <div className="text-center mt-12 w-full">
-        <p className="text-lg text-gray-700 hidden md:block text-center max-w-2xl mx-auto mb-6">
-            Noch Fragen offen? Oder direkt loslegen?
+
+      {/* CTA-Div mit Animation */}
+      <div ref={ctaRef} className="text-center mt-12 w-full">
+        <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto my-6">
+          Noch Fragen offen? Oder direkt loslegen?
         </p>
-        <CTA2/>
-        </div>
+        <CTA2 />
+      </div>
     </section>
   )
 }
