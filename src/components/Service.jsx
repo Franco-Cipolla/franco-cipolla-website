@@ -1,5 +1,4 @@
 import React from 'react'
-import BurgerGesprächBtn from './BurgerGesprächBtn'
 import serviceBg from '../assets/serviceBg.jpg'
 import CTAProjectStart from './CTAProjectStart'
 import ServiceCard from './ServiceCard'
@@ -59,14 +58,20 @@ const Service = () => {
       </div>
 
       {/* Inhalt */}
+      <div id="service-start" className="h-0" />
 
-      <h1 className='text-3xl md:text-4xl font-bold text-black text-center leading-tight my-15 mb-32'>Dienstleisungen, die deine Website nach vorne bringen</h1>
-
+      <h1 className='text-3xl md:text-4xl pt-14 font-bold text-black text-center leading-tight mt-15 mb-6 '>Meine Leistungen. Dein Online-Erfolg.</h1>
+      <p className="text-lg text-gray-700 hidden md:block text-center max-w-2xl mx-auto mb-28">
+        Maßgeschneiderte Weblösungen für Selbstständige, Agenturen und Unternehmen – mit Fokus auf Performance, Design, Kundengewinnung und Sichtbarkeit.
+      </p>
+      <p className="text-lg md:hidden text-gray-700 text-center max-w-2xl mx-auto mb-28">
+        Maßgeschneiderte Weblösungen für Unternehmen – mit Fokus auf Performance, Kundengewinnung und Sichtbarkeit.
+      </p>
 
       <div className="relative z-10 max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 ">
         <ServiceCard title="💻 Webdevelopment" text="Technisch sauber, schnell und sicher: Ich entwickle performante Websites, die auf allen Geräten zuverlässig funktionieren – von der Landingpage bis zum komplexen Webprojekt." />
         <ServiceCard title="🎨 Webdesign" text="Modernes Design, das Vertrauen schafft: Deine Website wird visuell ansprechend, intuitiv bedienbar und auf deine Zielgruppe zugeschnitten – für den perfekten ersten Eindruck." />
-        <ServiceCard title="✍️ Copywriting" text="Worte, die verkaufen: Ich schreibe Texte, die deine Leistungen klar kommunizieren, Emotionen wecken und Besucher gezielt zur Kontaktaufnahme führen." />
+        <ServiceCard title="✍️ Copywriting" text="Worte, die verkaufen: Ich liefere Texte, die deine Leistungen klar kommunizieren, Emotionen wecken und Besucher gezielt zur Kontaktaufnahme führen." />
         <ServiceCard title="📈 SEO" text="Mehr Sichtbarkeit bei Google: Mit gezielter Suchmaschinenoptimierung bringe ich deine Website nach vorne – damit potenzielle Kunden dich finden, bevor sie zur Konkurrenz gehen." />
         <ServiceCard
           className="md:col-span-2 flex flex-col text-center justify-center"
@@ -85,7 +90,8 @@ const Service = () => {
 
         </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto mt-12 text-center">
+
+      <div className="relative z-10 max-w-4xl mx-auto my-12 mb-20 text-center">
         <CTAProjectStart text="Jetzt Projekt starten" />
         <p className="mt-4 text-sm text-gray-600">
           Lass uns in einem kostenlosen Erstgespräch herausfinden, wie ich dir helfen kann, online sichtbar zu werden.

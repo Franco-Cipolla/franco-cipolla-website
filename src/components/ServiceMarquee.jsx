@@ -39,7 +39,7 @@ const ServiceMarquee = () => {
     <div className='mt-25 xl:mt-52 mb-35'>
 
         <p className="text-center text-md px-4 lg:text-xl text-[#000814]/80 max-w-2xl mx-auto mb-4">
-            Jeder Punkt bringt deine Website näher an echte Ergebnisse: mehr Sichtbarkeit, mehr Anfragen, mehr Umsatz.
+            Ich bringe deine Website näher an echte Ergebnisse: mehr Sichtbarkeit, mehr Anfragen, mehr Umsatz.
         </p>
         <div className='lg:hidden'>
         <Marquee

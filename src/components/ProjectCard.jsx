@@ -5,7 +5,9 @@ const ProjectCard = ({ image, title, challenge, solution, result }) => {
   const [showFullText, setShowFullText] = useState(false)
 
   return (
-    <div className="lg:w-[23rem] w-[20rem] p-4 bg-white overflow-hidden shadow-2xl rounded-4xl">
+    <div
+      className="lg:w-[23rem] w-[20rem] p-4 bg-white overflow-hidden shadow-2xl rounded-4xl transform transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-3xl"
+    >
       <div>
         <img
           src={image}

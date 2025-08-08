@@ -10,8 +10,23 @@ const NavBar = () => {
   const navigate = useNavigate()
 
   const goToService = () => {
-    navigate('/', { state: { scrollTo: 'service' } })
+  const scrollToService = () => {
+    const target = document.getElementById('service-start') // 👈 neuer Anker
+    if (target) {
+      const yOffset = -100 // Höhe deiner Navbar
+      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
   }
+
+  if (window.location.pathname === '/') {
+    scrollToService()
+  } else {
+    navigate('/', { state: { scrollTo: 'service-start' } })
+  }
+}
+
+
 
   // Scroll-Lock bei geöffnetem Menü
   useEffect(() => {
@@ -57,7 +72,7 @@ const NavBar = () => {
           <li>
             <button
               onClick={goToService}
-              className="text-black text-lg hover:text-[#003566] transition"
+              className="text-black cursor-pointer text-lg hover:text-[#003566] transition"
             >
               Service
             </button>
@@ -118,7 +133,7 @@ const NavBar = () => {
                 goToService()
                 setIsOpen(false)
               }}
-              className="text-black text-2xl font-semibold hover:text-[#003566] transition"
+              className="text-black cursor-pointer text-2xl font-semibold hover:text-[#003566] transition"
             >
               Service
             </button>
