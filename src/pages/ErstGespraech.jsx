@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -17,9 +18,12 @@ const Erstgespraech = () => {
   })
 
   const [errors, setErrors] = useState({})
+  const [recaptchaToken, setRecaptchaToken] = useState(null)
 
   const sectionRef = useRef(null)
-  const formsparkURL = import.meta.env.VITE_FORMSPARK_FORM_ID
+  const recaptchaRef = useRef(null)
+  const formsparkURL = import.meta.env.VITE_FORMSPARK_FORM_ID_ERSTGESPRAECH
+  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
 
   useEffect(() => {
     if (!sectionRef.current) return
@@ -62,6 +66,9 @@ const Erstgespraech = () => {
       case 'privacy':
         if (!value) error = 'Du musst die Datenschutzerklärung akzeptieren'
         break
+      case 'recaptcha':
+        if (!value) error = 'Bitte bestätige das reCAPTCHA'
+        break
       default:
         break
     }
@@ -91,14 +98,23 @@ const Erstgespraech = () => {
     }))
   }
 
+  const onRecaptchaChange = (token) => {
+    setRecaptchaToken(token)
+    setErrors((prev) => ({ ...prev, recaptcha: validateField('recaptcha', token) }))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // Validierung aller Felder plus recaptcha
     const newErrors = {}
     Object.entries(formData).forEach(([key, val]) => {
       const error = validateField(key, val)
       if (error) newErrors[key] = error
     })
+
+    const recaptchaError = validateField('recaptcha', recaptchaToken)
+    if (recaptchaError) newErrors.recaptcha = recaptchaError
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
@@ -107,16 +123,19 @@ const Erstgespraech = () => {
     }
 
     try {
+      const payload = { ...formData, recaptchaToken }
       const response = await fetch(formsparkURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       })
 
       if (response.ok) {
         toast.success('Danke für deine Anfrage!')
         setFormData({ name: '', email: '', message: '', date: '', privacy: false })
         setErrors({})
+        setRecaptchaToken(null)
+        if (recaptchaRef.current) recaptchaRef.current.reset()
       } else {
         toast.error('Fehler beim Senden. Bitte versuche es erneut.')
       }
@@ -135,9 +154,7 @@ const Erstgespraech = () => {
         </h1>
 
         <form onSubmit={handleSubmit} className="max-w-xl mx-auto" noValidate>
-          {/* ... alle Formfelder wie zuvor, unverändert ... */}
-          {/* Ich kürze hier den Code, da er gleich bleibt */}
-
+          {/* Name */}
           <div className="contact-animate my-8">
             <label htmlFor="name" className="block text-lg font-semibold mb-2">
               Dein Name
@@ -245,6 +262,16 @@ const Erstgespraech = () => {
             </label>
           </div>
           {errors.privacy && <p className="text-red-600 mb-4 text-sm">{errors.privacy}</p>}
+
+          {/* reCAPTCHA */}
+          <div className="contact-animate mb-8">
+            <ReCAPTCHA
+              sitekey={recaptchaSiteKey}
+              onChange={onRecaptchaChange}
+              ref={recaptchaRef}
+            />
+            {errors.recaptcha && <p className="text-red-600 mt-1 text-sm">{errors.recaptcha}</p>}
+          </div>
 
           <button
             type="submit"

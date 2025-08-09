@@ -14,7 +14,7 @@ const Datenschutzerklärung = () => {
         Franco Cipolla<br />
         Wuppermannstraße 14<br />
         58256 Ennepetal<br />
-        E-Mail: franco-cipolla@dev.com
+        E-Mail: franco_cipolla@web.de
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-2">2. Hosting</h2>
@@ -55,6 +55,12 @@ const Datenschutzerklärung = () => {
       <h2 className="text-xl font-semibold mt-8 mb-2">9. Änderungen</h2>
       <p className="text-gray-700 mb-4">
         Ich behalte mir vor, diese Datenschutzerklärung bei Bedarf anzupassen, z.B. bei technischen Änderungen oder neuen gesetzlichen Vorgaben.
+      </p>
+      <h2 className="text-xl font-semibold mt-8 mb-2">10. Nutzung von reCaptcha</h2>
+      <p className="text-gray-700 mb-4">
+        Auf dieser Website wird Google reCaptcha eingesetzt, um Anfragen über das Kontaktformular vor Spam und Missbrauch zu schützen. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+        Dabei werden personenbezogene Daten (z. B. IP-Adresse) an Google übertragen und verarbeitet. Die Nutzung von reCaptcha erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+        Weitere Informationen zum Datenschutz von Google reCaptcha findest du hier: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">https://policies.google.com/privacy</a>.
       </p>
 
       <p className="text-sm text-gray-500 mt-10">

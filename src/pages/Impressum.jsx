@@ -36,7 +36,7 @@ const Impressum = () => {
                 href="mailto:franco-cipolla@dev.com"
                 className="underline text-[#003566] hover:text-[#001D3D] transition-colors duration-200"
               >
-                franco-cipolla@dev.com
+                franco_cipolla@web.de
               </a>
             </p>
           </div>

@@ -7,11 +7,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+// reCAPTCHA
+import ReCAPTCHA from 'react-google-recaptcha'
+
 gsap.registerPlugin(ScrollTrigger)
 
 const Contact = () => {
   const sectionRef = useRef(null)
-  const formsparkURL = import.meta.env.VITE_FORMSPARK_FORM_ID
+  const formsparkURL = import.meta.env.VITE_FORMSPARK_FORM_ID_CONTACT
+  const recaptchaRef = useRef(null)
 
   const [formData, setFormData] = useState({
     name: '',
@@ -21,6 +25,7 @@ const Contact = () => {
   })
 
   const [errors, setErrors] = useState({})
+  const [recaptchaToken, setRecaptchaToken] = useState(null)
 
   useEffect(() => {
     if (!sectionRef.current) return
@@ -59,6 +64,9 @@ const Contact = () => {
       case 'privacy':
         if (!value) error = 'Du musst die Datenschutzerklärung akzeptieren.'
         break
+      case 'recaptcha':
+        if (!value) error = 'Bitte bestätige das reCAPTCHA.'
+        break
       default:
         break
     }
@@ -90,14 +98,26 @@ const Contact = () => {
     }))
   }
 
+  const onRecaptchaChange = (token) => {
+    setRecaptchaToken(token)
+    setErrors((prev) => ({
+      ...prev,
+      recaptcha: validateField('recaptcha', token),
+    }))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // Validate all fields + recaptcha
     const newErrors = {}
     Object.entries(formData).forEach(([key, val]) => {
       const error = validateField(key, val)
       if (error) newErrors[key] = error
     })
+
+    const recaptchaError = validateField('recaptcha', recaptchaToken)
+    if (recaptchaError) newErrors.recaptcha = recaptchaError
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
@@ -105,17 +125,21 @@ const Contact = () => {
       return
     }
 
+    // Send data with recaptcha token
     try {
+      const payload = { ...formData, recaptchaToken }
       const response = await fetch(formsparkURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       })
 
       if (response.ok) {
         toast.success('Danke für deine Anfrage!')
         setFormData({ name: '', email: '', message: '', privacy: false })
         setErrors({})
+        setRecaptchaToken(null)
+        recaptchaRef.current.reset()
       } else {
         toast.error('Fehler beim Senden. Bitte versuche es erneut.')
       }
@@ -127,7 +151,7 @@ const Contact = () => {
 
   return (
     <section ref={sectionRef} className="w-full flex items-center justify-center">
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer position="top-right" autoClose={5000} />
       <div className="py-20 px-6 text-black lg:grid lg:grid-cols-2 max-w-[950px] xl:max-w-[1100px]">
         <div className="mb-15" id="contact">
           <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-6 lg:mb-10">
@@ -141,7 +165,7 @@ const Contact = () => {
           </p>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlineMail className="text-black text-2xl" />
-            <p>franco-cipolla@dev.com</p>
+            <p>franco_cipolla@web.de </p>
           </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlinePhone className="text-black text-2xl" />
@@ -244,6 +268,17 @@ const Contact = () => {
               </label>
             </div>
             {errors.privacy && <p className="text-red-600 mt-1 text-sm">{errors.privacy}</p>}
+
+            <div className="contact-animate my-6">
+              <ReCAPTCHA
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                onChange={onRecaptchaChange}
+                ref={recaptchaRef}
+              />
+              {errors.recaptcha && (
+                <p className="text-red-600 mt-1 text-sm">{errors.recaptcha}</p>
+              )}
+            </div>
 
             <button
               type="submit"
