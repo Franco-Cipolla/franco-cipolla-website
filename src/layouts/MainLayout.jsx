@@ -8,14 +8,18 @@ const MainLayout = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (location.pathname === '/' && location.state?.scrollTo) {
+  if (location.pathname === '/' && location.state?.scrollTo) {
+      let attempts = 0
+      const maxAttempts = 20
+
       const scrollToTarget = () => {
         const target = document.getElementById(location.state.scrollTo)
         if (target) {
           const yOffset = -100
           const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset
           window.scrollTo({ top: y, behavior: 'smooth' })
-        } else {
+        } else if (attempts < maxAttempts) {
+          attempts++
           requestAnimationFrame(scrollToTarget)
         }
       }
@@ -24,6 +28,7 @@ const MainLayout = () => {
       navigate(location.pathname, { replace: true })
     }
   }, [location, navigate])
+
   return (
     <div>
         <ScrollToTop />

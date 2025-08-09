@@ -96,7 +96,7 @@ const NavBar = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed top-0 left-0 w-full h-screen bg-white bg-opacity-90 z-[70] flex flex-col transition-all duration-700 ${
+        className={`fixed top-0 left-0 w-full h-screen bg-white bg-opacity-90 z-[70] flex flex-col  transition-all duration-700 ${
           isOpen
             ? 'translate-y-0 opacity-100 pointer-events-auto'
             : '-translate-y-full opacity-0 pointer-events-none'
@@ -127,6 +127,7 @@ const NavBar = () => {
               </Link>
             </li>
           ))}
+
           <li>
             <button
               onClick={() => {
@@ -138,8 +139,20 @@ const NavBar = () => {
               Service
             </button>
           </li>
-
-          <CTA1 />
+          <div>
+            <li>
+            <button
+              onClick={() => {
+                setIsOpen(false)
+                navigate('/', { state: { scrollTo: 'contact' } })
+              }}
+              className="text-black cursor-pointer text-2xl font-semibold hover:text-[#003566] transition"
+            >
+              Contact
+            </button>
+          </li>
+          </div>
+         <CTA1 onClick={() => setIsOpen(false)} />
         </ul>
       </div>
     </nav>

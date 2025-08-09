@@ -11,64 +11,34 @@ const Projects = () => {
   const rightCircleRef = useRef(null)
 
   useEffect(() => {
-  ScrollTrigger.matchMedia({
-    '(max-width: 768px)': () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: projectsRef.current,
-          start: 'top 90%',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      })
+  const isMobile = window.matchMedia('(max-width: 768px)').matches
 
-      tl.fromTo(
-        leftCircleRef.current,
-        { x: '-100vw', opacity: 0 },
-        { x: '0vw', opacity: 0.6, ease: 'power3.out' }
-      )
-
-      tl.fromTo(
-        rightCircleRef.current,
-        { x: '100vw', opacity: 0 },
-        { x: '0vw', opacity: 0.6, ease: 'power3.out' },
-        0
-      )
-
-      // Kreise am Ende nach rechts raus
-      tl.to(leftCircleRef.current, { x: '100vw', opacity: 0, ease: 'power3.inOut' }, '+=0.2')
-      tl.to(rightCircleRef.current, { x: '200vw', opacity: 0, ease: 'power3.inOut' }, '<')
-    },
-
-    '(min-width: 769px)': () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: projectsRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      })
-
-      tl.fromTo(
-        leftCircleRef.current,
-        { x: '-100vw', opacity: 0 },
-        { x: '0vw', opacity: 0.6, ease: 'power3.out' }
-      )
-
-      tl.fromTo(
-        rightCircleRef.current,
-        { x: '100vw', opacity: 0 },
-        { x: '0vw', opacity: 0.6, ease: 'power3.out' },
-        0
-      )
-
-      // Kreise am Ende nach rechts raus
-      tl.to(leftCircleRef.current, { x: '-100vw', opacity: 0, ease: 'power3.inOut' }, '+=0.2')
-      tl.to(rightCircleRef.current, { x: '100vw', opacity: 0, ease: 'power3.inOut' }, '<')
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: projectsRef.current,
+      start: isMobile ? 'top 90%' : 'top bottom',
+      end: 'bottom top',
+      scrub: 0.5,
     },
   })
+
+  tl.fromTo(
+    leftCircleRef.current,
+    { x: isMobile ? '-100vw' : '-100vw', opacity: 0 },
+    { x: '0vw', opacity: 0.6, ease: 'power3.out' }
+  )
+
+  tl.fromTo(
+    rightCircleRef.current,
+    { x: isMobile ? '100vw' : '100vw', opacity: 0 },
+    { x: '0vw', opacity: 0.6, ease: 'power3.out' },
+    0
+  )
+
+  tl.to(leftCircleRef.current, { x: isMobile ? '100vw' : '-100vw', opacity: 0, ease: 'power3.inOut' }, '+=0.2')
+  tl.to(rightCircleRef.current, { x: isMobile ? '200vw' : '100vw', opacity: 0, ease: 'power3.inOut' }, '<')
 }, [])
+
 
 
   return (
@@ -77,12 +47,12 @@ const Projects = () => {
       <div className="relative overflow-hidden">
         <span
           ref={leftCircleRef}
-          className="fixed will-change-transform w-[300px] h-[300px] blur-[80px] opacity-50 sm:w-[350px] sm:h-[350px] sm:blur-[100px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 top-[120px] left-[60px] rounded-full bg-gradient-to-br from-[#3C096C] via-[#240046] to-[#3C096C] z-[-1]"
+          className="fixed will-change-transform opacity-0 w-[300px] h-[300px] blur-[80px]  sm:w-[350px] sm:h-[350px] sm:blur-[100px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 top-[120px] left-[60px] rounded-full bg-gradient-to-br from-[#3C096C] via-[#240046] to-[#3C096C] z-[-1]"
         ></span>
 
         <span
           ref={rightCircleRef}
-          className="fixed will-change-transform w-[250px] h-[250px] blur-[60px] opacity-50 sm:w-[300px] sm:h-[300px] sm:blur-[80px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 bottom-[-100px] right-[60px] rounded-full bg-gradient-to-tl from-[#3C096C] via-[#240046] to-[#3C096C] z-[-1]"
+          className="fixed will-change-transform opacity-0 w-[250px] h-[250px] blur-[60px]  sm:w-[300px] sm:h-[300px] sm:blur-[80px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 bottom-[-100px] right-[60px] rounded-full bg-gradient-to-tl from-[#3C096C] via-[#240046] to-[#3C096C] z-[-1]"
         ></span>
       </div>
 
