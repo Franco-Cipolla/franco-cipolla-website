@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import CTA1 from './CTA1'
 import CTA2 from './CTA2'
 
+
 gsap.registerPlugin(ScrollTrigger)
 
 const Hero = () => {
@@ -158,7 +159,7 @@ const Hero = () => {
             {isXL && (
               <img
                 ref={imageRef}
-                src="/src/assets/Hero-Illustration.png"
+                src="../assets/Hero-Illustration.png"
                 alt="Hero Section Illustration"
                 className="xl:w-full max-w-[500px] xl:max-w-[600px]"
                 loading="lazy"
