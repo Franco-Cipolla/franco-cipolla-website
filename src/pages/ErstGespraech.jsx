@@ -127,6 +127,7 @@ const Erstgespraech = () => {
           name: formData.name,
           email: formData.email,
           message: formData.message,
+          date: formData.date,
           privacy: formData.privacy,
           'g-recaptcha-response': recaptchaToken,
         }

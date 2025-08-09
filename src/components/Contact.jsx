@@ -107,53 +107,49 @@ const Contact = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+  e.preventDefault()
 
-    // Validate all fields + recaptcha
-    const newErrors = {}
-    Object.entries(formData).forEach(([key, val]) => {
-      const error = validateField(key, val)
-      if (error) newErrors[key] = error
+  // Validierung aller Felder + reCAPTCHA
+  const newErrors = {}
+  Object.entries(formData).forEach(([key, val]) => {
+    const error = validateField(key, val)
+    if (error) newErrors[key] = error
+  })
+
+  const recaptchaError = validateField('recaptcha', recaptchaToken)
+  if (recaptchaError) newErrors.recaptcha = recaptchaError
+
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors)
+    toast.error('Bitte überprüfe die Eingaben und behebe die Fehler.')
+    return
+  }
+
+  try {
+    // Payload mit g-recaptcha-response (Formspark erwartet das so)
+    const payload = { ...formData, 'g-recaptcha-response': recaptchaToken }
+
+    const response = await fetch(formsparkURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
     })
 
-    const recaptchaError = validateField('recaptcha', recaptchaToken)
-    if (recaptchaError) newErrors.recaptcha = recaptchaError
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      toast.error('Bitte überprüfe die Eingaben und behebe die Fehler.')
-      return
+    if (response.ok) {
+      toast.success('Danke für deine Anfrage!')
+      setFormData({ name: '', email: '', message: '', privacy: false })
+      setErrors({})
+      setRecaptchaToken(null)
+      if (recaptchaRef.current) recaptchaRef.current.reset()
+    } else {
+      toast.error('Fehler beim Senden. Bitte versuche es erneut.')
     }
-
-    // Send data with recaptcha token
-    try {
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        privacy: formData.privacy,
-        'g-recaptcha-response': recaptchaToken,
-      }
-      const response = await fetch(formsparkURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-
-      if (response.ok) {
-        toast.success('Danke für deine Anfrage!')
-        setFormData({ name: '', email: '', message: '', privacy: false })
-        setErrors({})
-        setRecaptchaToken(null)
-        recaptchaRef.current.reset()
-      } else {
-        toast.error('Fehler beim Senden. Bitte versuche es erneut.')
-      }
-    } catch (error) {
-      toast.error('Netzwerkfehler. Bitte versuche es erneut.')
-      console.error(error)
-    }
+  } catch (error) {
+    toast.error('Netzwerkfehler. Bitte versuche es erneut.')
+    console.error(error)
   }
+}
+
 
   return (
     <section ref={sectionRef} className="w-full flex items-center justify-center">
