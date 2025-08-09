@@ -3,6 +3,7 @@ import Navbar from '../components/NavBar'
 import ScrollToTop from '../components/ScrollToTop'
 import { useLocation, useNavigate, Outlet } from 'react-router-dom'
 import { useEffect } from 'react'
+import Footer from '../components/Footer'
 const MainLayout = () => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -34,6 +35,7 @@ const MainLayout = () => {
         <ScrollToTop />
         <Navbar />
         <Outlet />
+        <Footer />
 
     </div>
   )
