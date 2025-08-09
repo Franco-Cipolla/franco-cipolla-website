@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProjectCard from './ProjectCard'
+import WebImg from "../assets/my-site-preview.png"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -67,7 +68,7 @@ const Projects = () => {
         </h1>
         <div className="flex flex-col items-center justify-center">
           <ProjectCard
-            image="../assets/my-site-preview.png"
+            image={WebImg}
             title="Meine eigene Website – Strategie trifft Design"
             challenge="Die Challenge: Ich wollte eine Website, die nicht nur gut aussieht, sondern Kunden überzeugt."
             solution="Die Lösung: Ich habe ein klares Designkonzept entwickelt, das Vertrauen schafft und gleichzeitig meine Leistungen auf den Punkt bringt. Mit gezielter Nutzerführung und responsivem Layout wirkt die Seite professionell und einladend."

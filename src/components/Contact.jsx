@@ -127,7 +127,13 @@ const Contact = () => {
 
     // Send data with recaptcha token
     try {
-      const payload = { ...formData, recaptchaToken }
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        privacy: formData.privacy,
+        'g-recaptcha-response': recaptchaToken,
+      }
       const response = await fetch(formsparkURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

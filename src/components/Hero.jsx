@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import CTA1 from './CTA1'
 import CTA2 from './CTA2'
+import HeroIllu from "../assets/Hero-Illustration.png"
 
 
 gsap.registerPlugin(ScrollTrigger)
@@ -11,6 +12,7 @@ const Hero = () => {
   const heroRef = useRef(null)
   const leftCircleRef = useRef(null)
   const rightCircleRef = useRef(null)
+
 
   const headlineRef = useRef(null)
   const mobileText1Ref = useRef(null)
@@ -159,7 +161,7 @@ const Hero = () => {
             {isXL && (
               <img
                 ref={imageRef}
-                src="../assets/Hero-Illustration.png"
+                src={HeroIllu}
                 alt="Hero Section Illustration"
                 className="xl:w-full max-w-[500px] xl:max-w-[600px]"
                 loading="lazy"
