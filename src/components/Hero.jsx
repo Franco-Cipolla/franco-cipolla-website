@@ -34,57 +34,67 @@ const Hero = () => {
   }, [])
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // ScrollTrigger für Kreise
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom 5%',
-          scrub: 0.5,
-        },
-      })
+  // Kreise-Animationen laufen immer
+  const ctx = gsap.context(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: 'top top',
+        end: 'bottom 5%',
+        scrub: 0.5,
+      },
+    });
 
-      tl.to(leftCircleRef.current, { y: -150 })
-      tl.to(rightCircleRef.current, { y: 150 }, 0)
-      tl.to(leftCircleRef.current, { x: '-105vw', opacity: 0 }, 0.5)
-      tl.to(rightCircleRef.current, { x: '105vw', opacity: 0 }, 0.5)
+    tl.to(leftCircleRef.current, { y: -150 });
+    tl.to(rightCircleRef.current, { y: 150 }, 0);
+    tl.to(leftCircleRef.current, { x: '-105vw', opacity: 0 }, 0.5);
+    tl.to(rightCircleRef.current, { x: '105vw', opacity: 0 }, 0.5);
+  }, heroRef);
 
-      // Inhalt animieren nach Bild-Load
-      const animateContent = () => {
-        gsap.from(
-          [
-            headlineRef.current,
-            mobileText1Ref.current,
-            mobileText2Ref.current,
-            desktopText1Ref.current,
-            desktopText2Ref.current,
-            ctaRef.current,
-            imageRef.current,
-          ].filter(Boolean),
-          {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power3.out',
-          }
-        )
-      }
+  return () => {
+    ctx.revert();
+    ScrollTrigger.killAll();
+  };
+}, []); // nur einmal beim Mounten
 
-      const img = imageRef.current
-      if (img && !img.complete) {
-        img.onload = animateContent
-      } else {
-        animateContent()
-      }
-    }, heroRef)
+// Und getrennt die Inhaltsanimation mit Abhängigkeit von isXL:
+useLayoutEffect(() => {
+  if (!isXL) return;
 
-    return () => {
-      ctx.revert() // GSAP Cleanup
-      ScrollTrigger.killAll() // ScrollTrigger vollständig entfernen
+  const ctx = gsap.context(() => {
+    const animateContent = () => {
+      gsap.from(
+        [
+          headlineRef.current,
+          mobileText1Ref.current,
+          mobileText2Ref.current,
+          desktopText1Ref.current,
+          desktopText2Ref.current,
+          ctaRef.current,
+          imageRef.current,
+        ].filter(Boolean),
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power3.out',
+        }
+      );
+    };
+
+    const img = imageRef.current;
+    if (img && !img.complete) {
+      img.onload = animateContent;
+    } else {
+      animateContent();
     }
-  }, [])
+  }, heroRef);
+
+  return () => ctx.revert();
+}, [isXL]);
+
+
 
   return (
     <>
