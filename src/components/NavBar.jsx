@@ -148,7 +148,7 @@ const NavBar = () => {
               }}
               className="text-black cursor-pointer text-2xl font-semibold hover:text-[#003566] transition"
             >
-              Contact
+              Kontakt
             </button>
           </li>
           </div>
