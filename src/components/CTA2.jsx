@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const CTA2 = ({ text = "Contact" }) => {
+const CTA2 = ({ text = "Kontakt" }) => {
   const navigate = useNavigate()
 
   return (
