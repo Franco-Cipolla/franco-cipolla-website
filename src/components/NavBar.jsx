@@ -34,10 +34,10 @@ const NavBar = () => {
   }, [isOpen])
 
   const mobileMenuItems = [
-    { label: 'About', to: '/about' },
+    { label: 'Über mich', to: '/about' },
   ]
   const deskMenuItems = [
-    { label: 'About', to: '/about' },
+    { label: 'Über mich', to: '/about' },
   ]
 
   return (
