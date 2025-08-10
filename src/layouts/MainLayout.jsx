@@ -4,12 +4,14 @@ import ScrollToTop from '../components/ScrollToTop'
 import { useLocation, useNavigate, Outlet } from 'react-router-dom'
 import { useEffect } from 'react'
 import Footer from '../components/Footer'
+import CookieBanner from '../components/CookieBanner' // importiere hier deinen CookieBanner
+
 const MainLayout = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
-  if (location.pathname === '/' && location.state?.scrollTo) {
+    if (location.pathname === '/' && location.state?.scrollTo) {
       let attempts = 0
       const maxAttempts = 20
 
@@ -32,11 +34,11 @@ const MainLayout = () => {
 
   return (
     <div>
-        <ScrollToTop />
-        <Navbar />
-        <Outlet />
-        <Footer />
-
+      <ScrollToTop />
+      <Navbar />
+      <CookieBanner /> {/* Hier den CookieBanner einfügen */}
+      <Outlet />
+      <Footer />
     </div>
   )
 }

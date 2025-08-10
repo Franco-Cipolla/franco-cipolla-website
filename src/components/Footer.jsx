@@ -1,11 +1,22 @@
-import React from 'react';
-import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
-import { FiInstagram } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
+import { FiInstagram } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
+import CookieBanner from './CookieBanner'
 
 const Footer = () => {
+  const [showCookieSettings, setShowCookieSettings] = useState(false)
+
+  const openCookieSettings = () => {
+    setShowCookieSettings(true)
+  }
+
+  const closeCookieSettings = () => {
+    setShowCookieSettings(false)
+  }
+
   return (
-    <footer className="px-2 py-12 border-t  mx-2 border-black bg-white">
+    <footer className="px-2 py-12 border-t mx-2 border-black bg-white">
       {/* Hauptbereich */}
       <div className="border-b border-black pb-10">
         <h1 className="text-2xl md:text-3xl font-bold mb-8">Franco Cipolla</h1>
@@ -16,7 +27,8 @@ const Footer = () => {
           <div>
             <h2 className="font-semibold">Adresse</h2>
             <p className="text-[#000814] mt-2">
-              Wuppermannstraße 14<br />58256 Ennepetal
+              Wuppermannstraße 14<br />
+              58256 Ennepetal
             </p>
           </div>
 
@@ -77,10 +89,21 @@ const Footer = () => {
           >
             Impressum
           </Link>
+          <button
+            onClick={openCookieSettings}
+            className="underline cursor-pointer hover:text-[#001D3D] text-[#000814] transition-colors"
+          >
+            Cookie-Einstellungen
+          </button>
+
+          {/* CookieBanner wird per Prop gesteuert */}
+          {showCookieSettings && (
+            <CookieBanner forceShow={true} onClose={closeCookieSettings} />
+          )}
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
