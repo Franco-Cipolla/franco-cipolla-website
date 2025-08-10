@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ReCAPTCHA from 'react-google-recaptcha'
+import ErstgespreachHead from "../components/ErstgespreachHead"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -153,6 +154,8 @@ const Erstgespraech = () => {
   }
 
   return (
+    <>
+    <ErstgespreachHead />
     <section ref={sectionRef} className="w-full flex items-center mt-20 justify-center">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <div className="py-20 px-6 text-black max-w-[950px] xl:max-w-[1100px]">
@@ -289,6 +292,7 @@ const Erstgespraech = () => {
         </form>
       </div>
     </section>
+    </>
   )
 }
 

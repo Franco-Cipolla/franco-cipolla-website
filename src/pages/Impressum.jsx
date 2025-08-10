@@ -2,9 +2,12 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ImpressumHead from '../components/ImpressumHead'
 
 const Impressum = () => {
   return (
+    <>
+    <ImpressumHead />
     <section className="w-full flex items-center mt-20 justify-center bg-white text-black">
       <div className="max-w-[950px] xl:max-w-[1100px] px-6 py-20">
         <h1 className="text-3xl md:text-4xl font-bold mb-10">Impressum</h1>
@@ -33,7 +36,7 @@ const Impressum = () => {
               <br />
               E-Mail:{' '}
               <a
-                href="mailto:franco-cipolla@dev.com"
+                href="mailto:franco_cipolla@web.de"
                 className="underline text-[#003566] hover:text-[#001D3D] transition-colors duration-200"
               >
                 franco_cipolla@web.de
@@ -49,7 +52,7 @@ const Impressum = () => {
           <div>
             <p className="font-semibold">Haftung für Inhalte</p>
             <p className="mt-2">
-              Als Diensteanbieter bin ich gemäß § 5 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG bin ich jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+              Als Diensteanbieter bin ich gemäß § 5 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG bin ich jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
             </p>
           </div>
 
@@ -69,10 +72,11 @@ const Impressum = () => {
         </div>
 
         <p className="text-sm text-gray-500 mt-12">
-          Zuletzt aktualisiert: 09. August 2025
+          Zuletzt aktualisiert: 10. August 2025
         </p>
       </div>
     </section>
+    </>
   )
 }
 

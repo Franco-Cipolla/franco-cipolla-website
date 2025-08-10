@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="px-4 py-12 border-t border-black bg-white">
+    <footer className="px-2 py-12 border-t  mx-2 border-black bg-white">
       {/* Hauptbereich */}
       <div className="border-b border-black pb-10">
         <h1 className="text-2xl md:text-3xl font-bold mb-8">Franco Cipolla</h1>

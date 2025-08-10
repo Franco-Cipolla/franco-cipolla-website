@@ -1,7 +1,10 @@
 import React from 'react'
+import DatenschutzHead from "../components/DatenschutzHead"
 
 const Datenschutzerklärung = () => {
   return (
+    <>
+    <DatenschutzHead />
     <section className="max-w-4xl mx-auto px-6 py-20 mt-20 text-black">
       <h1 className="text-3xl md:text-4xl font-bold mb-6">Datenschutzerklärung</h1>
 
@@ -64,9 +67,10 @@ const Datenschutzerklärung = () => {
       </p>
 
       <p className="text-sm text-gray-500 mt-10">
-        Zuletzt aktualisiert: 09. August 2025
+        Zuletzt aktualisiert: 10. August 2025
       </p>
     </section>
+    </>
   )
 }
 
