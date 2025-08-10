@@ -46,12 +46,12 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-3 mt-3">
               <HiOutlinePhone className="text-black text-xl" />
-              <a
-                href="tel:+4917675398004"
+              <p
                 className="text-[#000814] hover:text-[#003566] transition-colors"
+
               >
                 +49 176 75398004
-              </a>
+              </p>
             </div>
           </div>
 
@@ -91,7 +91,7 @@ const Footer = () => {
           </Link>
           <button
             onClick={openCookieSettings}
-            className="underline cursor-pointer hover:text-[#001D3D] text-[#000814] transition-colors"
+            className="underline text-sm cursor-pointer hover:text-[#001D3D] text-[#000814] transition-colors"
           >
             Cookie-Einstellungen
           </button>

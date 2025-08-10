@@ -167,7 +167,12 @@ const Contact = () => {
           </p>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlineMail className="text-black text-2xl" />
-            <p>franco_cipolla@web.de </p>
+            <a
+                href="mailto:franco_cipolla@web.de"
+                className="text-[#000814] hover:text-[#003566] transition-colors"
+              >
+                franco_cipolla@web.de
+              </a>
           </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlinePhone className="text-black text-2xl" />
