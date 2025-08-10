@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 const HomePageHead = () => {
   return (
     <Helmet>
-        <title>Webentwickler & Webdesigner Ennepetal - Franco Cipolla | Individuelle Websites</title>
+        <title>Franco Cipolla - Webentwickler & Webdesigner Ennepetal  | Individuelle Websites</title>
         <meta
           name="description"
           content="Moderne, individuell gestaltete Websites von Franco Cipolla, Webentwickler aus Ennepetal. Professionelles Webdesign, React.js, SEO & mehr."
