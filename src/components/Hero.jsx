@@ -1,33 +1,32 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react'
-import { gsap, ScrollTrigger } from "./gsapSetup";
-import CTA1 from './CTA1'
-import CTA2 from './CTA2'
-import HeroIllustration from '../assets/Hero-Illustration.webp'
-
-gsap.registerPlugin(ScrollTrigger)
+import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import { gsap } from './gsapSetup'; // ScrollTrigger ist bereits in gsapSetup registriert
+import CTA1 from './CTA1';
+import CTA2 from './CTA2';
+import HeroIllustration from '../assets/Hero-Illustration.webp';
 
 const Hero = () => {
-  const heroRef = useRef(null)
-  const leftCircleRef = useRef(null)
-  const rightCircleRef = useRef(null)
+  const heroRef = useRef(null);
+  const leftCircleRef = useRef(null);
+  const rightCircleRef = useRef(null);
 
-  const headlineRef = useRef(null)
-  const mobileText1Ref = useRef(null)
-  const mobileText2Ref = useRef(null)
-  const desktopText1Ref = useRef(null)
-  const desktopText2Ref = useRef(null)
-  const ctaRef = useRef(null)
-  const imageRef = useRef(null)
+  const headlineRef = useRef(null);
+  const mobileText1Ref = useRef(null);
+  const mobileText2Ref = useRef(null);
+  const desktopText1Ref = useRef(null);
+  const desktopText2Ref = useRef(null);
+  const ctaRef = useRef(null);
+  const imageRef = useRef(null);
 
-  const [isXL, setIsXL] = useState(false)
+  const [isXL, setIsXL] = useState(false);
 
   useEffect(() => {
-    const checkWidth = () => setIsXL(window.innerWidth >= 1280)
-    checkWidth()
-    window.addEventListener('resize', checkWidth)
-    return () => window.removeEventListener('resize', checkWidth)
-  }, [])
+    const checkWidth = () => setIsXL(window.innerWidth >= 1280);
+    checkWidth();
+    window.addEventListener('resize', checkWidth);
+    return () => window.removeEventListener('resize', checkWidth);
+  }, []);
 
+  // Parallax/ScrollTrigger-Animationen für die Kreise
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -37,55 +36,62 @@ const Hero = () => {
           end: 'bottom 5%',
           scrub: 0.5,
         },
-      })
+      });
 
-      tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 })
-      tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0)
-      tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5)
-      tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5)
-    }, heroRef)
+      tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
+      tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
+      tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
+      tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
+    }, heroRef);
 
-    return () => {
-      ctx.revert()
-      ScrollTrigger.killAll()
-    }
-  }, [])
+    // Revert killt alle Animations/ScrollTrigger Instanzen innerhalb des Contexts sauber
+    return () => ctx.revert();
+  }, []);
 
+  // Content-Fade-In (nur XL)
   useLayoutEffect(() => {
-    if (!isXL) return
+  if (!isXL) return;
 
-    const ctx = gsap.context(() => {
-      const animateContent = () => {
-        gsap.from(
-          [
-            headlineRef.current,
-            mobileText1Ref.current,
-            mobileText2Ref.current,
-            desktopText1Ref.current,
-            desktopText2Ref.current,
-            ctaRef.current,
-            imageRef.current,
-          ].filter(Boolean),
-          {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power3.out',
-          }
-        )
-      }
+  const ctx = gsap.context(() => {
+    const animateContent = () => {
+      gsap.from(
+        [
+          headlineRef.current,
+          mobileText1Ref.current,
+          mobileText2Ref.current,
+          desktopText1Ref.current,
+          desktopText2Ref.current,
+          ctaRef.current,
+          imageRef.current,
+        ].filter(Boolean),
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power3.out',
+        }
+      );
+    };
 
-      const img = imageRef.current
-      if (img && !img.complete) {
-        img.onload = animateContent
-      } else {
-        animateContent()
-      }
-    }, heroRef)
+    const imgEl = imageRef.current; // aktuellen Ref-Wert abgreifen
+    if (imgEl && !imgEl.complete) {
+      const handleLoad = () => animateContent();
+      imgEl.addEventListener('load', handleLoad);
 
-    return () => ctx.revert()
-  }, [isXL])
+      // Cleanup für diesen Listener
+      return () => {
+        imgEl.removeEventListener('load', handleLoad);
+      };
+    } else {
+      animateContent();
+    }
+  }, heroRef);
+
+  // Context-Cleanup
+  return () => ctx.revert();
+}, [isXL]);
+
 
   return (
     <>
@@ -115,34 +121,22 @@ const Hero = () => {
               Websites, die verkaufen <br /> statt nur zu existieren.
             </h1>
 
-            <p
-              ref={mobileText1Ref}
-              className="text-lg text-[#000814] max-w-xl xl:hidden mb-4"
-            >
+            <p ref={mobileText1Ref} className="text-lg text-[#000814] max-w-xl xl:hidden mb-4">
               Individuelles Webdesign. Individuell programmiert. SEO-optimiert.
               Textlich stark. Für Unternehmen, die online wachsen wollen.
             </p>
-            <p
-              ref={mobileText2Ref}
-              className="text-base text-[#000814]/85 max-w-xl xl:hidden mb-5"
-            >
+            <p ref={mobileText2Ref} className="text-base text-[#000814]/85 max-w-xl xl:hidden mb-5">
               Kein Baukasten. Kein Standard. Sondern echter Code – maßgeschneidert
               für dich.
             </p>
 
             <div className="hidden xl:flex flex-col gap-6 max-w-2xl">
-              <p
-                ref={desktopText1Ref}
-                className="text-lg xltext-xl text-[#000814]"
-              >
+              <p ref={desktopText1Ref} className="text-lg xltext-xl text-[#000814]">
                 Individuelles Webdesign, individuell programmiert, SEO & Copywriting
                 für Unternehmen, die online wachsen wollen. Persönlich. Schnell.
                 Gewinnbringend.
               </p>
-              <p
-                ref={desktopText2Ref}
-                className="text-base xl:text-[1.1rem] text-[#000814]"
-              >
+              <p ref={desktopText2Ref} className="text-base xl:text-[1.1rem] text-[#000814]">
                 Schluss mit veralteten Seiten, langsamen Ladezeiten und verlorenen
                 Kunden. Deine neue Website wird nicht nur gut aussehen – sie wird
                 verkaufen.
@@ -170,13 +164,12 @@ const Hero = () => {
                 loading="lazy"
                 decoding="async"
               />
-
             )}
           </div>
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

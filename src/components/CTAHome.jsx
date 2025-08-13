@@ -3,7 +3,7 @@ import { FaArrowRight } from 'react-icons/fa'
 
 const CTAHome = () => {
   return (
-    <section className=" text-black py-12 px-6  mt-16 text-center">
+    <section className=" text-black py-12 my-32 px-6  text-center">
       <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold  mb-6">
         Bereit für eine Website, die Kunden gewinnt?
       </h2>

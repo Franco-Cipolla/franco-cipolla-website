@@ -1,40 +1,45 @@
-import React from 'react'
-import serviceBg from '../assets/serviceBg.jpg'
-import CTAProjectStart from './CTAProjectStart'
-import ServiceCard from './ServiceCard'
-import { useEffect, useRef } from 'react'
-import { gsap, ScrollTrigger } from "./gsapSetup";
+import React, { useEffect, useRef } from 'react';
+import serviceBg from '../assets/serviceBg.jpg';
+import CTAProjectStart from './CTAProjectStart';
+import ServiceCard from './ServiceCard';
+import { gsap } from './gsapSetup'; // ScrollTrigger schon dort registriert
 
-gsap.registerPlugin(ScrollTrigger)
 const Service = () => {
-   const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const cards = sectionRef.current.querySelectorAll('.service-card')
+    // gsap.context sorgt für einfaches Cleanup
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray('.service-card', sectionRef.current);
+      if (!cards.length) return; // keine Elemente → kein Animationsversuch
 
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 90%',
-        },
-      }
-    )
-  }, [])
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 90%',
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert(); // killt alle Targets/Trigger aus diesem Kontext
+  }, []);
+
   return (
     <section
       className="relative py-16 px-6 mt-5 text-black overflow-hidden"
       id="service"
       ref={sectionRef}
     >
-      {/* Hintergrundbild mit Opacity, Blur und negativem Z-Index */}
+      {/* Hintergrundbild */}
       <div
         className="absolute inset-0 bg-center bg-cover bg-no-repeat"
         style={{
@@ -43,31 +48,33 @@ const Service = () => {
           filter: 'blur(8px)',
           zIndex: -10,
         }}
-      ></div>
-
-      {/* Gradient-Fade oben */}
-      <div className="absolute top-0 left-0 w-full h-32 z-0 bg-gradient-to-b from-white to-transparent"
-          style={{ zIndex: -10 }}>
-
-      </div>
-
-      {/* Gradient-Fade unten */}
-      <div className="absolute bottom-0 left-0 w-full h-32 z-0 bg-gradient-to-t from-white to-transparent"
-           style={{ zIndex: -10 }}>
-      </div>
+      />
+      {/* Gradient-Fades */}
+      <div
+        className="absolute top-0 left-0 w-full h-32 z-0 bg-gradient-to-b from-white to-transparent"
+        style={{ zIndex: -10 }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-full h-32 z-0 bg-gradient-to-t from-white to-transparent"
+        style={{ zIndex: -10 }}
+      />
 
       {/* Inhalt */}
       <div id="service-start" className="h-0" />
 
-      <h1 className='text-3xl md:text-4xl pt-14 font-bold text-black text-center leading-tight mt-15 mb-6 '>Meine Leistungen. Dein Online-Erfolg.</h1>
+      <h1 className="text-3xl md:text-4xl pt-14 font-bold text-black text-center leading-tight mt-15 mb-6">
+        Meine Leistungen. Dein Online-Erfolg.
+      </h1>
       <p className="text-lg text-gray-700 hidden md:block text-center max-w-2xl mx-auto mb-28">
-        Maßgeschneiderte Weblösungen für Selbstständige, Agenturen und Unternehmen – mit Fokus auf Performance, Design, Kundengewinnung und Sichtbarkeit.
+        Maßgeschneiderte Weblösungen für Selbstständige, Agenturen und Unternehmen – mit Fokus auf
+        Performance, Design, Kundengewinnung und Sichtbarkeit.
       </p>
       <p className="text-lg md:hidden text-gray-700 text-center max-w-2xl mx-auto mb-28">
-        Maßgeschneiderte Weblösungen für Unternehmen – mit Fokus auf Performance, Kundengewinnung und Sichtbarkeit.
+        Maßgeschneiderte Weblösungen für Unternehmen – mit Fokus auf Performance, Kundengewinnung
+        und Sichtbarkeit.
       </p>
 
-      <div className="relative z-10 max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 ">
+      <div className="relative z-10 max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
         <ServiceCard title="💻 Webdevelopment" text="Technisch sauber, schnell und sicher: Ich entwickle performante Websites, die auf allen Geräten zuverlässig funktionieren – von der Landingpage bis zum komplexen Webprojekt." />
         <ServiceCard title="🎨 Webdesign" text="Modernes Design, das Vertrauen schafft: Deine Website wird visuell ansprechend, intuitiv bedienbar und auf deine Zielgruppe zugeschnitten – für den perfekten ersten Eindruck." />
         <ServiceCard title="✍️ Copywriting" text="Worte, die verkaufen: Ich liefere Texte, die deine Leistungen klar kommunizieren, Emotionen wecken und Besucher gezielt zur Kontaktaufnahme führen." />
@@ -86,19 +93,16 @@ const Service = () => {
             </>
           }
         />
-
-        </div>
-
+      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto my-12 mb-20 text-center">
         <CTAProjectStart text="Jetzt Projekt starten" />
         <p className="mt-4 text-sm text-gray-600">
           Lass uns in einem kostenlosen Erstgespräch herausfinden, wie ich dir helfen kann, online sichtbar zu werden.
         </p>
-
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Service
+export default Service;

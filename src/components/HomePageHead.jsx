@@ -11,12 +11,8 @@ const HomePageHead = () => {
       />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href="https://franco-cipolla.de/" />
-      <link
-        rel="preload"
-        as="image"
-        href="/images/Hero-Illustration.webp"
-        type="image/webp"
-      />
+      <link rel="preload" href="/images/Hero-Illustration.webp" as="image" type="image/webp" />
+
 
 
       {/* Open Graph */}
