@@ -1,15 +1,10 @@
-import React, { useState, useRef, useEffect, lazy } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { toast } from 'react-toastify';
-const ToastContainer = lazy(() =>
-  import('react-toastify').then(mod => ({ default: mod.ToastContainer }))
-);
-const ReCAPTCHA = lazy(() =>
-  import('react-google-recaptcha').then(mod => ({ default: mod }))
-);
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReCAPTCHA from 'react-google-recaptcha';
 import ErstgespreachHead from "../components/ErstgespreachHead";
 import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';
 
