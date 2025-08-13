@@ -1,29 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { gsap } from "./gsapSetup";
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from './gsapSetup';
 
-const COOKIE_NAME = 'cookieConsent'
+const COOKIE_NAME = 'cookieConsent';
+const GA_ID = import.meta.env.VITE_GA_ID; // GA-ID aus .env
 
 const CookieBanner = ({ forceShow = false, onClose }) => {
-  const [showBanner, setShowBanner] = useState(false)
+  const [showBanner, setShowBanner] = useState(false);
   const [consent, setConsent] = useState({
     necessary: true,
     analytics: false,
     marketing: false,
-  })
-  const bannerRef = useRef(null)
+  });
+  const bannerRef = useRef(null);
 
   useEffect(() => {
-    const savedConsent = localStorage.getItem(COOKIE_NAME)
+    const savedConsent = localStorage.getItem(COOKIE_NAME);
     if (savedConsent) {
-      const parsed = JSON.parse(savedConsent)
-      setConsent(parsed)
-      setShowBanner(false)
-      if (parsed.analytics) enableAnalytics()
-      if (parsed.marketing) enableMarketing()
+      const parsed = JSON.parse(savedConsent);
+      setConsent(parsed);
+      setShowBanner(false);
+      if (parsed.analytics) enableAnalytics();
+      if (parsed.marketing) enableMarketing();
     } else {
-      if (!forceShow) setShowBanner(true)
+      if (!forceShow) setShowBanner(true);
     }
-  }, [forceShow])
+  }, [forceShow]);
 
   useEffect(() => {
     if ((showBanner || forceShow) && bannerRef.current) {
@@ -32,46 +33,74 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
           bannerRef.current,
           { y: 100, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
-        )
-      }, bannerRef)
-      return () => ctx.revert()
+        );
+      }, bannerRef);
+      return () => ctx.revert();
     }
-  }, [showBanner, forceShow])
+  }, [showBanner, forceShow]);
 
   const enableAnalytics = () => {
-    console.log('Google Analytics aktiviert')
-  }
+    if (!GA_ID) return;
+
+    if (!document.getElementById('ga-script')) {
+      const script1 = document.createElement('script');
+      script1.async = true;
+      script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+      script1.id = 'ga-script';
+      document.head.appendChild(script1);
+
+      const script2 = document.createElement('script');
+      script2.id = 'ga-init';
+      script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${GA_ID}', { 'anonymize_ip': true });
+      `;
+      document.head.appendChild(script2);
+
+      script1.onload = () => {
+        if (window.gtag) {
+          window.gtag('event', 'cookie_consent', { method: 'banner' });
+        }
+      };
+    } else {
+      window.gtag && window.gtag('event', 'cookie_consent', { method: 'banner' });
+    }
+
+    console.log('Google Analytics aktiviert');
+  };
 
   const enableMarketing = () => {
-    console.log('Marketing Cookies aktiviert')
-  }
+    console.log('Marketing Cookies aktiviert');
+  };
 
   const handleAcceptAll = () => {
-    const newConsent = { necessary: true, analytics: true, marketing: true }
-    localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent))
-    setConsent(newConsent)
-    setShowBanner(false)
-    if (onClose) onClose()
-    enableAnalytics()
-    enableMarketing()
-  }
+    const newConsent = { necessary: true, analytics: true, marketing: true };
+    localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent));
+    setConsent(newConsent);
+    setShowBanner(false);
+    onClose && onClose();
+    enableAnalytics();
+    enableMarketing();
+  };
 
   const handleSavePreferences = () => {
-    const newConsent = { ...consent, necessary: true }
-    localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent))
-    setConsent(newConsent)
-    setShowBanner(false)
-    if (onClose) onClose()
-    if (newConsent.analytics) enableAnalytics()
-    if (newConsent.marketing) enableMarketing()
-  }
+    const newConsent = { ...consent, necessary: true };
+    localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent));
+    setConsent(newConsent);
+    setShowBanner(false);
+    onClose && onClose();
+    if (newConsent.analytics) enableAnalytics();
+    if (newConsent.marketing) enableMarketing();
+  };
 
   const handleToggle = (key) => {
-    if (key === 'necessary') return
-    setConsent((prev) => ({ ...prev, [key]: !prev[key] }))
-  }
+    if (key === 'necessary') return;
+    setConsent((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
-  if (!(showBanner || forceShow)) return null
+  if (!(showBanner || forceShow)) return null;
 
   return (
     <div
@@ -98,10 +127,7 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
 
       <div className="flex flex-col md:flex-row md:items-center gap-4 w-full md:w-auto">
         <div className="flex flex-col space-y-2 md:mr-6 min-w-[220px]">
-          <label
-            className="flex items-center cursor-not-allowed select-none text-gray-500"
-            title="Diese Cookies sind notwendig und können nicht deaktiviert werden"
-          >
+          <label className="flex items-center cursor-not-allowed select-none text-gray-500" title="Diese Cookies sind notwendig und können nicht deaktiviert werden">
             <input type="checkbox" checked disabled className="mr-2" />
             Notwendige Cookies
           </label>
@@ -135,24 +161,18 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
         </div>
 
         <div className="flex flex-wrap gap-3 flex-col md:justify-end md:min-w-[180px]">
-          <button
-            onClick={handleAcceptAll}
-            className="bg-[#003566] hover:bg-[#001D3D] text-white px-5 py-2  transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
-          >
+          <button onClick={handleAcceptAll} className="bg-[#003566] hover:bg-[#001D3D] text-white px-5 py-2  transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition">
             Alle akzeptieren
           </button>
-          <button
-            onClick={handleSavePreferences}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2  transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
-          >
+          <button onClick={handleSavePreferences} className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2  transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition">
             Auswahl speichern
           </button>
           <button
             onClick={() => {
-              setShowBanner(false)
-              if (onClose) onClose()
+              setShowBanner(false);
+              onClose && onClose();
             }}
-            className="text-gray-600 hover:text-gray-900 px-5 py-2 transform hover:-translate-y-1 cursor-pointer  rounded font-semibold transition"
+            className="text-gray-600 hover:text-gray-900 px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
             aria-label="Cookie-Banner schließen"
           >
             Schließen
@@ -160,7 +180,7 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CookieBanner
+export default CookieBanner;
