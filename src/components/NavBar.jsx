@@ -83,9 +83,9 @@ const NavBar = () => {
         <h1 className="font-[800] text-[1.3rem] lg:text-2xl">Franco Cipolla</h1>
 
         {/* Burger Button */}
-        <div className="lg:hidden z-[80]">
+        <button className="lg:hidden z-[80]">
           <Hamburger toggled={isOpen} toggle={setIsOpen} size={22} />
-        </div>
+        </button>
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex space-x-2 items-center">
@@ -139,7 +139,6 @@ const NavBar = () => {
               Service
             </button>
           </li>
-          <div>
             <li>
             <button
               onClick={() => {
@@ -151,7 +150,6 @@ const NavBar = () => {
               Kontakt
             </button>
           </li>
-          </div>
          <CTA1 onClick={() => setIsOpen(false)} />
         </ul>
       </div>
