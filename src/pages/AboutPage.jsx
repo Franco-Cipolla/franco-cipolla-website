@@ -22,11 +22,11 @@ const AboutPage = () => {
             <p className="mb-4 text-sm sm:text-base leading-relaxed">
               Hallo, ich bin <strong>Franco Cipolla</strong>, ein leidenschaftlicher Webentwickler und Webdesigner aus <strong>Ennepetal, NRW</strong>.
               Mit 17 Jahren bringe ich frische Ideen, Kreativität und technisches Know-how mit, um Ihre Website individuell und mit höchster Qualität zu gestalten.
-              Obwohl ich erst seit weniger als einem Jahr professionell tätig bin, ist die Webentwicklung meine Leidenschaft und Berufung.
+              Ich entwickle moderne, individuell programmierte Websites mit React.js, die nicht nur optisch überzeugen, sondern auch durch gezieltes <strong>OnPage-SEO</strong> und strategisches Copywriting Kunden gewinnen und die Online-Präsenz nachhaltig stärken.
             </p>
             <p className="text-sm sm:text-base leading-relaxed">
               Viele Unternehmen in und um Ennepetal haben noch keine moderne Website, eine veraltete Seite oder erhalten keine Anfragen über ihre Online-Präsenz.
-              Genau hier setze ich an: Ich helfe Ihnen, eine <strong>moderne Website erstellen zu lassen in Ennepetal</strong>, die Kunden begeistert und echte Ergebnisse liefert.
+              Genau hier setze ich an: Ich erstelle Ihnen, eine <strong>moderne Website in Ennepetal</strong>, die Kunden begeistert und <strong>echte Ergebnisse</strong> liefert.
             </p>
           </div>
           <div>
@@ -46,19 +46,19 @@ const AboutPage = () => {
             Jede Website wird von mir maßgeschneidert programmiert und gestaltet – keine Standardvorlagen, sondern eine digitale Lösung, die genau zu Ihrem Unternehmen passt.
           </p>
           <p className="text-sm sm:text-base leading-relaxed">
-            So erhalten Sie eine Website, die nicht nur optisch überzeugt, sondern technisch einwandfrei läuft und bei Google besser gefunden wird – ein echter Mehrwert für Ihr Business in Ennepetal.
+            So erhalten Sie eine Website, die nicht nur optisch überzeugt, sondern technisch einwandfrei läuft, Kunden anspricht und bei Google besser gefunden wird. Ein echter Mehrwert für Ihr Unternehmen.
           </p>
         </section>
 
         <section className="my-6 sm:my-8">
           <h2 className="text-xl sm:text-2xl font-semibold mb-4">Meine Werte: Qualität, Vertrauen und Transparenz</h2>
           <p className="mb-4 text-sm sm:text-base leading-relaxed">
-            Was mich besonders macht, ist die Kombination aus <strong>Vertrauenswürdigkeit, Verlässlichkeit</strong> und meinen Fähigkeiten als Webdesigner in Ennepetal.
+            Was mich besonders macht, ist die Kombination aus <strong>Vertrauenswürdigkeit, Verlässlichkeit</strong> und <strong>meine Expertise als Webentwickler</strong> in Ennepetal.
             Ich kommuniziere offen und transparent, halte meine Versprechen und liefere pünktlich.
-            Für mich steht Qualität vor Quantität – ich will, dass Sie stolz auf Ihre neue Website sind und ich Ihnen echten Mehrwert bieten kann.
+            Für mich steht Qualität vor Quantität. Sie werden stolz auf ihre neue Website sein und sie wird Ihnen echten Mehrwert bieten.
           </p>
           <p className="text-sm sm:text-base leading-relaxed">
-            Als junger, technikaffiner Webentwickler habe ich den Vorteil, neueste Trends schnell umzusetzen und so Ihre Website modern und zukunftssicher zu gestalten.
+            Als junger Webentwickler habe ich den Vorteil, neueste Trends schnell umzusetzen und so Ihre Website modern und zukunftssicher zu gestalten.
           </p>
         </section>
 
