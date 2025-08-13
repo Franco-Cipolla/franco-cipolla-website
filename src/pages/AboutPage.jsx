@@ -111,13 +111,13 @@ const AboutPage = () => {
           <div>
             <h2
               ref={(el) => (textBlockRefs.current[1] = el)}
-              className="text-xl sm:text-2xl font-semibold mb-4"
+              className="text-xl sm:text-2xl font-semibold mb-8"
             >
               Warum ich ihre Website als Webdesigner in Ennepetal erstellen sollte
             </h2>
             <p
               ref={(el) => (textBlockRefs.current[2] = el)}
-              className="mb-4 text-sm sm:text-base leading-relaxed"
+              className="mb-8 text-base leading-relaxed"
             >
               Hallo, ich bin <strong>Franco Cipolla</strong>, ein leidenschaftlicher Webentwickler und Webdesigner aus <strong>Ennepetal, NRW</strong>.
               Mit 17 Jahren bringe ich frische Ideen, Kreativität und technisches Know-how mit, um Ihre Website individuell und mit höchster Qualität zu gestalten.
@@ -125,7 +125,7 @@ const AboutPage = () => {
             </p>
             <p
               ref={(el) => (textBlockRefs.current[3] = el)}
-              className="text-sm sm:text-base leading-relaxed"
+              className="text-base leading-relaxed"
             >
               Viele Unternehmen in und um Ennepetal haben noch keine moderne Website, eine veraltete Seite oder erhalten keine Anfragen über ihre Online-Präsenz.
               Genau hier setze ich an: Ich erstelle Ihnen, eine <strong>moderne Website in Ennepetal</strong>, die Kunden begeistert und <strong>echte Ergebnisse</strong> liefert.
@@ -149,20 +149,20 @@ const AboutPage = () => {
         <section className="my-6 sm:my-8">
           <h2
             ref={(el) => (textBlockRefs.current[4] = el)}
-            className="text-xl sm:text-2xl font-semibold mb-4"
+            className="text-xl sm:text-2xl font-semibold mb-8"
           >
             Meine Leistungen in Webentwicklung und Webdesign in Ennepetal
           </h2>
           <p
             ref={(el) => (textBlockRefs.current[5] = el)}
-            className="mb-4 text-sm sm:text-base leading-relaxed"
+            className="mb-4 text-base leading-relaxed"
           >
             Ich spezialisiere mich auf <strong>Webentwicklung mit React.js</strong>, individuelles Webdesign, <strong>Onpage-SEO</strong> und Copywriting für Websites.
             Jede Website wird von mir maßgeschneidert programmiert und gestaltet – keine Standardvorlagen, sondern eine digitale Lösung, die genau zu Ihrem Unternehmen passt.
           </p>
           <p
             ref={(el) => (textBlockRefs.current[6] = el)}
-            className="text-sm sm:text-base leading-relaxed"
+            className="text-base leading-relaxed"
           >
             So erhalten Sie eine Website, die nicht nur optisch überzeugt, sondern technisch einwandfrei läuft, Kunden anspricht und bei Google besser gefunden wird. Ein echter Mehrwert für Ihr Unternehmen.
           </p>
@@ -171,13 +171,13 @@ const AboutPage = () => {
         <section className="my-6 sm:my-8">
           <h2
             ref={(el) => (textBlockRefs.current[7] = el)}
-            className="text-xl sm:text-2xl font-semibold mb-4"
+            className="text-xl sm:text-2xl font-semibold mb-8"
           >
             Meine Werte: Qualität, Vertrauen und Transparenz
           </h2>
           <p
             ref={(el) => (textBlockRefs.current[8] = el)}
-            className="mb-4 text-sm sm:text-base leading-relaxed"
+            className="mb-4 text-base leading-relaxed"
           >
             Was mich besonders macht, ist die Kombination aus <strong>Vertrauenswürdigkeit, Verlässlichkeit</strong> und <strong>meine Expertise als Webentwickler</strong> in Ennepetal.
             Ich kommuniziere offen und transparent, halte meine Versprechen und liefere pünktlich.
@@ -185,7 +185,7 @@ const AboutPage = () => {
           </p>
           <p
             ref={(el) => (textBlockRefs.current[9] = el)}
-            className="text-sm sm:text-base leading-relaxed"
+            className="text-base leading-relaxed"
           >
             Als junger Webentwickler habe ich den Vorteil, neueste Trends schnell umzusetzen und so Ihre Website modern und zukunftssicher zu gestalten.
           </p>
