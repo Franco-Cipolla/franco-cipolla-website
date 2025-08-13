@@ -2,12 +2,10 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ImpressumHead from '../components/ImpressumHead'
 
 const Impressum = () => {
   return (
     <>
-    <ImpressumHead />
     <section className="w-full flex items-center mt-20 justify-center bg-white text-black">
       <div className="max-w-[950px] xl:max-w-[1100px] px-6 py-20">
         <h1 className="text-3xl md:text-4xl font-bold mb-10">Impressum</h1>

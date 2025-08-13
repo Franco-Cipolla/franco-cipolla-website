@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
 import { gsap, ScrollTrigger } from './gsapSetup'
 import { FaChevronDown } from 'react-icons/fa'
 import CTA2 from './CTA2'
@@ -20,7 +19,7 @@ const faqs = [
   {
     question: 'Wie viel kostet eine Website ungefähr?',
     answer:
-      'Die Preise starten bei etwa 1.000 € für einfache Seiten. Komplexere Projekte können 2.000 € oder mehr kosten – je nach Anforderungen.',
+      'Die Preise starten bei etwa 1.000 € für einfache Seiten. Komplexere Projekte können 2.000 € oder mehr kosten – je nach Anforderungen.',
   },
   {
     question: 'Wie lange dauert die Umsetzung einer Website?',
@@ -81,27 +80,8 @@ const FAQSection = () => {
     }
   }, [])
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  }
-
   return (
     <section ref={sectionRef} id="faq" className="py-20 px-6 text-black">
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
-
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-12">
         Häufige Fragen
       </h1>

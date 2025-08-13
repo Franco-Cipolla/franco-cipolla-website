@@ -1,7 +1,6 @@
 import React, { useRef, useLayoutEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import AboutHead from '../components/AboutHead'
 import CTA2 from '../components/CTA2'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -77,7 +76,6 @@ const AboutPage = () => {
 
   return (
     <>
-      <AboutHead />
 
       {/* Hintergrundkreise */}
       <div className="relative overflow-hidden">

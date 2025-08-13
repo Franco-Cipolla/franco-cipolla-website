@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReCAPTCHA from 'react-google-recaptcha';
-import ErstgespreachHead from "../components/ErstgespreachHead";
+
 import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -172,7 +172,7 @@ const Erstgespraech = () => {
 
   return (
     <>
-      <ErstgespreachHead />
+      
       <section ref={sectionRef} className="w-full flex items-center mt-20 justify-center">
         <ToastContainer
           position="top-right"
