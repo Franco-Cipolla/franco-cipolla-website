@@ -94,14 +94,14 @@ const AboutPage = () => {
       {/* Inhalt */}
       <main
         ref={heroRef}
-        className="max-w-[1000px] xl:max-w-[1165px] mx-auto px-4 sm:px-6 md:px-8 mt-12 sm:mt-16 lg:mt-20 py-12 text-black"
+        className="max-w-[1000px] xl:max-w-[1165px] mx-auto px-4 sm:px-6 md:px-8 mt-12 sm:mt-16 lg:mt-20 py-28 text-black"
       >
         <h1 ref={headlineRef} className="text-3xl sm:text-4xl font-bold mb-3">
           Über mich
         </h1>
         <p
           ref={(el) => (textBlockRefs.current[0] = el)}
-          className="text-base sm:text-lg font-bold text-[#003566] mb-8"
+          className="text-base sm:text-lg font-bold text-[#003566] mb-12"
         >
           Ihr Webentwickler & Webdesigner aus NRW
         </p>

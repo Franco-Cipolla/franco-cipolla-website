@@ -119,7 +119,7 @@ useLayoutEffect(() => {
           <div>
             <h1
               ref={headlineRef}
-              className="text-3xl md:text-5xl font-bold text-black leading-tight mb-5"
+              className="text-3xl md:text-5xl font-[800] text-black leading-tight mb-5"
             >
               Websites, die verkaufen <br /> statt nur zu existieren.
             </h1>
