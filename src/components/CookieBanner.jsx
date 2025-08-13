@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { gsap } from "./gsapSetup";
 
 const COOKIE_NAME = 'cookieConsent'
 

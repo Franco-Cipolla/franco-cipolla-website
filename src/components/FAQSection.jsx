@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap, ScrollTrigger } from "./gsapSetup";
 import { FaChevronDown } from 'react-icons/fa'
 import CTA2 from './CTA2'
 
@@ -125,7 +124,7 @@ const FAQSection = () => {
       {/* CTA-Div mit Animation */}
       <div ref={ctaRef} className="text-center mt-12 w-full">
         <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto my-6">
-          Noch Fragen offen? Oder direkt loslegen?
+          Noch Fragen offen?
         </p>
         <CTA2 />
       </div>

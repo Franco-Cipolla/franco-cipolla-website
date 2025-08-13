@@ -1,12 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --lighter-blue: #003566;
-  --darker-blue: #001D3D;
-  --dark-grey: #000814;
-  --dark-purple: #240046;
-  --purple: #3C096C;
-}
 
 
 @font-face {
@@ -14,14 +7,18 @@
   src: local("Urbanist"),
        url("./fonts/Urbanist/static/Urbanist-Regular.ttf") format("truetype");
   font-style: normal;
+  font-display: swap;
 }
+
 
 
 body {
+  margin: 0;
+  min-height: 100vh;
   font-family: "Urbanist", sans-serif;
   overflow-x: hidden;
-
 }
+
 
 html {
   scroll-behavior: smooth;

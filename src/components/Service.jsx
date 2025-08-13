@@ -3,8 +3,7 @@ import serviceBg from '../assets/serviceBg.jpg'
 import CTAProjectStart from './CTAProjectStart'
 import ServiceCard from './ServiceCard'
 import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap, ScrollTrigger } from "./gsapSetup";
 
 gsap.registerPlugin(ScrollTrigger)
 const Service = () => {

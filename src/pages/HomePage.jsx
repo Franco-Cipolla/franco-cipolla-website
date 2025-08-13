@@ -6,6 +6,7 @@ import Service from '../components/Service'
 import FAQSection from '../components/FAQSection'
 import Contact from '../components/Contact'
 import HomePageHead from '../components/HomePageHead'
+import CTAHome from '../components/CTAHome'
 
 const HomePage = () => {
 
@@ -21,6 +22,7 @@ const HomePage = () => {
       <Projects />
       <Service />
       <FAQSection />
+      <CTAHome />
       <Contact />
     </main>
     </>

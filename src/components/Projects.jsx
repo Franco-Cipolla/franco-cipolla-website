@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap, ScrollTrigger } from "./gsapSetup";
 import ProjectCard from './ProjectCard'
 import WebImg from "../assets/my-site-preview.png"
 
