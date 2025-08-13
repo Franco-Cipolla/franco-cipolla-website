@@ -167,17 +167,17 @@ const Contact = () => {
   };
 
   return (
-    <section ref={sectionRef} className="w-full flex items-center justify-center">
+    <section ref={sectionRef} className="w-full flex items-center justify-center" id="contact">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      <div className="py-20 px-6 text-black lg:grid lg:grid-cols-2 max-w-[950px] xl:max-w-[1100px]">
-        <div className="mb-15" id="contact">
-          <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-6 lg:mb-10">
+      <div className="py-20 px-6 text-black lg:grid  lg:grid-cols-2 max-w-[950px] xl:max-w-[1100px]">
+        <div className="mb-15" >
+          <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-6 lg:mb-10" >
             Kontaktiere mich
           </h1>
           <p className="contact-animate lg:hidden text-lg text-[#000814] mx-auto my-6">
             Ich helfe dir, deine Website nicht nur schön, sondern strategisch stark zu machen
           </p>
-          <p className="contact-animate text-[#000814] text-lg my-6 hidden lg:block lg:pr-10">
+          <p  className="contact-animate text-[#000814] text-lg my-6 hidden lg:block lg:pr-10">
             Du möchtest eine Website, die endlich Wirkung zeigt? Dann lass uns sprechen. Ich helfe dir, deine Website nicht nur schön, sondern strategisch stark zu machen.
           </p>
           <div className="contact-animate flex items-center gap-3 mt-8">
