@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { gsap, ScrollTrigger } from "./gsapSetup";
+import { Helmet } from 'react-helmet'
+import { gsap, ScrollTrigger } from './gsapSetup'
 import { FaChevronDown } from 'react-icons/fa'
 import CTA2 from './CTA2'
 
@@ -35,7 +36,7 @@ const faqs = [
     question: 'Was passiert, wenn ich später etwas ändern will?',
     answer:
       'Du kannst zwischen zwei Optionen wählen: monatliche Wartung oder Einzelanpassungen nach Bedarf. Die Preise richten sich nach dem Aufwand.',
-  }
+  },
 ]
 
 const FAQSection = () => {
@@ -46,7 +47,6 @@ const FAQSection = () => {
   useEffect(() => {
     if (!sectionRef.current) return
 
-    // FAQ-Items einfliegen
     gsap.fromTo(
       sectionRef.current.querySelectorAll('.faq-item'),
       { opacity: 0, y: 30 },
@@ -63,7 +63,6 @@ const FAQSection = () => {
       }
     )
 
-    // CTA-Div einfliegen
     if (ctaRef.current) {
       gsap.fromTo(
         ctaRef.current,
@@ -82,12 +81,27 @@ const FAQSection = () => {
     }
   }, [])
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  }
+
   return (
-    <section
-      ref={sectionRef}
-      id="faq"
-      className="py-20 px-6  text-black"
-    >
+    <section ref={sectionRef} id="faq" className="py-20 px-6 text-black">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
+
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-12">
         Häufige Fragen
       </h1>
@@ -102,7 +116,7 @@ const FAQSection = () => {
               onClick={() =>
                 setOpenIndex(openIndex === index ? null : index)
               }
-              className="w-full flex justify-between items-center text-left"
+              className="w-full cursor-pointer flex justify-between items-center text-left"
             >
               <span className="font-semibold text-lg">{faq.question}</span>
               <FaChevronDown
@@ -121,7 +135,6 @@ const FAQSection = () => {
         ))}
       </div>
 
-      {/* CTA-Div mit Animation */}
       <div ref={ctaRef} className="text-center mt-12 w-full">
         <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto my-6">
           Noch Fragen offen?
