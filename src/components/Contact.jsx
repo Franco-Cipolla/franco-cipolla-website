@@ -1,35 +1,39 @@
-import React, { useRef, useEffect, useState } from 'react'
-import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
-import { FiInstagram } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import React, { useRef, useEffect, useState } from 'react';
+import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
+import { FiInstagram } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ReCAPTCHA from 'react-google-recaptcha';
 
-// reCAPTCHA
-import ReCAPTCHA from 'react-google-recaptcha'
+// Utils (siehe unten)
+import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
-  const sectionRef = useRef(null)
-  const formsparkURL = import.meta.env.VITE_FORMSPARK_FORM_ID_CONTACT
-  const recaptchaRef = useRef(null)
+  const sectionRef = useRef(null);
+  const recaptchaRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
     privacy: false,
-  })
+  });
+  const [errors, setErrors] = useState({});
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  const [errors, setErrors] = useState({})
-  const [recaptchaToken, setRecaptchaToken] = useState(null)
+  const formsparkEnv = import.meta.env.VITE_FORMSPARK_FORM_ID_CONTACT;
+  const formsparkURL = buildFormsparkUrl(formsparkEnv);
+  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
-    if (!sectionRef.current) return
-    const elements = sectionRef.current.querySelectorAll('.contact-animate')
+    if (!sectionRef.current) return;
+    const elements = sectionRef.current.querySelectorAll('.contact-animate');
     gsap.fromTo(
       elements,
       { opacity: 0, scale: 0.95 },
@@ -44,116 +48,128 @@ const Contact = () => {
           start: 'top 80%',
         },
       }
-    )
-  }, [])
+    );
+  }, []);
 
   const validateField = (name, value) => {
-    let error = ''
+    let error = '';
     switch (name) {
       case 'name':
-        if (!value.trim()) error = 'Bitte gib deinen Namen ein.'
-        break
+        if (!value.trim()) error = 'Bitte gib deinen Namen ein.';
+        break;
       case 'email':
-        if (!value.trim()) error = 'Bitte gib deine E-Mail ein.'
+        if (!value.trim()) error = 'Bitte gib deine E-Mail ein.';
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
-          error = 'Bitte gib eine gültige E-Mail-Adresse ein.'
-        break
+          error = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+        break;
       case 'message':
-        if (!value.trim()) error = 'Bitte gib eine Nachricht ein.'
-        break
+        if (!value.trim()) error = 'Bitte gib eine Nachricht ein.';
+        break;
       case 'privacy':
-        if (!value) error = 'Du musst die Datenschutzerklärung akzeptieren.'
-        break
+        if (!value) error = 'Du musst die Datenschutzerklärung akzeptieren.';
+        break;
       case 'recaptcha':
-        if (!value) error = 'Bitte bestätige das reCAPTCHA.'
-        break
+        if (!value) error = 'Bitte bestätige das reCAPTCHA.';
+        break;
       default:
-        break
+        break;
     }
-    return error
-  }
+    return error;
+  };
 
   const handleChange = (e) => {
-    const { name, type, checked, value } = e.target
-    const fieldValue = type === 'checkbox' ? checked : value
+    const { name, type, checked, value } = e.target;
+    const fieldValue = type === 'checkbox' ? checked : value;
 
     setFormData((prev) => ({
       ...prev,
       [name]: fieldValue,
-    }))
+    }));
 
     setErrors((prev) => ({
       ...prev,
       [name]: validateField(name, fieldValue),
-    }))
-  }
+    }));
+  };
 
   const handleBlur = (e) => {
-    const { name, type, checked, value } = e.target
-    const fieldValue = type === 'checkbox' ? checked : value
+    const { name, type, checked, value } = e.target;
+    const fieldValue = type === 'checkbox' ? checked : value;
 
     setErrors((prev) => ({
       ...prev,
       [name]: validateField(name, fieldValue),
-    }))
-  }
+    }));
+  };
 
   const onRecaptchaChange = (token) => {
-    setRecaptchaToken(token)
+    setRecaptchaToken(token);
     setErrors((prev) => ({
       ...prev,
       recaptcha: validateField('recaptcha', token),
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = async (e) => {
-  e.preventDefault()
+    e.preventDefault();
 
-  // Validierung aller Felder + reCAPTCHA
-  const newErrors = {}
-  Object.entries(formData).forEach(([key, val]) => {
-    const error = validateField(key, val)
-    if (error) newErrors[key] = error
-  })
+    // Validierung
+    const newErrors = {};
+    Object.entries(formData).forEach(([key, val]) => {
+      const error = validateField(key, val);
+      if (error) newErrors[key] = error;
+    });
+    const recaptchaError = validateField('recaptcha', recaptchaToken);
+    if (recaptchaError) newErrors.recaptcha = recaptchaError;
 
-  const recaptchaError = validateField('recaptcha', recaptchaToken)
-  if (recaptchaError) newErrors.recaptcha = recaptchaError
-
-  if (Object.keys(newErrors).length > 0) {
-    setErrors(newErrors)
-    toast.error('Bitte überprüfe die Eingaben und behebe die Fehler.')
-    return
-  }
-
-  try {
-    // Payload mit g-recaptcha-response (Formspark erwartet das so)
-    const payload = { ...formData, 'g-recaptcha-response': recaptchaToken }
-
-    const response = await fetch(formsparkURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-
-    if (response.ok) {
-      toast.success('Danke für deine Anfrage!')
-      setFormData({ name: '', email: '', message: '', privacy: false })
-      setErrors({})
-      setRecaptchaToken(null)
-      if (recaptchaRef.current) recaptchaRef.current.reset()
-    } else {
-      toast.error('Fehler beim Senden. Bitte versuche es erneut.')
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      toast.dismiss();
+      toast.error('Bitte überprüfe die Eingaben und behebe die Fehler.');
+      return;
     }
-  } catch (error) {
-    toast.error('Netzwerkfehler. Bitte versuche es erneut.')
-    console.error(error)
-  }
-}
 
+    if (submitting) return;
+    setSubmitting(true);
+
+    try {
+      const payload = { ...formData, 'g-recaptcha-response': recaptchaToken };
+
+      // Optional: Timeout via AbortController
+      // const controller = new AbortController();
+      // const t = setTimeout(() => controller.abort(), 10000);
+
+      const result = await submitToFormspark(formsparkURL, payload /*, { signal: controller.signal }*/);
+      // clearTimeout(t);
+
+      toast.dismiss();
+
+      if (result.ok) {
+        toast.success('Danke für deine Anfrage!');
+        setFormData({ name: '', email: '', message: '', privacy: false });
+        setErrors({});
+        setRecaptchaToken(null);
+        if (recaptchaRef.current) recaptchaRef.current.reset();
+      } else {
+        toast.error(result.message || 'Fehler beim Senden. Bitte versuche es erneut.');
+      }
+    } catch (err) {
+      toast.dismiss();
+      const offline = typeof navigator !== 'undefined' && navigator && navigator.onLine === false;
+      toast.error(
+        offline
+          ? 'Du scheinst offline zu sein. Bitte prüfe deine Internetverbindung.'
+          : 'Senden fehlgeschlagen. Bitte versuche es später erneut.'
+      );
+      console.error(err);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <section ref={sectionRef} className="w-full flex items-center justify-center">
-      <ToastContainer position="top-right" autoClose={5000} />
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <div className="py-20 px-6 text-black lg:grid lg:grid-cols-2 max-w-[950px] xl:max-w-[1100px]">
         <div className="mb-15" id="contact">
           <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-6 lg:mb-10">
@@ -168,11 +184,11 @@ const Contact = () => {
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlineMail className="text-black text-2xl" />
             <a
-                href="mailto:franco_cipolla@web.de"
-                className="text-[#000814] hover:text-[#003566] transition-colors"
-              >
-                franco_cipolla@web.de
-              </a>
+              href="mailto:franco_cipolla@web.de"
+              className="text-[#000814] hover:text-[#003566] transition-colors"
+            >
+              franco_cipolla@web.de
+            </a>
           </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlinePhone className="text-black text-2xl" />
@@ -278,7 +294,7 @@ const Contact = () => {
 
             <div className="contact-animate my-6">
               <ReCAPTCHA
-                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                sitekey={recaptchaSiteKey}
                 onChange={onRecaptchaChange}
                 ref={recaptchaRef}
               />
@@ -289,15 +305,18 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="contact-animate my-8 py-3 cursor-pointer px-4 rounded bg-black text-white transform transition hover:bg-[#000814]"
+              disabled={submitting}
+              className={`contact-animate my-8 py-3 px-4 rounded text-white transform transition ${
+                submitting ? 'bg-gray-600 cursor-not-allowed' : 'bg-black hover:bg-[#000814] cursor-pointer'
+              }`}
             >
-              Einreichen
+              {submitting ? 'Wird gesendet…' : 'Einreichen'}
             </button>
           </form>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
