@@ -20,6 +20,7 @@ const AboutHead = () => (
     />
     <meta property="og:url" content="https://franco-cipolla.de/about" />
     <meta property="og:image" content="https://franco-cipolla.de/images/franco-cipolla.jpg" />
+    
 
     {/* Strukturierte Daten */}
     <script type="application/ld+json">

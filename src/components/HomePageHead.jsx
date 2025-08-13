@@ -20,7 +20,8 @@ const HomePageHead = () => {
       <meta property="og:description" content="Moderne Websites, React.js, SEO & Webdesign aus Ennepetal." />
       <meta property="og:url" content="https://franco-cipolla.de/" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="https://franco-cipolla.de/og-homepage.jpg" />
+      <meta property="og:image" content="https://franco-cipolla.de/og-homepage.JPG" />
+      <meta property="og:image:alt" content="Franco Cipolla, Webdesigner aus Ennepetal" />
 
       {/* Strukturierte Daten */}
       <script type="application/ld+json">

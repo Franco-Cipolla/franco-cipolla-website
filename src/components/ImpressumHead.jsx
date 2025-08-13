@@ -11,6 +11,9 @@ const ImpressumHead = () => {
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://franco-cipolla.de/impressum" />
+        <meta property="og:image" content="https://franco-cipolla.de/og-homepage.JPG" />
+         <meta property="og:image:alt" content="Franco Cipolla, Webdesigner aus Ennepetal" />
+
       </Helmet>
   )
 }
