@@ -15,7 +15,7 @@ const faqs = [
   {
     question: 'Was bekomme ich konkret?',
     answer:
-      'Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht, sondern auch funktioniert: modernes Design, klare Struktur, mobile Optimierung, SEO-Basics und starke Performance. Kein Baukasten – sondern echtes Handwerk.',
+      'Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht, sondern auch Kunden gewinnt: modernes Design, klare Struktur, mobile Optimierung, OnPage-SEO und starke Performance. Kein Baukasten – sondern echtes Handwerk.',
   },
   {
     question: 'Wie viel kostet eine Website ungefähr?',
