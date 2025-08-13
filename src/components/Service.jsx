@@ -75,17 +75,17 @@ const Service = () => {
       </p>
 
       <div className="relative z-10 max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <ServiceCard title="💻 Webdevelopment" text="Technisch sauber, schnell und sicher: Ich entwickle performante Websites, die auf allen Geräten zuverlässig funktionieren – von der Landingpage bis zum komplexen Webprojekt." />
-        <ServiceCard title="🎨 Webdesign" text="Modernes Design, das Vertrauen schafft: Deine Website wird visuell ansprechend, intuitiv bedienbar und auf deine Zielgruppe zugeschnitten – für den perfekten ersten Eindruck." />
+        <ServiceCard title="💻 Webdevelopment" text="Technisch sauber, schnell und sicher: Ich entwickle performante Websites, die auf allen Geräten zuverlässig funktionieren. Von der Landingpage bis zum komplexen Webprojekt." />
+        <ServiceCard title="🎨 Webdesign" text="Modernes Design, das Vertrauen schafft: Deine Website wird visuell ansprechend, intuitiv bedienbar und auf deine Zielgruppe zugeschnitten für den perfekten ersten Eindruck." />
         <ServiceCard title="✍️ Copywriting" text="Worte, die verkaufen: Ich liefere Texte, die deine Leistungen klar kommunizieren, Emotionen wecken und Besucher gezielt zur Kontaktaufnahme führen." />
-        <ServiceCard title="📈 SEO" text="Mehr Sichtbarkeit bei Google: Mit gezielter Suchmaschinenoptimierung bringe ich deine Website nach vorne – damit potenzielle Kunden dich finden, bevor sie zur Konkurrenz gehen." />
+        <ServiceCard title="📈 SEO" text="Mehr Sichtbarkeit bei Google: Mit gezielter Suchmaschinenoptimierung bringe ich deine Website nach vorne, damit potenzielle Kunden dich finden, bevor sie zur Konkurrenz gehen." />
         <ServiceCard
           className="md:col-span-2 flex flex-col text-center justify-center"
           title="🤝 Einen zuverlässigen IT-Partner"
           text={
             <>
               <span className="block md:hidden">
-                Direkt erreichbar, schnelle Antworten, persönliche Betreuung. Ich bin für dich da – kompetent, transparent und zuverlässig.
+                Direkt erreichbar, schnelle Antworten, persönliche Betreuung. Ich bin für dich da. Kompetent, transparent und zuverlässig.
               </span>
               <span className="hidden md:block">
                 Du brauchst einen IT-Partner, der nicht nur technisch versiert ist, sondern auch wirklich für dich da ist? Ich bin erreichbar, antworte schnell und betreue dich persönlich – mit Kompetenz, Transparenz und echter Zuverlässigkeit. So entsteht eine Zusammenarbeit, auf die du dich verlassen kannst.
