@@ -6,8 +6,10 @@
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        {"key": "Content-Security-Policy","value": "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://www.google.com https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com; frame-src https://www.google.com;"}
-
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://www.googletagmanager.com https://www.google.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com; frame-src https://www.google.com;"
+        }
       ]
     },
     {
@@ -24,10 +26,9 @@
     }
   ],
   "rewrites": [
-      {
-        "source": "/((?!assets|sitemap\\.xml).*)",
-        "destination": "/index.html"
-      }
-    ]
-
+    {
+      "source": "/((?!assets|sitemap\\.xml).*)",
+      "destination": "/index.html"
+    }
+  ]
 }
