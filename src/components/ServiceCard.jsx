@@ -32,7 +32,7 @@ const ServiceCard = ({ title, text, className = "" }) => {
       className={`bg-gray-50 p-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.03] hover:shadow-lg ${className}`}
     >
       <div ref={innerRef}>
-        <h3 className="text-xl font-semibold mb-5 text-[#001D3D]">{title}</h3>
+        <h1 className="text-xl font-semibold mb-5 text-[#001D3D]">{title}</h1>
         <p className="text-base text-[#000814]">{text}</p>
       </div>
     </div>
