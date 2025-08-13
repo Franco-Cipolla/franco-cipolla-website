@@ -17,7 +17,7 @@ const AboutPage = () => {
         <section className="my-6 sm:my-8 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-              Warum ich als Webdesigner in Ennepetal Ihre Website erstelle
+              Warum ich ihre Website als Webdesigner in Ennepetal erstellen sollte
             </h2>
             <p className="mb-4 text-sm sm:text-base leading-relaxed">
               Hallo, ich bin <strong>Franco Cipolla</strong>, ein leidenschaftlicher Webentwickler und Webdesigner aus <strong>Ennepetal, NRW</strong>.
