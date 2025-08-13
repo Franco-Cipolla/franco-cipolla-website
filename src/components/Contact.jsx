@@ -1,11 +1,17 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState , lazy} from 'react';
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
 import { FiInstagram } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { gsap, ScrollTrigger } from "./gsapSetup";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+const ToastContainer = lazy(() =>
+  import('react-toastify').then(mod => ({ default: mod.ToastContainer }))
+);
+const ReCAPTCHA = lazy(() =>
+  import('react-google-recaptcha').then(mod => ({ default: mod }))
+);
 import 'react-toastify/dist/ReactToastify.css';
-import ReCAPTCHA from 'react-google-recaptcha';
+
 
 // Utils (siehe unten)
 import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';

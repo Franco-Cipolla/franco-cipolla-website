@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
-import { gsap } from './gsapSetup'; // ScrollTrigger ist bereits in gsapSetup registriert
+import { gsap, ScrollTrigger } from './gsapSetup'; // ScrollTrigger ist bereits in gsapSetup registriert
 import CTA1 from './CTA1';
 import CTA2 from './CTA2';
 import HeroIllustration from '../assets/Hero-Illustration.webp';
@@ -27,31 +27,49 @@ const Hero = () => {
   }, []);
 
   // Parallax/ScrollTrigger-Animationen für die Kreise
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom 5%',
-          scrub: 0.5,
-        },
-      });
+      useLayoutEffect(() => {
+      const ctx = gsap.context(() => {
+        ScrollTrigger.matchMedia({
+          // Mobile: nur sanftes Ausblenden
+          '(max-width: 1023px)': () => {
+            gsap.to([leftCircleRef.current, rightCircleRef.current], {
+              opacity: 0,
+              duration: 1,
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+              },
+            });
+          },
 
-      tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
-      tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
-      tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
-      tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
-    }, heroRef);
+          // Desktop: volle Parallax-Animation
+          '(min-width: 1024px)': () => {
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: 'top top',
+                end: 'bottom 5%',
+                scrub: 0.5,
+              },
+            });
 
-    // Revert killt alle Animations/ScrollTrigger Instanzen innerhalb des Contexts sauber
-    return () => ctx.revert();
-  }, []);
+            tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
+            tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
+            tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
+            tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
+          }
+        });
+      }, heroRef);
+
+      return () => ctx.revert();
+    }, []);
+
+
 
   // Content-Fade-In (nur XL)
   useLayoutEffect(() => {
-  if (!isXL) return;
-
   const ctx = gsap.context(() => {
     const animateContent = () => {
       gsap.from(
@@ -74,12 +92,11 @@ const Hero = () => {
       );
     };
 
-    const imgEl = imageRef.current; // aktuellen Ref-Wert abgreifen
+    const imgEl = imageRef.current;
     if (imgEl && !imgEl.complete) {
       const handleLoad = () => animateContent();
       imgEl.addEventListener('load', handleLoad);
 
-      // Cleanup für diesen Listener
       return () => {
         imgEl.removeEventListener('load', handleLoad);
       };
@@ -88,9 +105,9 @@ const Hero = () => {
     }
   }, heroRef);
 
-  // Context-Cleanup
   return () => ctx.revert();
-}, [isXL]);
+}, []);
+
 
 
   return (
