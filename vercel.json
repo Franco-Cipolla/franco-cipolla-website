@@ -8,7 +8,7 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://www.googletagmanager.com https://www.google.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com; frame-src https://www.google.com;"
+          "value": "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://ssl.gstatic.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net; frame-src https://www.google.com;"
         }
       ]
     },

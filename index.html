@@ -36,8 +36,9 @@
     <meta name="msapplication-square310x310logo" content="/mstile-310x310.png">
     <meta name="msapplication-TileColor" content="#000000">
 
-    <!-- Preload wichtiger Ressourcen -->
-    <link rel="preload" href="/images/Hero-Illustration.webp" as="image" type="image/webp" />
+
+    <!-- Nur auf Desktop (≥768px) preloaden -->
+    <link rel="preload" href="/images/Hero-Illustration.webp" as="image" type="image/webp" media="(min-width: 768px)" />
 
     <!-- Strukturierte Daten für Google -->
     <script type="application/ld+json">
