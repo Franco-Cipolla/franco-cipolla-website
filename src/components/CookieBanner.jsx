@@ -13,19 +13,19 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
   });
   const bannerRef = useRef(null);
 
+  // Prüfen, ob ein Consent schon im localStorage gespeichert ist
   useEffect(() => {
     const savedConsent = localStorage.getItem(COOKIE_NAME);
     if (savedConsent) {
       const parsed = JSON.parse(savedConsent);
       setConsent(parsed);
       setShowBanner(false);
-      if (parsed.analytics) enableAnalytics();
-      if (parsed.marketing) enableMarketing();
-    } else {
-      if (!forceShow) setShowBanner(true);
+    } else if (!forceShow) {
+      setShowBanner(true);
     }
   }, [forceShow]);
 
+  // Banner Animation
   useEffect(() => {
     if ((showBanner || forceShow) && bannerRef.current) {
       const ctx = gsap.context(() => {
@@ -42,6 +42,7 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
   const enableAnalytics = () => {
     if (!GA_ID) return;
 
+    // Script nur einmal hinzufügen
     if (!document.getElementById('ga-script')) {
       const script1 = document.createElement('script');
       script1.async = true;

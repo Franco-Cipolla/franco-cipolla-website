@@ -5,30 +5,27 @@ import { Link } from 'react-router-dom';
 import { gsap, ScrollTrigger } from "./gsapSetup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ReCAPTCHA from 'react-google-recaptcha';
 
-// Utils (siehe unten)
+// Utils
 import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const sectionRef = useRef(null);
-  const recaptchaRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
     privacy: false,
+    website: '' // Honeypot field
   });
   const [errors, setErrors] = useState({});
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
   const formsparkEnv = import.meta.env.VITE_FORMSPARK_FORM_ID_CONTACT;
   const formsparkURL = buildFormsparkUrl(formsparkEnv);
-  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -67,9 +64,6 @@ const Contact = () => {
       case 'privacy':
         if (!value) error = 'Du musst die Datenschutzerklärung akzeptieren.';
         break;
-      case 'recaptcha':
-        if (!value) error = 'Bitte bestätige das reCAPTCHA.';
-        break;
       default:
         break;
     }
@@ -101,25 +95,23 @@ const Contact = () => {
     }));
   };
 
-  const onRecaptchaChange = (token) => {
-    setRecaptchaToken(token);
-    setErrors((prev) => ({
-      ...prev,
-      recaptcha: validateField('recaptcha', token),
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Honeypot check — wenn ausgefüllt, einfach abbrechen
+    if (formData.website.trim() !== '') {
+      console.warn('Bot detected via honeypot field');
+      return;
+    }
 
     // Validierung
     const newErrors = {};
     Object.entries(formData).forEach(([key, val]) => {
-      const error = validateField(key, val);
-      if (error) newErrors[key] = error;
+      if (key !== 'website') { // Honeypot wird nicht validiert
+        const error = validateField(key, val);
+        if (error) newErrors[key] = error;
+      }
     });
-    const recaptchaError = validateField('recaptcha', recaptchaToken);
-    if (recaptchaError) newErrors.recaptcha = recaptchaError;
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -132,23 +124,16 @@ const Contact = () => {
     setSubmitting(true);
 
     try {
-      const payload = { ...formData, 'g-recaptcha-response': recaptchaToken };
+      const payload = { ...formData };
 
-      // Optional: Timeout via AbortController
-      // const controller = new AbortController();
-      // const t = setTimeout(() => controller.abort(), 10000);
-
-      const result = await submitToFormspark(formsparkURL, payload /*, { signal: controller.signal }*/);
-      // clearTimeout(t);
+      const result = await submitToFormspark(formsparkURL, payload);
 
       toast.dismiss();
 
       if (result.ok) {
         toast.success('Danke für deine Anfrage!');
-        setFormData({ name: '', email: '', message: '', privacy: false });
+        setFormData({ name: '', email: '', message: '', privacy: false, website: '' });
         setErrors({});
-        setRecaptchaToken(null);
-        if (recaptchaRef.current) recaptchaRef.current.reset();
       } else {
         toast.error(result.message || 'Fehler beim Senden. Bitte versuche es erneut.');
       }
@@ -168,24 +153,21 @@ const Contact = () => {
 
   return (
     <section ref={sectionRef} className="w-full flex items-center justify-center" id="contact">
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      <div className="py-20 px-6 text-black lg:grid  lg:grid-cols-2 max-w-[950px] xl:max-w-[1100px]">
-        <div className="mb-15" >
-          <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-6 lg:mb-10" >
+      <ToastContainer position="top-right" autoClose={5000} />
+      <div className="py-20 px-6 text-black lg:grid lg:grid-cols-2 max-w-[950px] xl:max-w-[1100px]">
+        <div className="mb-15">
+          <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-6 lg:mb-10">
             Kontaktiere mich
           </h1>
           <p className="contact-animate lg:hidden text-lg text-[#000814] mx-auto my-6">
             Ich helfe dir, deine Website nicht nur schön, sondern strategisch stark zu machen
           </p>
-          <p  className="contact-animate text-[#000814] text-lg my-6 hidden lg:block lg:pr-10">
-            Du möchtest eine Website, die endlich Wirkung zeigt? Dann lass uns sprechen. Ich helfe dir, deine Website nicht nur schön, sondern strategisch stark zu machen.
+          <p className="contact-animate text-[#000814] text-lg my-6 hidden lg:block lg:pr-10">
+            Du möchtest eine Website, die endlich Wirkung zeigt? Dann lass uns sprechen.
           </p>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlineMail className="text-black text-2xl" />
-            <a
-              href="mailto:franco_cipolla@web.de"
-              className="text-[#000814] hover:text-[#003566] transition-colors"
-            >
+            <a href="mailto:franco_cipolla@web.de" className="text-[#000814] hover:text-[#003566] transition-colors">
               franco_cipolla@web.de
             </a>
           </div>
@@ -208,6 +190,17 @@ const Contact = () => {
 
         <div>
           <form onSubmit={handleSubmit} noValidate>
+            {/* Honeypot Field - hidden from users */}
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              style={{ display: 'none' }}
+              tabIndex="-1"
+              autoComplete="off"
+            />
+
             <div className="contact-animate my-8">
               <label htmlFor="name" className="block text-lg font-semibold mb-2">
                 Dein Name
@@ -273,34 +266,14 @@ const Contact = () => {
                   errors.privacy ? 'border-red-600' : 'border-black'
                 } accent-[#003566] rounded-none cursor-pointer`}
               />
-              <label
-                htmlFor="privacy"
-                className={`text-base text-[#000814] leading-snug ${
-                  errors.privacy ? 'text-red-600' : ''
-                }`}
-              >
+              <label htmlFor="privacy" className={`text-base text-[#000814] leading-snug ${errors.privacy ? 'text-red-600' : ''}`}>
                 Ich akzeptiere die{' '}
-                <Link
-                  to="/datenschutz"
-                  className="underline hover:text-[#001D3D] text-[#000814] transition-colors duration-200"
-                >
+                <Link to="/datenschutz" className="underline hover:text-[#001D3D] text-[#000814] transition-colors duration-200">
                   Datenschutzerklärung
-                </Link>
-                .
+                </Link>.
               </label>
             </div>
             {errors.privacy && <p className="text-red-600 mt-1 text-sm">{errors.privacy}</p>}
-
-            <div className="contact-animate my-6">
-              <ReCAPTCHA
-                sitekey={recaptchaSiteKey}
-                onChange={onRecaptchaChange}
-                ref={recaptchaRef}
-              />
-              {errors.recaptcha && (
-                <p className="text-red-600 mt-1 text-sm">{errors.recaptcha}</p>
-              )}
-            </div>
 
             <button
               type="submit"

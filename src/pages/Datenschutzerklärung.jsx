@@ -1,10 +1,7 @@
-import React from 'react'
-
+import React from 'react';
 
 const Datenschutzerklärung = () => {
   return (
-    <>
-
     <section className="max-w-4xl mx-auto px-6 py-20 mt-20 text-black">
       <h1 className="text-3xl md:text-4xl font-bold mb-6">Datenschutzerklärung</h1>
 
@@ -32,7 +29,13 @@ const Datenschutzerklärung = () => {
 
       <h2 className="text-xl font-semibold mt-8 mb-2">4. Kontaktformular & Erstgespräch</h2>
       <p className="text-gray-700 mb-4">
-        Wenn du mir über das Kontaktformular oder die Seite „Erstgespräch“ schreibst, werden dein Name, deine E-Mail-Adresse, deine Nachricht sowie ein gewünschter Gesprächstermin (Datum) über Formspark verarbeitet. Die Daten werden ausschließlich zur Bearbeitung deiner Anfrage verwendet und nicht ohne deine Einwilligung weitergegeben.
+        Wenn du mir über das Kontaktformular oder die Seite „Erstgespräch“ schreibst, werden die von dir eingegebenen Daten
+        (Name, E-Mail-Adresse, Nachricht und ggf. gewünschter Gesprächstermin) über Formspark verarbeitet.
+        Die Daten werden ausschließlich zur Bearbeitung deiner Anfrage verwendet und nicht ohne deine Einwilligung weitergegeben.
+        Zur Vermeidung von Spam-Einträgen verwende ich ein sogenanntes „Honeypot“-Feld. Dieses wird von echten Nutzern in der Regel nicht ausgefüllt,
+        automatisierte Bots hingegen schon. Anfragen mit ausgefülltem Honeypot-Feld werden automatisch verworfen.
+        Rechtsgrundlage für die Verarbeitung ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren und funktionierenden Website).
+        Deine Daten werden spätestens 6 Monate nach Abschluss der Bearbeitung gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-2">5. Google Analytics</h2>
@@ -59,19 +62,12 @@ const Datenschutzerklärung = () => {
       <p className="text-gray-700 mb-4">
         Ich behalte mir vor, diese Datenschutzerklärung bei Bedarf anzupassen, z.B. bei technischen Änderungen oder neuen gesetzlichen Vorgaben.
       </p>
-      <h2 className="text-xl font-semibold mt-8 mb-2">10. Nutzung von reCaptcha</h2>
-      <p className="text-gray-700 mb-4">
-        Auf dieser Website wird Google reCaptcha eingesetzt, um Anfragen über das Kontaktformular vor Spam und Missbrauch zu schützen. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
-        Dabei werden personenbezogene Daten (z. B. IP-Adresse) an Google übertragen und verarbeitet. Die Nutzung von reCaptcha erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
-        Weitere Informationen zum Datenschutz von Google reCaptcha findest du hier: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">https://policies.google.com/privacy</a>.
-      </p>
 
       <p className="text-sm text-gray-500 mt-10">
-        Zuletzt aktualisiert: 10. August 2025
+        Zuletzt aktualisiert: 14. August 2025
       </p>
     </section>
-    </>
-  )
-}
+  );
+};
 
-export default Datenschutzerklärung
+export default Datenschutzerklärung;

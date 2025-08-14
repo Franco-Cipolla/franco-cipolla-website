@@ -4,8 +4,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ReCAPTCHA from 'react-google-recaptcha';
-
 import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,17 +15,15 @@ const Erstgespraech = () => {
     message: '',
     date: '',
     privacy: false,
+    honeypot: '', // Neues Honeypot-Feld
   });
   const [errors, setErrors] = useState({});
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
   const sectionRef = useRef(null);
-  const recaptchaRef = useRef(null);
 
   const formsparkEnv = import.meta.env.VITE_FORMSPARK_FORM_ID_ERSTGESPRAECH;
   const formsparkURL = buildFormsparkUrl(formsparkEnv);
-  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -69,9 +65,6 @@ const Erstgespraech = () => {
       case 'privacy':
         if (!value) error = 'Du musst die Datenschutzerklärung akzeptieren';
         break;
-      case 'recaptcha':
-        if (!value) error = 'Bitte bestätige das reCAPTCHA';
-        break;
       default:
         break;
     }
@@ -94,28 +87,31 @@ const Erstgespraech = () => {
       [name]: fieldValue,
     }));
 
-    setErrors((prev) => ({
-      ...prev,
-      [name]: validateField(name, fieldValue),
-    }));
-  };
-
-  const onRecaptchaChange = (token) => {
-    setRecaptchaToken(token);
-    setErrors((prev) => ({ ...prev, recaptcha: validateField('recaptcha', token) }));
+    if (name !== 'honeypot') {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: validateField(name, fieldValue),
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Alle Felder + reCAPTCHA validieren
+    // Spam-Schutz: Wenn Honeypot-Feld befüllt ist → Abbruch
+    if (formData.honeypot) {
+      console.warn('Spam erkannt – Formular wird nicht gesendet.');
+      return;
+    }
+
+    // Alle Felder validieren
     const newErrors = {};
     Object.entries(formData).forEach(([key, val]) => {
-      const error = validateField(key, val);
-      if (error) newErrors[key] = error;
+      if (key !== 'honeypot') {
+        const error = validateField(key, val);
+        if (error) newErrors[key] = error;
+      }
     });
-    const recaptchaError = validateField('recaptcha', recaptchaToken);
-    if (recaptchaError) newErrors.recaptcha = recaptchaError;
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -133,29 +129,20 @@ const Erstgespraech = () => {
         message: formData.message,
         date: formData.date,
         privacy: formData.privacy,
-        'g-recaptcha-response': recaptchaToken,
       };
 
-      // Optional: Timeout
-      // const controller = new AbortController();
-      // const t = setTimeout(() => controller.abort(), 10000);
+      const result = await submitToFormspark(formsparkURL, payload);
 
-      const result = await submitToFormspark(formsparkURL, payload /*, { signal: controller.signal }*/);
-
-      // clearTimeout(t);
       toast.dismiss();
 
       if (result.ok) {
         toast.success('Danke für deine Anfrage!');
-        setFormData({ name: '', email: '', message: '', date: '', privacy: false });
+        setFormData({ name: '', email: '', message: '', date: '', privacy: false, honeypot: '' });
         setErrors({});
-        setRecaptchaToken(null);
-        if (recaptchaRef.current) recaptchaRef.current.reset();
       } else {
         toast.error(result.message || 'Fehler beim Senden. Bitte versuche es erneut.');
       }
     } catch (err) {
-      // Echte Fehler: Abort, Offline, harte CORS-Blockade
       toast.dismiss();
       const offline = typeof navigator !== 'undefined' && navigator && navigator.onLine === false;
       if (offline) {
@@ -163,7 +150,6 @@ const Erstgespraech = () => {
       } else {
         toast.error('Senden fehlgeschlagen. Bitte versuche es später erneut.');
       }
-      // Optional loggen
       console.error(err);
     } finally {
       setSubmitting(false);
@@ -172,25 +158,28 @@ const Erstgespraech = () => {
 
   return (
     <>
-      
       <section ref={sectionRef} className="w-full flex items-center mt-20 justify-center">
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+        <ToastContainer position="top-right" autoClose={5000} />
         <div className="md:py-20 py-18 px-6 text-black max-w-[950px] xl:max-w-[1100px]">
           <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-10">
             Erstgespräch vereinbaren
           </h1>
 
           <form onSubmit={handleSubmit} className="max-w-xl mx-auto" noValidate>
+            {/* Honeypot-Feld */}
+            <div style={{ display: 'none' }}>
+              <label htmlFor="company">Firma</label>
+              <input
+                id="company"
+                name="honeypot"
+                type="text"
+                value={formData.honeypot}
+                onChange={handleChange}
+                autoComplete="off"
+                tabIndex="-1"
+              />
+            </div>
+
             {/* Name */}
             <div className="contact-animate my-8">
               <label htmlFor="name" className="block text-lg font-semibold mb-2">
@@ -289,16 +278,6 @@ const Erstgespraech = () => {
               </label>
             </div>
             {errors.privacy && <p className="text-red-600 mb-4 text-sm">{errors.privacy}</p>}
-
-            {/* reCAPTCHA */}
-            <div className="contact-animate mb-8">
-              <ReCAPTCHA
-                sitekey={recaptchaSiteKey}
-                onChange={onRecaptchaChange}
-                ref={recaptchaRef}
-              />
-              {errors.recaptcha && <p className="text-red-600 mt-1 text-sm">{errors.recaptcha}</p>}
-            </div>
 
             <button
               type="submit"
