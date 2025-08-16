@@ -19,7 +19,7 @@ const CTAHome = () => {
       </p>
       <button
         onClick={handleClick}
-        className="inline-flex cursor-pointer items-center gap-2 bg-black text-white lg:text-white/85 font-semibold px-6 py-3 rounded-full hover:bg-purple lg:hover:text-white transition"
+        className="inline-flex cursor-pointer transform hover:-translate-y-1 ease-in  items-center gap-2 bg-black text-white lg:text-white/85 font-semibold px-6 py-3 rounded-full hover:bg-purple lg:hover:text-white transition"
       >
         Erstgespräch vereinbaren <FaArrowRight />
       </button>
