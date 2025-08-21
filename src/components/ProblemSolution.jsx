@@ -127,10 +127,10 @@ const ProblemSolution = () => {
       >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight mb-6">
-            Warum verlieren Sie online Kunden?
+            Jeden Tag verlieren Sie Kunden an die Konkurrenz – und Sie wissen nicht warum
           </h2>
           <p className="text-lg text-[#000814] max-w-2xl mx-auto">
-            Die meisten KMU-Websites kosten mehr Kunden, als sie bringen. Hier sind die häufigsten Probleme:
+            Diese 4 Website-Probleme kosten Sie jeden Monat mehrere Kunden – und wie Sie sie in 30 Tagen beheben.
           </p>
         </div>
 
