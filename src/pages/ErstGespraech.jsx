@@ -14,16 +14,34 @@ const Erstgespraech = () => {
     email: '',
     message: '',
     date: '',
+    time: '',
     privacy: false,
-    honeypot: '', // Neues Honeypot-Feld
+    honeypot: '',
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const sectionRef = useRef(null);
+  const datePickerRef = useRef(null);
+  const timePickerRef = useRef(null);
 
   const formsparkEnv = import.meta.env.VITE_FORMSPARK_FORM_ID_ERSTGESPRAECH;
   const formsparkURL = buildFormsparkUrl(formsparkEnv);
+
+  // Verfügbare Uhrzeiten
+  const availableTimes = [
+    '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00',  '19:30','20:00', '20:30',  '21:00'
+  ];
+
+  // Wochentage
+  const weekDays = ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO'];
+  const monthNames = [
+    'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+    'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
+  ];
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -46,6 +64,21 @@ const Erstgespraech = () => {
     );
   }, []);
 
+  // Click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (datePickerRef.current && !datePickerRef.current.contains(event.target)) {
+        setShowDatePicker(false);
+      }
+      if (timePickerRef.current && !timePickerRef.current.contains(event.target)) {
+        setShowTimePicker(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const validateField = (name, value) => {
     let error = '';
     switch (name) {
@@ -61,6 +94,9 @@ const Erstgespraech = () => {
         break;
       case 'date':
         if (!value) error = 'Bitte wähle einen Wunschtermin aus';
+        break;
+      case 'time':
+        if (!value) error = 'Bitte wähle eine Uhrzeit aus';
         break;
       case 'privacy':
         if (!value) error = 'Du musst die Datenschutzerklärung akzeptieren';
@@ -95,16 +131,106 @@ const Erstgespraech = () => {
     }
   };
 
+  // Kalenderfunktionen
+  const getDaysInMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (date) => {
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+    return firstDay === 0 ? 6 : firstDay - 1; // Montag als erster Tag
+  };
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString('de-DE', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  };
+
+  const handleDateSelect = (day) => {
+    const selectedDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate >= today) {
+      setFormData(prev => ({
+        ...prev,
+        date: selectedDate.toISOString().split('T')[0]
+      }));
+      setShowDatePicker(false);
+      setErrors(prev => ({ ...prev, date: '' }));
+    }
+  };
+
+  const handleTimeSelect = (time) => {
+    setFormData(prev => ({
+      ...prev,
+      time: time
+    }));
+    setShowTimePicker(false);
+    setErrors(prev => ({ ...prev, time: '' }));
+  };
+
+  const navigateMonth = (direction) => {
+    setCurrentMonth(prev => {
+      const newMonth = new Date(prev);
+      newMonth.setMonth(prev.getMonth() + direction);
+      return newMonth;
+    });
+  };
+
+  const renderCalendar = () => {
+    const daysInMonth = getDaysInMonth(currentMonth);
+    const firstDay = getFirstDayOfMonth(currentMonth);
+    const today = new Date();
+    const days = [];
+
+    // Leere Zellen für Tage vor dem ersten Tag des Monats
+    for (let i = 0; i < firstDay; i++) {
+      days.push(<div key={`empty-${i}`} className="w-8 h-8"></div>);
+    }
+
+    // Tage des Monats
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+      const isToday = dayDate.toDateString() === today.toDateString();
+      const isPast = dayDate < today;
+      const isSelected = formData.date === dayDate.toISOString().split('T')[0];
+
+      days.push(
+        <button
+          key={day}
+          type="button"
+          onClick={() => handleDateSelect(day)}
+          disabled={isPast}
+          className={`w-8 h-8 text-sm rounded transition-colors ${
+            isPast
+              ? 'text-gray-300 cursor-not-allowed'
+              : isSelected
+                ? 'bg-red-500 text-white'
+                : isToday
+                  ? 'bg-blue-100 text-blue-600 hover:bg-blue-200'
+                  : 'hover:bg-gray-100'
+          }`}
+        >
+          {day}
+        </button>
+      );
+    }
+
+    return days;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Spam-Schutz: Wenn Honeypot-Feld befüllt ist → Abbruch
     if (formData.honeypot) {
       console.warn('Spam erkannt – Formular wird nicht gesendet.');
       return;
     }
 
-    // Alle Felder validieren
     const newErrors = {};
     Object.entries(formData).forEach(([key, val]) => {
       if (key !== 'honeypot') {
@@ -128,16 +254,16 @@ const Erstgespraech = () => {
         email: formData.email,
         message: formData.message,
         date: formData.date,
+        time: formData.time,
         privacy: formData.privacy,
       };
 
       const result = await submitToFormspark(formsparkURL, payload);
-
       toast.dismiss();
 
       if (result.ok) {
         toast.success('Danke für deine Anfrage!');
-        setFormData({ name: '', email: '', message: '', date: '', privacy: false, honeypot: '' });
+        setFormData({ name: '', email: '', message: '', date: '', time: '', privacy: false, honeypot: '' });
         setErrors({});
       } else {
         toast.error(result.message || 'Fehler beim Senden. Bitte versuche es erneut.');
@@ -165,7 +291,7 @@ const Erstgespraech = () => {
             Erstgespräch vereinbaren
           </h1>
 
-          <form onSubmit={handleSubmit} className="max-w-xl mx-auto" noValidate>
+          <form onSubmit={handleSubmit} className="max-w-xl mx-auto relative" noValidate style={{ zIndex: 1, isolation: 'isolate' }}>
             {/* Honeypot-Feld */}
             <div style={{ display: 'none' }}>
               <label htmlFor="company">Firma</label>
@@ -234,26 +360,112 @@ const Erstgespraech = () => {
               {errors.message && <p className="text-red-600 text-sm mt-1">{errors.message}</p>}
             </div>
 
-            {/* Wunschtermin */}
-            <div className="contact-animate my-8">
-              <label htmlFor="date" className="block text-lg font-semibold mb-2">
-                Wunschtermin
+            {/* Datum & Uhrzeit Picker */}
+            <div className="contact-animate my-8 relative" style={{ zIndex: 10 }}>
+              <label className="block text-lg font-semibold mb-4">
+                Datum & Uhrzeit wählen
               </label>
-              <input
-                id="date"
-                name="date"
-                type="date"
-                required
-                value={formData.date}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`border w-full p-2.5 font-semibold text-[#000814] rounded ${errors.date ? 'border-red-500' : 'border-black'}`}
-              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative" style={{ zIndex: 20 }}>
+                {/* Datum Picker */}
+                <div className="relative" ref={datePickerRef} style={{ zIndex: 100 }}>
+                  <button
+                    type="button"
+                    onClick={() => setShowDatePicker(!showDatePicker)}
+                    className={`border w-full p-2.5 font-semibold text-[#000814] rounded text-left ${
+                      errors.date ? 'border-red-500' : 'border-black'
+                    }`}
+                  >
+                    {formData.date ? formatDate(new Date(formData.date)) : 'Datum wählen'}
+                  </button>
+
+                  {showDatePicker && (
+                    <div
+                      className="absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-2xl p-4 w-80"
+                      style={{
+                        zIndex: 99999
+                      }}
+                    >
+                      {/* Header */}
+                      <div className="flex justify-between items-center mb-4">
+                        <button
+                          type="button"
+                          onClick={() => navigateMonth(-1)}
+                          className="p-1 hover:bg-gray-100 rounded"
+                        >
+                          ←
+                        </button>
+                        <h3 className="font-semibold">
+                          {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+                        </h3>
+                        <button
+                          type="button"
+                          onClick={() => navigateMonth(1)}
+                          className="p-1 hover:bg-gray-100 rounded"
+                        >
+                          →
+                        </button>
+                      </div>
+
+                      {/* Wochentage */}
+                      <div className="grid grid-cols-7 gap-1 mb-2">
+                        {weekDays.map(day => (
+                          <div key={day} className="text-center text-xs font-medium text-gray-500 p-1">
+                            {day}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Kalender */}
+                      <div className="grid grid-cols-7 gap-1">
+                        {renderCalendar()}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Uhrzeit Picker */}
+                <div className="relative" ref={timePickerRef} style={{ zIndex: 30 }}>
+                  <button
+                    type="button"
+                    onClick={() => setShowTimePicker(!showTimePicker)}
+                    className={`border w-full p-2.5 font-semibold text-[#000814] rounded text-left ${
+                      errors.time ? 'border-red-500' : 'border-black'
+                    }`}
+                  >
+                    {formData.time || 'Uhrzeit wählen'}
+                  </button>
+
+                  {showTimePicker && (
+                    <div
+                      className="absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-2xl max-h-60 overflow-y-auto w-full"
+                      style={{
+                        zIndex: 99998
+                      }}
+                    >
+                      {availableTimes.map(time => (
+                        <button
+                          key={time}
+                          type="button"
+                          onClick={() => handleTimeSelect(time)}
+                          className={`w-full p-2 text-left hover:bg-gray-100 ${
+                            formData.time === time ? 'bg-blue-100 text-blue-600' : ''
+                          }`}
+                        >
+                          {time}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
               {errors.date && <p className="text-red-600 text-sm mt-1">{errors.date}</p>}
+              {errors.time && <p className="text-red-600 text-sm mt-1">{errors.time}</p>}
             </div>
 
             {/* Checkbox Datenschutzerklärung */}
-            <div className="contact-animate flex items-center gap-2 mb-8">
+            <div className="contact-animate flex items-center gap-2 mb-8 relative" style={{ zIndex: 1 }}>
               <input
                 type="checkbox"
                 id="privacy"
@@ -282,9 +494,10 @@ const Erstgespraech = () => {
             <button
               type="submit"
               disabled={submitting}
-              className={`contact-animate py-3 px-6 text-white rounded transition transform ${
+              className={`contact-animate py-3 px-6 text-white rounded transition transform relative ${
                 submitting ? 'bg-gray-600 cursor-not-allowed' : 'bg-black hover:bg-[#000814] cursor-pointer'
               }`}
+              style={{ zIndex: 1 }}
             >
               {submitting ? 'Wird gesendet…' : 'Anfrage senden'}
             </button>
