@@ -116,7 +116,7 @@ const Hero = () => {
       <div className="relative overflow-hidden">
         <span
           ref={leftCircleRef}
-          className="fixed will-change-transform w-[300px] h-[300px] blur-[80px] opacity-60 sm:w-[350px] sm:h-[350px] sm:blur-[100px] md:w-[400px] md:h-[400px] md:blur-[100px]  bottom-[-100px] left-[-35px] rounded-full bg-gradient-to-tr from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
+          className="fixed will-change-transform w-[300px] h-[300px] blur-[80px] opacity-30 md:opacity-60 sm:w-[350px] sm:h-[350px] sm:blur-[100px] md:w-[400px] md:h-[400px] md:blur-[100px]  bottom-[-100px] left-[-35px] rounded-full bg-gradient-to-tr from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
         />
         <span
           ref={rightCircleRef}
@@ -129,34 +129,29 @@ const Hero = () => {
         ref={heroRef}
         className="w-full mt-30 lg:mt-35 py-16 sm:py-24 md:py-32 px-4 sm:px-6 xl:px-0"
       >
-        <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-4 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
+        <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
           <div>
             <h1
               ref={headlineRef}
               className="text-3xl md:text-5xl font-[800] text-black leading-tight mb-5"
             >
-              Websites, die verkaufen <br /> statt nur zu existieren.
+              Ihre Website soll Kunden bringen -<br /> nicht nur schön aussehen.
             </h1>
 
             <p ref={mobileText1Ref} className="text-lg text-[#000814] max-w-xl xl:hidden mb-4">
-              Individuelles Webdesign. Individuell programmiert. SEO-optimiert.
-              Textlich stark. Für Unternehmen, die online wachsen wollen.
+              Ich entwickle maßgeschneiderte Websites für KMUs, die mit ihrer Website Kunden gewinnen möchten: modern, SEO-optimiert und überzeugend getextet.
             </p>
             <p ref={mobileText2Ref} className="text-base text-[#000814]/85 max-w-xl xl:hidden mb-5">
-              Kein Baukasten. Kein Standard. Sondern echter Code – maßgeschneidert
-              für dich.
+              Maßgeschneiderte Websites – entwickelt für Unternehmer, die den Unterschied verstehen.
             </p>
 
             <div className="hidden xl:flex flex-col gap-6 max-w-2xl">
               <p ref={desktopText1Ref} className="text-lg xltext-xl text-[#000814]">
-                Individuelles Webdesign, individuell programmiert, SEO & Copywriting
-                für Unternehmen, die online wachsen wollen. Persönlich. Schnell.
-                Gewinnbringend.
+                  Ich entwickle maßgeschneiderte Websites für KMUs, die mit ihrer Website Kunden gewinnen möchten: modern, SEO-optimiert und überzeugend getextet.
+
               </p>
               <p ref={desktopText2Ref} className="text-base xl:text-[1.1rem] text-[#000814]">
-                Schluss mit veralteten Seiten, langsamen Ladezeiten und verlorenen
-                Kunden. Deine neue Website wird nicht nur gut aussehen – sie wird
-                verkaufen.
+                Maßgeschneiderte Websites – entwickelt für Unternehmer, die den Unterschied verstehen.
               </p>
             </div>
 
@@ -164,7 +159,7 @@ const Hero = () => {
               ref={ctaRef}
               className="mt-20 flex gap-2 lg:gap-4 md:items-center md:justify-center xl:items-start xl:justify-start"
             >
-              <CTA2 />
+
               <CTA1 />
             </div>
           </div>
