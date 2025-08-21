@@ -135,7 +135,7 @@ const Hero = () => {
               ref={headlineRef}
               className="text-3xl md:text-5xl font-[800] text-black leading-tight mb-5"
             >
-              Ihre Website soll Kunden bringen -<br /> nicht nur schön aussehen.
+              Ihre Website soll Kunden bringen - <br/> nicht nur schön aussehen.
             </h1>
 
             <p ref={mobileText1Ref} className="text-lg text-[#000814] max-w-xl xl:hidden mb-4">

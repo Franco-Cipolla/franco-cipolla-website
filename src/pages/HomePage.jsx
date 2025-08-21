@@ -1,7 +1,7 @@
 
 import Hero from '../components/Hero'
 import ServiceMarquee from '../components/ServiceMarquee'
-import Projects from '../components/Projects'
+import ProblemSolution from '../components/ProblemSolution'
 import Service from '../components/Service'
 import FAQSection from '../components/FAQSection'
 import Contact from '../components/Contact'
@@ -13,7 +13,7 @@ const HomePage = () => {
     <main>
       <Hero />
       <ServiceMarquee />
-      <Projects />
+      <ProblemSolution />
       <Service />
       <FAQSection />
       <CTAHome />
