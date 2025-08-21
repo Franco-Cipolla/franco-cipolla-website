@@ -123,7 +123,7 @@ const ProblemSolution = () => {
       {/* Problem/Solution Section */}
       <section
         ref={sectionRef}
-        className="w-full mt-5 lg:mt-35 py-16 sm:py-24 md:py-32 xl:py-20 px-6  mb-20 xl:px-0 mx-auto max-w-[1000px] xl:max-w-[1100px]"
+        className="w-full mt-5 lg:mt-35 py-16 sm:py-24 md:py-32 xl:py-20 px-6  mb-10 xl:px-0 mx-auto max-w-[1000px] xl:max-w-[1100px]"
       >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight mb-6">
@@ -175,7 +175,7 @@ const ProblemSolution = () => {
                 <h3 className="text-2xl font-bold text-green-700">Die Lösung</h3>
               </div>
               <p className="text-base text-[#000814] mb-8">
-                Eine professionelle Website, die für Sie arbeitet und täglich neue Kunden bringt:
+                Eine professionelle Website, die für Sie arbeitet und neue Kunden bringt:
               </p>
             </div>
 
