@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { gsap, ScrollTrigger } from './gsapSetup'; // ScrollTrigger ist bereits in gsapSetup registriert
 import CTA1 from './CTA1';
-import CTA2 from './CTA2';
+
 import HeroIllustration from '../assets/Hero-Illustration.webp';
 
 const Hero = () => {
@@ -71,42 +71,50 @@ const Hero = () => {
   // Content-Fade-In (nur XL)
   useLayoutEffect(() => {
   const ctx = gsap.context(() => {
-    const animateContent = () => {
-      gsap.from(
-        [
-          headlineRef.current,
-          mobileText1Ref.current,
-          mobileText2Ref.current,
-          desktopText1Ref.current,
-          desktopText2Ref.current,
-          ctaRef.current,
-          imageRef.current,
-        ].filter(Boolean),
-        {
+    const textRefs = [
+      headlineRef,
+      mobileText1Ref,
+      mobileText2Ref,
+      desktopText1Ref,
+      desktopText2Ref,
+      ctaRef,
+    ];
+
+    // Starte Textanimation sofort
+    gsap.from(textRefs.map(ref => ref.current).filter(Boolean), {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out',
+    });
+
+    // Bildanimation separat nach Load
+    const imgEl = imageRef.current;
+    if (imgEl && !imgEl.complete) {
+      const handleLoad = () => {
+        gsap.from(imgEl, {
           y: 50,
           opacity: 0,
           duration: 1,
-          stagger: 0.2,
           ease: 'power3.out',
-        }
-      );
-    };
-
-    const imgEl = imageRef.current;
-    if (imgEl && !imgEl.complete) {
-      const handleLoad = () => animateContent();
-      imgEl.addEventListener('load', handleLoad);
-
-      return () => {
-        imgEl.removeEventListener('load', handleLoad);
+        });
       };
-    } else {
-      animateContent();
+      imgEl.addEventListener('load', handleLoad);
+      return () => imgEl.removeEventListener('load', handleLoad);
+    } else if (imgEl) {
+      gsap.from(imgEl, {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+      });
     }
   }, heroRef);
 
   return () => ctx.revert();
 }, []);
+
 
 
 
@@ -135,7 +143,7 @@ const Hero = () => {
             {/* Authenticity Badge */}
             <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
               <div
-                
+
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm hover:shadow-md transition-shadow duration-300"
               >
                 <div className="relative">
@@ -152,7 +160,7 @@ const Hero = () => {
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black leading-tight mb-5"
             >
-              Ihre Website soll <span className='text-[#003566]'>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <br/> nicht nur schön aussehen.
+              Ihre Website soll <span className='text-[#003566]'>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <span className='block'></span> nicht nur schön aussehen.
             </h1>
 
             <p ref={mobileText1Ref} className="text-lg text-[#000814] max-w-xl xl:hidden mb-4">
@@ -180,18 +188,12 @@ const Hero = () => {
           </div>
 
           <div className="flex-1 flex justify-center lg:justify-end pt-6 lg:pt-0">
-            {isXL && (
-              <img
+            <img
                 ref={imageRef}
                 src={HeroIllustration}
                 alt="Illustration einer modernen Website"
-                width="600"
-                height="400"
-                className="xl:w-full max-w-[500px] xl:max-w-[600px]"
-                loading="lazy"
-                decoding="async"
+                className={`xl:block w-full max-w-[600px] ${!isXL ? 'hidden' : ''}`}
               />
-            )}
           </div>
         </div>
       </main>
