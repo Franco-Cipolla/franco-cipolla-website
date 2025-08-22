@@ -67,59 +67,55 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
-  // Content-Fade-In mit Badge Animation
+  // Content + Badge Animation (decoupled from image load)
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const animateContent = () => {
-        // Badge separate Animation mit bounce effect
-        gsap.fromTo(badgeRef.current,
-          {
-            y: -40,
-            opacity: 0,
-            scale: 0.8
-          },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: 'back.out(1.4)',
-            delay: 0.3
-          }
-        );
+      // Badge animation
+      gsap.fromTo(badgeRef.current,
+        { y: -40, opacity: 0, scale: 0.8 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.4)', delay: 0.3 }
+      );
 
-        // Rest der Content Animation
-        gsap.from(
-          [
-            headlineRef.current,
-            mobileText1Ref.current,
-            mobileText2Ref.current,
-            desktopText1Ref.current,
-            desktopText2Ref.current,
-            ctaRef.current,
-            imageRef.current,
-          ].filter(Boolean),
-          {
+      // Headline, paragraphs, CTA fade-in
+      gsap.from(
+        [
+          headlineRef.current,
+          mobileText1Ref.current,
+          mobileText2Ref.current,
+          desktopText1Ref.current,
+          desktopText2Ref.current,
+          ctaRef.current,
+        ].filter(Boolean),
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power3.out',
+          delay: 0.6
+        }
+      );
+
+      // Animate image separately only after load
+      const imgEl = imageRef.current;
+      if (imgEl) {
+        if (!imgEl.complete) {
+          imgEl.addEventListener('load', () => {
+            gsap.from(imgEl, {
+              y: 50,
+              opacity: 0,
+              duration: 1,
+              ease: 'power3.out'
+            });
+          });
+        } else {
+          gsap.from(imgEl, {
             y: 50,
             opacity: 0,
             duration: 1,
-            stagger: 0.2,
-            ease: 'power3.out',
-            delay: 0.6
-          }
-        );
-      };
-
-      const imgEl = imageRef.current;
-      if (imgEl && !imgEl.complete) {
-        const handleLoad = () => animateContent();
-        imgEl.addEventListener('load', handleLoad);
-
-        return () => {
-          imgEl.removeEventListener('load', handleLoad);
-        };
-      } else {
-        animateContent();
+            ease: 'power3.out'
+          });
+        }
       }
     }, heroRef);
 
@@ -203,7 +199,7 @@ const Hero = () => {
                 width="700"
                 height="500"
                 className="xl:w-full max-w-[600px] xl:max-w-[700px] 2xl:max-w-[800px]"
-                loading="lazy"
+                loading="eager"  // important for LCP
                 decoding="async"
               />
             )}
