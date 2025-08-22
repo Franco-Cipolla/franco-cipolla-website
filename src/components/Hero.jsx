@@ -143,9 +143,9 @@ const Hero = () => {
       {/* Hero Section */}
       <main
         ref={heroRef}
-        className="w-full mt-27 md:mt-30 lg:mt-35 py-8 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 xl:px-0"
+        className="w-full mt-20 md:mt-30 lg:mt-35 py-8 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 xl:px-0"
       >
-        <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-10 lg:gap-5 lg:justify-start  xl:text-left md:items-center md:text-center">
+        <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
           <div>
             {/* Authenticity Badge */}
             <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
@@ -165,30 +165,30 @@ const Hero = () => {
 
             <h1
               ref={headlineRef}
-              className="text-3xl md:text-5xl font-black text-black leading-tight mb-5"
+              className="text-3xl md:text-5xl font-black text-black leading-tight mb-6"
             >
               Ihre Website soll <span className='text-[#003566]'>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <br/> nicht nur schön aussehen.
             </h1>
 
-            <p ref={mobileText1Ref} className="text-lg text-[#000814] max-w-xl xl:hidden mb-4">
+            <p ref={mobileText1Ref} className="text-lg md:mx-auto  text-[#000814] max-w-xl xl:hidden mb-6">
               Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
             </p>
-            <p ref={mobileText2Ref} className="text-base text-[#000814]/85 max-w-xl xl:hidden mb-5">
-               Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
+            <p ref={mobileText2Ref} className="text-base md:mx-auto text-[#000814]/85 max-w-xl xl:hidden mb-6">
+               Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden
             </p>
 
-            <div className="hidden xl:flex flex-col gap-6 max-w-2xl">
-              <p ref={desktopText1Ref} className="text-lg xltext-xl text-[#000814]">
+            <div className="hidden  xl:flex flex-col gap-6 max-w-2xl">
+              <p ref={desktopText1Ref} className="text-lg xl:text-xl text-[#000814]">
                  Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
               </p>
               <p ref={desktopText2Ref} className="text-base xl:text-[1.1rem] text-[#000814]">
-                    Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
+                    Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden
               </p>
             </div>
 
             <div
               ref={ctaRef}
-              className="mt-12.5 flex gap-2 lg:gap-4 md:items-center md:justify-center xl:items-start xl:justify-start"
+              className="mt-12.5 flex gap-2 lg:gap-4  md:justify-center xl:justify-start"
             >
               <CTA1 bg="bg-white"/>
             </div>
@@ -200,9 +200,9 @@ const Hero = () => {
                 ref={imageRef}
                 src={HeroIllustration}
                 alt="Illustration einer modernen Website"
-                width="600"
-                height="400"
-                className="xl:w-full max-w-[500px] xl:max-w-[600px]"
+                width="700"
+                height="500"
+                className="xl:w-full max-w-[600px] xl:max-w-[700px] 2xl:max-w-[800px]"
                 loading="lazy"
                 decoding="async"
               />
