@@ -16,6 +16,7 @@ const deskServices = [
     { label: 'Gewinnsteigerung', icon: <FaChartLine /> },
     { label: "Kundengewinnung", icon: <FaHandshake /> },
     { label: "Kundenzufriedenheit", icon: <FaSmileBeam /> },
+
 ]
 
 const mobileServices1 = [

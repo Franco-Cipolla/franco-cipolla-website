@@ -168,7 +168,7 @@ const ProblemSolution = () => {
           </div>
 
           {/* Solution Section */}
-          <div ref={solutionRef} className="flex flex-col space-y-8">
+          <div ref={solutionRef} className="flex flex-col  space-y-8">
             <div className="text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start mb-4">
                 <FaCheckCircle className="text-green-600 text-2xl mr-3" />
@@ -179,7 +179,7 @@ const ProblemSolution = () => {
               </p>
             </div>
 
-            <div className="space-y-6 flex-grow">
+            <div className="space-y-6 flex-grow xl:mt-7">
               {solutions.map((solution, index) => (
                 <div key={index} className="flex items-center p-4 bg-green-50 rounded-2xl shadow-lg ">
                   <div className="mr-4 flex-shrink-0 text-xl flex items-center justify-center w-8 h-8">{solution.icon}</div>
