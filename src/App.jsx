@@ -2,6 +2,7 @@ import { Suspense, useEffect, lazy } from "react"
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom"
 import MainLayout from "./layouts/MainLayout.jsx"
 import Loader from "./components/Loader.jsx"
+import LandingPage from "./pages/LandingPage.jsx"
 
 // Lazy Imports
 const HomePage = lazy(() => import("./pages/HomePage"))
@@ -13,18 +14,24 @@ const NotFound = lazy(() => import("./pages/NotFound"))
 
 function App() {
   useEffect(() => {
-    window.addEventListener('scroll', () => {}, { passive: true })
+    window.addEventListener("scroll", () => {}, { passive: true })
   }, [])
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<MainLayout />} errorElement={<NotFound />}>
-        <Route index element={<HomePage />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="datenschutz" element={<Datenschutzerklärung />} />
-        <Route path="erstgespraech" element={<Erstgespraech />} />
-        <Route path="impressum" element={<Impressum />} />
-      </Route>
+      <>
+        {/* Alle Seiten MIT MainLayout */}
+        <Route path="/" element={<MainLayout />} errorElement={<NotFound />}>
+          <Route index element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="datenschutz" element={<Datenschutzerklärung />} />
+          <Route path="erstgespraech" element={<Erstgespraech />} />
+          <Route path="impressum" element={<Impressum />} />
+        </Route>
+
+        {/* Landingpage OHNE MainLayout */}
+        <Route path="erstgespraeche" element={<LandingPage />} />
+      </>
     )
   )
 
