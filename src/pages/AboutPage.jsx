@@ -45,9 +45,13 @@ const AboutPage = () => {
         gsap.from(
           [
             headlineRef.current,
-            ...textBlockRefs.current,
+            textBlockRefs.current[0], // Subtitle
+            textBlockRefs.current[1], // H2
+            textBlockRefs.current[2], // Paragraph 1
+            textBlockRefs.current[3], // Paragraph 2
+            imageRef.current,         // Bild nach dem 3. Text-Paragraphen
+            ...textBlockRefs.current.slice(4), // Restliche Text-Elemente
             ctaRef.current,
-            imageRef.current,
           ].filter(Boolean),
           {
             y: 50,
@@ -67,16 +71,11 @@ const AboutPage = () => {
       }
     }, heroRef)
 
-
-
     return () => ctx.revert()
   }, [])
 
-
-
   return (
     <>
-
       {/* Hintergrundkreise */}
       <div className="relative overflow-hidden">
         <span
@@ -132,15 +131,18 @@ const AboutPage = () => {
           <div>
             <img
               ref={imageRef}
-              src="/public/Franco2.jpeg"
+              src="/Franco2.jpeg"
               alt="Franco Cipolla – Webdesigner aus Ennepetal"
               width="300"
               height="350"
               className="w-full rounded-lg shadow-lg object-cover"
               loading="lazy"
               decoding="async"
+              onError={(e) => {
+                console.error('Bild konnte nicht geladen werden:', e.target.src);
+                e.target.style.display = 'none';
+              }}
             />
-
           </div>
         </section>
 
