@@ -9,7 +9,6 @@ const Hero = () => {
   const leftCircleRef = useRef(null);
   const rightCircleRef = useRef(null);
 
-  const badgeRef = useRef(null);
   const headlineRef = useRef(null);
   const mobileText1Ref = useRef(null);
   const mobileText2Ref = useRef(null);
@@ -28,55 +27,51 @@ const Hero = () => {
   }, []);
 
   // Parallax/ScrollTrigger-Animationen für die Kreise
+      useLayoutEffect(() => {
+      const ctx = gsap.context(() => {
+        ScrollTrigger.matchMedia({
+          // Mobile: nur sanftes Ausblenden
+          '(max-width: 1023px)': () => {
+            gsap.to([leftCircleRef.current, rightCircleRef.current], {
+              opacity: 0,
+              duration: 1,
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+              },
+            });
+          },
+
+          // Desktop: volle Parallax-Animation
+          '(min-width: 1024px)': () => {
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: 'top top',
+                end: 'bottom 5%',
+                scrub: 0.5,
+              },
+            });
+
+            tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
+            tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
+            tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
+            tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
+          }
+        });
+      }, heroRef);
+
+      return () => ctx.revert();
+    }, []);
+
+
+
+  // Content-Fade-In (nur XL)
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      ScrollTrigger.matchMedia({
-        // Mobile: nur sanftes Ausblenden
-        '(max-width: 1023px)': () => {
-          gsap.to([leftCircleRef.current, rightCircleRef.current], {
-            opacity: 0,
-            duration: 1,
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true,
-            },
-          });
-        },
-
-        // Desktop: volle Parallax-Animation
-        '(min-width: 1024px)': () => {
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom 5%',
-              scrub: 0.5,
-            },
-          });
-
-          tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
-          tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
-          tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
-          tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
-        }
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Content + Badge Animation (decoupled from image load)
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Badge animation
-      gsap.fromTo(badgeRef.current,
-        { y: -40, opacity: 0, scale: 0.8 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.4)', delay: 0.3 }
-      );
-
-      // Headline, paragraphs, CTA fade-in
+  const ctx = gsap.context(() => {
+    const animateContent = () => {
       gsap.from(
         [
           headlineRef.current,
@@ -85,6 +80,7 @@ const Hero = () => {
           desktopText1Ref.current,
           desktopText2Ref.current,
           ctaRef.current,
+          imageRef.current,
         ].filter(Boolean),
         {
           y: 50,
@@ -92,35 +88,27 @@ const Hero = () => {
           duration: 1,
           stagger: 0.2,
           ease: 'power3.out',
-          delay: 0.6
         }
       );
+    };
 
-      // Animate image separately only after load
-      const imgEl = imageRef.current;
-      if (imgEl) {
-        if (!imgEl.complete) {
-          imgEl.addEventListener('load', () => {
-            gsap.from(imgEl, {
-              y: 50,
-              opacity: 0,
-              duration: 1,
-              ease: 'power3.out'
-            });
-          });
-        } else {
-          gsap.from(imgEl, {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-          });
-        }
-      }
-    }, heroRef);
+    const imgEl = imageRef.current;
+    if (imgEl && !imgEl.complete) {
+      const handleLoad = () => animateContent();
+      imgEl.addEventListener('load', handleLoad);
 
-    return () => ctx.revert();
-  }, []);
+      return () => {
+        imgEl.removeEventListener('load', handleLoad);
+      };
+    } else {
+      animateContent();
+    }
+  }, heroRef);
+
+  return () => ctx.revert();
+}, []);
+
+
 
   return (
     <>
@@ -139,14 +127,15 @@ const Hero = () => {
       {/* Hero Section */}
       <main
         ref={heroRef}
-        className="w-full mt-20 md:mt-30 lg:mt-35 py-8 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 xl:px-0"
+        className="w-full mt-20 lg:mt-35 py-16 sm:py-24 md:py-32 px-4 sm:px-6 xl:px-0"
       >
         <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
+
           <div>
             {/* Authenticity Badge */}
             <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
               <div
-                ref={badgeRef}
+                
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm hover:shadow-md transition-shadow duration-300"
               >
                 <div className="relative">
@@ -161,30 +150,30 @@ const Hero = () => {
 
             <h1
               ref={headlineRef}
-              className="text-3xl md:text-5xl font-black text-black leading-tight mb-6"
+              className="text-3xl md:text-5xl font-black text-black leading-tight mb-5"
             >
               Ihre Website soll <span className='text-[#003566]'>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <br/> nicht nur schön aussehen.
             </h1>
 
-            <p ref={mobileText1Ref} className="text-lg md:mx-auto  text-[#000814] max-w-xl xl:hidden mb-6">
+            <p ref={mobileText1Ref} className="text-lg text-[#000814] max-w-xl xl:hidden mb-4">
               Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
             </p>
-            <p ref={mobileText2Ref} className="text-base md:mx-auto text-[#000814]/85 max-w-xl xl:hidden mb-6">
-               Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden
+            <p ref={mobileText2Ref} className="text-base text-[#000814]/85 max-w-xl xl:hidden mb-5">
+               Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
             </p>
 
-            <div className="hidden  xl:flex flex-col gap-6 max-w-2xl">
-              <p ref={desktopText1Ref} className="text-lg xl:text-xl text-[#000814]">
+            <div className="hidden xl:flex flex-col gap-6 max-w-2xl">
+              <p ref={desktopText1Ref} className="text-lg xltext-xl text-[#000814]">
                  Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
               </p>
               <p ref={desktopText2Ref} className="text-base xl:text-[1.1rem] text-[#000814]">
-                    Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden
+                    Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
               </p>
             </div>
 
             <div
               ref={ctaRef}
-              className="mt-12.5 flex gap-2 lg:gap-4  md:justify-center xl:justify-start"
+              className="mt-12.5 flex gap-2 lg:gap-4 md:items-center md:justify-center xl:items-start xl:justify-start"
             >
               <CTA1 bg="bg-white"/>
             </div>
@@ -196,10 +185,10 @@ const Hero = () => {
                 ref={imageRef}
                 src={HeroIllustration}
                 alt="Illustration einer modernen Website"
-                width="700"
-                height="500"
-                className="xl:w-full max-w-[600px] xl:max-w-[700px] 2xl:max-w-[800px]"
-                loading="eager"  // important for LCP
+                width="600"
+                height="400"
+                className="xl:w-full max-w-[500px] xl:max-w-[600px]"
+                loading="lazy"
                 decoding="async"
               />
             )}
