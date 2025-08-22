@@ -42,7 +42,7 @@ const FinalCTASection = () => {
         ref={headlineRef}
         className="text-3xl md:text-4xl font-extrabold text-blue-600 mb-6"
       >
-        Verpassen Sie keine Kunden mehr!
+        Verlieren Sie keine Kunden mehr!
       </h2>
       <p
         ref={textRef}
