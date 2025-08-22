@@ -68,7 +68,7 @@ const ProblemSolution = () => {
     {
       icon: <FaPhone className="text-red-600" />,
       title: "Keine Kundenanfragen",
-      text: "Null Anfragen trotz Website-Traffic – Ihre Konkurrenz kassiert Ihre Kunden"
+      text: "Null Anfragen trotz Website-Traffic. Ihre Konkurrenz kassiert Ihre Kunden"
     },
     {
       icon: <FaMobileAlt className="text-red-600" />,
