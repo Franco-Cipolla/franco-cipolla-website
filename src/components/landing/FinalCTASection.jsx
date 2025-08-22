@@ -48,7 +48,7 @@ const FinalCTASection = () => {
         ref={textRef}
         className="mb-8 max-w-xl mx-auto text-lg text-gray-700"
       >
-        Ihre zukünftigen Kunden suchen online nach Ihnen – die Konkurrenz ist nur einen Klick entfernt. Lassen Sie uns gemeinsam Ihre Website zu einem Kundenmagneten machen.
+        Ihre zukünftigen Kunden suchen online nach Ihnen. Lassen Sie uns gemeinsam Ihre Website zu einem Kundenmagneten machen.
       </p>
       <div ref={ctaRef}>
         <CTA1 bg="bg-white" text="Jetzt kostenloses Erstgespräch sichern" />

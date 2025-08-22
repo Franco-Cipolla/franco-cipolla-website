@@ -192,18 +192,21 @@ const ProblemSolution = () => {
             </div>
 
             <div className="p-6 bg-green-100 rounded-2xl text-center mt-auto shadow-lg">
-              <p className="text-lg font-bold text-green-800 mb-4 flex items-center justify-center gap-2.5">
-                <FaBullseye className="text-green-700 text-lg w-8 h-8 mt-10 md:w-5 md:h-5 md:mt-0" />
+              <p className="text-lg font-bold text-green-800 flex items-center justify-center gap-2.5">
+                <FaBullseye className="text-green-700 text-lg w-8 h-8 md:w-5 md:h-5 " />
                 Investieren Sie in eine Website, die Ihnen Kunden bringt!
               </p>
-              <CTA1 bg="bg-white"/>
+
             </div>
           </div>
         </div>
+        <div className='w-full my-10 flex items-center justify-center'>
+         <CTA1 bg="bg-white"/>
+         </div>
 
         {/* Transition zu nächster Section */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-[#000814] max-w-xl mx-auto">
+        <div className="text-center ">
+          <p className="text-[15px] text-[#000814] max-w-xl mx-auto">
             Lassen Sie uns gemeinsam Ihre Website zum Kundenmagnet machen.
           </p>
         </div>
