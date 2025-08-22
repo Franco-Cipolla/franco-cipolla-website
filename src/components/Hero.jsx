@@ -184,7 +184,7 @@ const Hero = () => {
 
             <div
               ref={ctaRef}
-              className="mt-12.5 flex gap-2 lg:gap-4 justify-center md:justify-center xl:justify-start"
+              className="mt-12.5 flex gap-2 lg:gap-4  md:justify-center xl:justify-start"
             >
               <CTA1 bg="bg-white"/>
             </div>

@@ -205,11 +205,11 @@ const Erstgespraech = () => {
           type="button"
           onClick={() => handleDateSelect(day)}
           disabled={isPast}
-          className={`w-8 h-8 text-sm rounded  transition-colors ${
+          className={`w-8 h-8 text-sm rounded transition-colors ${
             isPast
               ? 'text-gray-300 cursor-not-allowed'
               : isSelected
-                ? 'bg-red-500 cursor-pointer text-white'
+                ? 'bg-red-500 text-white'
                 : isToday
                   ? 'bg-blue-100 text-blue-600 hover:bg-blue-200'
                   : 'hover:bg-gray-100'
@@ -372,7 +372,7 @@ const Erstgespraech = () => {
                   <button
                     type="button"
                     onClick={() => setShowDatePicker(!showDatePicker)}
-                    className={`border w-full cursor-pointer p-2.5 font-semibold text-[#000814] rounded text-left ${
+                    className={`border w-full p-2.5 font-semibold text-[#000814] rounded text-left ${
                       errors.date ? 'border-red-500' : 'border-black'
                     }`}
                   >
@@ -391,7 +391,7 @@ const Erstgespraech = () => {
                         <button
                           type="button"
                           onClick={() => navigateMonth(-1)}
-                          className="p-1 hover:bg-gray-100 cursor-pointer rounded"
+                          className="p-1 hover:bg-gray-100 rounded"
                         >
                           ←
                         </button>
@@ -401,7 +401,7 @@ const Erstgespraech = () => {
                         <button
                           type="button"
                           onClick={() => navigateMonth(1)}
-                          className="p-1 hover:bg-gray-100 cursor-pointer rounded"
+                          className="p-1 hover:bg-gray-100 rounded"
                         >
                           →
                         </button>
@@ -429,7 +429,7 @@ const Erstgespraech = () => {
                   <button
                     type="button"
                     onClick={() => setShowTimePicker(!showTimePicker)}
-                    className={`border w-full p-2.5 cursor-pointer font-semibold text-[#000814] rounded text-left ${
+                    className={`border w-full p-2.5 font-semibold text-[#000814] rounded text-left ${
                       errors.time ? 'border-red-500' : 'border-black'
                     }`}
                   >
@@ -448,7 +448,7 @@ const Erstgespraech = () => {
                           key={time}
                           type="button"
                           onClick={() => handleTimeSelect(time)}
-                          className={`w-full p-2 cursor-pointer text-left hover:bg-gray-100 ${
+                          className={`w-full p-2 text-left hover:bg-gray-100 ${
                             formData.time === time ? 'bg-blue-100 text-blue-600' : ''
                           }`}
                         >
