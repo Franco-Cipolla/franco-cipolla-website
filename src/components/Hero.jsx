@@ -133,7 +133,7 @@ const Hero = () => {
           <div>
             <h1
               ref={headlineRef}
-              className="text-3xl md:text-5xl font-[700] text-black leading-tight mb-5"
+              className="text-3xl md:text-5xl font-bold text-black leading-tight mb-5"
             >
               Ihre Website soll <span className='text-[#003566]'>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <br/> nicht nur schön aussehen.
             </h1>

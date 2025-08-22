@@ -3,9 +3,9 @@
 
 
 @font-face {
-  font-family: "Urbanist";
-  src: local("Urbanist"),
-       url("./fonts/Urbanist/static/Urbanist-Regular.ttf") format("truetype");
+  font-family: "Satoshi";
+  src: local("Satoshi"),
+       url("./fonts/Satoshi_Complete/Fonts/OTF/Satoshi-Regular.otf") format("truetype");
   font-style: normal;
   font-display: swap;
 }
@@ -15,7 +15,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "Urbanist", sans-serif;
+  font-family: "Satoshi", sans-serif;
   overflow-x: hidden;
 }
 

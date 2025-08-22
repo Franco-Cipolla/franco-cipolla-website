@@ -15,7 +15,7 @@ const USPSection = () => {
     },
     {
       title: "Jung, modern, digital",
-      text: "17 Jahre, Digitale Expertise – schneller, frischer, flexibler als klassische Agenturen.",
+      text: "Mit 17 Jahren Unternehmer, Digitale Expertise – schneller, frischer, flexibler als klassische Agenturen.",
       icon: <FaRocket className="text-3xl text-purple-500 mb-2" />,
     },
     {
