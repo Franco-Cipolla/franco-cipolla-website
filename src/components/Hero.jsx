@@ -9,6 +9,7 @@ const Hero = () => {
   const leftCircleRef = useRef(null);
   const rightCircleRef = useRef(null);
 
+  const badgeRef = useRef(null);
   const headlineRef = useRef(null);
   const mobileText1Ref = useRef(null);
   const mobileText2Ref = useRef(null);
@@ -27,88 +28,103 @@ const Hero = () => {
   }, []);
 
   // Parallax/ScrollTrigger-Animationen für die Kreise
-      useLayoutEffect(() => {
-      const ctx = gsap.context(() => {
-        ScrollTrigger.matchMedia({
-          // Mobile: nur sanftes Ausblenden
-          '(max-width: 1023px)': () => {
-            gsap.to([leftCircleRef.current, rightCircleRef.current], {
-              opacity: 0,
-              duration: 1,
-              scrollTrigger: {
-                trigger: heroRef.current,
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true,
-              },
-            });
-          },
-
-          // Desktop: volle Parallax-Animation
-          '(min-width: 1024px)': () => {
-            const tl = gsap.timeline({
-              scrollTrigger: {
-                trigger: heroRef.current,
-                start: 'top top',
-                end: 'bottom 5%',
-                scrub: 0.5,
-              },
-            });
-
-            tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
-            tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
-            tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
-            tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
-          }
-        });
-      }, heroRef);
-
-      return () => ctx.revert();
-    }, []);
-
-
-
-  // Content-Fade-In (nur XL)
   useLayoutEffect(() => {
-  const ctx = gsap.context(() => {
-    const animateContent = () => {
-      gsap.from(
-        [
-          headlineRef.current,
-          mobileText1Ref.current,
-          mobileText2Ref.current,
-          desktopText1Ref.current,
-          desktopText2Ref.current,
-          ctaRef.current,
-          imageRef.current,
-        ].filter(Boolean),
-        {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'power3.out',
+    const ctx = gsap.context(() => {
+      ScrollTrigger.matchMedia({
+        // Mobile: nur sanftes Ausblenden
+        '(max-width: 1023px)': () => {
+          gsap.to([leftCircleRef.current, rightCircleRef.current], {
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true,
+            },
+          });
+        },
+
+        // Desktop: volle Parallax-Animation
+        '(min-width: 1024px)': () => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top top',
+              end: 'bottom 5%',
+              scrub: 0.5,
+            },
+          });
+
+          tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
+          tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
+          tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
+          tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
         }
-      );
-    };
+      });
+    }, heroRef);
 
-    const imgEl = imageRef.current;
-    if (imgEl && !imgEl.complete) {
-      const handleLoad = () => animateContent();
-      imgEl.addEventListener('load', handleLoad);
+    return () => ctx.revert();
+  }, []);
 
-      return () => {
-        imgEl.removeEventListener('load', handleLoad);
+  // Content-Fade-In mit Badge Animation
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const animateContent = () => {
+        // Badge separate Animation mit bounce effect
+        gsap.fromTo(badgeRef.current,
+          {
+            y: -40,
+            opacity: 0,
+            scale: 0.8
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: 'back.out(1.4)',
+            delay: 0.3
+          }
+        );
+
+        // Rest der Content Animation
+        gsap.from(
+          [
+            headlineRef.current,
+            mobileText1Ref.current,
+            mobileText2Ref.current,
+            desktopText1Ref.current,
+            desktopText2Ref.current,
+            ctaRef.current,
+            imageRef.current,
+          ].filter(Boolean),
+          {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power3.out',
+            delay: 0.6
+          }
+        );
       };
-    } else {
-      animateContent();
-    }
-  }, heroRef);
 
-  return () => ctx.revert();
-}, []);
+      const imgEl = imageRef.current;
+      if (imgEl && !imgEl.complete) {
+        const handleLoad = () => animateContent();
+        imgEl.addEventListener('load', handleLoad);
 
+        return () => {
+          imgEl.removeEventListener('load', handleLoad);
+        };
+      } else {
+        animateContent();
+      }
+    }, heroRef);
 
+    return () => ctx.revert();
+  }, []);
 
   return (
     <>
@@ -127,10 +143,26 @@ const Hero = () => {
       {/* Hero Section */}
       <main
         ref={heroRef}
-        className="w-full mt-30 lg:mt-35 py-16 sm:py-24 md:py-32 px-4 sm:px-6 xl:px-0"
+        className="w-full mt-27 md:mt-30 lg:mt-35 py-8 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 xl:px-0"
       >
-        <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
+        <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-10 lg:gap-5 lg:justify-start  xl:text-left md:items-center md:text-center">
           <div>
+            {/* Authenticity Badge */}
+            <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
+              <div
+                ref={badgeRef}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <div className="relative">
+                  <div className="w-2 h-2 bg-[#003566] rounded-full animate-pulse"></div>
+                  <div className="absolute inset-0 w-2 h-2 bg-[#003566] rounded-full animate-ping opacity-40"></div>
+                </div>
+                <span className="text-sm font-medium text-[#003566] tracking-tight">
+                  🚀 Ehrlich. Direkt. Ohne Marketing-Blabla.
+                </span>
+              </div>
+            </div>
+
             <h1
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black leading-tight mb-5"
@@ -139,19 +171,18 @@ const Hero = () => {
             </h1>
 
             <p ref={mobileText1Ref} className="text-lg text-[#000814] max-w-xl xl:hidden mb-4">
-              Ich entwickle maßgeschneiderte Websites für KMUs, die mit ihrer Website Kunden gewinnen möchten: modern, SEO-optimiert und überzeugend getextet.
+              Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
             </p>
             <p ref={mobileText2Ref} className="text-base text-[#000814]/85 max-w-xl xl:hidden mb-5">
-              Maßgeschneiderte Websites – entwickelt für Unternehmer, die den Unterschied verstehen.
+               Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
             </p>
 
             <div className="hidden xl:flex flex-col gap-6 max-w-2xl">
               <p ref={desktopText1Ref} className="text-lg xltext-xl text-[#000814]">
-                  Ich entwickle maßgeschneiderte Websites für KMUs, die mit ihrer Website Kunden gewinnen möchten: modern, SEO-optimiert und überzeugend getextet.
-
+                 Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
               </p>
               <p ref={desktopText2Ref} className="text-base xl:text-[1.1rem] text-[#000814]">
-                Maßgeschneiderte Websites – entwickelt für Unternehmer, die den Unterschied verstehen.
+                    Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
               </p>
             </div>
 
@@ -159,7 +190,6 @@ const Hero = () => {
               ref={ctaRef}
               className="mt-12.5 flex gap-2 lg:gap-4 md:items-center md:justify-center xl:items-start xl:justify-start"
             >
-
               <CTA1 bg="bg-white"/>
             </div>
           </div>
