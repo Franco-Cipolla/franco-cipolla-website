@@ -84,12 +84,13 @@ const NavBar = () => {
 
         {/* Burger Button */}
         <button
-            className="lg:hidden z-[80]"
-            aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
-            title={isOpen ? "Menü schließen" : "Menü öffnen"}
-          >
-            <Hamburger toggled={isOpen} toggle={setIsOpen} size={22} />
-          </button>
+          className="lg:hidden z-[80]"
+          aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
+          title={isOpen ? "Menü schließen" : "Menü öffnen"}
+        >
+          <Hamburger toggled={isOpen} toggle={setIsOpen} size={22} />
+        </button>
+
 
 
 
