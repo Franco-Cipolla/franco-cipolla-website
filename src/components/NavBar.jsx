@@ -83,9 +83,10 @@ const NavBar = () => {
         <h1 className="font-[800] text-[1.3rem] lg:text-2xl">Franco Cipolla</h1>
 
         {/* Burger Button */}
-        <button className="lg:hidden z-[80]">
+        <button className="lg:hidden z-[80]" aria-label="Menü öffnen" title="Menü öffnen">
           <Hamburger toggled={isOpen} toggle={setIsOpen} size={22} />
         </button>
+
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex space-x-2 items-center">
