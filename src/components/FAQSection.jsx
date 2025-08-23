@@ -17,9 +17,16 @@ const faqs = [
       'Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht, sondern auch Kunden gewinnt: modernes Design, klare Struktur, mobile Optimierung, OnPage-SEO und starke Performance. Kein Baukasten – sondern echtes Handwerk.',
   },
   {
-    question: 'Wie viel kostet eine Website ungefähr?',
+    question: 'Wie viel kostet eine Website?',
     answer:
-      'Die Preise starten bei etwa 1.000 € für einfache Seiten. Komplexere Projekte können 2.000 € oder mehr kosten – je nach Anforderungen.',
+      <div className="space-y-2">
+      <p>Jedes Projekt ist individuell – deshalb gibt es keine Pauschalpreise. Der Ablauf:</p>
+      <ol className="list-decimal list-inside space-y-1">
+        <li><strong>Erstgespräch</strong> – Wir sprechen über Ihre Vorstellungen, Ziele und Anforderungen.</li>
+        <li><strong>Analyse & Planung</strong> – Ich verschaffe mir ein klares Bild über den Aufwand und die benötigten Funktionen.</li>
+        <li><strong>Individuelles Angebot</strong> – Sie erhalten ein transparentes Angebot, das genau zu Ihrem Projekt passt.</li>
+      </ol>
+    </div>
   },
   {
     question: 'Wie lange dauert die Umsetzung einer Website?',
