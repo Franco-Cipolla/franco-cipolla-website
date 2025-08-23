@@ -199,7 +199,7 @@ const Hero = () => {
 
             </div>
              <p ref={disclaimerRef} className='text-[13px] md:text-sm  mt-3 text-black/40'>
-                Unverbindlich & kostenlos – kein Risiko
+                Unverbindlich & kostenlos – ohne Risiko
               </p>
 
           </div>
