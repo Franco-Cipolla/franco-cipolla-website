@@ -177,7 +177,7 @@ const Hero = () => {
         </p>
         <p
           ref={text2Ref}
-          className={`text-[14.5px]  ${isXL ? 'xl:text-[1.1rem]' : 'text-[#000814]/85'} text-[#000814] mb-5`}
+          className={`text-[15px]  ${isXL ? 'xl:text-[1.1rem]' : 'text-[#000814]/85'} text-[#000814] mb-5`}
         >
           Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
         </p>
