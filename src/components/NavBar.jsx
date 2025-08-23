@@ -87,6 +87,7 @@ const NavBar = () => {
           className="lg:hidden z-[80]"
           aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
           title={isOpen ? "Menü schließen" : "Menü öffnen"}
+          aria-expanded={isOpen}
         >
           <Hamburger toggled={isOpen} toggle={setIsOpen} size={22} />
         </button>
@@ -109,8 +110,12 @@ const NavBar = () => {
             : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <ul className="flex flex-col items-center justify-center h-full space-y-8">
-          <li>
+        <ul className="flex flex-col items-center justify-center h-full space-y-8"
+            role="menu"
+            aria-label="Mobile Navigation"
+            id="mobile-menu"
+        >
+          <li role="none">
             <Link
               to="/"
               className="text-black text-2xl font-semibold hover:text-[#003566] transition"
@@ -118,46 +123,52 @@ const NavBar = () => {
                 setIsOpen(false)
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
+              role="menuitem"
             >
               Home
             </Link>
           </li>
 
           {mobileMenuItems.map((item) => (
-            <li key={item.label}>
+            <li role="none" key={item.label}>
               <Link
                 to={item.to}
                 className="text-black text-2xl font-semibold hover:text-[#003566] transition"
                 onClick={() => setIsOpen(false)}
+                role="menuitem"
               >
                 {item.label}
               </Link>
             </li>
           ))}
 
-          <li>
+          <li role="none">
             <button
               onClick={() => {
                 goToService()
                 setIsOpen(false)
               }}
               className="text-black cursor-pointer text-2xl font-semibold hover:text-[#003566] transition"
+              role="menuitem"
             >
               Service
             </button>
           </li>
-            <li>
+            <li role="none">
             <button
               onClick={() => {
                 setIsOpen(false)
                 navigate('/', { state: { scrollTo: 'contact' } })
               }}
               className="text-black cursor-pointer text-2xl font-semibold hover:text-[#003566] transition"
+              role="menuitem"
             >
               Kontakt
             </button>
           </li>
-         <CTA1 onClick={() => setIsOpen(false)} />
+          <li role="none">
+               <CTA1 onClick={() => setIsOpen(false)} role="menuitem" />
+          </li>
         </ul>
       </div>
     </nav>
