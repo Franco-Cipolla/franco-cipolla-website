@@ -178,12 +178,12 @@ const Contact = () => {
           <div className="contact-animate flex items-center gap-3 mt-8">
             <FiInstagram className="text-black text-2xl" />
             <a
-              href="https://instagram.com/francocipolla.dev"
+              href="https://instagram.com/francocipolla.web"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#000814] hover:text-[#003566] transition-colors duration-200 font-medium"
             >
-              @francocipolla.dev
+              @francocipolla.web
             </a>
           </div>
         </div>
