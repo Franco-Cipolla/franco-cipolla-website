@@ -91,14 +91,18 @@ const HeroSection = () => {
         </h1>
 
         {/* Subline */}
-        <p ref={sublineRef} className="text-lg md:text-xl mb-10 text-gray-700">
+        <p ref={sublineRef} className="text-base md:text-xl mb-10 text-gray-700">
           Websites, die Kunden anziehen – statt sie zu verlieren.
         </p>
 
         {/* CTA */}
         <div ref={ctaRef}>
           <CTA1 bg="bg-white" />
+          <p className='text-[13px] md:text-sm  mt-3 text-black/40'>
+                Unverbindlich & kostenlos – ohne Risiko
+              </p>
         </div>
+
       </div>
 
       {/* Scroll-Pfeil unten */}
