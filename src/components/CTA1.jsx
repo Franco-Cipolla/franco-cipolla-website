@@ -6,6 +6,7 @@ const CTA1 = ({
   color = "text-[#000814]",
   text = "Kostenloses Erstgespräch sichern",
   onClick,
+  hover= "hover:text-[#001D3D]"
 }) => {
   const navigate = useNavigate()
 
@@ -17,7 +18,7 @@ const CTA1 = ({
   return (
     <button
       onClick={handleClick}
-      className={`${bg} ${color} px-4 py-2 rounded shadow-md border-2 transform hover:-translate-y-1 ease-in border-[#003566] cursor-pointer hover:text-[#001D3D] hover:border-[#001D3D] transition`}
+      className={`${bg} ${color} px-4 py-2 rounded shadow-md border-2 transform hover:-translate-y-1 ease-in border-[#003566] cursor-pointer ${hover} hover:border-[#001D3D] transition`}
     >
       {text}
     </button>

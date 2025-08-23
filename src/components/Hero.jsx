@@ -1,6 +1,9 @@
 import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { gsap, ScrollTrigger } from './gsapSetup'; // ScrollTrigger ist bereits in gsapSetup registriert
-import CTA1 from './CTA1';
+
+import { useNavigate } from 'react-router-dom'
+
+import { FaArrowRight } from 'react-icons/fa'
 
 import HeroIllustration from '../assets/Hero-Illustration.webp';
 
@@ -8,15 +11,21 @@ const Hero = () => {
   const heroRef = useRef(null);
   const leftCircleRef = useRef(null);
   const rightCircleRef = useRef(null);
+  const navigate = useNavigate()
 
   const headlineRef = useRef(null);
     const text1Ref = useRef(null);
     const text2Ref = useRef(null);
+    const disclaimerRef = useRef(null);
+
 
   const ctaRef = useRef(null);
   const imageRef = useRef(null);
 
   const [isXL, setIsXL] = useState(false);
+  const handleClick = () => {
+    navigate('/erstgespraech')
+  }
 
   useEffect(() => {
     const checkWidth = () => setIsXL(window.innerWidth >= 1280);
@@ -75,6 +84,7 @@ const Hero = () => {
       text1Ref,
       text2Ref,
       ctaRef,
+      disclaimerRef,
     ];
 
     gsap.from(textRefs.map(ref => ref.current).filter(Boolean), {
@@ -153,21 +163,21 @@ const Hero = () => {
 
             <h1
               ref={headlineRef}
-              className="text-3xl md:text-5xl font-black text-black leading-tight mb-5"
+              className="text-3xl md:text-5xl font-black text-black  tracking-tight mb-6"
             >
-              Ihre Website soll <span className='text-[#003566]'>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <span className='block'></span> nicht nur schön aussehen.
+              Websites die <span className='text-[#003566] '>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <span className='block'></span> statt nur zu gefallen.
             </h1>
 
             <div className={`max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl ${isXL ? 'flex flex-col gap-6' : ''}`}>
         <p
           ref={text1Ref}
-          className={`text-lg ${isXL ? 'xl:text-xl' : ''} text-[#000814] mb-4`}
+          className={`text-lg ${isXL ? 'xl:text-xl' : ''} text-[#000814] mb-4 font-bold`}
         >
-          Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
+          Während Sie schlafen oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
         </p>
         <p
           ref={text2Ref}
-          className={`text-base ${isXL ? 'xl:text-[1.1rem]' : 'text-[#000814]/85'} text-[#000814] mb-5`}
+          className={`text-[14.5px]  ${isXL ? 'xl:text-[1.1rem]' : 'text-[#000814]/85'} text-[#000814] mb-5`}
         >
           Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
         </p>
@@ -176,10 +186,22 @@ const Hero = () => {
 
             <div
               ref={ctaRef}
-              className="mt-12.5 flex gap-2 lg:gap-4 md:items-center md:justify-center xl:items-start xl:justify-start"
+              className="mt-12.5 flex  gap-2 lg:gap-4 md:items-center md:justify-center xl:items-start xl:justify-start"
             >
-              <CTA1 bg="bg-white"/>
+              <button
+                      onClick={handleClick}
+                      className="px-4 py-2 text-white bg-[#001D3D] flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 ease-in border-[#003566] cursor-pointer ${hover} hover:border-[#001D3D] transition"
+                    >
+                      Erstgespräch vereinbaren <FaArrowRight />
+                    </button>
+
+
+
             </div>
+             <p ref={disclaimerRef} className='text-[13px] md:text-sm  mt-3 text-black/40'>
+                Unverbindlich & kostenlos – kein Risiko
+              </p>
+
           </div>
 
           <div className="flex-1 flex justify-center lg:justify-end pt-6 lg:pt-0">

@@ -80,7 +80,7 @@ const NavBar = () => {
         </ul>
 
         {/* Branding */}
-        <h1 className="font-[800] text-[1.3rem] lg:text-2xl">Franco Cipolla</h1>
+        <h1 className="font-bold text-[1.3rem] lg:text-2xl">Franco Cipolla</h1>
 
         {/* Burger Button */}
         <button

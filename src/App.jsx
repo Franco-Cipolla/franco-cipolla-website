@@ -4,6 +4,7 @@ import MainLayout from "./layouts/MainLayout.jsx"
 import Loader from "./components/Loader.jsx"
 import LandingPage from "./pages/LandingPage.jsx"
 
+
 // Lazy Imports
 const HomePage = lazy(() => import("./pages/HomePage"))
 const AboutPage = lazy(() => import("./pages/AboutPage"))
@@ -31,6 +32,8 @@ function App() {
 
         {/* Landingpage OHNE MainLayout */}
         <Route path="erstgespraeche" element={<LandingPage />} />
+        
+
       </>
     )
   )
@@ -40,6 +43,7 @@ function App() {
       <RouterProvider router={router} />
     </Suspense>
   )
+
 }
 
 export default App
