@@ -171,8 +171,10 @@ const NavBar = () => {
             </button>
           </li>
           <li role="none">
-               <CTA1 onClick={() => setIsOpen(false)} role="menuitem"
-               tabIndex={0} />
+            <button role="menuitem"
+               tabIndex={0}>
+               <CTA1 onClick={() => setIsOpen(false)}  />
+              </button>
           </li>
         </ul>
       </div>
