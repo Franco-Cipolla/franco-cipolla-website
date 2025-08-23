@@ -9,12 +9,12 @@ const faqs = [
   {
     question: 'Warum brauche ich überhaupt eine Website?',
     answer:
-      'Eine professionelle Website ist deine digitale Visitenkarte – sie schafft Vertrauen, macht dich sichtbar und hilft dir, neue Kunden zu gewinnen. Egal ob Dienstleistung, Produkt oder Portfolio: Ohne Online-Präsenz verschenkst du Potenzial und Geld.',
+      'Eine professionelle Website ist deine digitale Visitenkarte. Sie schafft Vertrauen, macht dich sichtbar und hilft dir, neue Kunden zu gewinnen. Egal ob Dienstleistung, Produkt oder Portfolio: Ohne Online-Präsenz verschenkst du Potenzial und Geld.',
   },
   {
     question: 'Was bekomme ich konkret?',
     answer:
-      'Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht, sondern auch Kunden gewinnt: modernes Design, klare Struktur, mobile Optimierung, OnPage-SEO und starke Performance. Kein Baukasten – sondern echtes Handwerk.',
+      'Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht, sondern auch Kunden gewinnt: modernes Design, klare Struktur, mobile Optimierung, OnPage-SEO und starke Performance. Kein Baukasten sondern echtes Handwerk.',
   },
   {
     question: 'Wie viel kostet eine Website?',
