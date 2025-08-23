@@ -10,10 +10,9 @@ const Hero = () => {
   const rightCircleRef = useRef(null);
 
   const headlineRef = useRef(null);
-  const mobileText1Ref = useRef(null);
-  const mobileText2Ref = useRef(null);
-  const desktopText1Ref = useRef(null);
-  const desktopText2Ref = useRef(null);
+    const text1Ref = useRef(null);
+    const text2Ref = useRef(null);
+
   const ctaRef = useRef(null);
   const imageRef = useRef(null);
 
@@ -73,14 +72,11 @@ const Hero = () => {
   const ctx = gsap.context(() => {
     const textRefs = [
       headlineRef,
-      mobileText1Ref,
-      mobileText2Ref,
-      desktopText1Ref,
-      desktopText2Ref,
+      text1Ref,
+      text2Ref,
       ctaRef,
     ];
 
-    // Starte Textanimation sofort
     gsap.from(textRefs.map(ref => ref.current).filter(Boolean), {
       y: 50,
       opacity: 0,
@@ -89,7 +85,6 @@ const Hero = () => {
       ease: 'power3.out',
     });
 
-    // Bildanimation separat nach Load
     const imgEl = imageRef.current;
     if (imgEl && !imgEl.complete) {
       const handleLoad = () => {
@@ -135,7 +130,7 @@ const Hero = () => {
       {/* Hero Section */}
       <main
         ref={heroRef}
-        className="w-full mt-20 lg:mt-35 py-16 sm:py-24 md:py-32 px-4 sm:px-6 xl:px-0"
+        className="w-full mt-20 lg:mt-16 xl:mt-30  py-16 sm:py-24 md:py-32 px-4 sm:px-6 xl:px-0"
       >
         <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
 
@@ -163,21 +158,21 @@ const Hero = () => {
               Ihre Website soll <span className='text-[#003566]'>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <span className='block'></span> nicht nur schön aussehen.
             </h1>
 
-            <p ref={mobileText1Ref} className="text-lg text-[#000814] max-w-xl xl:hidden mb-4">
-              Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
-            </p>
-            <p ref={mobileText2Ref} className="text-base text-[#000814]/85 max-w-xl xl:hidden mb-5">
-               Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
-            </p>
+            <div className={`max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl ${isXL ? 'flex flex-col gap-6' : ''}`}>
+        <p
+          ref={text1Ref}
+          className={`text-lg ${isXL ? 'xl:text-xl' : ''} text-[#000814] mb-4`}
+        >
+          Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
+        </p>
+        <p
+          ref={text2Ref}
+          className={`text-base ${isXL ? 'xl:text-[1.1rem]' : 'text-[#000814]/85'} text-[#000814] mb-5`}
+        >
+          Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
+        </p>
+      </div>
 
-            <div className="hidden xl:flex flex-col gap-6 max-w-2xl">
-              <p ref={desktopText1Ref} className="text-lg xltext-xl text-[#000814]">
-                 Während Sie schlafen, arbeiten oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
-              </p>
-              <p ref={desktopText2Ref} className="text-base xl:text-[1.1rem] text-[#000814]">
-                    Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
-              </p>
-            </div>
 
             <div
               ref={ctaRef}
