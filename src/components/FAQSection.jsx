@@ -8,42 +8,104 @@ gsap.registerPlugin(ScrollTrigger)
 const faqs = [
   {
     question: 'Warum brauche ich überhaupt eine Website?',
-    answer:
-      'Eine professionelle Website ist deine digitale Visitenkarte. Sie schafft Vertrauen, macht dich sichtbar und hilft dir, neue Kunden zu gewinnen. Egal ob Dienstleistung, Produkt oder Portfolio: Ohne Online-Präsenz verschenkst du Potenzial und Geld.',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Eine professionelle Website ist deine digitale Visitenkarte – sie schafft Vertrauen,
+          macht dich sichtbar und hilft dir, neue Kunden zu gewinnen.
+        </p>
+        <p>
+          Egal ob Dienstleistung, Produkt oder Portfolio: Ohne Online-Präsenz verschenkst du
+          Potenzial und Geld.
+        </p>
+      </div>
+    ),
   },
   {
     question: 'Was bekomme ich konkret?',
-    answer:
-      'Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht, sondern auch Kunden gewinnt: modernes Design, klare Struktur, mobile Optimierung, OnPage-SEO und starke Performance. Kein Baukasten sondern echtes Handwerk.',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht,
+          sondern auch Kunden gewinnt:
+        </p>
+        <ul className="list-disc list-inside space-y-1">
+          <li>Modernes Design</li>
+          <li>Klare Struktur</li>
+          <li>Mobile Optimierung</li>
+          <li>OnPage-SEO</li>
+          <li>Starke Performance</li>
+          <li>Texte die vertrauen schaffen</li>
+
+        </ul>
+        <p>Kein Baukasten – sondern echtes Handwerk.</p>
+      </div>
+    ),
   },
   {
-    question: 'Wie viel kostet eine Website?',
-    answer:
+    question: 'Wie viel kostet eine Website ungefähr?',
+    answer: (
       <div className="space-y-2">
-      <p>Jedes Projekt ist individuell – deshalb gibt es keine Pauschalpreise. Der Ablauf:</p>
-      <ol className="list-decimal list-inside space-y-1">
-        <li><strong>Erstgespräch</strong> – Wir sprechen über Ihre Vorstellungen, Ziele und Anforderungen.</li>
-        <li><strong>Analyse & Planung</strong> – Ich verschaffe mir ein klares Bild über den Aufwand und die benötigten Funktionen.</li>
-        <li><strong>Individuelles Angebot</strong> – Sie erhalten ein transparentes Angebot, das genau zu Ihrem Projekt passt.</li>
-      </ol>
-    </div>
+        <p>
+          Jedes Projekt ist individuell – deshalb gibt es keine Pauschalpreise.
+          Der Ablauf sieht so aus:
+        </p>
+        <ol className="list-decimal list-inside space-y-1">
+          <li>
+            <strong>Erstgespräch</strong> – Wir sprechen über Ihre Vorstellungen, Ziele und Anforderungen.
+          </li>
+          <li>
+            <strong>Analyse & Planung</strong> – Ich verschaffe mir ein klares Bild über den Aufwand und die benötigten Funktionen.
+          </li>
+          <li>
+            <strong>Individuelles Angebot</strong> – Sie erhalten ein transparentes Angebot, das genau zu Ihrem Projekt passt.
+          </li>
+        </ol>
+      </div>
+    ),
   },
   {
     question: 'Wie lange dauert die Umsetzung einer Website?',
-    answer:
-      'Das hängt vom Umfang ab. Eine einfache Landingpage dauert ca. 1–2 Wochen, komplexere Projekte entsprechend länger.',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Das hängt stark vom Umfang ab:
+        </p>
+        <ul className="list-disc list-inside space-y-1">
+          <li>Einfache Landingpage: ca. 1–2 Wochen</li>
+          <li>Komplexere Projekte: entsprechend länger</li>
+        </ul>
+      </div>
+    ),
   },
   {
     question: 'Bekomme ich die Website nach der Fertigstellung?',
-    answer:
-      'Natürlich. Nach vollständiger Bezahlung erhältst du alle Dateien und Zugänge zur Website.',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Natürlich. Nach vollständiger Bezahlung erhältst du alle Dateien
+          und die Zugänge zur Website.
+        </p>
+      </div>
+    ),
   },
   {
     question: 'Was passiert, wenn ich später etwas ändern will?',
-    answer:
-      'Du kannst zwischen zwei Optionen wählen: monatliche Wartung oder Einzelanpassungen nach Bedarf. Die Preise richten sich nach dem Aufwand.',
+    answer: (
+      <div className="space-y-2">
+        <p>Du hast zwei Möglichkeiten:</p>
+        <ul className="list-disc list-inside space-y-1">
+          <li>Monatliche Wartung</li>
+          <li>Einzelanpassungen nach Bedarf</li>
+        </ul>
+        <p>
+          Die Preise richten sich jeweils nach dem Aufwand.
+        </p>
+      </div>
+    ),
   },
 ]
+
 
 const FAQSection = () => {
   const sectionRef = useRef(null)
