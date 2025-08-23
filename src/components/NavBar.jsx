@@ -124,6 +124,7 @@ const NavBar = () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
               role="menuitem"
+              tabIndex={0}
             >
               Home
             </Link>
@@ -136,6 +137,7 @@ const NavBar = () => {
                 className="text-black text-2xl font-semibold hover:text-[#003566] transition"
                 onClick={() => setIsOpen(false)}
                 role="menuitem"
+                tabIndex={0}
               >
                 {item.label}
               </Link>
@@ -150,6 +152,7 @@ const NavBar = () => {
               }}
               className="text-black cursor-pointer text-2xl font-semibold hover:text-[#003566] transition"
               role="menuitem"
+              tabIndex={0}
             >
               Service
             </button>
@@ -162,12 +165,14 @@ const NavBar = () => {
               }}
               className="text-black cursor-pointer text-2xl font-semibold hover:text-[#003566] transition"
               role="menuitem"
+              tabIndex={0}
             >
               Kontakt
             </button>
           </li>
           <li role="none">
-               <CTA1 onClick={() => setIsOpen(false)} role="menuitem" />
+               <CTA1 onClick={() => setIsOpen(false)} role="menuitem"
+               tabIndex={0} />
           </li>
         </ul>
       </div>
