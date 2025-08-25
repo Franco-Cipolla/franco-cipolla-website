@@ -208,7 +208,7 @@ const Hero = () => {
             <img
                 ref={imageRef}
                 src={HeroIllustration}
-                alt="Illustration einer modernen Website"
+                alt="Illustration einer modernen Website - Franco Cipolla – Webentwickler & Webdesigner aus Ennepetal. Individuelle Websites für KMUs."
                 className={`xl:block w-full max-w-[600px] ${!isXL ? 'hidden' : ''}`}
               />
           </div>

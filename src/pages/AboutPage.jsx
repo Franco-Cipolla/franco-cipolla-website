@@ -132,7 +132,7 @@ const AboutPage = () => {
             <img
               ref={imageRef}
               src="/Franco2.jpeg"
-              alt="Franco Cipolla – Webdesigner aus Ennepetal"
+              alt="Franco Cipolla – Webentwickler & Webdesigner aus Ennepetal. Individuelle Websites für KMUs."
               width="300"
               height="350"
               className="w-full rounded-lg shadow-lg object-cover"
