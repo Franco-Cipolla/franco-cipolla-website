@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
-const CTAProjectStart = ({ text = "Projekt starten" ,onClick}) => {
+import { FaRocket} from "react-icons/fa"
+const CTAProjectStart = ({ text = "Jetzt Projekt starten" ,onClick}) => {
   const navigate = useNavigate()
   const handleClick = () => {
     if (onClick) onClick() // Menü schließen, falls nötig
@@ -9,11 +9,10 @@ const CTAProjectStart = ({ text = "Projekt starten" ,onClick}) => {
   }
 
   return (
-    <button
-      onClick={handleClick}
-      className="px-6 py-3 text-lg font-semibold tracking-wide text-[#5A3E4F] bg-gradient-to-br cursor-pointer from-[#EAEEE3] via-[#EFCFDA] to-[#E1C8D3] border-2 border-white  rounded hover:opacity-90 transition duration-300 ease-in-out shadow-md transform hover:-translate-y-1"
-    >
-      {text}
+
+    <button onClick={handleClick} className="cursor-pointer inline-flex items-center gap-2 bg-[#00A6FB] hover:bg-[#0090d1] text-white font-semibold py-3 px-8 rounded-xl text-lg transition-all transform hover:-translate-y-1 hover:shadow-lg">
+                  <FaRocket className="w-5 h-5" />
+              {text}
     </button>
   )
 }
