@@ -11,7 +11,7 @@ import {
   FaCheck
 } from 'react-icons/fa';
 import ServiceCard from "./ServiceCard";
-import serviceBg from '../assets/serviceBg.jpg';
+import serviceBg from '/ServiceBg1.jpeg';
 import CTAProjectStart from './CTAProjectStart';
 
 const Service = () => {
@@ -78,7 +78,7 @@ const Service = () => {
     >
       {/* Hintergrundbild (soft blur) */}
       <div
-        className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-20"
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-40"
         style={{ backgroundImage: `url(${serviceBg})`, filter: 'blur(10px)' }}
       />
       <div className="relative z-10 max-w-7xl mx-auto">
