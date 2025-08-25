@@ -82,7 +82,7 @@ const NavBar = () => {
         {/* Branding */}
         <h1 className="font-bold text-[1.3rem] lg:text-2xl">Franco Cipolla</h1>
 
-        {/* Burger Button */}
+        {/* Burger div */}
         <button
           className="lg:hidden z-[80]"
           aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
@@ -171,10 +171,10 @@ const NavBar = () => {
             </button>
           </li>
           <li role="none">
-            <button role="menuitem"
-               tabIndex={0}>
-               <CTA1 onClick={() => setIsOpen(false)}  />
-              </button>
+            <div role="menuitem"
+               tabIndex={0} onClick={() => setIsOpen(false)}>
+               <CTA1   />
+              </div >
           </li>
         </ul>
       </div>

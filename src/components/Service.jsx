@@ -68,6 +68,8 @@ const Service = () => {
         "Saubere Struktur für bessere Indexierung durch Google"
       ]
     }
+
+
   ];
 
   return (
@@ -115,12 +117,26 @@ const Service = () => {
 
                 {/* Service Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+          {services.map((service, key) => (
+            <ServiceCard key={key} {...service} />
           ))}
+          <div className="block md:hidden">
+              <ServiceCard
+                Icon={FaHandshake}
+                title="IT-Partner"
+                subtitle="Zuverlässig & persönlich"
+                benefits={[
+                  "Direkter Draht – keine Warteschleifen",
+                  "Schnelle Antworten – meist am selben Tag",
+                  "Langfristige Betreuung statt Einmal-Projekt",
+                  "Transparente Kommunikation auf Augenhöhe",
+                  "Technisch versiert & menschlich erreichbar"
+                ]}
+              />
+            </div>
 
           {/* IT-Partner Card */}
-          <div className="md:col-span-2">
+          <div className="hidden md:block md:col-span-2">
             <div className="bg-white/90 transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl backdrop-blur-md rounded-3xl p-10 border border-[#001D3D]/10 shadow-lg text-center h-full flex flex-col justify-between">
               <div>
                 <div className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-2xl bg-gradient-to-r from-[#003566] to-[#00A6FB] text-white mx-auto">
