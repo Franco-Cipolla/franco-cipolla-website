@@ -48,6 +48,7 @@ const Service = () => {
           filter: 'blur(8px)',
           zIndex: -10,
         }}
+        alt="Hintergrund Bild der Service Section - Franco Cipolla – Webentwickler & Webdesigner aus Ennepetal. Individuelle Websites für KMUs."
       />
       {/* Gradient-Fades */}
       <div
