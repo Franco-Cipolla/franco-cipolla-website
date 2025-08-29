@@ -155,8 +155,8 @@ const Hero = () => {
                   <div className="w-2 h-2 bg-[#003566] rounded-full animate-pulse"></div>
                   <div className="absolute inset-0 w-2 h-2 bg-[#003566] rounded-full animate-ping opacity-40"></div>
                 </div>
-                <span className="text-sm font-medium text-[#003566] tracking-tight">
-                  🚀 Ehrlich. Direkt. Ohne Marketing-Blabla.
+                <span className="text-[13px] md:text-sm font-medium text-[#003566] tracking-tight">
+                  🚀 Nur 2 Kunden pro Monat – ohne Marketing-Blabla.
                 </span>
               </div>
             </div>

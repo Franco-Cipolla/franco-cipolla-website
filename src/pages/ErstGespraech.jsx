@@ -287,9 +287,15 @@ const Erstgespraech = () => {
       <section ref={sectionRef} className="w-full flex items-center mt-20 justify-center">
         <ToastContainer position="top-right" autoClose={5000} />
         <div className="md:py-20 py-18 px-6 text-black max-w-[950px] xl:max-w-[1100px]">
-          <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-10">
+          <div>
+          <h1 className="contact-animate text-3xl md:text-4xl font-bold ">
             Erstgespräch vereinbaren
           </h1>
+          <p  className=' contact-animate text-[13px] md:text-sm mb-10 mt-4  text-black/40'>
+                Unverbindlich & kostenlos – ohne Risiko
+              </p>
+              </div>
+
 
           <form onSubmit={handleSubmit} className="max-w-xl mx-auto relative" noValidate style={{ zIndex: 1, isolation: 'isolate' }}>
             {/* Honeypot-Feld */}
