@@ -31,25 +31,26 @@ const ProblemSolutionSection = () => {
   }, []);
 
   const problems = [
-    { icon: <FaUserTimes className="text-red-600" />, title: "Unprofessioneller Eindruck", text: "Kunden denken bei Ihrer Website: 'Wenn die nicht mal eine ordentliche Website haben, wie soll dann ihr Service sein?'" },
-    { icon: <FaPhone className="text-red-600" />, title: "Keine Kundenanfragen", text: "Null Anfragen trotz Website-Traffic. Ihre Konkurrenz kassiert Ihre Kunden" },
-    { icon: <FaMobileAlt className="text-red-600" />, title: "Keine Website = verlorene Kunden", text: "Ohne Website sind Sie für 95% Ihrer potenziellen Kunden unsichtbar – die Konkurrenz kassiert alle Aufträge" },
+    { icon: <FaUserTimes className="text-red-600" />, title: "Unprofessioneller Eindruck", text: "„Wenn die nicht mal eine ordentliche Website haben, wie soll dann ihr Service sein?“ – so denken potenzielle Kunden." },
+    { icon: <FaPhone className="text-red-600" />, title: "Keine Kundenanfragen", text: "Besucher kommen, aber keiner meldet sich – Ihre Konkurrenz freut sich." },
+    { icon: <FaMobileAlt className="text-red-600" />, title: "Keine Website = verlorene Kunden", text: "Für 95 % Ihrer Zielgruppe sind Sie unsichtbar – und damit raus aus dem Spiel." },
   ];
 
   const solutions = [
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Höhere Umsätze durch Vertrauen", text: "Professionelles Design steigert Ihre Conversion-Rate erheblich" },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Kunden finden Sie automatisch", text: "Top-Rankings bringen täglich neue Interessenten durch SEO-Optimierung" },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Conversion-fokussierte Texte", text: "Überzeugende Inhalte, die Besucher zu Kunden machen" },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Höhere Umsätze durch Vertrauen", text: "Modernes Design steigert Ihre Abschlussquote erheblich." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Kunden finden Sie automatisch", text: "SEO sorgt für Top‑Rankings und täglichen Besucherstrom." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Conversion-fokussierte Texte", text: "Inhalte, die aus Lesern Kunden machen." },
   ];
 
   return (
     <section ref={sectionRef} className="py-20 flex flex-col items-center px-6 max-w-[1100px] mx-auto">
          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold">
-            Veraltete Website? Keine Website? Ich löse Ihr Problem!
+               Verlieren Sie jeden Tag Kunden – ohne es zu merken?
+
             </h2>
             <p className="text-[15px] text-gray-700 mt-6">
-            Veraltete Websites, fehlende Anfragen, verlorene Kunden – ich zeige die Lösung.
+               Veraltete Website? Keine Website? Ich löse Ihr Problem!
             </p>
         </div>
       <div className="grid lg:grid-cols-2 gap-16">
@@ -82,7 +83,9 @@ const ProblemSolutionSection = () => {
 
         </div>
       </div>
-       <div className="mt-10"><CTA1 /></div>
+       <div className="mt-10"><CTA1 /><p className='text-[13px] md:text-sm  mt-3 text-black/40'>
+                 Unverbindlich & 100% kostenlos – ohne Risiko
+              </p></div>
 
     </section>
   );

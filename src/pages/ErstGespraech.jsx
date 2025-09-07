@@ -292,7 +292,7 @@ const Erstgespraech = () => {
             Erstgespräch vereinbaren
           </h1>
           <p  className=' contact-animate text-[13px] md:text-sm mb-10 mt-4  text-black/40'>
-                Unverbindlich & kostenlos – ohne Risiko
+                Unverbindlich & 100% kostenlos – ohne Risiko
               </p>
               </div>
 

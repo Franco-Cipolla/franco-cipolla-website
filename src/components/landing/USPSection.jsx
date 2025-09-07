@@ -10,12 +10,12 @@ const USPSection = () => {
   const usps = [
     {
       title: "Alles aus einer Hand",
-      text: "Design, Programmierung, SEO und Texte – alles aus einer Hand.",
+      text: "Design, Programmierung, SEO und Texte – ohne Agentur‑Overhead.",
       icon: <FaPalette className="text-3xl text-blue-500 mb-2" />,
     },
     {
       title: "Jung, modern, digital",
-      text: "Mit 17 Jahren Unternehmer, Digitale Expertise – schneller, frischer, flexibler als klassische Agenturen.",
+      text: "Mit 17 Jahren Unternehmer – frischer Blick, neueste Methoden, schnelle Umsetzung.",
       icon: <FaRocket className="text-3xl text-purple-500 mb-2" />,
     },
     {
@@ -25,7 +25,7 @@ const USPSection = () => {
     },
     {
       title: "Fair & transparent",
-      text: "Hochwertige Qualität, faire Preise – maximale Leistung.",
+      text: "Hochwertige Qualität, faire Preise – keine versteckten Kosten.",
       icon: <FaHandshake className="text-3xl text-yellow-500 mb-2" />,
     },
   ];
@@ -57,10 +57,10 @@ const USPSection = () => {
     <section ref={sectionRef} className="py-20 px-6 flex flex-col items-center max-w-[1100px] mx-auto">
       <div className="text-center mb-12" id="usp-section" >
         <h2 className="text-3xl md:text-4xl font-extrabold text-black">
-          Warum gerade ich?
+         Warum KMUs in NRW mit mir arbeiten
         </h2>
         <p className="text-lg text-gray-700 mt-4">
-          Modern, schnell, alles aus einer Hand – Websites, die wirklich Kunden bringen.
+         Weil Sie mehr brauchen als nur eine schöne Website – Sie brauchen Ergebnisse.
         </p>
       </div>
       <div className="grid md:grid-cols-2 gap-8">

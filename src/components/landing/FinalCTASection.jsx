@@ -42,7 +42,7 @@ const FinalCTASection = () => {
         ref={headlineRef}
         className="text-3xl md:text-4xl font-extrabold text-blue-600 mb-6"
       >
-        Verlieren Sie keine Kunden mehr!
+        Jeder Tag ohne optimierte Website kostet Sie Kunden
       </h2>
       <p
         ref={textRef}
@@ -52,6 +52,9 @@ const FinalCTASection = () => {
       </p>
       <div ref={ctaRef}>
         <CTA1 bg="bg-white" text="Jetzt kostenloses Erstgespräch sichern" />
+        <p className='text-[13px] md:text-sm  mt-3 text-black/40'>
+                 Unverbindlich & 100% kostenlos – ohne Risiko
+              </p>
       </div>
     </section>
   );

@@ -85,21 +85,24 @@ const HeroSection = () => {
         {/* Headline */}
         <h1
           ref={headlineRef}
-          className="text-4xl md:text-5xl font-extrabold mb-6 leading-10"
+          className="text-4xl md:text-5xl font-extrabold mb-6 "
         >
-          Stoppen Sie Kundenverlust – starten Sie Ihre Website, die <span className="text-blue-600">wirklich verkauft.</span>
+          Ihre Website als <span className="text-blue-600">Kundenmagnet</span> –
+            gewinnt Anfragen, während Sie schlafen
+
         </h1>
 
         {/* Subline */}
         <p ref={sublineRef} className="text-base md:text-xl mb-10 text-gray-700">
-          Websites, die Kunden anziehen – statt sie zu verlieren.
-        </p>
+        Schließen Sie sich den KMUs in NRW an,
+die mit einer optimierten Website täglich neue Anfragen gewinnen.
+     </p>
 
         {/* CTA */}
         <div ref={ctaRef}>
           <CTA1 bg="bg-white" />
           <p className='text-[13px] md:text-sm  mt-3 text-black/40'>
-                Unverbindlich & kostenlos – ohne Risiko
+                 Unverbindlich & 100% kostenlos – ohne Risiko
               </p>
         </div>
 
