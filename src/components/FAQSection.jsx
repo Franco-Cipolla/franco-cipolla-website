@@ -11,7 +11,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Eine professionelle Website ist deine digitale Visitenkarte – sie schafft Vertrauen,
+          Eine professionelle Website ist mehr als eine digitale Visitenkarte – sie schafft Vertrauen,
           macht dich sichtbar und hilft dir, neue Kunden zu gewinnen.
         </p>
         <p>
