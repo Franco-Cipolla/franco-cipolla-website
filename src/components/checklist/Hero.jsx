@@ -2,11 +2,11 @@ import React from 'react'
 import ChecklistSichernCTA from './ChecklistSichernCTA'
 const Hero = () => {
   return (
-    <section className='w-full h-screen flex flex-col px-4 '>
-        <div className="relative overflow-hidden">
+    <section className='w-full relative  flex flex-col px-4 '>
+        <div className=" overflow-hidden">
 
         <span
-          className="fixed will-change-transform w-[250px] h-[250px] blur-[150px] opacity-100 sm:w-[300px] sm:h-[300px] sm:blur-[80px] md:w-[400px] md:h-[400px] md:blur-[100px]  bottom-[0px] right-[-90px] rounded-full bg-gradient-to-bl from-[#63b4ff] via-[#001D3D] to-[#00A6FB] z-[-1]"
+          className="absolute will-change-transform w-[250px] h-[250px] blur-[150px] opacity-100 sm:w-[300px] sm:h-[300px] sm:blur-[80px] md:w-[400px] md:h-[400px] md:blur-[100px]  bottom-[0px] right-[-90px] rounded-full bg-gradient-to-bl from-[#63b4ff] via-[#001D3D] to-[#00A6FB] z-[-1]"
         />
       </div>
         <h1 className='font-black text-center mt-20 text-[32px] text-[#428EFF]'>Website-Check: Verschenkst du täglich Kunden?</h1>
