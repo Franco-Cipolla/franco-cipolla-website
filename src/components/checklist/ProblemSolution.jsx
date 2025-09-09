@@ -4,7 +4,7 @@ import WebsiteOptimierenCTA from './WebsiteOptimierenCTA'
 const ProblemSolution = () => {
   return (
     <section className='w-full p-4  flex flex-col'>
-      <h2 className='text-2xl text-center font-black mb-6'>Deine Website sieht vielleicht gut aus – aber macht sie wirklich Umsatz?</h2>
+      <h1 className='text-2xl text-center font-black mb-6'>Deine Website sieht vielleicht gut aus – aber macht sie wirklich Umsatz?</h1>
       <p className='text-center text-black/75  mb-18'>Vielleicht hast du schon Besucher, aber kaum <span className='block'></span> Anfragen  oder Verkäufe. <span className='block'></span> Das Problem: Dir fehlen ein paar entscheidende Elemente, die eine Website profitabel machen.</p>
     <div>
       <p className='text-xl text-center font-bold mb-6'>Vielleicht kennst du das:</p>
