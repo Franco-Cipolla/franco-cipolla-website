@@ -38,8 +38,10 @@ const Value = () => {
     icon={<FiGift size={28} />}
 />
 
+<div className='w-full mt-10 items-center justify-center flex'>
     <ChecklistSichernCTA />
-    
+    </div>
+
         </div>
     </section>
 
