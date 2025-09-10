@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react'
-import { gsap, ScrollTrigger } from '../gsapSetup'
-import { FaChevronDown } from 'react-icons/fa'
-import WebsiteOptimierenCTA from './WebsiteOptimierenCTA'
+import React, { useRef, useEffect, useState } from "react";
+import { gsap } from "../gsapSetup";
+import { FaChevronDown } from "react-icons/fa";
+import WebsiteOptimierenCTA from "./WebsiteOptimierenCTA";
 
 const faqs = [
   {
-    question: 'Ist die Checkliste wirklich kostenlos?',
+    question: "Ist die Checkliste wirklich kostenlos?",
     answer: (
       <div className="space-y-2">
         <p>
@@ -15,7 +15,7 @@ const faqs = [
     ),
   },
   {
-    question: 'Warum muss ich meine E-Mail angeben?',
+    question: "Warum muss ich meine E-Mail angeben?",
     answer: (
       <div className="space-y-2">
         <p>
@@ -25,7 +25,7 @@ const faqs = [
     ),
   },
   {
-    question: 'Habe ich irgendein Risiko?',
+    question: "Habe ich irgendein Risiko?",
     answer: (
       <div className="space-y-2">
         <p>
@@ -35,7 +35,7 @@ const faqs = [
     ),
   },
   {
-    question: 'Für wen ist die Checkliste geeignet?',
+    question: "Für wen ist die Checkliste geeignet?",
     answer: (
       <div className="space-y-2">
         <p>
@@ -45,7 +45,7 @@ const faqs = [
     ),
   },
   {
-    question: 'Wie schnell kann ich Ergebnisse sehen?',
+    question: "Wie schnell kann ich Ergebnisse sehen?",
     answer: (
       <div className="space-y-2">
         <p>
@@ -54,32 +54,32 @@ const faqs = [
       </div>
     ),
   },
-]
+];
 
-const FAQ = () => {
-  const sectionRef = useRef(null)
-  const ctaRef = useRef(null)
-  const [openIndex, setOpenIndex] = useState(null)
+const FAQ = ({ onCTAClick }) => {
+  const sectionRef = useRef(null);
+  const ctaRef = useRef(null);
+  const [openIndex, setOpenIndex] = useState(null);
 
   useEffect(() => {
-    if (!sectionRef.current) return
+    if (!sectionRef.current) return;
 
     // Animieren der FAQ-Items
     gsap.fromTo(
-      sectionRef.current.querySelectorAll('.faq-item'),
+      sectionRef.current.querySelectorAll(".faq-item"),
       { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
         duration: 0.3,
-        ease: 'power2.out',
+        ease: "power2.out",
         stagger: 0.2,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 85%',
+          start: "top 85%",
         },
       }
-    )
+    );
 
     // Animieren des CTA-Buttons
     if (ctaRef.current) {
@@ -91,15 +91,15 @@ const FAQ = () => {
           y: 0,
           scale: 1,
           duration: 0.5,
-          ease: 'back.out(1.2)',
+          ease: "back.out(1.2)",
           scrollTrigger: {
             trigger: ctaRef.current,
-            start: 'top 90%',
+            start: "top 90%",
           },
         }
-      )
+      );
     }
-  }, [])
+  }, []);
 
   return (
     <section ref={sectionRef} id="faq" className="py-20 px-6 text-black">
@@ -111,18 +111,16 @@ const FAQ = () => {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="faq-item border cursor-pointer border-gray-200 rounded-xl p-5 shadow-sm transition duration-300"
+            className="faq-item border border-gray-200 rounded-xl p-5 shadow-sm transition duration-300 cursor-pointer"
           >
             <button
-              onClick={() =>
-                setOpenIndex(openIndex === index ? null : index)
-              }
-              className="w-full cursor-pointer flex justify-between items-center text-left"
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              className="w-full flex justify-between items-center text-left"
             >
               <span className="font-semibold text-lg">{faq.question}</span>
               <FaChevronDown
                 className={`transition-transform duration-300 ${
-                  openIndex === index ? 'rotate-180' : ''
+                  openIndex === index ? "rotate-180" : ""
                 }`}
               />
             </button>
@@ -134,13 +132,14 @@ const FAQ = () => {
             )}
           </div>
         ))}
-        {/* CTA-Button mit Ref */}
-        <div ref={ctaRef} className='w-full mt-10 items-center justify-center flex'>
-          <WebsiteOptimierenCTA />
+
+        {/* CTA-Button */}
+        <div ref={ctaRef} className="w-full mt-10 flex justify-center">
+          <WebsiteOptimierenCTA onClick={onCTAClick} />
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FAQ
+export default FAQ;
