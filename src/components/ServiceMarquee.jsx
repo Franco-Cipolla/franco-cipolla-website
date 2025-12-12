@@ -2,17 +2,16 @@ import React from 'react'
 import Marquee from 'react-fast-marquee'
 
 // Icon Imports
-import { FaLaptopCode, FaSearch, FaRocket, FaPenNib, FaReact, FaGitAlt, FaChartLine, FaHandshake, FaSmileBeam } from 'react-icons/fa'
+import { FaLaptopCode, FaSearch, FaRocket, FaPenNib, FaReact, FaGitAlt, FaChartLine, FaHandshake, FaSmileBeam, FaWordpress, FaFigma } from 'react-icons/fa'
 import { MdWeb } from 'react-icons/md'
 
 const deskServices = [
-    { label: 'Webdesign', icon: <MdWeb /> },
+    { label: 'Webdesign', icon: <FaFigma /> },
     { label: 'Webentwicklung', icon: <FaLaptopCode /> },
     { label: 'SEO', icon: <FaSearch /> },
     { label: 'Performance Optimierung', icon: <FaRocket /> },
     { label: 'Copywriting', icon: <FaPenNib /> },
-    { label: 'React.js', icon: <FaReact /> },
-    { label: 'Git', icon: <FaGitAlt /> },
+    { label: 'Wordpress', icon: <FaWordpress /> },
     { label: 'Gewinnsteigerung', icon: <FaChartLine /> },
     { label: "Kundengewinnung", icon: <FaHandshake /> },
     { label: "Kundenzufriedenheit", icon: <FaSmileBeam /> },
@@ -20,7 +19,7 @@ const deskServices = [
 ]
 
 const mobileServices1 = [
-    { label: 'Webdesign', icon: <MdWeb /> },
+    { label: 'Webdesign', icon: <FaFigma /> },
     { label: 'Webentwicklung', icon: <FaLaptopCode /> },
     { label: 'SEO', icon: <FaSearch /> },
     { label: 'Performance Optimierung', icon: <FaRocket /> },
@@ -28,8 +27,7 @@ const mobileServices1 = [
 ]
 const mobileServices2 = [
     { label: 'Copywriting', icon: <FaPenNib /> },
-    { label: 'React.js', icon: <FaReact /> },
-    { label: 'Git', icon: <FaGitAlt /> },
+    { label: 'Wordpress', icon: <FaWordpress /> },
     { label: 'Gewinnsteigerung', icon: <FaChartLine /> },
     { label: "Kundenzufriedenheit", icon: <FaSmileBeam /> },
 
