@@ -11,7 +11,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Eine professionelle Website ist mehr als eine digitale Visitenkarte – sie schafft Vertrauen,
+          Eine professionelle Website ist mehr als eine digitale Visitenkarte. Sie schafft Vertrauen,
           macht dich sichtbar und hilft dir, neue Kunden zu gewinnen.
         </p>
         <p>
@@ -47,7 +47,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Jedes Projekt ist individuell – deshalb gibt es keine Pauschalpreise.
+          Jedes Projekt ist individuell. Deshalb gibt es keine Pauschalpreise.
           Der Ablauf sieht so aus:
         </p>
         <ol className="list-decimal list-inside space-y-1">
@@ -83,8 +83,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Natürlich. Nach vollständiger Bezahlung erhältst du alle Dateien
-          und die Zugänge zur Website.
+          Natürlich. Nach vollständiger Bezahlung erhältst du die Website über deinen Hosting/Wordpress zugang.
         </p>
       </div>
     ),
@@ -93,13 +92,9 @@ const faqs = [
     question: 'Was passiert, wenn ich später etwas ändern will?',
     answer: (
       <div className="space-y-2">
-        <p>Du hast zwei Möglichkeiten:</p>
-        <ul className="list-disc list-inside space-y-1">
-          <li>Monatliche Wartung</li>
-          <li>Einzelanpassungen nach Bedarf</li>
-        </ul>
+        <p>Ich biete monatliche Wartung an um dein SEO aktiv zu verbessern, sowie begrenzt Änderungen vorzunehmen.</p>
         <p>
-          Die Preise richten sich jeweils nach dem Aufwand.
+          Der monatliche Preis richtet sich nach dem Umfang der Webiste.
         </p>
       </div>
     ),

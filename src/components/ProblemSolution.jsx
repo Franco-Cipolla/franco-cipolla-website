@@ -97,7 +97,7 @@ const ProblemSolution = () => {
     {
       icon: <FaCheckCircle className="text-green-600" />,
       title: "Kunden finden Sie automatisch",
-      text: "Google liebt Ihre neue Website. Top-Rankings bringen täglich neue Interessenten durch SEO-optimierung"
+      text: "Google liebt Ihre neue Website. Top-Rankings bringen neue Interessenten durch SEO-optimierung"
     },
     {
       icon: <FaCheckCircle className="text-green-600" />,
