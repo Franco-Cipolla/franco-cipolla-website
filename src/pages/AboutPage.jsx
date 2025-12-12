@@ -164,7 +164,7 @@ const AboutPage = () => {
       >
         Ich verbinde modernes Webdesign mit <strong>verkaufspsychologischem Aufbau</strong> und
         durchdachtem <strong>SEO</strong>, damit deine Website nicht nur schön aussieht, sondern auch
-        Besucher in Kund:innen verwandelt.
+        Besucher in Kunden verwandelt.
         Mit Bricks Builder erstelle ich maßgeschneiderte Websites. Individuell,
         schnell und zukunftssicher.
       </p>
