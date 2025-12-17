@@ -38,7 +38,7 @@ const faqs = [
           <li>Texte die vertrauen schaffen</li>
 
         </ul>
-        <p>Kein Baukasten – sondern echtes Handwerk.</p>
+
       </div>
     ),
   },
@@ -83,7 +83,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Natürlich. Nach vollständiger Bezahlung erhältst du die Website über deinen Hosting/Wordpress zugang.
+          Natürlich. Du erhältst die Website durch deinen Hosting/Wordpress zugang.
         </p>
       </div>
     ),
@@ -94,7 +94,7 @@ const faqs = [
       <div className="space-y-2">
         <p>Ich biete monatliche Wartung an um dein SEO aktiv zu verbessern, sowie begrenzt Änderungen vorzunehmen.</p>
         <p>
-          Der monatliche Preis richtet sich nach dem Umfang der Webiste.
+          Der monatliche Preis richtet sich nach dem Umfang der Website.
         </p>
       </div>
     ),
