@@ -156,7 +156,7 @@ const Hero = () => {
                   <div className="absolute inset-0 w-2 h-2 bg-[#003566] rounded-full animate-ping opacity-40"></div>
                 </div>
                 <span className="text-[13px] md:text-sm font-medium text-[#003566] tracking-tight">
-                  🚀 Nur 2 Kunden pro Monat – ohne Marketing-Blabla.
+                  🚀 Websites für lokale Unternehmen in Ennepetal <span className='block md:inline-block'>& Umgebung</span>
                 </span>
               </div>
             </div>
@@ -165,7 +165,7 @@ const Hero = () => {
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black  tracking-tight mb-6"
             >
-              Websites die <span className='text-[#003566] '>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <span className='block'></span> statt nur zu gefallen.
+              Websites die <span className='text-[#003566] '>Kunden bringen</span> <span className='md:hidden xl:inline-block'>-</span>  <span className='block'></span> Nicht nur gut aussehen.
             </h1>
 
             <div className={`max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl ${isXL ? 'flex flex-col gap-6' : ''}`}>
@@ -173,13 +173,14 @@ const Hero = () => {
           ref={text1Ref}
           className={`text-lg ${isXL ? 'xl:text-xl' : ''} text-[#000814] mb-4 font-bold`}
         >
-          Während Sie schlafen oder Zeit mit der Familie verbringen, sollte Ihre Website neue Kunden gewinnen. Ich sorge dafür, dass sie das endlich tut.
+          Während Sie arbeiten, schlafen oder Zeit mit Ihrer Familie verbringen,
+          sorgt Ihre Website für neue Kundenanfragen. Automatisch.
         </p>
         <p
           ref={text2Ref}
           className={`text-[15px]  ${isXL ? 'xl:text-[1.1rem]' : 'text-[#000814]/85'} text-[#000814] mb-5`}
         >
-          Jeder Tag ohne verkaufsstarke Website kostet Sie potenzielle Kunden.
+          Ohne eine Website, die Anfragen bringt, bleibt Ihr Wachstum dem Zufall überlassen.
         </p>
       </div>
 

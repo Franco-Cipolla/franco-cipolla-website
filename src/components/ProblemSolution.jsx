@@ -62,23 +62,23 @@ const ProblemSolution = () => {
   const problems = [
     {
       icon: <FaUserTimes className="text-red-600" />,
-      title: "Unprofessioneller Eindruck",
-      text: 'Kunden denken bei Ihrer Website: "Wenn die nicht mal eine ordentliche Website haben, wie soll dann ihr Service sein?"'
+      title: "Unklarer erster Eindruck",
+      text: 'Besucher verstehen nicht sofort, was Sie anbieten oder warum sie gerade Sie kontaktieren sollten und klicken weiter zur Konkurrenz.'
     },
     {
       icon: <FaPhone className="text-red-600" />,
-      title: "Keine Kundenanfragen",
-      text: "Null Anfragen trotz Website-Traffic. Ihre Konkurrenz kassiert Ihre Kunden"
+      title: "Keine oder kaum Anfragen",
+      text: "Die Website ist online, aber sie führt Besucher nicht zu einer Kontaktaufnahme oder einem Termin."
     },
     {
       icon: <FaMobileAlt className="text-red-600" />,
-      title: "Keine Website = Verlorene Kunden an die digitale Konkurrenz",
-      text: "Ohne Website sind Sie für 95% Ihrer potenziellen Kunden unsichtbar – die Konkurrenz kassiert alle Aufträge"
+      title: "Abhängigkeit von Empfehlungen",
+      text: "Neue Kunden kommen fast ausschließlich über Mundpropaganda. Wenn niemand aktiv empfiehlt, passiert nichts."
     },
     {
       icon: <FaClock className="text-red-600" />,
-      title: "Langsame Ladezeiten",
-      text: "Ihre Website lädt zu langsam – Besucher springen nach 3 Sekunden ab"
+      title: "Abspringende Besucher",
+      text: "Langsame Ladezeiten und fehlende Struktur sorgen dafür, dass Interessenten abspringen, bevor sie Kontakt aufnehmen."
     }
 
   ];
@@ -86,23 +86,23 @@ const ProblemSolution = () => {
   const solutions = [
     {
       icon: <FaCheckCircle className="text-green-600" />,
-      title: "Blitzschnelle Performance",
-      text: "Optimierter Code für Ladezeiten unter 2 Sekunden"
+      title: "Klare Struktur statt Verwirrung",
+      text: "Besucher verstehen sofort, was Sie anbieten und was der nächste Schritt ist."
     },
     {
       icon: <FaCheckCircle className="text-green-600" />,
-      title: "Höhere Umsätze durch Vertrauen",
-      text: "Professionelles Design steigert Ihre Conversion-Rate erheblich und macht Leads zu Kunden"
+      title: "Mehr Anfragen statt Stillstand",
+      text: "Ihre Website führt gezielt zu Kontaktanfragen oder Terminen."
     },
     {
       icon: <FaCheckCircle className="text-green-600" />,
-      title: "Kunden finden Sie automatisch",
-      text: "Google liebt Ihre neue Website. Top-Rankings bringen neue Interessenten durch SEO-optimierung"
+      title: "Weniger Abhängigkeit von Empfehlungen",
+      text: "Sie gewinnen neue Kunden, auch wenn gerade niemand aktiv weiterempfiehlt."
     },
     {
       icon: <FaCheckCircle className="text-green-600" />,
-      title: "Conversion-fokussierte Texte",
-      text: "Überzeugende Inhalte, die Besucher zu Kunden machen"
+      title: "Schnell, mobil & zuverlässig",
+      text: "Ihre Website lädt schnell, funktioniert auf jedem Gerät und verliert keine Interessenten."
     }
   ];
 
@@ -127,10 +127,11 @@ const ProblemSolution = () => {
       >
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight mb-6">
-            Jeden Tag verlieren Sie Kunden an die Konkurrenz – und Sie wissen nicht warum
+            Jeden Tag verlieren Sie Kunden an die Konkurrenz. Ohne es zu merken
           </h2>
           <p className="text-lg text-[#000814] max-w-2xl mx-auto">
-            Diese 4 Website-Probleme kosten Sie jeden Monat mehrere Kunden – und wie Sie sie in 30 Tagen beheben.
+            Viele lokale Unternehmen haben eine Website.
+            Aber sie bringt keine Anfragen.
           </p>
         </div>
 
@@ -143,7 +144,7 @@ const ProblemSolution = () => {
                 <h3 className="text-2xl font-bold text-red-700">Das Problem</h3>
               </div>
               <p className="text-base text-[#000814] mb-8">
-                Ihre Website arbeitet gegen Sie. Jeden Tag verlieren Sie potenzielle Kunden an die Konkurrenz:
+                Ihre Website arbeitet nicht für Sie.
               </p>
             </div>
 
@@ -161,8 +162,8 @@ const ProblemSolution = () => {
 
             <div className="p-6 bg-red-100 rounded-2xl text-center mt-auto shadow-lg">
               <p className="text-lg font-bold text-red-800 flex items-center justify-center gap-3">
-                <FaMoneyBillWave className="text-red-700 text-lg w-11 h-11 md:w-8 md:h-8" />
-                Das kostet Sie jeden Monat hunderte bis tausende von Euro an entgangenen Aufträgen!
+
+                    Potenzielle Kunden entscheiden sich für Unternehmen mit klareren, besser aufgebauten Websites.
               </p>
             </div>
           </div>
@@ -175,7 +176,7 @@ const ProblemSolution = () => {
                 <h3 className="text-2xl font-bold text-green-700">Die Lösung</h3>
               </div>
               <p className="text-base text-[#000814] mb-8">
-                Eine professionelle Website, die für Sie arbeitet und neue Kunden bringt:
+               Eine Website, die aktiv neue Kunden gewinnt.
               </p>
             </div>
 
@@ -193,8 +194,8 @@ const ProblemSolution = () => {
 
             <div className="p-6 bg-green-100 rounded-2xl text-center mt-auto shadow-lg">
               <p className="text-lg font-bold text-green-800 flex items-center justify-center gap-2.5">
-                <FaBullseye className="text-green-700 text-lg w-8 h-8 md:w-5 md:h-5 " />
-                Investieren Sie in eine Website, die Ihnen Kunden bringt!
+
+                Ich baue Websites, die nicht nur gut aussehen, sondern ein klares Ziel haben: <br  className='md:hidden'/> Anfragen generieren
               </p>
 
             </div>
