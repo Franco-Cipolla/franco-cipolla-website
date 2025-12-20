@@ -351,7 +351,7 @@ const Erstgespraech = () => {
             {/* Nachricht */}
             <div className="contact-animate my-6">
               <label htmlFor="message" className="block text-lg font-semibold mb-2">
-                Deine Branche
+                Dein Unternehmen & Website (optional)
               </label>
               <textarea
                 id="message"
