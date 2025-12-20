@@ -7,16 +7,18 @@ gsap.registerPlugin(ScrollTrigger)
 
 const faqs = [
   {
-    question: 'Warum brauche ich überhaupt eine Website?',
+    question: 'Warum bringt meine aktuelle Website keine Anfragen?',
     answer: (
       <div className="space-y-2">
         <p>
-          Eine professionelle Website ist mehr als eine digitale Visitenkarte. Sie schafft Vertrauen,
-          macht dich sichtbar und hilft dir, neue Kunden zu gewinnen.
+          Die meisten Websites scheitern nicht am Design,
+          sondern daran, dass Besucher nicht wissen,
+          <strong> was sie als Nächstes tun sollen</strong>.
         </p>
         <p>
-          Egal ob Dienstleistung, Produkt oder Portfolio: Ohne Online-Präsenz verschenkst du
-          Potenzial und Geld.
+          Eine strategisch aufgebaute Website führt Besucher gezielt,
+          baut Vertrauen auf und lenkt sie zur Anfrage –
+          statt sie zu verwirren oder zu verlieren.
         </p>
       </div>
     ),
@@ -26,19 +28,38 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht,
-          sondern auch Kunden gewinnt:
+          Sie bekommen keine „schöne Website“,
+          sondern ein System, das darauf ausgelegt ist,
+          <strong> aus Besuchern echte Anfragen zu machen</strong>.
         </p>
         <ul className="list-disc list-inside space-y-1">
-          <li>Modernes Design</li>
-          <li>Klare Struktur</li>
-          <li>Mobile Optimierung</li>
-          <li>OnPage-SEO</li>
-          <li>Starke Performance</li>
-          <li>Texte die vertrauen schaffen</li>
-
+          <li>Klare Struktur statt Verwirrung</li>
+          <li>Texte, die Vertrauen aufbauen</li>
+          <li>Mobile-optimierte Darstellung</li>
+          <li>Schnelle Ladezeiten</li>
+          <li>Suchmaschinenfreundliche Umsetzung</li>
         </ul>
-
+      </div>
+    ),
+  },
+  {
+    question: 'Wie viel Zeitaufwand habe ich selbst mit der Website?',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          So gut wie keinen.
+        </p>
+        <p>
+          Sie übernehmen lediglich das Hosting
+          und stellen mir die benötigten Inhalte
+          wie Logos, Fotos oder Zugangsdaten zur Verfügung.
+        </p>
+        <p>
+          <strong>Alles andere übernehme ich vollständig. </strong>
+           Struktur, Texte, Design, Technik und Livegang.
+          Die Website entsteht,
+          während Sie sich um Ihr Tagesgeschäft kümmern.
+        </p>
       </div>
     ),
   },
@@ -47,60 +68,85 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Jedes Projekt ist individuell. Deshalb gibt es keine Pauschalpreise.
-          Der Ablauf sieht so aus:
+          Die meisten Projekte für Selbstständige und Unternehmen
+          liegen zwischen <strong>800 € und 1.500 €</strong>,
+          abhängig vom Umfang und den Anforderungen.
         </p>
-        <ol className="list-decimal list-inside space-y-1">
-          <li>
-            <strong>Erstgespräch</strong> – Wir sprechen über Ihre Vorstellungen, Ziele und Anforderungen.
-          </li>
-          <li>
-            <strong>Analyse & Planung</strong> – Ich verschaffe mir ein klares Bild über den Aufwand und die benötigten Funktionen.
-          </li>
-          <li>
-            <strong>Individuelles Angebot</strong> – Sie erhalten ein transparentes Angebot, das genau zu Ihrem Projekt passt.
-          </li>
-        </ol>
-      </div>
-    ),
-  },
-  {
-    question: 'Wie lange dauert die Umsetzung einer Website?',
-    answer: (
-      <div className="space-y-2">
         <p>
-          Das hängt stark vom Umfang ab:
-        </p>
-        <ul className="list-disc list-inside space-y-1">
-          <li>Einfache Landingpage: ca. 1–2 Wochen</li>
-          <li>Komplexere Projekte: entsprechend länger</li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    question: 'Bekomme ich die Website nach der Fertigstellung?',
-    answer: (
-      <div className="space-y-2">
-        <p>
-          Natürlich. Du erhältst die Website durch deinen Hosting/Wordpress zugang.
+          Im kostenlosen Erstgespräch klären wir,
+          was für Sie sinnvoll ist – und was nicht.
+          Danach erhalten Sie ein
+          <strong> transparentes Festpreis-Angebot</strong>.
         </p>
       </div>
     ),
   },
   {
-    question: 'Was passiert, wenn ich später etwas ändern will?',
+    question: 'Wie lange dauert die Umsetzung?',
     answer: (
       <div className="space-y-2">
-        <p>Ich biete monatliche Wartung an um dein SEO aktiv zu verbessern, sowie begrenzt Änderungen vorzunehmen.</p>
         <p>
-          Der monatliche Preis richtet sich nach dem Umfang der Website.
+          Die meisten Websites sind innerhalb von
+          <strong> 2–4 Wochen</strong> online.
+        </p>
+        <p>
+          Durch einen klaren Ablauf bleibt der Zeitaufwand
+          für Sie minimal und das Projekt verzögert sich nicht.
+        </p>
+      </div>
+    ),
+  },
+  {
+    question: 'Was, wenn die Website keine Anfragen bringt?',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Ich verspreche keine Wunder,
+          sondern eine saubere, strategische Umsetzung
+          nach bewährten Prinzipien.
+        </p>
+        <p>
+          Im Erstgespräch sage ich Ihnen ehrlich,
+          ob eine neue Website für Ihre Situation sinnvoll ist
+          oder ob andere Maßnahmen aktuell wichtiger wären.
+        </p>
+      </div>
+    ),
+  },
+  {
+    question: 'Gehört mir die Website nach der Fertigstellung?',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Ja. Die Website gehört
+          <strong> vollständig Ihnen</strong>.
+        </p>
+        <p>
+          Sie erhalten alle Zugänge
+          und entscheiden selbst,
+          ob Sie später Änderungen eigenständig vornehmen
+          oder mich weiter beauftragen möchten.
+        </p>
+      </div>
+    ),
+  },
+  {
+    question: 'Was passiert, wenn ich später etwas ändern möchte?',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Änderungen sind jederzeit möglich.
+          Kleine Anpassungen lassen sich flexibel umsetzen.
+        </p>
+        <p>
+          Für regelmäßige Betreuung oder SEO-Optimierung
+          biete ich optionale Wartungspakete an –
+          <strong> ohne Verpflichtung</strong>.
         </p>
       </div>
     ),
   },
 ]
-
 
 const FAQSection = () => {
   const sectionRef = useRef(null)
@@ -181,7 +227,7 @@ const FAQSection = () => {
 
       <div ref={ctaRef} className="text-center mt-12 w-full">
         <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto my-6">
-          Noch Fragen offen?
+          Noch unsicher, ob das für Sie Sinn macht?
         </p>
         <CTA2 />
       </div>
