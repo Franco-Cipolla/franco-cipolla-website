@@ -75,7 +75,7 @@ const faqs = [
         </p>
         <p>
           Im kostenlosen Erstgespräch klären wir,
-          was für Sie sinnvoll ist – und was nicht.
+          was für Sie sinnvoll ist, und was nicht.
           Danach erhalten Sie ein
           <strong> transparentes Festpreis-Angebot</strong>.
         </p>
@@ -141,8 +141,8 @@ const faqs = [
         </p>
         <p>
           Für regelmäßige Betreuung oder SEO-Optimierung
-          biete ich optionale Wartungspakete an –
-          <strong> ohne Verpflichtung</strong>.
+          biete ich optionale Wartungspakete an. <br />
+          <strong> Ohne Verpflichtung & monatlich Kündbar</strong>.
         </p>
       </div>
     ),
