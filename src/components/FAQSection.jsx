@@ -17,7 +17,7 @@ const faqs = [
         </p>
         <p>
           Eine strategisch aufgebaute Website führt Besucher gezielt,
-          baut Vertrauen auf und lenkt sie zur Anfrage –
+          baut Vertrauen auf und lenkt sie zur Anfrage,
           statt sie zu verwirren oder zu verlieren.
         </p>
       </div>
@@ -50,9 +50,10 @@ const faqs = [
           So gut wie keinen.
         </p>
         <p>
-          Sie übernehmen lediglich das Hosting
-          und stellen mir die benötigten Inhalte
-          wie Logos, Fotos oder Zugangsdaten zur Verfügung.
+          Sie stellen das Hosting bereit, geben mir die nötigen Zugänge
+          sowie die wichtigsten Informationen zu Ihrem Unternehmen
+          und vorhandenes Material wie Fotos oder Logos.
+
         </p>
         <p>
           <strong>Alles andere übernehme ich vollständig. </strong>
