@@ -61,12 +61,12 @@ const Footer = () => {
             <div className="flex items-center gap-3 mt-3">
               <FiInstagram className="text-black text-xl" />
               <a
-                href="https://instagram.com/francocipolla.web"
+                href="https://instagram.com/francocipolla.de"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#000814] hover:text-[#003566] transition-colors font-medium"
               >
-                @francocipolla.web
+                @francocipolla.de
               </a>
             </div>
           </div>
