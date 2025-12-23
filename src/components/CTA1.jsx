@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const CTA1 = ({
   bg = "bg-transparent", // gleich mit Tailwind-Klasse starten
   color = "text-[#000814]",
-  text = "Kostenloses Erstgespräch sichern",
+  text = "Kostenloses Erstgespräch vereinbaren",
   onClick,
   hover= "hover:text-[#001D3D]"
 }) => {
