@@ -47,6 +47,7 @@ const CTAHome = () => {
         Im kostenlosen Erstgespräch schauen wir gemeinsam,
        wo Ihre Website verbessert werden kann
        und wie sie gezielt Anfragen generieren könnte.
+       <br></br>
       Ehrlich, unverbindlich und ohne Verkaufsdruck.
       </p>
 
