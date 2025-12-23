@@ -48,6 +48,7 @@ const CTAHome = () => {
        wo Ihre Website verbessert werden kann
        und wie sie gezielt Anfragen generieren könnte.
       <br />
+      <br />
       Ehrlich, unverbindlich und ohne Verkaufsdruck.
       </p>
 
@@ -55,7 +56,7 @@ const CTAHome = () => {
         onClick={handleClick}
         className="cta-animate inline-flex cursor-pointer transform hover:-translate-y-1 ease-in items-center gap-2 bg-black text-white lg:text-white/85 font-semibold px-6 py-3 rounded-full hover:bg-purple lg:hover:text-white transition"
       >
-        Kostenloses Erstgespräch vereinbaren <FaArrowRight />
+        Kostenloses Erstgespräch anfragen <FaArrowRight />
       </button>
     </section>
   )
