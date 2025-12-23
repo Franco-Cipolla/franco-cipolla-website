@@ -54,7 +54,7 @@ const CTAHome = () => {
 
       <button
         onClick={handleClick}
-        className="cta-animate inline-flex cursor-pointer transform hover:-translate-y-1 ease-in items-center gap-2 bg-black text-white lg:text-white/85 font-semibold px-6 py-3 rounded-full hover:bg-purple lg:hover:text-white transition"
+        className="cta-animate inline-flex cursor-pointer transform hover:-translate-y-1 ease-in items-center gap-2 bg-black text-white lg:text-white/95 font-semibold px-6 py-3 rounded-full hover:bg-purple lg:hover:text-white transition"
       >
         Kostenloses Erstgespräch anfragen <FaArrowRight />
       </button>
