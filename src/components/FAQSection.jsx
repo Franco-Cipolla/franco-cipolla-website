@@ -93,6 +93,11 @@ const faqs = [
     ),
   },
   {
+  question: 'Kann ich einzelne Elemente kaufen?',
+  answer: 'Nein. Ich biete ausschließlich das komplette Paket an. So stellen ich sicher, dass Ihre Website optimal aufgebaut ist, um Besucher Schritt für Schritt zur Anfrage zu führen.'
+}
+,
+  {
     question: 'Gehört mir die Website nach der Fertigstellung?',
 answer: (
   <div className="space-y-2">
