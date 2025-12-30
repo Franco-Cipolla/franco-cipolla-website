@@ -1,7 +1,6 @@
-
 import React, { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger } from "./gsapSetup";
-import { FaExclamationTriangle, FaCheckCircle, FaArrowRight, FaClock, FaMobileAlt, FaUserTimes, FaPhone, FaMoneyBillWave, FaBullseye } from 'react-icons/fa';
+import { FaExclamationTriangle, FaCheckCircle, FaUserTimes, FaPhone, FaMobileAlt, FaClock } from 'react-icons/fa';
 import CTA1 from "./CTA1"
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +14,6 @@ const ProblemSolution = () => {
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-    // Hintergrund-Animation
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -25,191 +23,99 @@ const ProblemSolution = () => {
       },
     });
 
-    tl.fromTo(
-      leftCircleRef.current,
-      { x: '-100vw', opacity: 0 },
-      { x: '0vw', opacity: 0.3, ease: 'power3.out' }
-    );
-
-    tl.fromTo(
-      rightCircleRef.current,
-      { x: '100vw', opacity: 0 },
-      { x: '0vw', opacity: 0.3, ease: 'power3.out' },
-      0
-    );
-
+    tl.fromTo(leftCircleRef.current, { x: '-100vw', opacity: 0 }, { x: '0vw', opacity: 0.3, ease: 'power3.out' });
+    tl.fromTo(rightCircleRef.current, { x: '100vw', opacity: 0 }, { x: '0vw', opacity: 0.3, ease: 'power3.out' }, 0);
     tl.to(leftCircleRef.current, { x: isMobile ? '100vw' : '-100vw', opacity: 0, ease: 'power3.inOut' }, '+=0.2');
     tl.to(rightCircleRef.current, { x: isMobile ? '200vw' : '100vw', opacity: 0, ease: 'power3.inOut' }, '<');
 
-    // Content Animation
-    gsap.fromTo(
-      [problemRef.current, solutionRef.current],
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.3,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          end: 'bottom 20%',
-        },
-      }
-    );
+    gsap.fromTo([problemRef.current, solutionRef.current], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.3, scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', end: 'bottom 20%' } });
   }, []);
 
   const problems = [
-    {
-      icon: <FaUserTimes className="text-red-600" />,
-      title: "Unklarer erster Eindruck",
-      text: 'Besucher verstehen nicht sofort, was Sie anbieten oder warum sie gerade Sie kontaktieren sollten und klicken weiter zur Konkurrenz.'
-    },
-    {
-      icon: <FaPhone className="text-red-600" />,
-      title: "Keine oder kaum Anfragen",
-      text: "Die Website ist online, aber sie führt Besucher nicht zu einer Kontaktaufnahme oder einem Termin."
-    },
-    {
-      icon: <FaMobileAlt className="text-red-600" />,
-      title: "Abhängigkeit von Empfehlungen",
-      text: "Neue Kunden kommen fast ausschließlich über Mundpropaganda. Wenn niemand aktiv empfiehlt, passiert nichts."
-    },
-    {
-      icon: <FaClock className="text-red-600" />,
-      title: "Abspringende Besucher",
-      text: "Langsame Ladezeiten und fehlende Struktur sorgen dafür, dass Interessenten abspringen, bevor sie Kontakt aufnehmen."
-    }
-
+    { icon: <FaUserTimes className="text-red-600" />, title: "Unklarer erster Eindruck", text: "Besucher verstehen nicht sofort, was Sie anbieten und klicken weiter zur Konkurrenz." },
+    { icon: <FaPhone className="text-red-600" />, title: "Kaum Anfragen", text: "Die Website führt Besucher nicht zu einer Kontaktaufnahme oder Terminbuchung." },
+    { icon: <FaMobileAlt className="text-red-600" />, title: "Abhängigkeit von Empfehlungen", text: "Neue Kunden kommen fast ausschließlich über Empfehlungen. Kein planbarer Zufluss." },
+    { icon: <FaClock className="text-red-600" />, title: "Abspringende Besucher", text: "Langsame Ladezeiten und fehlende Struktur lassen Interessenten abspringen." }
   ];
 
   const solutions = [
-    {
-      icon: <FaCheckCircle className="text-green-600" />,
-      title: "Klare Struktur statt Verwirrung",
-      text: "Besucher verstehen sofort, was Sie anbieten und was der nächste Schritt ist."
-    },
-    {
-      icon: <FaCheckCircle className="text-green-600" />,
-      title: "Mehr Anfragen statt Stillstand",
-      text: "Ihre Website führt gezielt zu Kontaktanfragen oder Terminen."
-    },
-    {
-      icon: <FaCheckCircle className="text-green-600" />,
-      title: "Weniger Abhängigkeit von Empfehlungen",
-      text: "Sie gewinnen neue Kunden, auch wenn gerade niemand aktiv weiterempfiehlt."
-    },
-    {
-      icon: <FaCheckCircle className="text-green-600" />,
-      title: "Schnell, mobil & zuverlässig",
-      text: "Ihre Website lädt schnell, funktioniert auf jedem Gerät und verliert keine Interessenten."
-    }
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Klare Struktur", text: "Besucher verstehen sofort Ihr Angebot und wissen, was der nächste Schritt ist." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Mehr Anfragen", text: "Ihre Website generiert planbar Kontaktanfragen und Termine." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Unabhängig von Empfehlungen", text: "Gewinnen Sie Kunden auch ohne aktives Empfehlungsmarketing." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Schnell & mobil", text: "Optimiert für alle Geräte, schnelle Ladezeiten, keine verlorenen Interessenten." }
   ];
 
   return (
     <>
-      {/* Hintergrundkreise */}
       <div className="relative overflow-hidden">
-        <span
-          ref={leftCircleRef}
-          className="fixed will-change-transform opacity-0 w-[300px] h-[300px] blur-[80px] sm:w-[350px] sm:h-[350px] sm:blur-[100px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 top-[120px] left-[60px] rounded-full bg-gradient-to-br from-[#DC2626] via-[#991B1B] to-[#7F1D1D] z-[-1]"
-        />
-        <span
-          ref={rightCircleRef}
-          className="fixed will-change-transform opacity-0 w-[250px] h-[250px] blur-[60px] sm:w-[300px] sm:h-[300px] sm:blur-[80px] sm:opacity-70 md:w-[400px] md:h-[400px] md:blur-[100px] md:opacity-70 bottom-[-100px] right-[60px] rounded-full bg-gradient-to-tl from-[#059669] via-[#047857] to-[#065F46] z-[-1]"
-        />
+        <span ref={leftCircleRef} className="fixed w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] blur-[80px] sm:blur-[100px] md:blur-[100px] bg-gradient-to-br from-red-600 via-red-700 to-red-800 rounded-full opacity-0 z-[-1]" />
+        <span ref={rightCircleRef} className="fixed w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] blur-[60px] sm:blur-[80px] md:blur-[100px] bg-gradient-to-tl from-green-600 via-green-700 to-green-800 rounded-full opacity-0 z-[-1]" />
       </div>
 
-      {/* Problem/Solution Section */}
-      <section
-        ref={sectionRef}
-        className="w-full mt-5 lg:mt-35 py-16 sm:py-24 md:py-32 xl:py-20 px-6  mb-10 xl:px-0 mx-auto max-w-[1000px] xl:max-w-[1100px]"
-      >
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight mb-6">
-            Jeden Tag verlieren Sie Kunden an die Konkurrenz. Ohne es zu merken
-          </h2>
-          <p className="text-lg text-[#000814] max-w-2xl mx-auto">
-            Viele lokale Unternehmen haben eine Website.
-            Aber sie bringt keine Anfragen.
-          </p>
+      <section ref={sectionRef} className="w-full mt-5 py-16 sm:py-20 md:py-24 xl:py-28 px-6 mx-auto max-w-[1100px]">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Verlieren Sie täglich Kunden an die Konkurrenz?</h2>
+          <p className="text-lg text-[#000814] max-w-2xl mx-auto">Viele lokale Websites sind online, bringen aber keine Anfragen.</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-stretch">
-          {/* Problem Section */}
-          <div ref={problemRef} className="flex flex-col space-y-8">
-            <div className="text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start mb-4">
-                <FaExclamationTriangle className="text-red-600 text-2xl mr-3" />
+        <div className="grid lg:grid-cols-2 gap-10 items-stretch">
+          <div ref={problemRef} className="flex flex-col space-y-6">
+            <div className="text-center lg:text-left mb-4">
+              <div className="flex items-center justify-center lg:justify-start mb-2">
+                <FaExclamationTriangle className="text-red-600 text-2xl mr-2" />
                 <h3 className="text-2xl font-bold text-red-700">Das Problem</h3>
               </div>
-              <p className="text-base text-[#000814] mb-8">
-                Ihre Website arbeitet nicht für Sie.
-              </p>
+              <p className="text-base text-[#000814]">Ihre Website arbeitet nicht für Sie. Sie verliert Kunden.</p>
             </div>
-
-            <div className="space-y-6 flex-grow">
-              {problems.map((problem, index) => (
-                <div key={index} className="flex items-center p-4 bg-red-50 rounded-2xl shadow-lg">
-                  <div className="text-lg mr-4 flex-shrink-0 flex items-center justify-center w-8 h-8">{problem.icon}</div>
+            <div className="space-y-4 flex-grow">
+              {problems.map((p, i) => (
+                <div key={i} className="flex items-start p-4 bg-red-50 rounded-2xl shadow-md">
+                  <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-lg mr-3">{p.icon}</div>
                   <div>
-                    <h4 className="font-bold text-red-800 mb-2">{problem.title}</h4>
-                    <p className="text-[#000814] font-medium">{problem.text}</p>
+                    <h4 className="font-bold text-red-800 mb-1">{p.title}</h4>
+                    <p className="text-[#000814] text-m">{p.text}</p>
                   </div>
                 </div>
               ))}
             </div>
-
-            <div className="p-6 bg-red-100 rounded-2xl text-center mt-auto shadow-lg">
-              <p className="text-lg font-bold text-red-800 flex items-center justify-center gap-3">
-
-                    Potenzielle Kunden entscheiden sich für Unternehmen mit klareren, besser aufgebauten Websites.
-              </p>
+            <div className="p-5 bg-red-100 rounded-2xl text-center shadow-md">
+              <p className="text-red-800 font-bold text-base">Unternehmen mit klarer Website gewinnen die Kunden.</p>
             </div>
           </div>
 
-          {/* Solution Section */}
-          <div ref={solutionRef} className="flex flex-col  space-y-8">
-            <div className="text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start mb-4">
-                <FaCheckCircle className="text-green-600 text-2xl mr-3" />
+          <div ref={solutionRef} className="flex flex-col space-y-6">
+            <div className="text-center lg:text-left mb-4">
+              <div className="flex items-center justify-center lg:justify-start mb-2">
+                <FaCheckCircle className="text-green-600 text-2xl mr-2" />
                 <h3 className="text-2xl font-bold text-green-700">Die Lösung</h3>
               </div>
-              <p className="text-base text-[#000814] mb-8">
-               Eine Website, die aktiv neue Kunden gewinnt.
-              </p>
+              <p className="text-base text-[#000814]">Eine Website, die planbar neue Kundenanfragen generiert.</p>
             </div>
-
-            <div className="space-y-6 flex-grow xl:mt-7">
-              {solutions.map((solution, index) => (
-                <div key={index} className="flex items-center p-4 bg-green-50 rounded-2xl shadow-lg ">
-                  <div className="mr-4 flex-shrink-0 text-xl flex items-center justify-center w-8 h-8">{solution.icon}</div>
+            <div className="space-y-4 flex-grow">
+              {solutions.map((s, i) => (
+                <div key={i} className="flex items-start p-4 bg-green-50 rounded-2xl shadow-md">
+                  <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-xl mr-3">{s.icon}</div>
                   <div>
-                    <h4 className="font-bold text-green-800 mb-2">{solution.title}</h4>
-                    <p className="text-[#000814]">{solution.text}</p>
+                    <h4 className="font-bold text-green-800 mb-1">{s.title}</h4>
+                    <p className="text-[#000814] text-m">{s.text}</p>
                   </div>
                 </div>
               ))}
             </div>
-
-            <div className="p-6 bg-green-100 rounded-2xl text-center mt-auto shadow-lg">
-              <p className="text-lg font-bold text-green-800 flex items-center justify-center gap-2.5">
-
-                Ich baue Websites, die nicht nur gut aussehen, sondern ein klares Ziel haben: <br  className='md:hidden'/> Anfragen generieren
+            <div className="p-5 bg-green-100 rounded-2xl text-center shadow-md">
+              <p className="text-green-800 font-bold text-base">
+                Ich baue Websites mit klarer Struktur, schnellen Ladezeiten und Planbarkeit für Ihre Kundenanfragen.
               </p>
-
             </div>
           </div>
         </div>
-        <div className='w-full my-10 flex items-center justify-center'>
-         <CTA1 bg="bg-white"/>
-         </div>
 
-        {/* Transition zu nächster Section */}
-        <div className="text-center ">
-          <p className="text-[15px] text-[#000814] max-w-xl mx-auto">
-            Lassen Sie uns gemeinsam Ihre Website zum Kundenmagnet machen.
-          </p>
+        <div className="w-full mt-10 flex justify-center">
+          <CTA1 bg="bg-white" />
+        </div>
+
+        <div className="text-center mt-8">
+          <p className="text-[15px] text-[#000814] max-w-xl mx-auto">Lassen Sie uns gemeinsam Ihre Website zum Kundenmagnet machen.</p>
         </div>
       </section>
     </>

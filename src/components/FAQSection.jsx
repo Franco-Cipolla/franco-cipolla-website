@@ -11,14 +11,14 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Die meisten Websites scheitern nicht am Design,
-          sondern daran, dass Besucher nicht wissen,
-          <strong> was sie als Nächstes tun sollen</strong>.
+          Viele Websites sehen gut aus aber <strong>besucher wissen nicht, was sie tun sollen</strong>.
+          Ergebnis: Keine Anfragen, verlorene Chancen.
         </p>
         <p>
-          Eine strategisch aufgebaute Website führt Besucher gezielt,
-          baut Vertrauen auf und lenkt sie zur Anfrage,
-          statt sie zu verwirren oder zu verlieren.
+
+          Ich erstelle Websites, die Besucher gezielt führen, Vertrauen aufbauen und Schritt für Schritt zu einer Anfrage bringen.
+            <br></br>    <br></br>
+          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration und personalisierten Mini-Videos</strong>.
         </p>
       </div>
     ),
@@ -28,56 +28,40 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Sie bekommen keine „schöne Website“,
-          sondern ein System, das darauf ausgelegt ist,
-          <strong> aus Besuchern echte Anfragen zu machen</strong>.
+          Sie bekommen nicht nur eine „schöne Website“, sondern ein System, das <strong>direkt neue Kunden generiert</strong>.
         </p>
-        <ul className="list-disc list-inside space-y-1">
-          <li>Klare Struktur statt Verwirrung</li>
-          <li>Texte, die Vertrauen aufbauen</li>
-          <li>Mobile-optimierte Darstellung</li>
-          <li>Schnelle Ladezeiten</li>
-          <li>Suchmaschinenfreundliche Umsetzung</li>
+        <ul className="list-disc list-inside space-y-8">
+          <li className='mt-8'>Conversion-optimierte Struktur & Texte → Besucher werden zu Anfragen</li>
+          <li>Modernes Design & Branding → Vertrauen & Professionalität</li>
+          <li>Mobile-optimiert & blitzschnell → kein Kunde geht verloren</li>
+          <li>Google Maps & lokale Sichtbarkeit → Kunden finden Sie sofort</li>
+          <li>Mini-Videos → direkt auf Social Media anwendbar</li>
         </ul>
       </div>
     ),
   },
   {
-    question: 'Wie viel Zeitaufwand habe ich selbst mit der Website?',
+    question: 'Wie viel Zeitaufwand habe ich selbst?',
     answer: (
       <div className="space-y-2">
         <p>
-          So gut wie keinen.
+          Minimal. Sie liefern Hosting, Zugänge, Logos, Fotos.  <strong>Alles andere erledige ich komplett</strong>.
         </p>
         <p>
-          Sie stellen das Hosting bereit, geben mir die nötigen Zugänge
-          sowie die wichtigsten Informationen zu Ihrem Unternehmen
-          und vorhandenes Material wie Fotos oder Logos.
-
-        </p>
-        <p>
-          <strong>Alles andere übernehme ich vollständig. </strong>
-           Struktur, Texte, Design, Technik und Livegang.
-          Die Website entsteht,
-          während Sie sich um Ihr Tagesgeschäft kümmern.
+          Struktur, Texte, Design, Technik und Livegang. Ihre Website entsteht, während Sie sich auf Ihr Business konzentrieren.
         </p>
       </div>
     ),
   },
   {
-    question: 'Wie viel kostet eine Website ungefähr?',
+    question: 'Wie viel kostet eine Website?',
     answer: (
       <div className="space-y-2">
         <p>
-          Die meisten Projekte für Selbstständige und Unternehmen
-          liegen zwischen <strong>800 € und 1.500 €</strong>,
-          abhängig vom Umfang und den Anforderungen.
+          Für Selbstständige und kleine Unternehmen liegen Projekte meist zwischen <strong>800 € und 1.500 €</strong>.
         </p>
         <p>
-          Im kostenlosen Erstgespräch klären wir,
-          was für Sie sinnvoll ist, und was nicht.
-          Danach erhalten Sie ein
-          <strong> transparentes Festpreis-Angebot</strong>.
+          Im kostenlosen Erstgespräch klären wir, was Sie wirklich brauchen. Danach erhalten Sie ein <strong>transparentes Festpreis-Angebot</strong>. Ohne versteckte Kosten.
         </p>
       </div>
     ),
@@ -87,12 +71,10 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Die meisten Websites sind innerhalb von
-          <strong> 2–4 Wochen</strong> online.
+          Die meisten Websites sind innerhalb von <strong>2–4 Wochen</strong> live.
         </p>
         <p>
-          Durch einen klaren Ablauf bleibt der Zeitaufwand
-          für Sie minimal und das Projekt verzögert sich nicht.
+          Dank klarem Ablauf bleibt Ihr Zeitaufwand minimal. Kein Warten, kein Stress.
         </p>
       </div>
     ),
@@ -102,52 +84,41 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Ich verspreche keine Wunder,
-          sondern eine saubere, strategische Umsetzung
-          nach bewährten Prinzipien.
+          Ich verspreche keine Wunder, sondern <strong>messbare Ergebnisse</strong> dank erprobter Methoden.
         </p>
         <p>
-          Im Erstgespräch sage ich Ihnen ehrlich,
-          ob eine neue Website für Ihre Situation sinnvoll ist
-          oder ob andere Maßnahmen aktuell wichtiger wären.
+          Im Erstgespräch sage ich ehrlich, ob eine neue Website jetzt sinnvoll ist oder ob andere Maßnahmen wichtiger wären. Sie erhalten <strong>klar planbare Leads</strong>.
         </p>
       </div>
     ),
   },
   {
     question: 'Gehört mir die Website nach der Fertigstellung?',
-    answer: (
-      <div className="space-y-2">
-        <p>
-          Ja. Die Website gehört
-          <strong> vollständig Ihnen</strong>.
-        </p>
-        <p>
-          Sie erhalten alle Zugänge
-          und entscheiden selbst,
-          ob Sie später Änderungen eigenständig vornehmen
-          oder mich weiter beauftragen möchten.
-        </p>
-      </div>
-    ),
+answer: (
+  <div className="space-y-2">
+    <p>
+      Ja. Die Website gehört <strong>vollständig Ihnen</strong>. Sie behalten volle Kontrolle über Hosting, Website und Inhalte.
+    </p>
+    <p>
+      Ich erhalte lediglich die notwendigen Zugänge, um die Website aufzubauen.   <br></br>   <br></br>  Änderungen können Sie selbst vornehmen oder mich optional beauftragen. Ganz ohne Einschränkungen.
+    </p>
+  </div>
+      )
   },
   {
-    question: 'Was passiert, wenn ich später etwas ändern möchte?',
-    answer: (
-      <div className="space-y-2">
-        <p>
-          Änderungen sind jederzeit möglich.
-          Kleine Anpassungen lassen sich flexibel umsetzen.
-        </p>
-        <p>
-          Für regelmäßige Betreuung oder SEO-Optimierung
-          biete ich optionale Wartungspakete an. <br />
-          <strong> Ohne Verpflichtung & monatlich Kündbar</strong>.
-        </p>
-      </div>
-    ),
-  },
-]
+    question: 'Kann ich später Änderungen vornehmen?',
+answer: (
+  <div className="space-y-2">
+    <p>
+      Kleinere Anpassungen lassen sich jederzeit unkompliziert umsetzen. Pofessionell und ohne Ihre laufenden Anfragen zu beeinträchtigen.
+    </p>
+    <p>
+      Für regelmäßige Optimierung biete ich optionale Wartungspakete an, <strong>monatlich kündbar & ohne Verpflichtung</strong>.
+    </p>
+  </div>
+      )
+        },
+      ]
 
 const FAQSection = () => {
   const sectionRef = useRef(null)
@@ -201,12 +172,10 @@ const FAQSection = () => {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="faq-item border cursor-pointer border-gray-200 rounded-xl p-5 shadow-sm transition duration-300"
+            className="faq-item border cursor-pointer border-gray-200 rounded-xl p-6 shadow-sm transition duration-300"
           >
             <button
-              onClick={() =>
-                setOpenIndex(openIndex === index ? null : index)
-              }
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
               className="w-full cursor-pointer flex justify-between items-center text-left"
             >
               <span className="font-semibold text-lg">{faq.question}</span>
@@ -228,7 +197,8 @@ const FAQSection = () => {
 
       <div ref={ctaRef} className="text-center mt-12 w-full">
         <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto my-6">
-          Noch unsicher, ob das für Sie Sinn macht?
+          Noch unsicher, ob das für Sie Sinn macht? <br />
+          Lassen Sie uns gemeinsam klären, wie Ihre Website direkt neue Kunden bringen kann.
         </p>
         <CTA2 />
       </div>
