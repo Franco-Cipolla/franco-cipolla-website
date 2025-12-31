@@ -69,10 +69,10 @@ const ProcessSection = () => {
       className="relative py-20 my-20 px-4 md:px-6 bg-gradient-to-b from-[#f8fafc] to-white"
     >
       <div className="max-w-7xl mx-auto text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-black text-[#001D3D] mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center  mb-4">
           Ihr Weg zur planbaren Kunden-Website
         </h2>
-        <p className="text-lg md:text-xl text-[#000814]/80 max-w-3xl mx-auto">
+        <p className="text-lg  text-[#000814]/80 max-w-3xl mx-auto">
           Transparenter Prozess – von der ersten Idee bis zur live geschalteten Website
         </p>
       </div>

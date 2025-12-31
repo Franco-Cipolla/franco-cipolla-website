@@ -54,7 +54,7 @@ const ProblemSolution = () => {
 
       <section ref={sectionRef} className="w-full mt-5 py-16 sm:py-20 md:py-24 xl:py-28 px-6 mx-auto max-w-[1100px]">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">Verlieren Sie täglich Kunden an die Konkurrenz?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4 ">Verlieren Sie täglich Kunden an die Konkurrenz?</h2>
           <p className="text-lg text-[#000814] max-w-2xl mx-auto">Viele lokale Websites sind online, bringen aber keine Anfragen.</p>
         </div>
 

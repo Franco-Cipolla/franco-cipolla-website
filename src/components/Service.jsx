@@ -72,13 +72,13 @@ const Service = () => {
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16" ref={headerRef} id="service-start">
-          <h1 className="text-4xl md:text-5xl font-black text-[#001D3D] mb-6 leading-tight">
+          <h1 className=" mb-6 leading-tight text-3xl md:text-4xl font-bold text-center ">
             Meine Leistungen.
             <span className="block bg-gradient-to-r from-[#003566] to-[#00A6FB] bg-clip-text text-transparent">
               Websites, die Besucher in Kunden verwandeln
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-[#000814]/80 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg  text-[#000814]/80 max-w-3xl mx-auto mb-8 leading-relaxed">
             Ich entwickle Websites für Selbstständige und Unternehmen, die nicht nur gut aussehen, sondern <strong className="text-[#001D3D]">planbar neue Kundenanfragen generieren</strong>.
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-[#001D3D]/80 text-sm md:text-base font-medium">
