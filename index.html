@@ -1,121 +1,182 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO Meta Tags -->
-    <title>Franco Cipolla – Webentwickler & Webdesigner Ennepetal | Individuelle Websites</title>
-    <meta name="description" content="Ich entwickle moderne Websites mit React.js, SEO und responsivem Design. Für Unternehmen in NRW, die online wirklich überzeugen wollen." />
-    <meta name="author" content="Franco Cipolla – Webentwickler & Webdesigner aus Ennepetal" />
+    <title>
+      Websites, die Kunden bringen – Franco Cipolla, Webdesigner Ennepetal
+    </title>
+    <meta
+      name="description"
+      content="Ich entwickle Websites für Selbstständige & lokale Unternehmen in Ennepetal & Umgebung. Modernes Design, klare Struktur und Conversion-Optimierung – so verwandeln Sie Besucher in planbare Kundenanfragen."
+    />
+    <meta name="author" content="Franco Cipolla – Webdesigner aus Ennepetal" />
     <meta name="robots" content="index, follow" />
-    <meta name="copyright" content="© Franco Cipolla" />
     <link rel="canonical" href="https://franco-cipolla.de/" />
-    <meta name="google-site-verification" content="RntTlHjncxGYktcnlxnljaMFeST4qUYauLstfZKlEzc" />
 
     <!-- Open Graph Tags für LinkedIn/Facebook -->
-    <meta property="og:title" content="Franco Cipolla – Webentwickler & Designer aus Ennepetal" />
-    <meta property="og:description" content="Ich entwickle moderne Websites mit React.js, SEO und responsivem Design. Für Unternehmen in NRW, die online wirklich überzeugen wollen. Professionelle Webentwicklung und modernes Webdesign aus Ennepetal."/>
+    <meta
+      property="og:title"
+      content="Websites, die Kunden bringen – Franco Cipolla, Webdesigner aus Ennepetal"
+    />
+    <meta
+      property="og:description"
+      content="Individuelle Websites für Selbstständige und lokale Unternehmen. Modernes Design, klare Struktur und Conversion-Optimierung – Besucher werden planbar zu Kunden."
+    />
     <meta property="og:url" content="https://franco-cipolla.de/" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+    <meta
+      property="og:image"
+      content="https://franco-cipolla.de/og-preview.png"
+    />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Franco Cipolla - Webentwickler und Designer aus Ennepetal" />
+    <meta
+      property="og:image:alt"
+      content="Franco Cipolla – Webdesigner aus Ennepetal, Websites die Kunden bringen"
+    />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:site_name" content="Franco Cipolla" />
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Franco Cipolla – Webentwickler aus Ennepetal" />
-    <meta name="twitter:description" content="Ich entwickle moderne Websites mit React.js, SEO und responsivem Design. Für Unternehmen in NRW, die online wirklich überzeugen wollen. Professionelle Webentwicklung und modernes Webdesign aus Ennepetal." />
-    <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
+    <meta
+      name="twitter:title"
+      content="Websites, die Kunden bringen – Franco Cipolla, Webdesigner aus Ennepetal"
+    />
+    <meta
+      name="twitter:description"
+      content="Individuelle Websites für lokale Selbstständige & Unternehmen. Modernes Design, klare Struktur und Conversion-Optimierung – so verwandeln Sie Besucher in planbare Kundenanfragen."
+    />
+    <meta
+      name="twitter:image"
+      content="https://franco-cipolla.de/og-preview.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Franco Cipolla – Webdesigner aus Ennepetal, Websites die Kunden bringen"
+    />
 
     <!-- Favicon und Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon-180x180.png"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="icon" href="/favicon.png" type="image/png" />
-    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png">
-    <meta name="msapplication-TileColor" content="#000000">
-
+    <meta
+      name="msapplication-square310x310logo"
+      content="/mstile-310x310.png"
+    />
+    <meta name="msapplication-TileColor" content="#000000" />
 
     <!-- Nur auf Desktop (≥768px) preloaden -->
-    <link rel="preload" href="/Hero-Illustration.webp" as="image" type="image/webp" media="(min-width: 768px)" />
+    <link
+      rel="preload"
+      href="/Hero-Illustration.webp"
+      as="image"
+      type="image/webp"
+      media="(min-width: 768px)"
+    />
 
     <!-- Strukturierte Daten für Google -->
+    <!-- Person Schema -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Franco Cipolla",
-      "jobTitle": "Webentwickler",
-      "url": "https://franco-cipolla.de",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Ennepetal",
-        "addressRegion": "NRW",
-        "addressCountry": "DE"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/franco-cipolla"
-      ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "Webentwicklung & Webdesign",
-      "provider": {
+      {
+        "@context": "https://schema.org",
         "@type": "Person",
         "name": "Franco Cipolla",
+        "jobTitle": "Webdesigner",
         "url": "https://franco-cipolla.de",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Ennepetal",
           "addressRegion": "NRW",
           "addressCountry": "DE"
-        }
-      },
-      "areaServed": {
-        "@type": "Place",
-        "name": "Nordrhein-Westfalen"
-      },
-      "description": "Individuelle Websites mit React.js, SEO und Copywriting für Unternehmen in Ennepetal und Umgebung."
-    }
+        },
+        "sameAs": ["https://www.linkedin.com/in/franco-cipolla"]
+      }
     </script>
 
+    <!-- Service Schema -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Warum brauche ich überhaupt eine Website?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Eine professionelle Website ist deine digitale Visitenkarte – sie schafft Vertrauen, macht dich sichtbar und hilft dir, neue Kunden zu gewinnen."
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Webdesign & Webentwicklung",
+        "provider": {
+          "@type": "Person",
+          "name": "Franco Cipolla",
+          "url": "https://franco-cipolla.de",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ennepetal",
+            "addressRegion": "NRW",
+            "addressCountry": "DE"
           }
         },
-        {
-          "@type": "Question",
-          "name": "Was bekomme ich konkret?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Du bekommst eine maßgeschneiderte Website, die nicht nur gut aussieht, sondern auch Kunden gewinnt: modernes Design, klare Struktur, mobile Optimierung, OnPage-SEO und starke Performance."
-          }
-        }
-      ]
-    }
+        "areaServed": {
+          "@type": "Place",
+          "name": "Nordrhein-Westfalen"
+        },
+        "description": "Individuelle Websites für lokale Selbstständige und Unternehmen in Ennepetal & Umgebung. Modernes Design, klare Struktur und Conversion-Optimierung für planbare Kundenanfragen."
+      }
     </script>
-    <meta name="google-site-verification" content="Iv6wwWyjld5yusNBDAfCDT1n-U3BEF0dcf4vwLqqlqA" />
-</head>
-<body>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wie lange dauert die Erstellung einer Website?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Die Dauer hängt vom Umfang und den Anforderungen der Website ab. In der Regel dauert es zwischen 2-4 Wochen von der ersten Beratung bis zur Live-Schaltung. Dank klarem Ablauf bleibt Ihr Zeitaufwand minimal. Kein Warten, kein Stress."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was ist im Website-Paket enthalten?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sie bekommen nicht nur eine „schöne Website“, sondern ein System, das direkt neue Kunden generiert. Das Paket enthält eine individuell gestaltete Website mit modernem Design, klarer Struktur, mobiler Optimierung, Conversion-orientierten Inhalten und grundlegender Suchmaschinenoptimierung. Hosting erfolgt über Sie, ich übernehme Aufbau und Einrichtung."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kann ich einzelne Elemente oder Module kaufen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nein. Es wird ausschließlich das komplette Website-Paket angeboten. Nur so ist gewährleistet, dass alle Komponenten optimal zusammenarbeiten und die Website effektiv für Kundenanfragen optimiert ist."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie läuft die Zusammenarbeit ab?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sie stellen die benötigten Informationen, Zugänge und Fotos bereit. Ich entwickle daraufhin die komplette Website inklusive Texte, Struktur und Design. Änderungen und Freigaben erfolgen transparent und auf Augenhöhe."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <meta
+      name="google-site-verification"
+      content="Iv6wwWyjld5yusNBDAfCDT1n-U3BEF0dcf4vwLqqlqA"
+    />
+  </head>
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-</body>
+  </body>
 </html>
