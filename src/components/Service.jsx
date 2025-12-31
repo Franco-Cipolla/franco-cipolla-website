@@ -4,7 +4,6 @@ import {
   FaPaintBrush,
   FaPenNib,
   FaSearchengin,
-  FaHandshake,
   FaCheck
 } from 'react-icons/fa';
 import ServiceCard from "./ServiceCard";
@@ -18,51 +17,43 @@ const Service = () => {
   const services = [
     {
       Icon: FaCode,
-      title: "Webdevelopment",
-      subtitle: "Planbare Kundenanfragen",
+      title: "Webentwicklung",
+      subtitle: "Jeder Besucher wird zum Kunden",
       benefits: [
-        "Jeder Besucher wird Schritt für Schritt zu einer Anfrage geführt → keine verlorenen Leads mehr",
-        "Blitzschnelle Ladezeiten → Kunden springen nicht ab",
-        "100 % responsive → perfekt auf allen Geräten",
-        "Sichere Website & geschützte Leads → Vertrauen & Professionalität",
-        "Technischer Support & Wartung jederzeit verfügbar → Sie sind abgesichert"
+        "Step-by-Step Besucherführung → Keine verlorenen Anfragen",
+        "Schnelle Ladezeiten → Kunden springen nicht ab",
+        "100 % responsive → Perfekt auf allen Geräten"
       ],
       highlight: true
     },
     {
       Icon: FaPaintBrush,
       title: "Webdesign",
-      subtitle: "Design, das verkauft",
+      subtitle: "Design, das Vertrauen & Verkäufe steigert",
       benefits: [
-        "Modernes Branding → Professionalität auf den ersten Blick",
-        "Klare Benutzerführung → Besucher finden sofort, was sie suchen",
-        "Zielgruppenorientiert → nur relevante Kunden melden sich",
-        "Mobile-first Design → perfekte Darstellung auf allen Geräten",
-        "Conversion-orientierte Struktur → Besucher werden automatisch zu Kunden"
+        "Modernes Branding → Sofortige Professionalität",
+        "Klare Benutzerführung → Besucher finden direkt, was sie suchen",
+        "Conversion-orientierte Struktur → Automatisch Anfragen generieren "
       ]
     },
     {
       Icon: FaPenNib,
       title: "Copywriting",
-      subtitle: "Texte, die überzeugen & verkaufen",
+      subtitle: "Texte, die überzeugen und zum Handeln animieren",
       benefits: [
-        "Klare, verständliche Sprache → jeder Kunde versteht Ihr Angebot sofort",
+        "Klare Sprache → Angebot sofort verständlich",
         "Vertrauen aufbauen → Besucher wissen, dass Sie die richtige Wahl sind",
-        "Einwände werden vorab beantwortet → Kunden zögern nicht",
-        "Starke Call-to-Actions → Besucher nehmen Kontakt auf",
-        "SEO-optimiert → mehr Sichtbarkeit & messbare Leads über Google"
+        "Starke Call-to-Actions → Mehr direkte Kontaktanfragen"
       ]
     },
     {
       Icon: FaSearchengin,
       title: "SEO & Sichtbarkeit",
-      subtitle: "Gefunden werden & Kunden generieren",
+      subtitle: "Gefunden werden & echte Kunden gewinnen",
       benefits: [
         "Lokale Optimierung inkl. Google Maps → Kunden finden Sie sofort",
-        "Keywords mit Kaufabsicht → Besucher sind echte Interessenten",
-        "Technische SEO → bessere Rankings & mehr Anfragen",
-        "OnPage-Optimierung → klare Struktur für Google & Besucher",
-        "KPI-Dashboard → volle Kontrolle & Planbarkeit Ihrer Leads"
+        "Keywords mit Kaufabsicht → Nur echte Interessenten",
+        "OnPage-Optimierung → Struktur für Google & Besucher"
       ]
     }
   ];
@@ -79,7 +70,6 @@ const Service = () => {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto">
-
         {/* Header */}
         <div className="text-center mb-16" ref={headerRef} id="service-start">
           <h1 className="text-4xl md:text-5xl font-black text-[#001D3D] mb-6 leading-tight">
@@ -98,11 +88,11 @@ const Service = () => {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-[#00A6FB] rounded-full" />
-              <span>Klare Absprachen – ohne Fachchinesisch</span>
+              <span>Ein Ansprechpartner von Start bis Livegang</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-[#00A6FB] rounded-full" />
-              <span>Ein Ansprechpartner von Start bis Livegang</span>
+              <span>Planbare Leads & volle Kontrolle</span>
             </div>
           </div>
         </div>
@@ -118,10 +108,10 @@ const Service = () => {
         <div className="bg-gradient-to-r from-[#001D3D] to-[#003566] rounded-3xl p-10 text-center text-white shadow-xl transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              Rundum-Sorglos-Website: Alles, was Sie brauchen
+              Rundum-Sorglos-Website: Nur das Komplettpaket funktioniert
             </h3>
             <p className="md:text-lg text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Website, Conversion-Optimierung, Google Maps Integration, persönliche Mini-Videos. Alles in einem Paket. Direkt neue Kunden gewinnen, planbar und messbar.
+              Website, Conversion-Optimierung, Google Maps Integration, persönliche Mini-Videos. Alles in einem Paket. Nur so gewinnen Sie planbar neue Kunden. Messbar & direkt.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
@@ -144,7 +134,7 @@ const Service = () => {
                   <FaCheck className="w-5 h-5 text-white" />
                 </div>
                 <h4 className="font-semibold mb-2">Messbar & planbar</h4>
-                <p className="text-white/80 text-sm">Alle Leads und Anfragen jederzeit sichtbar und steuerbar</p>
+                <p className="text-white/80 text-sm">Alle Besucher und Anfragen jederzeit sichtbar und steuerbar</p>
               </div>
             </div>
 
