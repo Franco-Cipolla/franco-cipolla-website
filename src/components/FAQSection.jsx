@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { gsap, ScrollTrigger } from './gsapSetup'
 import { FaChevronDown } from 'react-icons/fa'
-import CTA2 from './CTA2'
+import CTA1 from './CTA1'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -205,7 +205,7 @@ const FAQSection = () => {
           Noch unsicher, ob das für Sie Sinn macht? <br />
           Lassen Sie uns gemeinsam klären, wie Ihre Website direkt neue Kunden bringen kann.
         </p>
-        <CTA2 />
+        <CTA1 />
       </div>
     </section>
   )
