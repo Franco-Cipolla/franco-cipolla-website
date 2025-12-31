@@ -2,7 +2,6 @@ import { Suspense, useEffect, lazy } from "react"
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom"
 import MainLayout from "./layouts/MainLayout.jsx"
 import Loader from "./components/Loader.jsx"
-import LandingPage from "./pages/LandingPage.jsx"
 import CheckList from "./pages/CheckList.jsx"
 
 
@@ -32,7 +31,6 @@ function App() {
         </Route>
 
         {/* Landingpage OHNE MainLayout */}
-        <Route path="erstgespraeche" element={<LandingPage />} />
         <Route path="checkliste" element={<CheckList />} />
 
 
