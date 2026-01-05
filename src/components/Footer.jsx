@@ -46,12 +46,13 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-3 mt-3">
               <HiOutlinePhone className="text-black text-xl" />
-              <p
+              <a
                 className="text-[#000814] hover:text-[#003566] transition-colors"
+                href="tel:+4917675398004"
 
               >
                 +49 176 75398004
-              </p>
+              </a>
             </div>
           </div>
 
