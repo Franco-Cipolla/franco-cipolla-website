@@ -40,24 +40,23 @@ const CTAHome = () => {
       className="text-black py-12 my-32 px-6 text-center"
     >
       <h2 className="cta-animate text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
-        Möchten Sie wissen, wie Ihre Website zur Kundengewinnung beitragen kann?
+        Ihre Website verschenkt Anfragen? <br/>Lassen Sie uns das ändern. Kostenlos.
       </h2>
 
       <p className="cta-animate text-base sm:text-lg mb-6 max-w-xl mx-auto">
-        Im kostenlosen Erstgespräch schauen wir gemeinsam,
-       wo Ihre Website verbessert werden kann
-       und wie sie gezielt Anfragen generieren könnte.
-      <br />
-      <br />
-      Ehrlich, unverbindlich und ohne Verkaufsdruck.
+        Ich zeige Ihnen genau, <strong>wo Ihre Website Anfragen verschenkt </strong>
+        und wie Sie daraus mehr Kunden gewinnen können. <br /><br />
+        Ich betreue bewusst nur 2 neue Kunden pro Monat, um echte Ergebnisse zu liefern.
       </p>
 
       <button
         onClick={handleClick}
-        className="cta-animate inline-flex cursor-pointer transform hover:-translate-y-1 ease-in items-center gap-2 bg-black text-white lg:text-white/95 font-semibold px-6 py-3 rounded-full hover:bg-purple lg:hover:text-white transition"
+        className="cta-animate inline-flex cursor-pointer transform hover:-translate-y-1 ease-in items-center gap-2 bg-black text-white font-semibold px-6 py-3 rounded-full hover:bg-[#001D3D] transition"
       >
-        Kostenloses Erstgespräch anfragen <FaArrowRight />
+        Kostenlose Website-Analyse starten <FaArrowRight />
       </button>
+      <p className='cta-animate text-[15px] mt-3 text-black/60'>Ohne Risiko & Unverbindlich</p>
+
     </section>
   )
 }

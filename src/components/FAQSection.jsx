@@ -18,11 +18,29 @@ const faqs = [
 
           Ich erstelle Websites, die Besucher gezielt führen, Vertrauen aufbauen und Schritt für Schritt zu einer Anfrage bringen.
             <br></br>    <br></br>
-          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration und personalisierten Mini-Videos</strong>.
+          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration und BONUS: personalisierten Mini-Videos</strong>.
         </p>
       </div>
     ),
   },
+  {
+  question: 'Ich habe noch keine Website. Kann ich trotzdem starten?',
+  answer: (
+    <div className="space-y-2">
+      <p>
+        Ja, absolut! Auch ohne bestehende Website können wir starten. <br/> <br/>
+        In einem kurzen Termin zeige ich ihnen zuerst unverbindlich einen <strong>kostenlosen Design Prototypen.</strong>  Dabei erkläre ich wie es aufgebaut ist, um Anfragen zu generieren.
+      </p>
+      <p>
+        So sehen Sie schon vorher, welchen Mehrwert Ihre Website liefern könnte.
+      </p>
+      <p>
+        Wenn Sie sich anschließend entscheiden, das Projekt mit mir zu starten, werden Sie in den nächsten verfügbaren Slot eingeteilt. <br/>
+        Ich betreue nur 2 Kunden pro Monat, um sicherzustellen, dass jedes Projekt <strong>maximale Ergebnisse</strong>  liefert.
+      </p>
+    </div>
+  ),
+},
   {
     question: 'Was bekomme ich konkret?',
     answer: (
@@ -35,7 +53,7 @@ const faqs = [
           <li>Modernes Design & Branding → Vertrauen & Professionalität</li>
           <li>Mobile-optimiert & blitzschnell → kein Kunde geht verloren</li>
           <li>Google Maps & lokale Sichtbarkeit → Kunden finden Sie sofort</li>
-          <li>Mini-Videos → direkt auf Social Media anwendbar</li>
+          <li>BONUS: Mini-Videos → direkt auf Social Media anwendbar</li>
         </ul>
       </div>
     ),
@@ -48,8 +66,9 @@ const faqs = [
           Minimal. Sie liefern Hosting, Zugänge, Logos, Fotos.  <strong>Alles andere erledige ich komplett</strong>.
         </p>
         <p>
-          Struktur, Texte, Design, Technik und Livegang. Ihre Website entsteht, während Sie sich auf Ihr Business konzentrieren.
+          Ihre Website entsteht vollständig im Hintergrund, während Sie sich auf Ihr Business konzentrieren.
         </p>
+
       </div>
     ),
   },
@@ -61,7 +80,7 @@ const faqs = [
           Für Selbstständige und kleine Unternehmen liegen Projekte meist zwischen <strong>800 € und 1.500 €</strong>.
         </p>
         <p>
-          Im kostenlosen Erstgespräch klären wir, was Sie wirklich brauchen. Danach erhalten Sie ein <strong>transparentes Festpreis-Angebot</strong>. Ohne versteckte Kosten.
+          Im kostenlosen Erstgespräch zeige ich Ihnen, was Sie wirklich brauchen. Danach erhalten Sie ein <strong>transparentes Festpreis-Angebot</strong>. Ohne versteckte Kosten.
         </p>
       </div>
     ),
@@ -74,7 +93,7 @@ const faqs = [
           Die meisten Websites sind innerhalb von <strong>2–4 Wochen</strong> live.
         </p>
         <p>
-          Dank klarem Ablauf bleibt Ihr Zeitaufwand minimal. Kein Warten, kein Stress.
+          Dank klarem Ablauf bleibt Ihr Zeitaufwand extrem gering. Kein Warten, kein Stress.
         </p>
       </div>
     ),
@@ -84,17 +103,17 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Ich verspreche keine Wunder, sondern <strong>messbare Ergebnisse</strong> dank erprobter Methoden.
+          Ich verspreche keine Wunder, sondern <strong>messbare Ergebnisse.</strong>
         </p>
         <p>
-          Im Erstgespräch sage ich ehrlich, ob eine neue Website jetzt sinnvoll ist oder ob andere Maßnahmen wichtiger wären. Sie erhalten <strong>klar planbare Leads</strong>.
+          Im Erstgespräch klären wir, ob eine neue Website jetzt Sinn macht oder andere Maßnahmen besser geeignet sind. <strong>Sie erhalten planbare Leads.</strong>
         </p>
       </div>
     ),
   },
   {
   question: 'Kann ich einzelne Elemente kaufen?',
-  answer: 'Nein. Ich biete ausschließlich das komplette Paket an. So stellen ich sicher, dass Ihre Website optimal aufgebaut ist, um Besucher Schritt für Schritt zur Anfrage zu führen.'
+  answer: 'Nein, ich biete nur das komplette Paket an. So stelle ich sicher, dass Ihre Website optimal Besucher führt und Schritt für Schritt zu Anfragen konvertiert.'
 }
 ,
   {
@@ -102,7 +121,7 @@ const faqs = [
 answer: (
   <div className="space-y-2">
     <p>
-      Ja. Die Website gehört <strong>vollständig Ihnen</strong>. Sie behalten volle Kontrolle über Hosting, Website und Inhalte.
+      Ja, die Website gehört <strong>vollständig Ihnen</strong>. Sie behalten volle Kontrolle über Hosting, Website und Inhalte.
     </p>
     <p>
       Ich erhalte lediglich die notwendigen Zugänge, um die Website aufzubauen.   <br></br>   <br></br>  Änderungen können Sie selbst vornehmen oder mich optional beauftragen. Ganz ohne Einschränkungen.
@@ -115,7 +134,7 @@ answer: (
 answer: (
   <div className="space-y-2">
     <p>
-      Kleinere Anpassungen lassen sich jederzeit unkompliziert umsetzen. Pofessionell und ohne Ihre laufenden Anfragen zu beeinträchtigen.
+      Kleinere Anpassungen lassen sich jederzeit unkompliziert und professionell umsetzen, ohne dass Ihre laufenden Anfragen beeinträchtigt werden.
     </p>
     <p>
       Für regelmäßige Optimierung biete ich optionale Wartungspakete an, <strong>monatlich kündbar & ohne Verpflichtung</strong>.

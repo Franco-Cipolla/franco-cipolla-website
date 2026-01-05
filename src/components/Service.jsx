@@ -111,7 +111,7 @@ const Service = () => {
               Rundum-Sorglos-Website: Nur das Komplettpaket funktioniert
             </h3>
             <p className="md:text-lg text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Website, Conversion-Optimierung, Google Maps Integration, persönliche Mini-Videos. Alles in einem Paket. Nur so gewinnen Sie planbar neue Kunden. Messbar & direkt.
+              Website, Conversion-Optimierung, Google Maps Integration, BONUS: persönliche Mini-Videos. Alles in einem Paket. Nur so gewinnen Sie planbar neue Kunden. Messbar & direkt.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">

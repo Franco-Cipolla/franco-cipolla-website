@@ -95,11 +95,11 @@ const Hero = () => {
       <div className="relative overflow-hidden">
         <span
           ref={leftCircleRef}
-          className="fixed will-change-transform w-[300px] h-[300px] blur-[80px] opacity-30 md:opacity-60 sm:w-[350px] sm:h-[350px] sm:blur-[100px] md:w-[400px] md:h-[400px] md:blur-[100px]  bottom-[-100px] left-[-35px] rounded-full bg-gradient-to-tr from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
+          className="fixed will-change-transform w-[300px] h-[300px] blur-[80px] opacity-30 md:opacity-60 sm:w-[350px] sm:h-[350px] sm:blur-[100px] md:w-[400px] md:h-[400px] md:blur-[100px] bottom-[-100px] left-[-35px] rounded-full bg-gradient-to-tr from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
         />
         <span
           ref={rightCircleRef}
-          className="fixed will-change-transform w-[250px] h-[250px] blur-[60px] opacity-60 sm:w-[300px] sm:h-[300px] sm:blur-[80px] md:w-[400px] md:h-[400px] md:blur-[100px]  top-[40px] right-[-90px] rounded-full bg-gradient-to-bl from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
+          className="fixed will-change-transform w-[250px] h-[250px] blur-[60px] opacity-60 sm:w-[300px] sm:h-[300px] sm:blur-[80px] md:w-[400px] md:h-[400px] md:blur-[100px] top-[40px] right-[-90px] rounded-full bg-gradient-to-bl from-[#003566] via-[#001D3D] to-[#00A6FB] z-[-1]"
         />
       </div>
 
@@ -113,13 +113,9 @@ const Hero = () => {
           <div>
             {/* Badge */}
             <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <div className="relative">
-                  <div className="w-2 h-2 bg-[#003566] rounded-full animate-pulse"></div>
-                  <div className="absolute inset-0 w-2 h-2 bg-[#003566] rounded-full animate-ping opacity-40"></div>
-                </div>
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm">
                 <span className="text-[13px] md:text-sm font-medium text-[#003566] tracking-tight">
-                  🚀 Websites für lokale Unternehmen in Ennepetal <span className='block md:inline-block'>& Umgebung</span>
+                  🚀 Websites für lokale Unternehmen in Ennepetal & Umgebung
                 </span>
               </div>
             </div>
@@ -129,32 +125,46 @@ const Hero = () => {
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
-              <span className="md:hidden">Websites, die neue Kunden bringen</span>
-              <span className="hidden md:inline">Websites die <span className='text-[#003566]'>Kunden bringen</span>. <br/>Nicht nur schön, sondern  <br/> planbar neue Anfragen.</span>
+              Websites, die lokal <br/> <span className="text-[#003566]">planbar Anfragen bringen</span>.
             </h1>
 
-            {/* Text */}
-            <div className={`max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl ${isXL ? 'flex flex-col gap-6' : ''}`}>
-              <p ref={text1Ref} className={`text-lg ${isXL ? 'xl:text-xl' : ''} text-[#000814] mb-4 font-bold`}>
-                Während Sie arbeiten, schlafen oder Zeit mit Ihrer Familie verbringen, sorgt Ihre Website für neue Kundenanfragen. Automatisch.
+            {/* Subheadline & Text */}
+            <div className="max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl">
+              <p
+                ref={text1Ref}
+                className="text-lg xl:text-xl text-[#000814] mb-4 font-semibold"
+              >
+                Ihre Website soll keine Visitenkarte sein,
+                sondern kontinuierlich neue Anfragen erzeugen.
               </p>
-              <p ref={text2Ref} className={`text-[15px] ${isXL ? 'xl:text-[1.1rem]' : 'text-[#000814]/85'} text-[#000814] mb-5`}>
-                Ohne eine Website, die Anfragen bringt, bleibt Ihr Wachstum dem Zufall überlassen.
+
+              <p
+                ref={text2Ref}
+                className="text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5"
+              >
+                Ohne eine Website, die aktiv Anfragen generiert,
+                bleiben Sie abhängig von Empfehlungen und Wachstum wird zum Zufall.
               </p>
             </div>
 
             {/* CTA */}
-            <div ref={ctaRef} className="mt-12.5 flex gap-2 lg:gap-4 md:items-center md:justify-center xl:items-start xl:justify-start">
+            <div
+              ref={ctaRef}
+              className="mt-10 flex gap-2 md:items-center md:justify-center xl:items-start xl:justify-start"
+            >
               <button
                 onClick={handleClick}
-                className="px-4 py-2 text-white bg-[#001D3D] flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 ease-in border-[#003566] hover:border-[#001D3D] transition"
+                className="px-5 py-2.5 cursor-pointer text-white bg-[#001D3D] flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 transition border-[#003566] hover:border-[#001D3D]"
               >
-                Erstgespräch vereinbaren <FaArrowRight />
+                🔍 Kostenlose Website-Analyse <FaArrowRight />
               </button>
             </div>
 
-            <p ref={disclaimerRef} className='text-[13px] md:text-sm mt-3 text-black/40'>
-              Unverbindlich & kostenlos – ohne Risiko
+            <p
+              ref={disclaimerRef}
+              className="text-[13px] md:text-sm mt-3 text-black/40"
+            >
+              Unverbindlich & kostenlos – ohne Verkaufsdruck
             </p>
           </div>
 
@@ -163,7 +173,7 @@ const Hero = () => {
             <img
               ref={imageRef}
               src={HeroIllustration}
-              alt="Illustration einer modernen Website - Franco Cipolla – Webentwickler & Webdesigner aus Ennepetal. Individuelle Websites für KMUs."
+              alt="Conversion-orientierte Website für lokale Unternehmen"
               className={`xl:block w-full max-w-[600px] ${!isXL ? 'hidden' : ''}`}
             />
           </div>

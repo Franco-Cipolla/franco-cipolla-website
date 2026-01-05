@@ -203,7 +203,7 @@ const Contact = () => {
 
             <div className="contact-animate my-8">
               <label htmlFor="name" className="block text-lg font-semibold mb-2">
-                Dein Name
+                Name
               </label>
               <input
                 type="text"
@@ -221,7 +221,7 @@ const Contact = () => {
 
             <div className="contact-animate my-8">
               <label htmlFor="email" className="block text-lg font-semibold mb-2">
-                Deine E-Mail
+                E-Mail
               </label>
               <input
                 type="email"

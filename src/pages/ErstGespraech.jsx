@@ -289,8 +289,10 @@ const Erstgespraech = () => {
         <div className="md:py-20 py-18 px-6 text-black max-w-[950px] xl:max-w-[1100px]">
           <div>
           <h1 className="contact-animate text-3xl md:text-4xl font-bold ">
-            Erstgespräch vereinbaren
+            Kostenlose Website-Analyse für dein Unternehmen
           </h1>
+          <p  className=' contact-animate text-[16px]  mt-4  text-black/70'>
+          Limitierte Kapazität: <strong>max. 2 Kunden / Monat</strong>              </p>
           <p  className=' contact-animate text-[13px] md:text-sm mb-10 mt-4  text-black/40'>
                 Unverbindlich & 100% kostenlos – ohne Risiko
               </p>
@@ -315,7 +317,7 @@ const Erstgespraech = () => {
             {/* Name */}
             <div className="contact-animate my-8">
               <label htmlFor="name" className="block text-lg font-semibold mb-2">
-                Dein Name
+                Name
               </label>
               <input
                 id="name"
@@ -333,7 +335,7 @@ const Erstgespraech = () => {
             {/* Email */}
             <div className="contact-animate my-8">
               <label htmlFor="email" className="block text-lg font-semibold mb-2">
-                Deine E-Mail
+                E-Mail
               </label>
               <input
                 id="email"
@@ -351,7 +353,7 @@ const Erstgespraech = () => {
             {/* Nachricht */}
             <div className="contact-animate my-6">
               <label htmlFor="message" className="block text-lg font-semibold mb-2">
-                Dein Unternehmen & Website (optional)
+                Dein Unternehmen & Website 
               </label>
               <textarea
                 id="message"
