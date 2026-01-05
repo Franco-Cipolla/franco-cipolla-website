@@ -173,7 +173,7 @@ const Contact = () => {
           </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlinePhone className="text-black text-2xl" />
-            <p>+49 176 75398004</p>
+            <a href="tel:+4917675398004">+49 176 75398004</a>
           </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <FiInstagram className="text-black text-2xl" />
