@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
-import { FiInstagram } from 'react-icons/fi'
+import { FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import CookieBanner from './CookieBanner'
+import { FaLinkedin } from 'react-icons/fa'
+import { FaLinkedinIn } from 'react-icons/fa6'
 
 const Footer = () => {
   const [showCookieSettings, setShowCookieSettings] = useState(false)
@@ -68,6 +70,28 @@ const Footer = () => {
                 className="text-[#000814] hover:text-[#003566] transition-colors font-medium"
               >
                 @francocipolla.de
+              </a>
+            </div>
+            <div className="flex items-center gap-3 mt-3">
+              <FiLinkedin className="text-black text-xl" />
+              <a
+                href="https://de.linkedin.com/in/franco-cipolla-00217a37a"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#000814] hover:text-[#003566] transition-colors font-medium"
+              >
+                Franco Cipolla
+              </a>
+            </div>
+            <div className="flex items-center gap-3 mt-3">
+              <FiFacebook className="text-black text-xl" />
+              <a
+                href="https://www.facebook.com/people/Franco-Cipolla/61585491870754/#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#000814] hover:text-[#003566] transition-colors font-medium"
+              >
+                Franco Cipolla
               </a>
             </div>
           </div>
