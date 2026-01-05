@@ -106,7 +106,7 @@ const faqs = [
           Ich verspreche keine Wunder, sondern <strong>messbare Ergebnisse.</strong>
         </p>
         <p>
-          Im Erstgespräch klären wir, ob eine neue Website jetzt Sinn macht oder andere Maßnahmen besser geeignet sind. <strong>Sie erhalten planbare Leads.</strong>
+          Im Erstgespräch klären wir, ob eine neue Website jetzt Sinn macht oder andere Maßnahmen besser geeignet sind.d
         </p>
       </div>
     ),
