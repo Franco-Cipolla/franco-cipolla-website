@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Erstgespraech = () => {
   const sectionRef = useRef(null);
+  const calendlyRef = useRef(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -29,12 +30,26 @@ const Erstgespraech = () => {
     );
   }, []);
 
+  // Calendly Script laden
+  useEffect(() => {
+    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, []);
+
   return (
     <section
       ref={sectionRef}
-      className="w-full flex items-center justify-center mt-20"
+      className="w-full flex items-center justify-center mt-20 px-4"
     >
-      <div className="md:py-20 py-16 px-6 text-black max-w-[950px] xl:max-w-[1100px] w-full">
+      <div className="md:py-20 py-16 text-black max-w-[950px] xl:max-w-[1100px] w-full">
 
         {/* Header */}
         <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
@@ -51,7 +66,7 @@ const Erstgespraech = () => {
           </p>
         </div>
 
-        {/* Conversion Microcopy über iFrame */}
+        {/* Conversion Microcopy */}
         <div className="contact-animate mb-10 text-center max-w-2xl mx-auto">
           <ul className="inline-block text-left space-y-3 text-sm md:text-base text-black/80 mb-6">
             <li>✔ Konkrete Optimierungsideen für mehr Anfragen</li>
@@ -61,21 +76,17 @@ const Erstgespraech = () => {
           </ul>
         </div>
 
-        {/* Calendly iFrame Embed */}
-        <div className="contact-animate w-full flex justify-center">
-          <iframe
-            src="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach?embed_domain=www.franco-cipolla.de&embed_type=Inline"
-            width="100%"
-            height="720"
-            frameBorder="0"
-            scrolling="no"
-            title="Calendly Erstgespräch"
-          />
-        </div>
+        {/* Calendly Inline-Widget */}
+        <div
+          ref={calendlyRef}
+          className="contact-animate calendly-inline-widget"
+          data-url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
+          style={{ minWidth: '320px', height: '700px' }}
+        />
 
         {/* DSGVO Hinweis */}
         <p className="contact-animate text-xs text-black/50 mt-2 text-center max-w-md mx-auto">
-          🔒 Deine Daten werden ausschließlich zur Terminvereinbarung verwendet. Mehr Infos in unserer{' '}
+          🔒 Deine Daten werden ausschließlich zur Terminvereinbarung verwendet. Mehr Infos in meiner{' '}
           <Link to="/datenschutz" className="underline hover:text-black">
             Datenschutzerklärung
           </Link>
