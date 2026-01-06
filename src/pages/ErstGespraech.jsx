@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { InlineWidget } from 'react-calendly'; // <-- Import von react-calendly
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Erstgespraech = () => {
   const sectionRef = useRef(null);
-  const calendlyRef = useRef(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -28,20 +28,6 @@ const Erstgespraech = () => {
         },
       }
     );
-  }, []);
-
-  // Calendly Script laden
-  useEffect(() => {
-    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      document.body.appendChild(script);
-      return () => {
-        document.body.removeChild(script);
-      };
-    }
   }, []);
 
   return (
@@ -76,13 +62,13 @@ const Erstgespraech = () => {
           </ul>
         </div>
 
-        {/* Calendly Inline-Widget */}
-        <div
-          ref={calendlyRef}
-          className="contact-animate calendly-inline-widget"
-          data-url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
-          style={{ minWidth: '320px', height: '700px' }}
-        />
+        {/* Calendly Widget mit react-calendly */}
+        <div className="contact-animate">
+          <InlineWidget
+            url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
+            styles={{ minWidth: '320px', height: '700px' }}
+          />
+        </div>
 
         {/* DSGVO Hinweis */}
         <p className="contact-animate text-xs text-black/50 mt-2 text-center max-w-md mx-auto">
