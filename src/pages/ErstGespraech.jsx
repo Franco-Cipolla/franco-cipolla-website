@@ -77,13 +77,15 @@ const Erstgespraech = () => {
         </div>
 
         {/* Calendly Embed */}
-        <div className="contact-animate w-full flex justify-center">
-          <div
-            className="calendly-inline-widget"
-            data-url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
-            style={{ minWidth: '100%', height: '720px' }}
-          />
-        </div>
+        <div style={{ minWidth: '320px', height: '720px' }}>
+        <iframe
+          src="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach?embed_domain=deine-domain.de&embed_type=Inline"
+          width="100%"
+          height="720"
+          frameBorder="0"
+        />
+      </div>
+
 
         {/* DSGVO Hinweis */}
         <p className="contact-animate text-xs text-black/50 mt-8 text-center max-w-md mx-auto">
