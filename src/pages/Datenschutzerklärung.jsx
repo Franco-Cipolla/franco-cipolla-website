@@ -50,7 +50,7 @@ const Datenschutzerklärung = () => {
 
       <h2 className="text-xl font-semibold mt-8 mb-2">6. Cookies</h2>
       <p className="text-gray-700 mb-4">
-        Diese Website verwendet Cookies, um bestimmte Funktionen bereitzustellen und die Nutzung zu analysieren. Beim ersten Besuch wird ein Cookie-Banner angezeigt, über das du deine Einwilligung geben kannst. Du kannst Cookies jederzeit über deine Browsereinstellungen löschen oder blockieren.
+        Diese Website verwendet Cookies, um bestimmte Funktionen bereitzustellen und die Nutzung zu analysieren. Beim ersten Besuch wird ein Cookie-Banner angezeigt, über das du deine Einwilligung geben kannst. Du kannst Cookies jederzeit über deine Browsereinstellungen löschen oder blockieren. Für die Buchungsfunktion wird Calendly eingesetzt, dabei können Cookies zur Funktionsfähigkeit des Widgets gesetzt werden.
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-2">7. Externe Inhalte & Drittanbieter</h2>

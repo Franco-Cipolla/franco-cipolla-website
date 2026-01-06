@@ -65,6 +65,7 @@ const Erstgespraech = () => {
         {/* Calendly Widget mit react-calendly */}
         <div className="contact-animate">
           <InlineWidget
+
           key={window.location.pathname} // zwingt Neuladen bei Routewechsel
           url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
           styles={{ minWidth: '320px', height: '700px' }}
