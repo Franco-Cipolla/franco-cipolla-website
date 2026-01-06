@@ -29,14 +29,18 @@ const Erstgespraech = () => {
     );
   }, []);
 
+  // Calendly Script nur einmal laden
   useEffect(() => {
+    if (document.getElementById('calendly-script')) return; // verhindert doppelte Einbindung
+
     const script = document.createElement('script');
+    script.id = 'calendly-script';
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      // Script bleibt im Body, wird nicht entfernt, sonst zerstört es das Widget live
     };
   }, []);
 
@@ -58,11 +62,11 @@ const Erstgespraech = () => {
           </p>
 
           <p className="text-base text-black/60 mb-6">
-            Buche dir jetzt dein <strong>Strategie- & Analysegespräch</strong> in 10–15 Minuten. Egal, ob du schon eine Website hast oder nicht.
+            Buche dir jetzt dein <strong>Strategie- & Analysegespräch</strong> in 10–15 Minuten – egal, ob du schon eine Website hast oder nicht.
           </p>
         </div>
 
-        {/* Conversion Microcopy über Calendly */}
+        {/* Conversion Microcopy */}
         <div className="contact-animate mb-10 text-center max-w-2xl mx-auto">
           <ul className="inline-block text-left space-y-3 text-sm md:text-base text-black/80 mb-6">
             <li>✔ Konkrete Optimierungsideen für mehr Anfragen</li>
@@ -82,7 +86,7 @@ const Erstgespraech = () => {
         </div>
 
         {/* DSGVO Hinweis */}
-        <p className="contact-animate text-xs text-black/50 mt-2 text-center max-w-md mx-auto">
+        <p className="contact-animate text-xs text-black/50 mt-8 text-center max-w-md mx-auto">
           🔒 Deine Daten werden ausschließlich zur Terminvereinbarung verwendet. Mehr Infos in unserer{' '}
           <Link to="/datenschutz" className="underline hover:text-black">
             Datenschutzerklärung
