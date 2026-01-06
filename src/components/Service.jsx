@@ -39,7 +39,7 @@ const Service = () => {
     {
       Icon: FaPenNib,
       title: "Copywriting",
-      subtitle: "Texte, die überzeugen und zum Handeln animieren",
+      subtitle: "Texte, die zum Handeln führen",
       benefits: [
         "Klare Sprache → Angebot sofort verständlich",
         "Vertrauen aufbauen → Besucher wissen, dass Sie die richtige Wahl sind",
@@ -49,7 +49,7 @@ const Service = () => {
     {
       Icon: FaSearchengin,
       title: "SEO & Sichtbarkeit",
-      subtitle: "Gefunden werden & echte Kunden gewinnen",
+      subtitle: "Gefunden werden & Kunden gewinnen",
       benefits: [
         "Lokale Optimierung inkl. Google Maps → Kunden finden Sie sofort",
         "Keywords mit Kaufabsicht → Nur echte Interessenten",
