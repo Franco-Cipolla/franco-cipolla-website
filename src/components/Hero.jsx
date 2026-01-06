@@ -125,7 +125,7 @@ const Hero = () => {
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
-              Websites, die lokal <br/> <span className="text-[#003566]">planbar Anfragen bringen</span>.
+              Websites, die lokal <br/> <span className="text-[#003566]">planbar Anfragen bringen.</span>
             </h1>
 
             {/* Subheadline & Text */}

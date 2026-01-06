@@ -1,47 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Erstgespraech = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-    date: '',
-    time: '',
-    privacy: false,
-    honeypot: '',
-  });
-  const [errors, setErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-
   const sectionRef = useRef(null);
-  const datePickerRef = useRef(null);
-  const timePickerRef = useRef(null);
-
-  const formsparkEnv = import.meta.env.VITE_FORMSPARK_FORM_ID_ERSTGESPRAECH;
-  const formsparkURL = buildFormsparkUrl(formsparkEnv);
-
-  // Verfügbare Uhrzeiten
-  const availableTimes = [
-    '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00',  '19:30','20:00', '20:30',  '21:00'
-  ];
-
-  // Wochentage
-  const weekDays = ['MO', 'DI', 'MI', 'DO', 'FR', 'SA', 'SO'];
-  const monthNames = [
-    'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
-    'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
-  ];
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -49,13 +14,13 @@ const Erstgespraech = () => {
 
     gsap.fromTo(
       elements,
-      { opacity: 0, scale: 0.95 },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
-        scale: 1,
+        y: 0,
         duration: 0.6,
         ease: 'power2.out',
-        stagger: 0.2,
+        stagger: 0.15,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 80%',
@@ -64,455 +29,68 @@ const Erstgespraech = () => {
     );
   }, []);
 
-  // Click outside handler
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (datePickerRef.current && !datePickerRef.current.contains(event.target)) {
-        setShowDatePicker(false);
-      }
-      if (timePickerRef.current && !timePickerRef.current.contains(event.target)) {
-        setShowTimePicker(false);
-      }
-    };
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
-  const validateField = (name, value) => {
-    let error = '';
-    switch (name) {
-      case 'name':
-        if (!value.trim()) error = 'Bitte gib deinen Namen ein';
-        break;
-      case 'email':
-        if (!value.trim()) error = 'Bitte gib deine E-Mail ein';
-        else if (!/^\S+@\S+\.\S+$/.test(value)) error = 'Bitte gib eine gültige E-Mail-Adresse ein';
-        break;
-      case 'message':
-        if (!value.trim()) error = 'Bitte gib eine Nachricht ein';
-        break;
-      case 'date':
-        if (!value) error = 'Bitte wähle einen Wunschtermin aus';
-        break;
-      case 'time':
-        if (!value) error = 'Bitte wähle eine Uhrzeit aus';
-        break;
-      case 'privacy':
-        if (!value) error = 'Du musst die Datenschutzerklärung akzeptieren';
-        break;
-      default:
-        break;
-    }
-    return error;
-  };
-
-  const handleBlur = (e) => {
-    const { name, type, checked, value } = e.target;
-    const fieldValue = type === 'checkbox' ? checked : value;
-    const error = validateField(name, fieldValue);
-    setErrors((prev) => ({ ...prev, [name]: error }));
-  };
-
-  const handleChange = (e) => {
-    const { name, type, checked, value } = e.target;
-    const fieldValue = type === 'checkbox' ? checked : value;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: fieldValue,
-    }));
-
-    if (name !== 'honeypot') {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: validateField(name, fieldValue),
-      }));
-    }
-  };
-
-  // Kalenderfunktionen
-  const getDaysInMonth = (date) => {
-    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-  };
-
-  const getFirstDayOfMonth = (date) => {
-    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-    return firstDay === 0 ? 6 : firstDay - 1; // Montag als erster Tag
-  };
-
-  const formatDate = (date) => {
-    return date.toLocaleDateString('de-DE', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
-  };
-
-  const handleDateSelect = (day) => {
-    const selectedDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    if (selectedDate >= today) {
-      setFormData(prev => ({
-        ...prev,
-        date: selectedDate.toISOString().split('T')[0]
-      }));
-      setShowDatePicker(false);
-      setErrors(prev => ({ ...prev, date: '' }));
-    }
-  };
-
-  const handleTimeSelect = (time) => {
-    setFormData(prev => ({
-      ...prev,
-      time: time
-    }));
-    setShowTimePicker(false);
-    setErrors(prev => ({ ...prev, time: '' }));
-  };
-
-  const navigateMonth = (direction) => {
-    setCurrentMonth(prev => {
-      const newMonth = new Date(prev);
-      newMonth.setMonth(prev.getMonth() + direction);
-      return newMonth;
-    });
-  };
-
-  const renderCalendar = () => {
-    const daysInMonth = getDaysInMonth(currentMonth);
-    const firstDay = getFirstDayOfMonth(currentMonth);
-    const today = new Date();
-    const days = [];
-
-    // Leere Zellen für Tage vor dem ersten Tag des Monats
-    for (let i = 0; i < firstDay; i++) {
-      days.push(<div key={`empty-${i}`} className="w-8 h-8"></div>);
-    }
-
-    // Tage des Monats
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dayDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
-      const isToday = dayDate.toDateString() === today.toDateString();
-      const isPast = dayDate < today;
-      const isSelected = formData.date === dayDate.toISOString().split('T')[0];
-
-      days.push(
-        <button
-          key={day}
-          type="button"
-          onClick={() => handleDateSelect(day)}
-          disabled={isPast}
-          className={`w-8 h-8 text-sm rounded  transition-colors ${
-            isPast
-              ? 'text-gray-300 cursor-not-allowed'
-              : isSelected
-                ? 'bg-red-500 cursor-pointer text-white'
-                : isToday
-                  ? 'bg-blue-100 text-blue-600 hover:bg-blue-200'
-                  : 'hover:bg-gray-100'
-          }`}
-        >
-          {day}
-        </button>
-      );
-    }
-
-    return days;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (formData.honeypot) {
-      console.warn('Spam erkannt – Formular wird nicht gesendet.');
-      return;
-    }
-
-    const newErrors = {};
-    Object.entries(formData).forEach(([key, val]) => {
-      if (key !== 'honeypot') {
-        const error = validateField(key, val);
-        if (error) newErrors[key] = error;
-      }
-    });
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      toast.dismiss();
-      toast.error('Bitte überprüfe die Eingaben und behebe die Fehler.');
-      return;
-    }
-
-    setSubmitting(true);
-
-    try {
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        date: formData.date,
-        time: formData.time,
-        privacy: formData.privacy,
-      };
-
-      const result = await submitToFormspark(formsparkURL, payload);
-      toast.dismiss();
-
-      if (result.ok) {
-        toast.success('Danke für deine Anfrage!');
-        setFormData({ name: '', email: '', message: '', date: '', time: '', privacy: false, honeypot: '' });
-        setErrors({});
-      } else {
-        toast.error(result.message || 'Fehler beim Senden. Bitte versuche es erneut.');
-      }
-    } catch (err) {
-      toast.dismiss();
-      const offline = typeof navigator !== 'undefined' && navigator && navigator.onLine === false;
-      if (offline) {
-        toast.error('Du scheinst offline zu sein. Bitte prüfe deine Internetverbindung.');
-      } else {
-        toast.error('Senden fehlgeschlagen. Bitte versuche es später erneut.');
-      }
-      console.error(err);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   return (
-    <>
-      <section ref={sectionRef} className="w-full flex items-center mt-20 justify-center">
-        <ToastContainer position="top-right" autoClose={5000} />
-        <div className="md:py-20 py-18 px-6 text-black max-w-[950px] xl:max-w-[1100px]">
-          <div>
-          <h1 className="contact-animate text-3xl md:text-4xl font-bold ">
+    <section
+      ref={sectionRef}
+      className="w-full flex items-center justify-center mt-20"
+    >
+      <div className="md:py-20 py-16 px-6 text-black max-w-[950px] xl:max-w-[1100px] w-full">
+
+        {/* Header */}
+        <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
             Kostenlose Website-Analyse für dein Unternehmen
           </h1>
-          <p  className=' contact-animate text-[16px]  mt-4  text-black/70'>
-          Limitierte Kapazität: <strong>max. 2 Kunden / Monat</strong>              </p>
-          <p  className=' contact-animate text-[13px] md:text-sm mb-10 mt-4  text-black/40'>
-                Unverbindlich & 100% kostenlos – ohne Risiko
-              </p>
-              </div>
 
+          <p className="text-lg text-black/70 mb-4">
+            Limitierte Kapazität: <strong>max. 2 Projekte pro Monat</strong>
+          </p>
 
-          <form onSubmit={handleSubmit} className="max-w-xl mx-auto relative" noValidate style={{ zIndex: 1, isolation: 'isolate' }}>
-            {/* Honeypot-Feld */}
-            <div style={{ display: 'none' }}>
-              <label htmlFor="company">Firma</label>
-              <input
-                id="company"
-                name="honeypot"
-                type="text"
-                value={formData.honeypot}
-                onChange={handleChange}
-                autoComplete="off"
-                tabIndex="-1"
-              />
-            </div>
-
-            {/* Name */}
-            <div className="contact-animate my-8">
-              <label htmlFor="name" className="block text-lg font-semibold mb-2">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`border w-full p-2.5 font-semibold text-[#000814] rounded ${errors.name ? 'border-red-500' : 'border-black'}`}
-              />
-              {errors.name && <p className="text-red-600 text-sm mt-1">{errors.name}</p>}
-            </div>
-
-            {/* Email */}
-            <div className="contact-animate my-8">
-              <label htmlFor="email" className="block text-lg font-semibold mb-2">
-                E-Mail
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`border w-full p-2.5 font-semibold text-[#000814] rounded ${errors.email ? 'border-red-500' : 'border-black'}`}
-              />
-              {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
-            </div>
-
-            {/* Nachricht */}
-            <div className="contact-animate my-6">
-              <label htmlFor="message" className="block text-lg font-semibold mb-2">
-                Dein Unternehmen & Website 
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="1"
-                required
-                value={formData.message}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`border w-full p-2.5 font-semibold text-[#000814] rounded ${errors.message ? 'border-red-500' : 'border-black'}`}
-              />
-              {errors.message && <p className="text-red-600 text-sm mt-1">{errors.message}</p>}
-            </div>
-
-            {/* Datum & Uhrzeit Picker */}
-            <div className="contact-animate my-8 relative" style={{ zIndex: 10 }}>
-              <label className="block text-lg font-semibold mb-4">
-                Datum & Uhrzeit wählen
-              </label>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative" style={{ zIndex: 20 }}>
-                {/* Datum Picker */}
-                <div className="relative" ref={datePickerRef} style={{ zIndex: 100 }}>
-                  <button
-                    type="button"
-                    onClick={() => setShowDatePicker(!showDatePicker)}
-                    className={`border w-full cursor-pointer p-2.5 font-semibold text-[#000814] rounded text-left ${
-                      errors.date ? 'border-red-500' : 'border-black'
-                    }`}
-                  >
-                    {formData.date ? formatDate(new Date(formData.date)) : 'Datum wählen'}
-                  </button>
-
-                  {showDatePicker && (
-                    <div
-                      className="absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-2xl p-4 w-80"
-                      style={{
-                        zIndex: 99999
-                      }}
-                    >
-                      {/* Header */}
-                      <div className="flex justify-between items-center mb-4">
-                        <button
-                          type="button"
-                          onClick={() => navigateMonth(-1)}
-                          className="p-1 hover:bg-gray-100 cursor-pointer rounded"
-                        >
-                          ←
-                        </button>
-                        <h3 className="font-semibold">
-                          {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
-                        </h3>
-                        <button
-                          type="button"
-                          onClick={() => navigateMonth(1)}
-                          className="p-1 hover:bg-gray-100 cursor-pointer rounded"
-                        >
-                          →
-                        </button>
-                      </div>
-
-                      {/* Wochentage */}
-                      <div className="grid grid-cols-7 gap-1 mb-2">
-                        {weekDays.map(day => (
-                          <div key={day} className="text-center text-xs font-medium text-gray-500 p-1">
-                            {day}
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Kalender */}
-                      <div className="grid grid-cols-7 gap-1">
-                        {renderCalendar()}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Uhrzeit Picker */}
-                <div className="relative" ref={timePickerRef} style={{ zIndex: 30 }}>
-                  <button
-                    type="button"
-                    onClick={() => setShowTimePicker(!showTimePicker)}
-                    className={`border w-full p-2.5 cursor-pointer font-semibold text-[#000814] rounded text-left ${
-                      errors.time ? 'border-red-500' : 'border-black'
-                    }`}
-                  >
-                    {formData.time || 'Uhrzeit wählen'}
-                  </button>
-
-                  {showTimePicker && (
-                    <div
-                      className="absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-2xl max-h-60 overflow-y-auto w-full"
-                      style={{
-                        zIndex: 99998
-                      }}
-                    >
-                      {availableTimes.map(time => (
-                        <button
-                          key={time}
-                          type="button"
-                          onClick={() => handleTimeSelect(time)}
-                          className={`w-full p-2 cursor-pointer text-left hover:bg-gray-100 ${
-                            formData.time === time ? 'bg-blue-100 text-blue-600' : ''
-                          }`}
-                        >
-                          {time}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {errors.date && <p className="text-red-600 text-sm mt-1">{errors.date}</p>}
-              {errors.time && <p className="text-red-600 text-sm mt-1">{errors.time}</p>}
-            </div>
-
-            {/* Checkbox Datenschutzerklärung */}
-            <div className="contact-animate flex items-center gap-2 mb-8 relative" style={{ zIndex: 1 }}>
-              <input
-                type="checkbox"
-                id="privacy"
-                name="privacy"
-                checked={formData.privacy}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`w-5 h-5 border accent-[#003566] rounded-none cursor-pointer ${errors.privacy ? 'border-red-500' : 'border-black'}`}
-              />
-              <label
-                htmlFor="privacy"
-                className="text-base text-[#000814] leading-snug cursor-pointer"
-              >
-                Ich akzeptiere die{' '}
-                <Link
-                  to="/datenschutz"
-                  className="underline hover:text-[#001D3D] text-[#000814] transition-colors duration-200"
-                >
-                  Datenschutzerklärung
-                </Link>
-                .
-              </label>
-            </div>
-            {errors.privacy && <p className="text-red-600 mb-4 text-sm">{errors.privacy}</p>}
-
-            <button
-              type="submit"
-              disabled={submitting}
-              className={`contact-animate py-3 px-6 text-white rounded transition transform relative ${
-                submitting ? 'bg-gray-600 cursor-not-allowed' : 'bg-black hover:bg-[#000814] cursor-pointer'
-              }`}
-              style={{ zIndex: 1 }}
-            >
-              {submitting ? 'Wird gesendet…' : 'Anfrage senden'}
-            </button>
-          </form>
+          <p className="text-base text-black/60 mb-6">
+            Buche dir jetzt dein <strong>Strategie- & Analysegespräch</strong> in 10–15 Minuten. Egal, ob du schon eine Website hast oder nicht.
+          </p>
         </div>
-      </section>
-    </>
+
+        {/* Conversion Microcopy über Calendly */}
+        <div className="contact-animate mb-10 text-center max-w-2xl mx-auto">
+          <ul className="inline-block text-left space-y-3 text-sm md:text-base text-black/80 mb-6">
+            <li>✔ Konkrete Optimierungsideen für mehr Anfragen</li>
+            <li>✔ Kostenloser Design-Prototyp, falls keine Website vorhanden</li>
+            <li>✔ Entscheidungsfreiheit – nur, wenn es für beide Seiten passt</li>
+            <li>✔ Alle Termindetails automatisch per E-Mail</li>
+          </ul>
+        </div>
+
+        {/* Calendly Embed */}
+        <div className="contact-animate w-full flex justify-center">
+          <div
+            className="calendly-inline-widget"
+            data-url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
+            style={{ minWidth: '100%', height: '720px' }}
+          />
+        </div>
+
+        {/* DSGVO Hinweis */}
+        <p className="contact-animate text-xs text-black/50 mt-2 text-center max-w-md mx-auto">
+          🔒 Deine Daten werden ausschließlich zur Terminvereinbarung verwendet. Mehr Infos in unserer{' '}
+          <Link to="/datenschutz" className="underline hover:text-black">
+            Datenschutzerklärung
+          </Link>
+        </p>
+
+      </div>
+    </section>
   );
 };
 
