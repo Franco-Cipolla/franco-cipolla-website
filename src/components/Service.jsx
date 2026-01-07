@@ -78,7 +78,7 @@ const Service = () => {
               Websites, die Besucher in Kunden verwandeln
             </span>
           </h1>
-          <p className="text-lg  text-[#000814]/80 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg text-[#000814]/80 max-w-3xl mx-auto mb-8 leading-relaxed">
             Ich entwickle Websites für Selbstständige und Unternehmen, die nicht nur gut aussehen, sondern <strong className="text-[#001D3D]">planbar neue Kundenanfragen generieren</strong>.
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-[#001D3D]/80 text-sm md:text-base font-medium">
@@ -111,8 +111,16 @@ const Service = () => {
               Rundum-Sorglos-Website: Nur das Komplettpaket funktioniert
             </h3>
             <p className="md:text-lg text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Website, Conversion-Optimierung, Google Maps Integration, BONUS: persönliche Mini-Videos. Alles in einem Paket. Nur so gewinnen Sie planbar neue Kunden. Messbar & direkt.
-            </p>
+          Website + Conversion-Optimierung + Google Maps Integration →  messbare neue Anfragen & Kunden.
+          <br />
+          <strong>Aktuell inklusive Bonus:</strong> Social-Media Starterkit. 2 fertige Posts + Persönliches Video, wie Sie Ihre Website aktiv bewerben. <span className="italic">Bonus nur für die nächsten 3 Kunden enthalten!</span>
+        </p>
+
+            {/* Bonus Wert & Dringlichkeit */}
+            <div className="mb-8">
+              <p className="text-white/80  mb-1">Wert des Bonus: <strong>400 €</strong></p>
+              <p className="text-white/80 ">Sofort umsetzbar → erste Besucher schon in den ersten Tagen.</p>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
               <div className="text-center">

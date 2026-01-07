@@ -53,7 +53,7 @@ const ProcessSection = () => {
       icon: <FaRocket className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
       title: 'Launch & Kontrolle',
       description:
-        'Wir gehen live, stellen Analytics & Lead-Tracking ein. Sie sehen sofort, wie Besucher zu Kunden werden.',
+        'Wir gehen live, stellen Analytics & Besucher-Tracking ein. Sie sehen sofort, wie Besucher zu Kunden werden.',
     },
     {
       icon: <FaTools className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,

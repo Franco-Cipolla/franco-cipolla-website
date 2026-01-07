@@ -11,36 +11,34 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Viele Websites sehen gut aus aber <strong>besucher wissen nicht, was sie tun sollen</strong>.
-          Ergebnis: Keine Anfragen, verlorene Chancen.
+          Viele Websites sehen zwar gut aus, aber <strong>besucher wissen nicht, was sie tun sollen</strong>.
+          Ergebnis: keine Anfragen, verlorene Chancen.
         </p>
         <p>
-
           Ich erstelle Websites, die Besucher gezielt führen, Vertrauen aufbauen und Schritt für Schritt zu einer Anfrage bringen.
-            <br></br>    <br></br>
-          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration und BONUS: personalisierten Mini-Videos</strong>.
+          <br /><br />
+          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration</strong> und <strong> aktuell inklusive Bonus: Social-Media Starterkit</strong>, damit Sie direkt erste Besucher auf Ihre Website bekommen.
         </p>
       </div>
     ),
   },
   {
-  question: 'Ich habe noch keine Website. Kann ich trotzdem starten?',
-  answer: (
-    <div className="space-y-2">
-      <p>
-        Ja, absolut! Auch ohne bestehende Website können wir starten. <br/> <br/>
-        In einem kurzen Termin zeige ich ihnen zuerst unverbindlich einen <strong>kostenlosen Design Prototypen.</strong>  Dabei erkläre ich wie es aufgebaut ist, um Anfragen zu generieren.
-      </p>
-      <p>
-        So sehen Sie schon vorher, welchen Mehrwert Ihre Website liefern könnte.
-      </p>
-      <p>
-        Wenn Sie sich anschließend entscheiden, das Projekt mit mir zu starten, werden Sie in den nächsten verfügbaren Slot eingeteilt. <br/>
-        Ich betreue nur 2 Kunden pro Monat, um sicherzustellen, dass jedes Projekt <strong>maximale Ergebnisse</strong>  liefert.
-      </p>
-    </div>
-  ),
-},
+    question: 'Ich habe noch keine Website. Kann ich trotzdem starten?',
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Ja, absolut! Auch ohne bestehende Website können wir starten. <br /><br />
+          In einem kurzen Termin zeige ich Ihnen zuerst unverbindlich einen <strong>kostenlosen Design-Prototypen</strong> und erkläre, wie er funktioniert, um Anfragen zu generieren.
+        </p>
+        <p>
+          So sehen Sie schon vorher, welchen Mehrwert Ihre Website liefern könnte.
+        </p>
+        <p>
+          Wenn Sie sich anschließend entscheiden, das Projekt mit mir zu starten, werden Sie in den nächsten verfügbaren Slot eingeteilt. Ich betreue nur <strong>2 Kunden pro Monat</strong>, um maximale Ergebnisse zu garantieren.
+        </p>
+      </div>
+    ),
+  },
   {
     question: 'Was bekomme ich konkret?',
     answer: (
@@ -48,13 +46,14 @@ const faqs = [
         <p>
           Sie bekommen nicht nur eine „schöne Website“, sondern ein System, das <strong>direkt neue Kunden generiert</strong>.
         </p>
-        <ul className="list-disc list-inside space-y-8">
-          <li className='mt-8'>Conversion-optimierte Struktur & Texte → Besucher werden zu Anfragen</li>
+        <ul className="list-disc list-inside space-y-4">
+          <li>Conversion-optimierte Struktur & Texte → Besucher werden zu Anfragen</li>
           <li>Modernes Design & Branding → Vertrauen & Professionalität</li>
           <li>Mobile-optimiert & blitzschnell → kein Kunde geht verloren</li>
           <li>Google Maps & lokale Sichtbarkeit → Kunden finden Sie sofort</li>
-          <li>BONUS: Mini-Videos → direkt auf Social Media anwendbar</li>
+          <li><strong>Bonus (aktuell inklusive):</strong> Social-Media Starterkit → 2 vorgefertigte Posts für Instagram & Facebook + Persönliches Video, wie Sie Ihre Website aktiv bewerben. <span className="text-white/80">Wert: 400€</span></li>
         </ul>
+        <p className="text-sm text-gray-600 mt-2">Sofort umsetzbar → erste Besucher schon in den ersten Tagen.</p>
       </div>
     ),
   },
@@ -68,7 +67,6 @@ const faqs = [
         <p>
           Ihre Website entsteht vollständig im Hintergrund, während Sie sich auf Ihr Business konzentrieren.
         </p>
-
       </div>
     ),
   },
@@ -112,37 +110,36 @@ const faqs = [
     ),
   },
   {
-  question: 'Kann ich einzelne Elemente kaufen?',
-  answer: 'Nein, ich biete nur das komplette Paket an. So stelle ich sicher, dass Ihre Website optimal Besucher führt und Schritt für Schritt zu Anfragen konvertiert.'
-}
-,
+    question: 'Kann ich einzelne Elemente kaufen?',
+    answer: 'Nein, ich biete nur das komplette Paket an. So stellen wir sicher, dass Ihre Website optimal Besucher führt und Schritt für Schritt zu Anfragen konvertiert.'
+  },
   {
     question: 'Gehört mir die Website nach der Fertigstellung?',
-answer: (
-  <div className="space-y-2">
-    <p>
-      Ja, die Website gehört <strong>vollständig Ihnen</strong>. Sie behalten volle Kontrolle über Hosting, Website und Inhalte.
-    </p>
-    <p>
-      Ich erhalte lediglich die notwendigen Zugänge, um die Website aufzubauen.   <br></br>   <br></br>  Änderungen können Sie selbst vornehmen oder mich optional beauftragen. Ganz ohne Einschränkungen.
-    </p>
-  </div>
-      )
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Ja, die Website gehört <strong>vollständig Ihnen</strong>. Sie behalten volle Kontrolle über Hosting, Website und Inhalte.
+        </p>
+        <p>
+          Ich erhalte lediglich die notwendigen Zugänge, um die Website aufzubauen. Änderungen können Sie selbst vornehmen oder mich optional beauftragen. Ganz ohne Einschränkungen.
+        </p>
+      </div>
+    )
   },
   {
     question: 'Kann ich später Änderungen vornehmen?',
-answer: (
-  <div className="space-y-2">
-    <p>
-      Kleinere Anpassungen lassen sich jederzeit unkompliziert und professionell umsetzen, ohne dass Ihre laufenden Anfragen beeinträchtigt werden.
-    </p>
-    <p>
-      Für regelmäßige Optimierung biete ich optionale Wartungspakete an, <strong>monatlich kündbar & ohne Verpflichtung</strong>.
-    </p>
-  </div>
-      )
-        },
-      ]
+    answer: (
+      <div className="space-y-2">
+        <p>
+          Kleinere Anpassungen lassen sich jederzeit unkompliziert und professionell umsetzen, ohne dass Ihre laufenden Anfragen beeinträchtigt werden.
+        </p>
+        <p>
+          Für regelmäßige Optimierung biete ich optionale Wartungspakete an, <strong>monatlich kündbar & ohne Verpflichtung</strong>.
+        </p>
+      </div>
+    )
+  }
+]
 
 const FAQSection = () => {
   const sectionRef = useRef(null)
@@ -204,9 +201,7 @@ const FAQSection = () => {
             >
               <span className="font-semibold text-lg">{faq.question}</span>
               <FaChevronDown
-                className={`transition-transform duration-300 ${
-                  openIndex === index ? 'rotate-180' : ''
-                }`}
+                className={`transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}
               />
             </button>
 
