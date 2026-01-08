@@ -41,13 +41,13 @@ const ProcessSection = () => {
       icon: <FaDraftingCompass className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
       title: 'Design & Struktur',
       description:
-        'Mockups, Seitenstruktur und Conversion-optimiertes Layout. Alles auf Ihre Zielgruppe abgestimmt.',
+        'Beispiele, Seitenstruktur und Layout das Besucher führt. Alles auf Ihre Zielgruppe abgestimmt.',
     },
     {
       icon: <FaCode className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
       title: 'Entwicklung & Optimierung',
       description:
-        'WordPress + Bricks Builder → responsive & schnell. SEO, Ladezeiten & Conversion-Optimierung integriert.',
+        'Responsive, schnell und für SEO & Conversion optimiert.',
     },
     {
       icon: <FaRocket className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
@@ -73,7 +73,7 @@ const ProcessSection = () => {
           Ihr Weg zur planbaren Kunden-Website
         </h2>
         <p className="text-lg  text-[#000814]/80 max-w-3xl mx-auto">
-          Transparenter Prozess – von der ersten Idee bis zur live geschalteten Website
+          Transparenter Prozess – Von der Idee bis zur Website, die Kunden anzieht.
         </p>
       </div>
 

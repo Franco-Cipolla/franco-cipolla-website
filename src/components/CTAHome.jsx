@@ -40,14 +40,13 @@ const CTAHome = () => {
       className="text-black py-12 my-32 px-6 text-center"
     >
       <h2 className="cta-animate text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
-        Ihre Website verschenkt Anfragen? <br/>Lassen Sie uns das ändern. Kostenlos.
+        Ihre Website verschenkt Anfragen? <br/>Lassen Sie uns das ändern. Unverbindlich.
       </h2>
 
       <p className="cta-animate text-base sm:text-lg mb-6 max-w-xl mx-auto">
-        Ich zeige Ihnen genau, <strong>wo Ihre Website Anfragen verschenkt </strong>
-        und wie Sie daraus mehr Kunden gewinnen können. <br /><br />
-        Ich betreue bewusst nur 2 neue Kunden pro Monat, um echte Ergebnisse zu liefern.
-      </p>
+        Ich zeige Ihnen Schritt für Schritt, <strong>wo Ihre Website Anfragen verliert </strong>
+        und wie Sie daraus <strong>mehr Neukunden</strong> gewinnen können. <br /><br />
+        Nur 2 neue Kunden pro Monat – so kann ich mich voll auf echte Ergebnisse konzentrieren.      </p>
 
       <button
         onClick={handleClick}
@@ -55,7 +54,7 @@ const CTAHome = () => {
       >
         Kostenlose Website-Analyse starten <FaArrowRight />
       </button>
-      <p className='cta-animate text-[15px] mt-3 text-black/60'>Ohne Risiko & Unverbindlich</p>
+      <p className='cta-animate text-[15px] mt-3 text-black/60'>Ohne Risiko & vollkommen unverbindlich</p>
 
     </section>
   )

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { gsap, ScrollTrigger } from './gsapSetup'
 import { FaChevronDown } from 'react-icons/fa'
-import CTA1 from './CTA1'
+import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -70,19 +70,24 @@ const faqs = [
       </div>
     ),
   },
-  {
-    question: 'Wie viel kostet eine Website?',
-    answer: (
-      <div className="space-y-2">
-        <p>
-          Für Selbstständige und kleine Unternehmen liegen Projekte meist zwischen <strong>800 € und 1.500 €</strong>.
-        </p>
-        <p>
-          Im kostenlosen Erstgespräch zeige ich Ihnen, was Sie wirklich brauchen. Danach erhalten Sie ein <strong>transparentes Festpreis-Angebot</strong>. Ohne versteckte Kosten.
-        </p>
-      </div>
-    ),
-  },
+ {
+  question: 'Wie viel kostet eine Website?',
+  answer: (
+    <div className="space-y-2">
+      <p>
+        Für Selbstständige und kleine Unternehmen liegen Projekte meist zwischen <strong>800 € und 1.500 €</strong>.
+      </p>
+      <p>
+        Sie starten mit <strong>50% Anzahlung.</strong> Den Rest zahlen Sie erst, wenn Ihre Website live geht.
+      </p>
+      <p>
+        Im kostenlosen Erstgespräch zeige ich Ihnen, was Sie wirklich brauchen. Danach erhalten Sie ein <strong>transparentes Festpreis-Angebot</strong>. Ohne versteckte Kosten.
+      </p>
+
+    </div>
+  ),
+},
+
   {
     question: 'Wie lange dauert die Umsetzung?',
     answer: (
@@ -145,6 +150,10 @@ const FAQSection = () => {
   const sectionRef = useRef(null)
   const ctaRef = useRef(null)
   const [openIndex, setOpenIndex] = useState(null)
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/erstgespraech');
+  };
 
   useEffect(() => {
     if (!sectionRef.current) return
@@ -195,6 +204,7 @@ const FAQSection = () => {
             key={index}
             className="faq-item border cursor-pointer border-gray-200 rounded-xl p-6 shadow-sm transition duration-300"
           >
+
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
               className="w-full cursor-pointer flex justify-between items-center text-left"
@@ -214,12 +224,16 @@ const FAQSection = () => {
         ))}
       </div>
 
-      <div ref={ctaRef} className="text-center mt-12 w-full">
+      <div ref={ctaRef} className="text-center mt-12 w-full flex flex-col items-center">
         <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto my-6">
           Noch unsicher, ob das für Sie Sinn macht? <br />
           Lassen Sie uns gemeinsam klären, wie Ihre Website direkt neue Kunden bringen kann.
         </p>
-        <CTA1 />
+        <button
+            onClick={handleClick}
+          className="px-5 py-2.5 cursor-pointer text-white bg-[#001D3D] flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 transition border-[#003566] hover:border-[#001D3D]">
+          🔍 Kostenlose Website-Analyse
+          </button>
       </div>
     </section>
   )
