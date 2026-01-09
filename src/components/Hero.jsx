@@ -125,7 +125,7 @@ const Hero = () => {
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
-              Websites, die lokal <br/> <span className="text-[#003566]">planbar Anfragen bringen.</span>
+              Websites, die lokal <br/> <span className="text-[#003566]">planbar Kunden bringen.</span>
             </h1>
 
             {/* Subheadline & Text */}
@@ -173,7 +173,7 @@ const Hero = () => {
             <img
               ref={imageRef}
               src={HeroIllustration}
-              alt="Conversion-orientierte Website für lokale Unternehmen"
+              alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen"
               className={`xl:block w-full max-w-[600px] ${!isXL ? 'hidden' : ''}`}
             />
           </div>
