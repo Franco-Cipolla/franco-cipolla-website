@@ -68,7 +68,7 @@ const Service = () => {
         {/* Header */}
         <div className="text-center mb-16" ref={headerRef} id="service-start">
           <h1 className="mb-6 leading-tight text-3xl md:text-4xl font-bold text-center">
-            Meine Leistungen.
+            Meine Leistung.
             <span className="block bg-gradient-to-r from-[#003566] to-[#00A6FB] bg-clip-text text-transparent">
               Websites, die Besucher gezielt zur Anfrage führen            </span>
           </h1>
