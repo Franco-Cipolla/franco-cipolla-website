@@ -13,11 +13,11 @@ const Service = () => {
     {
       Icon: FaCode,
       title: "Webentwicklung",
-      subtitle: "Jeder Besucher wird zum Kunden",
+      subtitle: "Besucher werden klar zur Anfrage geführt",
       benefits: [
         "Häufiges Problem: Besucher finden sich nicht zurecht und gehen zur Konkurrenz",
         "Lösung: Klare Schritt-für-Schritt-Navigation, die Besucher führt",
-        "Ergebnis: Mehr Anfragen direkt über die Website, ohne Aufwand"
+        "Ergebnis: Mehr qualifizierte Anfragen über die Website, ohne viel Aufwand"
       ],
       highlight: true
     },
@@ -28,7 +28,7 @@ const Service = () => {
       benefits: [
         "Häufiges Problem: Altmodisches Design wirkt unprofessionell",
         "Lösung: Modernes, sauberes Branding und klare Struktur",
-        "Ergebnis: Besucher vertrauen dir extrem schnell und werden Kunden"
+        "Ergebnis: Besucher bauen schneller Vertrauen auf und wissen, wie sie Kontakt aufnehmen"
       ]
     },
     {
@@ -48,7 +48,7 @@ const Service = () => {
       benefits: [
         "Häufiges Problem: Deine Website wird nicht gefunden → keine Kundenanfragen",
         "Lösung: Lokale SEO, Google Maps und relevante Keywords",
-        "Ergebnis: Planbare Besucher & echte Interessenten, die dich direkt kontaktieren"
+        "Ergebnis: Planbare Besucher & echte Interessenten, die dich kontaktieren"
       ]
     }
   ];
@@ -70,8 +70,7 @@ const Service = () => {
           <h1 className="mb-6 leading-tight text-3xl md:text-4xl font-bold text-center">
             Meine Leistungen.
             <span className="block bg-gradient-to-r from-[#003566] to-[#00A6FB] bg-clip-text text-transparent">
-              Websites, die Besucher zu Kunden machen
-            </span>
+              Websites, die Besucher gezielt zur Anfrage führen            </span>
           </h1>
           <p className="text-lg text-[#000814]/80 max-w-3xl mx-auto mb-8 leading-relaxed">
             Ich erstelle Websites für Selbstständige und kleine Unternehmen, die nicht nur gut aussehen, sondern <strong className="text-[#001D3D]">aktiv neue Kundenanfragen liefern</strong>.
@@ -102,18 +101,19 @@ const Service = () => {
         {/* Rundum-Sorglos Paket */}
         <div className="bg-gradient-to-r from-[#001D3D] to-[#003566] rounded-3xl p-10 text-center text-white shadow-xl transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-10">
-              Rundum-Sorglos-Website: Nur das Komplettpaket funktioniert
+            <h3 className="text-3xl md:text-4xl font-bold mb-10 md:px-12">
+              Lokale-Anfragen-System: Das komplette Website-System für planbare Anfragen
             </h3>
+
             <p className="md:text-lg text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Website als Verkaufssystem + Conversion-Optimierung + Google Maps Integration →  messbare neue Anfragen & Kunden.
+              Website als Verkaufssystem + Conversion-Optimierung + Google Maps Integration →  messbare neue Anfragen.
               <br />
               <br />
-              <strong>Aktuell inklusive Bonus:</strong> Social-Media Starterkit. 2 fertige Posts + Persönliches Video, wie sie ihre Website aktiv bewerben. <span className="italic">Bonus nur für die nächsten 3 Kunden enthalten!</span>
+              <strong>Aktuell inklusive Bonus:</strong> Website-Besucher-Startpaket. 2 fertige Social-Media-Posts + kurzes persönliches Video, wie Sie gezielt Besucher auf Ihre Website lenken. <span className="italic">Bonus nur für die nächsten 3 Kunden enthalten!</span>
             </p>
 
             <div className="mb-8">
-              <p className="text-white/80 mb-1">Wert des Bonus: <strong>400 €</strong></p>
+              <p className="text-white/80 mb-1">Wert des Bonus: <strong>300 €</strong></p>
               <p className="text-white/80">Sofort umsetzbar → erste Besucher schon in den ersten Tagen.</p>
             </div>
 

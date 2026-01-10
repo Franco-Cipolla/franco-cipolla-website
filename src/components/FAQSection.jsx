@@ -17,7 +17,7 @@ const faqs = [
         <p>
           Ich erstelle Websites, die Besucher gezielt führen, Vertrauen aufbauen und Schritt für Schritt zu einer Anfrage bringen.
           <br /><br />
-          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration</strong> und <strong> aktuell inklusive Bonus: Social-Media Starterkit</strong>, damit Sie direkt erste Besucher auf Ihre Website bekommen.
+          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration</strong> und <strong> aktuell inklusive Bonus: Social-Media Starterkit</strong>, damit Sie nach dem Launch gezielt Besucher auf Ihre Website lenken können.
         </p>
       </div>
     ),
@@ -44,14 +44,14 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Sie bekommen nicht nur eine „schöne Website“, sondern ein System, das <strong>direkt neue Kunden generiert</strong>.
+          Sie bekommen nicht nur eine „schöne Website“, sondern ein System, das <strong>darauf ausgelegt ist, Besucher zur Anfrage zu führen</strong>.
         </p>
         <ul className="list-disc list-inside space-y-4">
           <li>Conversion-optimierte Struktur & Texte → Besucher werden zu Anfragen</li>
           <li>Modernes Design & Branding → Vertrauen & Professionalität</li>
           <li>Mobile-optimiert & blitzschnell → kein Kunde geht verloren</li>
           <li>Google Maps & lokale Sichtbarkeit → Kunden finden Sie sofort</li>
-          <li><strong>Bonus (aktuell inklusive):</strong> Social-Media Starterkit → 2 vorgefertigte Posts für Instagram & Facebook + Persönliches Video, wie Sie Ihre Website aktiv bewerben. <span className="text-white/80">Wert: 400€</span></li>
+          <li><strong>Bonus (aktuell inklusive):</strong> Social-Media Starterkit → 2 vorgefertigte Posts für Instagram & Facebook + Persönliches Video, wie Sie Ihre Website aktiv bewerben. <span className="text-white/80">Wert: 300€</span></li>
         </ul>
         <p className="text-sm text-gray-600 mt-2">Sofort umsetzbar → erste Besucher schon in den ersten Tagen.</p>
       </div>
@@ -62,7 +62,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Minimal. Sie liefern Hosting, Zugänge, Logos, Fotos.  <strong>Alles andere erledige ich komplett</strong>.
+          Minimal. Sie liefern Hosting, Zugänge, Logos, Fotos.  <strong>Alles andere erledige ich.</strong>.
         </p>
         <p>
           Ihre Website entsteht vollständig im Hintergrund, während Sie sich auf Ihr Business konzentrieren.
@@ -106,7 +106,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Ich verspreche keine Wunder, sondern <strong>messbare Ergebnisse.</strong>
+          Ich verspreche keine Wunder, sondern eine sauber aufgebaute Website mit klarer Struktur, nachvollziehbaren Besucherwegen und optimierten Anfragepunkten.
         </p>
         <p>
           Im Erstgespräch klären wir, ob eine neue Website jetzt Sinn macht oder andere Maßnahmen besser geeignet sind.

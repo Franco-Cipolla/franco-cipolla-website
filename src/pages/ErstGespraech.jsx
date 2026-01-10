@@ -48,7 +48,7 @@ const Erstgespraech = () => {
           </p>
 
           <p className="text-base text-black/60 mb-6">
-            Buche dir jetzt dein <strong>Strategie- & Analysegespräch</strong> in 10–15 Minuten. Egal, ob du schon eine Website hast oder nicht.
+            Buche dir jetzt deine <strong>Website-Analyse/Erstgespräch</strong>. Egal, ob du schon eine Website hast oder nicht.
           </p>
         </div>
 
