@@ -2,14 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { InlineWidget } from 'react-calendly'; // <-- Import von react-calendly
 import { Helmet } from 'react-helmet-async';
-gsap.registerPlugin(ScrollTrigger);
+import CalendlyConsentEmbed from '../components/CalendlyConsentEmbed';
 
 const Erstgespraech = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     if (!sectionRef.current) return;
     const elements = sectionRef.current.querySelectorAll('.contact-animate');
 
@@ -31,72 +32,65 @@ const Erstgespraech = () => {
   }, []);
 
   return (
-    <><Helmet>
-        <title>Kostenlose Website-Analyse – Erstgespräch buchen Franco Cipolla</title>
-        <meta name="description" content="Buche jetzt deine kostenlose Website-Analyse. Max. 2 Projekte pro Monat. Konkrete Optimierungsideen oder kostenloser Design-Prototyp, direkte Terminbuchung via Calendly." />
+    <>
+      <Helmet>
+        <title>Kostenlose Website-Analyse – Erstgespräch buchen | Franco Cipolla</title>
+        <meta
+          name="description"
+          content="Buche jetzt deine kostenlose Website-Analyse. Max. 2 Projekte pro Monat. Konkrete Optimierungsideen oder kostenloser Design-Prototyp."
+        />
         <link rel="canonical" href="https://www.franco-cipolla.de/erstgespraech" />
+
         <meta property="og:title" content="Kostenlose Website-Analyse – Franco Cipolla" />
         <meta property="og:description" content="Buche jetzt dein Erstgespräch und erhalte konkrete Optimierungsideen für deine Website." />
         <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
         <meta property="og:url" content="https://www.franco-cipolla.de/erstgespraech" />
         <meta property="og:type" content="website" />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Kostenlose Website-Analyse – Franco Cipolla" />
-        <meta name="twitter:description" content="Buche jetzt dein Erstgespräch und erhalte konkrete Optimierungsideen für deine Website." />
-        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
-    <section
-      ref={sectionRef}
-      className="w-full flex items-center justify-center mt-20 px-4"
-    >
-      <div className="md:py-20 py-16 text-black max-w-[950px] xl:max-w-[1100px] w-full">
 
-        {/* Header */}
-        <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Kostenlose Website-Analyse für dein Unternehmen
-          </h1>
+      <section ref={sectionRef} className="w-full flex justify-center mt-20 px-4">
+        <div className="md:py-20 py-16 max-w-[1100px] w-full">
 
-          <p className="text-lg text-black/70 mb-4">
-            Limitierte Kapazität: <strong>max. 2 Projekte pro Monat</strong>
+          {/* Header */}
+          <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Kostenlose Website-Analyse für dein Unternehmen
+            </h1>
+            <p className="text-lg text-black/70 mb-4">
+              Limitierte Kapazität: <strong>max. 2 Projekte pro Monat</strong>
+            </p>
+            <p className="text-base text-black/60">
+              Buche dir jetzt dein unverbindliches Erstgespräch.
+            </p>
+          </div>
+
+          {/* Benefits */}
+          <div className="contact-animate mb-10 text-center">
+            <ul className="inline-block text-left space-y-3">
+              <li>✔ Konkrete Optimierungsideen</li>
+              <li>✔ Kostenloser Design-Prototyp</li>
+              <li>✔ Kein Verkaufsdruck</li>
+              <li>✔ Termindetails per E-Mail</li>
+            </ul>
+          </div>
+
+          {/* Consent Calendly */}
+          <div className="contact-animate">
+            <CalendlyConsentEmbed />
+          </div>
+
+          {/* DSGVO */}
+          <p className="contact-animate text-xs text-black/50 mt-2 text-center">
+            🔒 Mehr Infos in der{' '}
+            <Link to="/datenschutz" className="underline">
+              Datenschutzerklärung
+            </Link>
           </p>
 
-          <p className="text-base text-black/60 mb-6">
-            Buche dir jetzt deine <strong>Website-Analyse/Erstgespräch</strong>. Egal, ob du schon eine Website hast oder nicht.
-          </p>
         </div>
-
-        {/* Conversion Microcopy */}
-        <div className="contact-animate mb-10 text-center max-w-2xl mx-auto">
-          <ul className="inline-block text-left space-y-3 text-sm md:text-base text-black/80 mb-6">
-            <li>✔ Konkrete Optimierungsideen für mehr Anfragen</li>
-            <li>✔ Kostenloser Design-Prototyp, falls keine Website vorhanden</li>
-            <li>✔ Entscheidungsfreiheit – nur, wenn es für beide Seiten passt</li>
-            <li>✔ Alle Termindetails automatisch per E-Mail</li>
-          </ul>
-        </div>
-
-        {/* Calendly Widget mit react-calendly */}
-        <div className="contact-animate">
-          <InlineWidget
-
-          key={window.location.pathname} // zwingt Neuladen bei Routewechsel
-          url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
-          styles={{ minWidth: '320px', height: '700px' }}
-/>
-
-        </div>
-
-        {/* DSGVO Hinweis */}
-        <p className="contact-animate text-xs text-black/50 mt-2 text-center max-w-md mx-auto">
-          🔒 Deine Daten werden ausschließlich zur Terminvereinbarung verwendet. Mehr Infos in meiner{' '}
-          <Link to="/datenschutz" className="underline hover:text-black">
-            Datenschutzerklärung
-          </Link>
-        </p>
-
-      </div>
-    </section>
+      </section>
     </>
   );
 };
