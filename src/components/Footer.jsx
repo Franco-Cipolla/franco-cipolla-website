@@ -101,6 +101,14 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="flex flex-col sm:flex-row justify-between items-center pt-6 gap-4">
         <p className="text-[#000814] text-sm">© 2025 Franco Cipolla</p>
+        <Link
+          to="/"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="underline text-sm hover:text-[#001D3D] text-[#000814] transition-colors"
+          >
+            Zurück nach oben/Startseite
+          </Link>
+
         <div className="flex items-center gap-4">
           <Link
             to="/datenschutz"
