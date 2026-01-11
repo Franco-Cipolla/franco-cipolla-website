@@ -15,7 +15,8 @@ const AboutPage = lazy(() => import('./pages/AboutPage.jsx'));
 const Datenschutzerklärung = lazy(() => import('./pages/Datenschutzerklärung.jsx'));
 const Erstgespraech = lazy(() => import('./pages/ErstGespraech.jsx'));
 const Impressum = lazy(() => import('./pages/Impressum.jsx'));
-const NotFound = lazy(() => import('./pages/NotFound.jsx'));
+import NotFound from "./pages/NotFound"
+
 
 function App() {
   useEffect(() => {

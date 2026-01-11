@@ -12,13 +12,18 @@
     <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
     <meta name="msapplication-TileColor" content="#000000" />
 
-    <!-- Preloads -->
-    <link rel="preload" href="/Hero-Illustration.webp" as="image" type="image/webp" media="(min-width: 768px)" />
+    <!-- Preload nur für Home (OK, aber optional) -->
+    <link
+      rel="preload"
+      href="/Hero-Illustration.webp"
+      as="image"
+      type="image/webp"
+      media="(min-width: 768px)"
+    />
+  </head>
 
-    <!-- React root -->
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-  </head>
-  <body>
   </body>
 </html>
