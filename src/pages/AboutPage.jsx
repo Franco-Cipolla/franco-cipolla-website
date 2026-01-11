@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async"
 import React, { useRef, useLayoutEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -75,6 +76,20 @@ const AboutPage = () => {
 
   return (
     <>
+    <Helmet>
+        <title>Über mich – Franco Cipolla, Webdesigner aus Ennepetal</title>
+        <meta name="description" content="Ich entwickle Websites, die nicht nur gut aussehen, sondern echte Kundenanfragen generieren. Klare Struktur, modernes Design und Conversion-Optimierung für Unternehmen in Ennepetal & NRW." />
+        <link rel="canonical" href="https://www.franco-cipolla.de/about" />
+        <meta property="og:title" content="Über mich – Franco Cipolla, Webdesigner aus Ennepetal" />
+        <meta property="og:description" content="Websites, die Besucher zu Kunden machen – individuell, strategisch und conversion-optimiert." />
+        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta property="og:url" content="https://www.franco-cipolla.de/about" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Über mich – Franco Cipolla, Webdesigner aus Ennepetal" />
+        <meta name="twitter:description" content="Websites, die Besucher zu Kunden machen – individuell, strategisch und conversion-optimiert." />
+        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
+      </Helmet>
       {/* Hintergrundkreise */}
       <div className="relative overflow-hidden">
         <span
@@ -89,7 +104,7 @@ const AboutPage = () => {
 
       <main
         ref={heroRef}
-        className="max-w-[1000px] xl:max-w-[1165px] mx-auto px-4 mt-20 py-28 text-black"
+        className="max-w-250 xl:max-w-291.25 mx-auto px-4 mt-20 py-28 text-black"
       >
         <h1 ref={headlineRef} className="text-3xl sm:text-4xl font-bold mb-3">
           Über mich

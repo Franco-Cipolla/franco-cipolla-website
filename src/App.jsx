@@ -1,22 +1,26 @@
-import { Suspense, useEffect, lazy } from "react"
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom"
-import MainLayout from "./layouts/MainLayout.jsx"
-import Loader from "./components/Loader.jsx"
-import CheckList from "./pages/CheckList.jsx"
-
+import { Suspense, useEffect, lazy } from 'react';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider
+} from 'react-router-dom';
+import MainLayout from './layouts/MainLayout.jsx';
+import Loader from './components/Loader.jsx';
+import CheckList from './pages/CheckList.jsx';
 
 // Lazy Imports
-const HomePage = lazy(() => import("./pages/HomePage"))
-const AboutPage = lazy(() => import("./pages/AboutPage"))
-const Datenschutzerklärung = lazy(() => import("./pages/Datenschutzerklärung.jsx"))
-const Erstgespraech = lazy(() => import("./pages/ErstGespraech.jsx"))
-const Impressum = lazy(() => import("./pages/Impressum.jsx"))
-const NotFound = lazy(() => import("./pages/NotFound"))
+const HomePage = lazy(() => import('./pages/HomePage.jsx'));
+const AboutPage = lazy(() => import('./pages/AboutPage.jsx'));
+const Datenschutzerklärung = lazy(() => import('./pages/Datenschutzerklärung.jsx'));
+const Erstgespraech = lazy(() => import('./pages/ErstGespraech.jsx'));
+const Impressum = lazy(() => import('./pages/Impressum.jsx'));
+const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 function App() {
   useEffect(() => {
-    window.addEventListener("scroll", () => {}, { passive: true })
-  }, [])
+    window.addEventListener('scroll', () => {}, { passive: true });
+  }, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -32,19 +36,15 @@ function App() {
 
         {/* Landingpage OHNE MainLayout */}
         <Route path="checkliste" element={<CheckList />} />
-
-
-
       </>
     )
-  )
+  );
 
   return (
     <Suspense fallback={<Loader />}>
       <RouterProvider router={router} />
     </Suspense>
-  )
-
+  );
 }
 
-export default App
+export default App;

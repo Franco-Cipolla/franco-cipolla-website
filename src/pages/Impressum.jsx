@@ -2,10 +2,26 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { Helmet } from 'react-helmet-async';
 const Impressum = () => {
   return (
     <>
+    <Helmet>
+        <title>Impressum – Franco Cipolla, Webdesigner aus Ennepetal</title>
+        <meta name="description" content="Impressum der Website von Franco Cipolla, Webdesigner aus Ennepetal. Alle Angaben gemäß § 5 DDG, Kontakt, Haftung und Urheberrecht." />
+        <link rel="canonical" href="https://www.franco-cipolla.de/impressum" />
+
+        <meta property="og:title" content="Impressum – Franco Cipolla, Webdesigner" />
+        <meta property="og:description" content="Impressum der Website von Franco Cipolla, Webdesigner aus Ennepetal. Alle Angaben gemäß § 5 DDG, Kontakt, Haftung und Urheberrecht." />
+        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta property="og:url" content="https://www.franco-cipolla.de/impressum" />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Impressum – Franco Cipolla, Webdesigner" />
+        <meta name="twitter:description" content="Impressum der Website von Franco Cipolla, Webdesigner aus Ennepetal. Alle Angaben gemäß § 5 DDG, Kontakt, Haftung und Urheberrecht." />
+        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
+      </Helmet>
     <section className="w-full flex items-center mt-20 justify-center bg-white text-black">
       <div className="max-w-[950px] xl:max-w-[1100px] px-6 py-20">
         <h1 className="text-3xl md:text-4xl font-bold mb-10">Impressum</h1>

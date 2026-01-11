@@ -1,8 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Datenschutzerklärung = () => {
   return (
+    <><Helmet>
+        <title>Datenschutzerklärung – Franco Cipolla, Webdesigner aus Ennepetal</title>
+        <meta name="description" content="Datenschutzerklärung von Franco Cipolla. Informationen über Datenerhebung, Verarbeitung und Nutzung personenbezogener Daten, Cookies, Google Analytics und Calendly." />
+        <link rel="canonical" href="https://www.franco-cipolla.de/datenschutz" />
+
+        <meta property="og:title" content="Datenschutzerklärung – Franco Cipolla" />
+        <meta property="og:description" content="Datenschutzerklärung von Franco Cipolla. Informationen über Datenerhebung, Verarbeitung und Nutzung personenbezogener Daten, Cookies, Google Analytics und Calendly." />
+        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta property="og:url" content="https://www.franco-cipolla.de/datenschutz" />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Datenschutzerklärung – Franco Cipolla" />
+        <meta name="twitter:description" content="Datenschutzerklärung von Franco Cipolla. Informationen über Datenerhebung, Verarbeitung und Nutzung personenbezogener Daten, Cookies, Google Analytics und Calendly." />
+        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
+      </Helmet>
+
     <section className="max-w-4xl mx-auto px-6 py-20 mt-20 text-black">
       <h1 className="text-3xl md:text-4xl font-bold mb-6">Datenschutzerklärung</h1>
 
@@ -85,6 +103,7 @@ const Datenschutzerklärung = () => {
         Zuletzt aktualisiert: 06. Januar 2026
       </p>
     </section>
+    </>
   );
 };
 

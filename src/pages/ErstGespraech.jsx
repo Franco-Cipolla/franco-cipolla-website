@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { InlineWidget } from 'react-calendly'; // <-- Import von react-calendly
-
+import { Helmet } from 'react-helmet-async';
 gsap.registerPlugin(ScrollTrigger);
 
 const Erstgespraech = () => {
@@ -31,6 +31,20 @@ const Erstgespraech = () => {
   }, []);
 
   return (
+    <><Helmet>
+        <title>Kostenlose Website-Analyse – Erstgespräch buchen</title>
+        <meta name="description" content="Buche jetzt deine kostenlose Website-Analyse. Max. 2 Projekte pro Monat. Konkrete Optimierungsideen, kostenloser Design-Prototyp, direkte Terminbuchung via Calendly." />
+        <link rel="canonical" href="https://www.franco-cipolla.de/erstgespraech" />
+        <meta property="og:title" content="Kostenlose Website-Analyse – Franco Cipolla" />
+        <meta property="og:description" content="Buche jetzt dein Erstgespräch und erhalte konkrete Optimierungsideen für deine Website." />
+        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta property="og:url" content="https://www.franco-cipolla.de/erstgespraech" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Kostenlose Website-Analyse – Franco Cipolla" />
+        <meta name="twitter:description" content="Buche jetzt dein Erstgespräch und erhalte konkrete Optimierungsideen für deine Website." />
+        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
+      </Helmet>
     <section
       ref={sectionRef}
       className="w-full flex items-center justify-center mt-20 px-4"
@@ -83,6 +97,7 @@ const Erstgespraech = () => {
 
       </div>
     </section>
+    </>
   );
 };
 
