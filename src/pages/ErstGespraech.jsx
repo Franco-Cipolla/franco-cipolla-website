@@ -1,12 +1,51 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Helmet } from 'react-helmet-async';
-import CalendlyConsentEmbed from '../components/CalendlyConsentEmbed';
-import { FaInstagram } from 'react-icons/fa'
+import { InlineWidget } from "react-calendly";
+
+const CalendlyConsentEmbed = ({ enabled, setEnabled }) => {
+  if (!enabled) {
+    return (
+      <div className="border p-6 text-center bg-gray-50">
+        <p className="mb-8">
+          Die Terminbuchung wird über <strong>Calendly</strong> bereitgestellt.
+        </p>
+
+        <button
+          onClick={() => setEnabled(true)}
+          aria-pressed={enabled}
+          className="bg-[#003566] cursor-pointer hover:bg-[#001D3D] text-white px-6 py-3 rounded font-semibold"
+        >
+          Terminbuchung aktivieren
+        </button>
+
+        <p className="text-sm text-gray-500 mt-3">
+          Dabei können Cookies gesetzt und Daten an Drittanbieter übertragen werden.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <InlineWidget
+      key="calendly-inline"
+      url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
+      styles={{ minWidth: "320px", height: "700px" }}
+      prefill={{}}
+      pageSettings={{
+        hideLandingPageDetails: true,
+        hideEventTypeDetails: false,
+        hideGdprBanner: false,
+      }}
+    />
+  );
+};
+
 const Erstgespraech = () => {
   const sectionRef = useRef(null);
+  const [enabled, setEnabled] = useState(false); // <-- State nach oben gezogen
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -78,7 +117,7 @@ const Erstgespraech = () => {
 
           {/* Consent Calendly */}
           <div className="contact-animate mt-20">
-            <CalendlyConsentEmbed />
+            <CalendlyConsentEmbed enabled={enabled} setEnabled={setEnabled} />
           </div>
 
           {/* DSGVO */}
@@ -88,20 +127,19 @@ const Erstgespraech = () => {
               Datenschutzerklärung
             </Link>
           </p>
-          <div className='w-full flex flex-col items-center justify-center '>
 
-          <p className="contact-animate text-lg text-center xl:text-xl text-[#000814]/90 mb-8 max-w-xl mt-40">
-                  Ich freue mich auf unser Gespräch und darauf, deine Website zu optimieren. <br />
-                  <br />
-                    Folge mir auf <a href="https://www.instagram.com/francocipolla.de/" target="_blank" rel="noopener noreferrer" className='text-[#003566] underline'>Instagram</a> für Tipps & Praxisbeispiele, wie du planbar mehr Kunden über deine Website bekommst.        </p>
-
-
-          <p/>
-          </div>
+          {/* Dieser Text wird erst angezeigt, wenn enabled = true */}
+          {enabled && (
+            <div className='w-full flex flex-col items-center justify-center'>
+              <p className="contact-animate text-lg text-center xl:text-xl text-[#000814]/90 mb-8 max-w-xl mt-40">
+                Ich freue mich auf unser Gespräch und darauf, deine Website zu optimieren. <br />
+                <br />
+                Folge mir auf <a href="https://www.instagram.com/francocipolla.de/" target="_blank" rel="noopener noreferrer" className='text-[#003566] underline'>Instagram</a> für Tipps & Praxisbeispiele, wie du planbar mehr Kunden über deine Website bekommst.
+              </p>
+            </div>
+          )}
 
         </div>
-
-
       </section>
     </>
   );
