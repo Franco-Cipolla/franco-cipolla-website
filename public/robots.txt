@@ -1,4 +1,6 @@
 User-agent: *
 Disallow: /datenschutz
 Disallow: /impressum
+Disallow: /danke
+
 Sitemap: https://franco-cipolla.de/sitemap.xml

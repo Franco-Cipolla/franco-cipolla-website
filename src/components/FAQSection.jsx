@@ -34,7 +34,7 @@ const faqs = [
           So sehen Sie schon vorher, welchen Mehrwert Ihre Website liefern könnte.
         </p>
         <p>
-          Wenn Sie sich anschließend entscheiden, das Projekt mit mir zu starten, werden Sie in den nächsten verfügbaren Slot eingeteilt. Ich betreue nur <strong>2 Kunden pro Monat</strong>, um maximale Ergebnisse zu garantieren.
+          Wenn Sie sich anschließend entscheiden, das Projekt mit mir zu starten, werden Sie in den nächsten verfügbaren Slot eingeteilt. Ich betreue nur <strong>2 Kunden pro Monat</strong>, um für meine Kunden die bestmöglichen Ergebnisse zu erreichen.
         </p>
       </div>
     ),

@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Helmet } from 'react-helmet-async';
 import CalendlyConsentEmbed from '../components/CalendlyConsentEmbed';
-
+import { FaInstagram } from 'react-icons/fa'
 const Erstgespraech = () => {
   const sectionRef = useRef(null);
 
@@ -51,7 +51,7 @@ const Erstgespraech = () => {
       </Helmet>
 
       <section ref={sectionRef} className="w-full flex justify-center mt-20 px-4">
-        <div className="md:py-20 py-16 max-w-[1100px] w-full">
+        <div className="md:py-20 py-16 max-w-[1100px] w-full ">
 
           {/* Header */}
           <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
@@ -77,7 +77,7 @@ const Erstgespraech = () => {
           </div>
 
           {/* Consent Calendly */}
-          <div className="contact-animate">
+          <div className="contact-animate mt-20">
             <CalendlyConsentEmbed />
           </div>
 
@@ -88,8 +88,20 @@ const Erstgespraech = () => {
               Datenschutzerklärung
             </Link>
           </p>
+          <div className='w-full flex flex-col items-center justify-center '>
+
+          <p className="contact-animate text-lg text-center xl:text-xl text-[#000814]/90 mb-8 max-w-xl mt-40">
+                  Ich freue mich auf unser Gespräch und darauf, deine Website zu optimieren. <br />
+                  <br />
+                    Folge mir auf <a href="https://www.instagram.com/francocipolla.de/" target="_blank" rel="noopener noreferrer" className='text-[#003566] underline'>Instagram</a> für Tipps & Praxisbeispiele, wie du planbar mehr Kunden über deine Website bekommst.        </p>
+
+
+          <p/>
+          </div>
 
         </div>
+
+
       </section>
     </>
   );
