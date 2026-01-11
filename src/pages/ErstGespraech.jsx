@@ -132,7 +132,7 @@ const Erstgespraech = () => {
           {enabled && (
             <div className='w-full flex flex-col items-center justify-center'>
               <p className="contact-animate text-lg text-center xl:text-xl text-[#000814]/90 mb-8 max-w-xl mt-40">
-                Ich freue mich auf unser Gespräch und darauf, deine Website zu optimieren. <br />
+                Ich freue mich auf unser Gespräch und darauf, deine Website so zu optimieren, dass du mehr Anfragen bekommst. <br />
                 <br />
                 Folge mir auf <a href="https://www.instagram.com/francocipolla.de/" target="_blank" rel="noopener noreferrer" className='text-[#003566] underline'>Instagram</a> für Tipps & Praxisbeispiele, wie du planbar mehr Kunden über deine Website bekommst.
               </p>
