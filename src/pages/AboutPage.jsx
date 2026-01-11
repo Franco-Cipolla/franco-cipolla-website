@@ -78,16 +78,15 @@ const AboutPage = () => {
     <>
     <Helmet>
         <title>Über mich – Franco Cipolla, Webdesigner aus Ennepetal</title>
-        <meta name="description" content="Ich entwickle Websites, die nicht nur gut aussehen, sondern echte Kundenanfragen generieren. Klare Struktur, modernes Design und Conversion-Optimierung für Unternehmen in Ennepetal & NRW." />
+        <meta name="description" content="Ich bin Franco Cipolla, Webdesigner aus Ennepetal. Ich erstelle Websites, die nicht nur modern aussehen, sondern auch neue Kunden bringen. Klar strukturiert und auf Conversion optimiert. Websites für Unternehmen in Ennepetal & Umgebung." />
         <link rel="canonical" href="https://www.franco-cipolla.de/about" />
         <meta property="og:title" content="Über mich – Franco Cipolla, Webdesigner aus Ennepetal" />
-        <meta property="og:description" content="Websites, die Besucher zu Kunden machen – individuell, strategisch und conversion-optimiert." />
-        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+<meta property="og:description" content="Ich erstelle Websites, die nicht nur modern aussehen, sondern auch neue Kunden bringen. Klar strukturiert, strategisch aufgebaut und conversion-optimiert – Websites für Unternehmen in Ennepetal & Umgebung." />        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
         <meta property="og:url" content="https://www.franco-cipolla.de/about" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Über mich – Franco Cipolla, Webdesigner aus Ennepetal" />
-        <meta name="twitter:description" content="Websites, die Besucher zu Kunden machen – individuell, strategisch und conversion-optimiert." />
+        <meta name="twitter:description" content="Ich erstelle Websites, die nicht nur modern aussehen, sondern auch neue Kunden bringen. Klar strukturiert, strategisch aufgebaut und conversion-optimiert – Websites für Unternehmen in Ennepetal & Umgebung." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
       {/* Hintergrundkreise */}
