@@ -13,8 +13,8 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>Websites, die Kunden bringen – Franco Cipolla</title>
-        <meta name="description" content="Ihre Website bringt keine Kunden? Ich erstelle Websites für Selbstständige & Unternehmen, die wirklich Kundenanfragen bringen. Modernes Design, klare Struktur und Conversion-Optimierung." />
+        <title>Websites, die Kunden bringen – Franco Cipolla, Webdesigner aus Ennepetal</title>
+        <meta name="description" content="Ihre Website bringt keine Kunden? Ich erstelle Websites für Selbstständige & Unternehmen in Ennepetal & Umgebung, die wirklich Kundenanfragen bringen. Modernes Design, klare Struktur und Conversion-Optimierung – starten Sie jetzt durch und sichern sich planbare Anfragen." />
         <link rel="canonical" href="https://www.franco-cipolla.de/" />
         <meta property="og:title" content="Websites, die Kunden bringen – Franco Cipolla" />
         <meta property="og:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />

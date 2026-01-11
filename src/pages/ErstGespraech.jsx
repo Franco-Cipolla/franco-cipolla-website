@@ -32,8 +32,8 @@ const Erstgespraech = () => {
 
   return (
     <><Helmet>
-        <title>Kostenlose Website-Analyse – Erstgespräch buchen</title>
-        <meta name="description" content="Buche jetzt deine kostenlose Website-Analyse. Max. 2 Projekte pro Monat. Konkrete Optimierungsideen, kostenloser Design-Prototyp, direkte Terminbuchung via Calendly." />
+        <title>Kostenlose Website-Analyse – Erstgespräch buchen Franco Cipolla</title>
+        <meta name="description" content="Buche jetzt deine kostenlose Website-Analyse. Max. 2 Projekte pro Monat. Konkrete Optimierungsideen oder kostenloser Design-Prototyp, direkte Terminbuchung via Calendly." />
         <link rel="canonical" href="https://www.franco-cipolla.de/erstgespraech" />
         <meta property="og:title" content="Kostenlose Website-Analyse – Franco Cipolla" />
         <meta property="og:description" content="Buche jetzt dein Erstgespräch und erhalte konkrete Optimierungsideen für deine Website." />
