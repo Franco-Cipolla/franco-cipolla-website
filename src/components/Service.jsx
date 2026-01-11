@@ -70,7 +70,7 @@ const Service = () => {
           <h1 className="mb-6 leading-tight text-3xl md:text-4xl font-bold text-center">
             Meine Leistung.
             <span className="block bg-gradient-to-r from-[#003566] to-[#00A6FB] bg-clip-text text-transparent">
-              Websites, die Besucher gezielt zur Anfrage führen            </span>
+              Websites für Unternehmen, die Besucher gezielt zur Anfrage führen            </span>
           </h1>
           <p className="text-lg text-[#000814]/80 max-w-3xl mx-auto mb-8 leading-relaxed">
             Ich erstelle Websites für Selbstständige und kleine Unternehmen, die nicht nur gut aussehen, sondern <strong className="text-[#001D3D]">aktiv neue Kundenanfragen liefern</strong>.
