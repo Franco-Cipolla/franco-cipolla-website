@@ -106,7 +106,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Ich verspreche keine Wunder, sondern eine sauber aufgebaute Website mit klarer Struktur, nachvollziehbaren Besucherwegen und optimierten Anfragepunkten.
+          Ich verspreche eine sauber aufgebaute Website mit klarer Struktur, nachvollziehbaren Besucherwegen und optimierten Anfragepunkten.
         </p>
         <p>
           Im Erstgespräch klären wir, ob eine neue Website jetzt Sinn macht oder andere Maßnahmen besser geeignet sind.
@@ -116,7 +116,7 @@ const faqs = [
   },
   {
     question: 'Kann ich einzelne Elemente kaufen?',
-    answer: 'Nein, ich biete nur das komplette Paket an. So stellen wir sicher, dass Ihre Website optimal Besucher führt und Schritt für Schritt zu Anfragen konvertiert.'
+    answer: 'Nein, ich biete nur das komplette Paket an. So stelle ich sicher, dass Ihre Website optimal Besucher führt und Schritt für Schritt zu Anfragen konvertiert.'
   },
   {
     question: 'Gehört mir die Website nach der Fertigstellung?',
