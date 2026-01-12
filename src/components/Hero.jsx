@@ -143,7 +143,7 @@ const Hero = () => {
                 className="text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5"
               >
                 Ohne ein System, das aktiv Anfragen erzeugt,
-                bleiben Sie abhängig von Empfehlungen - und wissen nie, wie viele Anfragen nächsten Monat kommen.
+                bleiben Sie abhängig von Empfehlungen - und wissen nie, wie viele Anfragen nächsten Monat kommen könnten.
 
               </p>
             </div>
