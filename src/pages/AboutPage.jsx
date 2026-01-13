@@ -2,8 +2,8 @@ import { Helmet } from "react-helmet-async"
 import React, { useRef, useLayoutEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import CTA2 from '../components/CTA2'
 import CTA1 from '../components/CTA1'
+import SEOJsonLD from '../components/SEOJsonLD';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,6 +13,7 @@ const AboutPage = () => {
   const rightCircleRef = useRef(null)
 
   const headlineRef = useRef(null)
+  const sublineRef = useRef(null)
   const textBlockRefs = useRef([])
   const ctaRef = useRef(null)
   const imageRef = useRef(null)
@@ -32,7 +33,6 @@ const AboutPage = () => {
       tl.to(leftCircleRef.current, { x: '-105vw', opacity: 0 }, 0.5)
       tl.to(rightCircleRef.current, { x: '105vw', opacity: 0 }, 0.5)
     }, heroRef)
-
     return () => {
       ctx.revert()
       ScrollTrigger.killAll()
@@ -45,14 +45,11 @@ const AboutPage = () => {
         gsap.from(
           [
             headlineRef.current,
-            textBlockRefs.current[0],
-            textBlockRefs.current[1],
-            textBlockRefs.current[2],
-            textBlockRefs.current[3],
+            sublineRef.current,
             imageRef.current,
-            ...textBlockRefs.current.slice(4),
+            ...textBlockRefs.current.filter(Boolean),
             ctaRef.current,
-          ].filter(Boolean),
+          ],
           {
             y: 50,
             opacity: 0,
@@ -63,9 +60,8 @@ const AboutPage = () => {
         )
       }
 
-      const img = imageRef.current
-      if (img && !img.complete) {
-        img.onload = animateContent
+      if (imageRef.current && !imageRef.current.complete) {
+        imageRef.current.onload = animateContent
       } else {
         animateContent()
       }
@@ -76,19 +72,24 @@ const AboutPage = () => {
 
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Über mich – Franco Cipolla, Webdesigner aus Ennepetal</title>
-        <meta name="description" content="Ich bin Franco Cipolla, Webdesigner aus Ennepetal. Ich erstelle Websites, die nicht nur modern aussehen, sondern auch neue Kunden bringen. Klar strukturiert und auf Conversion optimiert. Websites für Unternehmen in Ennepetal & Umgebung." />
+        <meta
+          name="description"
+          content="Ich helfe Unternehmen aus Ennepetal & Umgebung, Websites zu bauen, die planbar Kundenanfragen bringen – klar strukturiert, conversion-optimiert und auf Wachstum ausgelegt."
+        />
         <link rel="canonical" href="https://www.franco-cipolla.de/about" />
         <meta property="og:title" content="Über mich – Franco Cipolla, Webdesigner aus Ennepetal" />
-<meta property="og:description" content="Ich erstelle Websites, die nicht nur modern aussehen, sondern auch neue Kunden bringen. Klar strukturiert, strategisch aufgebaut und conversion-optimiert – Websites für Unternehmen in Ennepetal & Umgebung." />        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta property="og:description" content="Websites, die planbar Kundenanfragen generieren. Klar strukturiert, strategisch aufgebaut und conversion-optimiert für Unternehmen aus Ennepetal & Umgebung." />
+        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
         <meta property="og:url" content="https://www.franco-cipolla.de/about" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Über mich – Franco Cipolla, Webdesigner aus Ennepetal" />
-        <meta name="twitter:description" content="Ich erstelle Websites, die nicht nur modern aussehen, sondern auch neue Kunden bringen. Klar strukturiert, strategisch aufgebaut und conversion-optimiert – Websites für Unternehmen in Ennepetal & Umgebung." />
+        <meta name="twitter:description" content="Websites, die planbar Kundenanfragen generieren. Klar strukturiert, strategisch aufgebaut und conversion-optimiert für Unternehmen aus Ennepetal & Umgebung." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
+<SEOJsonLD page="about" />
       {/* Hintergrundkreise */}
       <div className="relative overflow-hidden">
         <span
@@ -101,49 +102,29 @@ const AboutPage = () => {
         />
       </div>
 
-      <main
-        ref={heroRef}
-        className="max-w-250 xl:max-w-291.25 mx-auto px-4 mt-20 py-28 text-black"
-      >
+      <main ref={heroRef} className="max-w-250 xl:max-w-291.25 mx-auto px-4 mt-20 py-28 text-black">
+        {/* HERO */}
         <h1 ref={headlineRef} className="text-3xl sm:text-4xl font-bold mb-3">
-          Über mich
+          Websites sind kein Designprojekt. Sie sind ein Vertriebskanal.
         </h1>
+
+        {/* Subline mobil-kurz / desktop-lang */}
         <p
-          ref={(el) => (textBlockRefs.current[0] = el)}
-          className="text-base sm:text-lg font-bold text-[#003566] mb-12"
+          ref={sublineRef}
+          className="text-base sm:text-lg font-bold text-[#003566] mb-6"
         >
-          Webdesigner für Unternehmen aus Ennepetal & NRW
+          <span className="block md:hidden">
+            Ich helfe Unternehmen aus Ennepetal & Umgebung, über ihre Website planbar neue Kunden zu gewinnen.
+          </span>
+          <span className="hidden md:block">
+            Ich helfe Unternehmen aus Ennepetal & Umgebung, mit ihrer Website planbar Kundenanfragen zu gewinnen – statt auf Empfehlungen angewiesen zu sein.
+          </span>
         </p>
 
+        {/* Grid für Text + Bild */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div>
-            <h2
-              ref={(el) => (textBlockRefs.current[1] = el)}
-              className="text-xl sm:text-2xl font-semibold mb-8"
-            >
-              Websites, die nicht nur gut aussehen. Sondern Anfragen bringen.
-            </h2>
-            <p
-              ref={(el) => (textBlockRefs.current[2] = el)}
-              className="mb-8 text-base leading-relaxed"
-            >
-              Ich bin <strong>Franco Cipolla</strong>, Webdesigner aus <strong>Ennepetal</strong>.
-              Ich habe zu viele Websites gesehen, die modern aussehen,
-              aber <strong>keine Kunden gewinnen</strong>.
-              Genau das ändere ich.
-            </p>
-            <p
-              ref={(el) => (textBlockRefs.current[3] = el)}
-              className="text-base leading-relaxed"
-            >
-              Ich entwickle Websites für Unternehmen, die vom digitalen Wandel
-              profitieren möchten, statt von ihm überholt zu werden.
-              Klar strukturiert, strategisch aufgebaut und mit einem Ziel:
-              <strong> Besucher zu Kunden machen</strong>.
-            </p>
-          </div>
-
-          <div>
+          {/* Bild links auf Mobil (order-1), rechts auf Desktop (order-2) */}
+          <div className="order-1 md:order-2 mb-6 md:mb-0">
             <img
               ref={imageRef}
               src="/Franco2.jpeg"
@@ -152,100 +133,56 @@ const AboutPage = () => {
               loading="lazy"
             />
           </div>
+
+          {/* Text */}
+          <div className="order-2 md:order-1">
+            <h2 ref={(el) => (textBlockRefs.current[0] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+              Die meisten Websites sehen gut aus und bringen nichts
+            </h2>
+            <p ref={(el) => (textBlockRefs.current[1] = el)} className="text-base leading-relaxed mb-4">
+              Viele Unternehmen investieren Zeit und Geld in ihre Website und bekommen dafür… Stille. Keine Anfragen. Keine Messbarkeit. Keine Klarheit, woran es liegt.
+            </p>
+            <p ref={(el) => (textBlockRefs.current[2] = el)} className="text-base leading-relaxed mb-8">
+              Das Problem ist selten das Design, sondern fehlende Struktur, fehlende Psychologie und kein klares Ziel.
+            </p>
+
+            <h2 ref={(el) => (textBlockRefs.current[3] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+              Deshalb arbeite ich nicht nur „kreativ“, sondern systematisch
+            </h2>
+            <p ref={(el) => (textBlockRefs.current[4] = el)} className="text-base leading-relaxed mb-8">
+              Jede Website folgt einer klaren Struktur: Problem erkennen, Lösung verständlich machen, Vertrauen aufbauen, Handlung auslösen. Ziel ist immer dasselbe: <strong>Besucher → Anfrage → Kunde</strong>.
+            </p>
+
+            <h2 ref={(el) => (textBlockRefs.current[5] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+              Minimaler Aufwand für Sie. Klare Ergebnisse für Ihr Unternehmen
+            </h2>
+            <p ref={(el) => (textBlockRefs.current[6] = el)} className="text-base leading-relaxed mb-8">
+              Sie liefern die Basisinfos. Ich übernehme Struktur, Texte, Design und Umsetzung. Klarer Prozess. Klare Kommunikation. Keine Agentur-Spielchen.
+            </p>
+
+            <h2 ref={(el) => (textBlockRefs.current[7] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+              Für wen ich arbeite – und für wen nicht
+            </h2>
+            <p ref={(el) => (textBlockRefs.current[8] = el)} className="text-base leading-relaxed mb-4">
+              Ich arbeite mit Unternehmen, die planbar wachsen wollen, Entscheidungen treffen und Ergebnisse wichtiger finden als Spielereien.
+            </p>
+            <p ref={(el) => (textBlockRefs.current[9] = el)} className="text-base leading-relaxed mb-8">
+              Ich arbeite <strong>nicht</strong> mit reinen Preisvergleichen, endlosen Entscheidungsprozessen oder Projekten ohne klares Ziel.
+            </p>
+
+            <h2 ref={(el) => (textBlockRefs.current[10] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+              Kurz zu mir
+            </h2>
+            <p ref={(el) => (textBlockRefs.current[11] = el)} className="text-base leading-relaxed mb-4">
+              Mein Name ist <strong>Franco Cipolla</strong>. Ich arbeite als Webdesigner mit Fokus auf Conversion, Verkaufspsychologie und lokale Sichtbarkeit. Mein Anspruch ist simpel: Websites zu bauen, die messbar etwas bringen.
+            </p>
+          </div>
         </section>
 
-        <section className="my-10">
-          <h2
-            ref={(el) => (textBlockRefs.current[4] = el)}
-            className="text-xl sm:text-2xl font-semibold mb-8"
-          >
-            Klare Struktur statt Agentur-Chaos
-          </h2>
-
-          <p
-            ref={(el) => (textBlockRefs.current[5] = el)}
-            className="mb-4 text-base leading-relaxed"
-          >
-            Ich arbeite mit bewährten Methoden aus Webdesign,
-            Verkaufspsychologie und SEO.
-            Kein Rätselraten, kein unnötiger Aufwand,
-            keine endlosen Abstimmungen.
-          </p>
-
-          <p
-            ref={(el) => (textBlockRefs.current[6] = el)}
-            className="mb-4 text-base leading-relaxed"
-          >
-            Für Sie bedeutet das vor allem eines:
-            <strong> minimaler Zeitaufwand</strong>.
-            Sie müssen keine Texte schreiben
-            und sich nicht mit Technik beschäftigen.
-          </p>
-
-          <p
-            ref={(el) => (textBlockRefs.current[7] = el)}
-            className="text-base leading-relaxed"
-          >
-            Sie stellen das Hosting bereit, geben mir die nötigen Zugänge
-            sowie die wichtigsten Informationen zu Ihrem Unternehmen
-            und vorhandenes Material wie Fotos oder Logos.
-            Um den Rest kümmere ich mich.
-          </p>
-
-          <p
-            ref={(el) => (textBlockRefs.current[8] = el)}
-            className="text-base leading-relaxed"
-          >
-            Aus diesen Informationen entwickle ich die komplette Struktur,
-            Texte und Inhalte. Verständlich, vertrauensaufbauend
-            und gezielt darauf ausgelegt, Anfragen zu generieren.
-          </p>
-        </section>
-
-        <section className="my-10">
-          <h2
-            ref={(el) => (textBlockRefs.current[9] = el)}
-            className="text-xl sm:text-2xl font-semibold mb-8"
-          >
-            Zusammenarbeit auf Augenhöhe
-          </h2>
-          <p
-            ref={(el) => (textBlockRefs.current[10] = el)}
-            className="mb-4 text-base leading-relaxed"
-          >
-            Ich arbeite schnell, direkt und ehrlich.
-            Klare Entscheidungen und klare Kommunikation
-            sind mir besonders wichtig.
-          </p>
-          <p
-            ref={(el) => (textBlockRefs.current[11] = el)}
-            className="text-base leading-relaxed"
-          >
-            Deshalb arbeite ich bewusst nicht mit Kunden,
-            die ausschließlich den günstigsten Preis suchen
-            oder Entscheidungen dauerhaft aufschieben.
-            Dafür entstehen Projekte,
-            hinter denen ich voll stehe –
-            häufig als langfristige Zusammenarbeit.
-          </p>
-        </section>
-
-        <section className="mt-10">
-          <p
-            ref={(el) => (textBlockRefs.current[12] = el)}
-            className="text-base sm:text-lg leading-relaxed"
-          >
-            <strong>
-              Wenn Sie eine Website möchten,
-              die klar positioniert ist,
-              Vertrauen aufbaut und Anfragen bringt,
-              dann lassen Sie uns sprechen.
-            </strong>
-          </p>
-        </section>
-
-        <section className="mt-6" ref={ctaRef}>
+        {/* CTA */}
+        <section className="mt-10" ref={ctaRef}>
           <CTA1 />
+          <p className='cta-animate text-[15px] mt-3 text-black/60'>Ohne Risiko & vollkommen unverbindlich</p>
         </section>
       </main>
     </>

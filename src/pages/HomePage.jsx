@@ -8,6 +8,7 @@ import ProcessSection from '../components/ProcessSection';
 import FAQSection from '../components/FAQSection';
 import CTAHome from '../components/CTAHome';
 import Contact from '../components/Contact';
+import SEOJsonLD from '../components/SEOJsonLD';
 
 const HomePage = () => {
   return (
@@ -26,6 +27,7 @@ const HomePage = () => {
         <meta name="twitter:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
+      <SEOJsonLD page="home" />
 
       <main>
         <Hero />

@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Helmet } from 'react-helmet-async';
 import { InlineWidget } from "react-calendly";
+import SEOJsonLD from '../components/SEOJsonLD';
 
 const CalendlyConsentEmbed = ({ enabled, setEnabled }) => {
   if (!enabled) {
@@ -88,14 +89,14 @@ const Erstgespraech = () => {
 
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-
+      <SEOJsonLD page="erstgespraech" />
       <section ref={sectionRef} className="w-full flex justify-center mt-20 px-4">
         <div className="md:py-20 py-16 max-w-[1100px] w-full ">
 
           {/* Header */}
           <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Kostenlose Website-Analyse für dein Unternehmen
+              In 15 Minuten Klarheit, warum Ihre Website keine Anfragen bringt - <br />Und was Sie konkret ändern müssen.
             </h1>
             <p className="text-lg text-black/70 mb-4">
               Limitierte Kapazität: <strong>max. 2 Projekte pro Monat</strong>
