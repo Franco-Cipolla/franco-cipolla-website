@@ -13,7 +13,7 @@ import CheckList from './pages/CheckList.jsx';
 const HomePage = lazy(() => import('./pages/HomePage.jsx'));
 const AboutPage = lazy(() => import('./pages/AboutPage.jsx'));
 const Datenschutzerklärung = lazy(() => import('./pages/Datenschutzerklärung.jsx'));
-const Erstgespraech = lazy(() => import('./pages/ErstGespraech.jsx'));
+const Erstgespraech = lazy(() => import('./pages/Erstgespraech.jsx'));
 const Impressum = lazy(() => import('./pages/Impressum.jsx'));
 const Danke = lazy(() => import('./pages/Danke.jsx'));
 
