@@ -10,13 +10,13 @@ import Loader from './components/Loader.jsx';
 import CheckList from './pages/CheckList.jsx';
 
 // Lazy Imports
-const HomePage = lazy(() => import('./pages/HomePage.jsx'));
-const Hagenlanding = lazy(() => import('./pages/Hagenlanding.jsx'));
-const AboutPage = lazy(() => import('./pages/AboutPage.jsx'));
-const Datenschutzerklärung = lazy(() => import('./pages/Datenschutzerklärung.jsx'));
-const Erstgespraech = lazy(() => import('./pages/Erstgespraech.jsx'));
-const Impressum = lazy(() => import('./pages/Impressum.jsx'));
-const Danke = lazy(() => import('./pages/Danke.jsx'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const Hagenlanding = lazy(() => import('./pages/Hagenlanding'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const Datenschutzerklärung = lazy(() => import('./pages/Datenschutzerklärung'));
+const Erstgespraech = lazy(() => import('./pages/Erstgespraech'));
+const Impressum = lazy(() => import('./pages/Impressum'));
+const Danke = lazy(() => import('./pages/Danke'));
 
 import NotFound from "./pages/NotFound"
 
