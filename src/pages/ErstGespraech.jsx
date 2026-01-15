@@ -45,7 +45,7 @@ const CalendlyConsentEmbed = ({ enabled, setEnabled }) => {
   );
 };
 
-const Erstgespraech = () => {
+const ErstGespraech = () => {
   const sectionRef = useRef(null);
   const [enabled, setEnabled] = useState(false); // <-- State nach oben gezogen
 
@@ -147,4 +147,4 @@ const Erstgespraech = () => {
   );
 };
 
-export default Erstgespraech;
+export default ErstGespraech;
