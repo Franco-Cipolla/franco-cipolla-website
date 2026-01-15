@@ -14,7 +14,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const Hagenlanding = lazy(() => import('./pages/Hagenlanding'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const Datenschutzerklärung = lazy(() => import('./pages/Datenschutzerklärung'));
-const Erstgespraech = lazy(() => import('./pages/Erstgespraech'));
+const Erstgespraech = lazy(() => import('/src/pages/Erstgespraech.jsx'));
 const Impressum = lazy(() => import('./pages/Impressum'));
 const Danke = lazy(() => import('./pages/Danke'));
 
