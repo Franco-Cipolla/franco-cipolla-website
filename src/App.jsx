@@ -14,7 +14,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const Hagenlanding = lazy(() => import('./pages/Hagenlanding'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const Datenschutzerklärung = lazy(() => import('./pages/Datenschutzerklärung'));
-const Erstgespraech = lazy(() => import('./pages/Erstgespraech.jsx'));
+const Erstgespraech = lazy(() => import('./pages/ErstGespraech.jsx'));
 const Impressum = lazy(() => import('./pages/Impressum'));
 const Danke = lazy(() => import('./pages/Danke'));
 
@@ -34,7 +34,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="datenschutz" element={<Datenschutzerklärung />} />
-          <Route path="erstgespraech" element={<Erstgespraech />} />
+          <Route path="erstgespraech" element={<ErstGespraech />} />
           <Route path="impressum" element={<Impressum />} />
           <Route path="danke" element={<Danke />} />
           <Route path="websites-hagen" element={<Hagenlanding />} />
