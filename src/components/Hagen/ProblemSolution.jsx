@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { gsap, ScrollTrigger } from "./gsapSetup";
+import { gsap, ScrollTrigger } from "../gsapSetup";
 import { FaExclamationTriangle, FaCheckCircle, FaUserTimes, FaPhone, FaMobileAlt, FaClock } from 'react-icons/fa';
-import CTA1 from "./CTA1";
+import CTA1 from "../CTA1";
 gsap.registerPlugin(ScrollTrigger);
 
 const ProblemSolution = () => {
@@ -34,17 +34,17 @@ const ProblemSolution = () => {
   }, []);
 
   const problems = [
-    { icon: <FaUserTimes className="text-red-600" />, title: "Unklarer erster Eindruck - Besucher gehen", text: "Besucher erkennen nicht sofort, was Sie anbieten und wechseln zur Konkurrenz." },
-    { icon: <FaPhone className="text-red-600" />, title: "Besucher schauen – und melden sich nie", text: "Die Website führt Interessenten nicht zu Kontakt oder Terminbuchung." },
-    { icon: <FaMobileAlt className="text-red-600" />, title: "Abhängigkeit von Empfehlungen", text: "Neue Kunden kommen fast ausschließlich über Empfehlungen – kein planbarer Zufluss." },
-    { icon: <FaClock className="text-red-600" />, title: "Website wirkt alt und lädt zu lange", text: "Langsame Ladezeiten und fehlende Struktur lassen Interessenten abspringen." }
+    { icon: <FaUserTimes className="text-red-600" />, title: "Besucher wissen nicht, was Sie anbieten", text: "Besucher finden sich auf Ihrer Seite nicht zurecht und springen zur Konkurrenz ab." },
+    { icon: <FaPhone className="text-red-600" />, title: "Interessenten schauen – und melden sich nie", text: "Ihre Website motiviert Interessenten nicht, Sie direkt zu kontaktieren." },
+    { icon: <FaMobileAlt className="text-red-600" />, title: "Neue Kunden kommen nur zufällig", text: "Neue Kunden kommen meist über Empfehlungen – planbare Anfragen fehlen." },
+    { icon: <FaClock className="text-red-600" />, title: "Die Website wirkt unprofessionell oder alt", text: "Besucher verlieren Geduld oder Vertrauen, bevor sie Ihr Angebot sehen." }
   ];
 
   const solutions = [
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Klare Struktur", text: "Besucher verstehen sofort Ihr Angebot und wissen, was der nächste Schritt ist." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Mehr Anfragen", text: "Ihre Website generiert planbar Kontaktanfragen und Termine." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Unabhängig von Empfehlungen", text: "Gewinnen Sie Kunden auch ohne aktives Empfehlungsmarketing." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Schnell & mobil", text: "Optimiert für alle Geräte, schnelle Ladezeiten – keine verlorenen Interessenten." }
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Klare Orientierung", text: "Kunden erkennen sofort, was Sie anbieten und wie sie Kontakt aufnehmen." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Messbare Anfragen", text: "Ihre Website wird zum aktiven Verkäufer – Sie sehen genau, wer Interesse hat." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Unabhängig von Empfehlungen", text: "Gewinnen Sie neue Kunden, ohne auf Mundpropaganda warten zu müssen." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Schnell & mobil", text: "Optimiert für Smartphones, Tablets und Desktop – keine verlorenen Interessenten." }
   ];
 
   return (
@@ -57,10 +57,10 @@ const ProblemSolution = () => {
       <section ref={sectionRef} className="w-full mt-5 py-16 sm:py-20 md:py-24 xl:py-28 px-6 mx-auto max-w-[1100px]">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            Ihre Website kostet Sie täglich neue Kunden?
+            Warum viele Websites in Hagen keine Anfragen liefern
           </h2>
           <p className="text-lg text-[#000814] max-w-2xl mx-auto">
-            Viele lokale Websites sind online, sehen gut aus, bringen aber keine Anfragen.
+            Viele lokale Websites sehen professionell aus, liefern aber keine planbaren Anfragen.
           </p>
         </div>
 
@@ -71,10 +71,10 @@ const ProblemSolution = () => {
             <div className="text-center lg:text-left mb-4">
               <div className="flex items-center justify-center lg:justify-start mb-2">
                 <FaExclamationTriangle className="text-red-600 text-2xl mr-2" />
-                <h3 className="text-2xl font-bold text-red-700">Das Problem</h3>
+                <h3 className="text-2xl font-bold text-red-700">Die Herausforderungen</h3>
               </div>
               <p className="text-base text-[#000814]">
-                Ohne eine strategische Website verlieren Sie planbar Kunden und Chancen.
+                Ohne gezielte Strategie verlieren Sie wertvolle Interessenten in Hagen.
               </p>
             </div>
             <div className="space-y-4 flex-grow">
@@ -90,7 +90,7 @@ const ProblemSolution = () => {
             </div>
             <div className="p-5 bg-red-100 rounded-2xl text-center shadow-md">
               <p className="text-red-800 font-bold text-base">
-                Unternehmen mit klarer Website gewinnen planbar Kunden – täglich.
+                Mit einer klaren Website-Struktur gewinnen Konkurrenten in Hagen planbar neue Kunden.
               </p>
             </div>
           </div>
@@ -100,10 +100,10 @@ const ProblemSolution = () => {
             <div className="text-center lg:text-left mb-4">
               <div className="flex items-center justify-center lg:justify-start mb-2">
                 <FaCheckCircle className="text-green-600 text-2xl mr-2" />
-                <h3 className="text-2xl font-bold text-green-700">Die Lösung</h3>
+                <h3 className="text-2xl font-bold text-green-700">Unsere Lösung</h3>
               </div>
               <p className="text-base text-[#000814]">
-                Eine Website, die planbar neue Kundenanfragen generiert. Ohne Stress und Aufwand.
+                Ein maßgeschneidertes Website-System, das gezielt Besucher aus Hagen zu Anfragen führt – einfach, messbar und zuverlässig.
               </p>
             </div>
             <div className="space-y-4 flex-grow">
@@ -119,9 +119,9 @@ const ProblemSolution = () => {
             </div>
             <div className="p-5 bg-green-100 rounded-2xl text-center shadow-md">
               <p className="text-green-800 font-bold text-base">
-                Ich baue Websites die Anfragen erzeugen. Sie wissen jede Woche, woher neue Anfragen kommen.
+                Eine Website, die Besucher aus Hagen & Umgebung gezielt zur Anfrage führen.
                 <span className="block mt-1 text-sm font-normal text-green-700">
-                  Starten Sie mit 50% Anzahlung – den Rest zahlen Sie erst nach erfolgreichem Launch.
+                  50% Anzahlung – Rest nach erfolgreichem Launch.
                 </span>
               </p>
             </div>
@@ -136,7 +136,7 @@ const ProblemSolution = () => {
 
         <div className="text-center mt-8">
           <p className="text-[15px] text-[#000814] max-w-xl mx-auto">
-            Lassen Sie uns gemeinsam Ihre Website zum Kundenmagnet machen.
+            Lassen Sie uns Ihre Website zu einem echten Vertriebssystem machen.
           </p>
         </div>
       </section>

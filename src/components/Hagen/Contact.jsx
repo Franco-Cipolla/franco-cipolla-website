@@ -2,12 +2,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
 import { FiInstagram } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { gsap, ScrollTrigger } from "./gsapSetup";
+import { gsap, ScrollTrigger } from "../gsapSetup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Utils
-import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';
+import { buildFormsparkUrl, submitToFormspark } from '/src/components/formspark';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -160,9 +160,9 @@ const Contact = () => {
             Kontaktieren Sie mich
           </h1>
           <p className="contact-animate lg:hidden text-lg text-[#000814] mx-auto my-6">
-Ich unterstütze lokale Unternehmen in Ennepetal & Umgebung dabei, ihre Website zu einem echten Verkaufssystem zu machen. Ohne unnötigen Aufwand.</p>
+          Ich unterstütze lokale Unternehmen in Hagen dabei, ihre Website zu einem echten Verkaufssystem zu machen. Direkt, verständlich und ohne unnötigen Aufwand.          </p>
           <p className="contact-animate text-[#000814] text-lg my-6 hidden lg:block lg:pr-10">
-            Sie möchten eine Website, die endlich Anfragen bringt? Dann lassen sie uns sprechen.
+            Sie möchten eine Website, die Anfragen bringt? Dann lassen sie uns unverbindlich sprechen.
           </p>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlineMail className="text-black text-2xl" />

@@ -8,7 +8,6 @@ const Service = () => {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
 
-  // Benefits jetzt in einfacher, verständlicher Sprache für deine Zielgruppe
   const services = [
     {
       Icon: FaCode,
@@ -36,7 +35,7 @@ const Service = () => {
       title: "Copywriting",
       subtitle: "Texte, die zum Handeln führen",
       benefits: [
-        "Häufiges Problem: Besucher wissen nicht, was sie tun sollen",
+        "Häufiges Problem: Besucher wissen nicht, was sie tun sollen oder warum sie dich wählen sollten",
         "Lösung: Verständliche, direkte Texte mit starken Handlungsaufforderungen",
         "Ergebnis: Besucher kontaktieren dich häufiger → mehr Termine & Anfragen"
       ]
@@ -68,13 +67,18 @@ const Service = () => {
         {/* Header */}
         <div className="text-center mb-16" ref={headerRef} id="service-start">
           <h1 className="mb-6 leading-tight text-3xl md:text-4xl font-bold text-center">
-            Meine Leistung.
+            Was Sie bekommen:
             <span className="block bg-gradient-to-r from-[#003566] to-[#00A6FB] bg-clip-text text-transparent">
-              Websites für Unternehmen, die Besucher gezielt zur Anfrage führen            </span>
+              Eine Website, die Besucher gezielt zur Anfrage führt
+            </span>
           </h1>
+
           <p className="text-lg text-[#000814]/80 max-w-3xl mx-auto mb-8 leading-relaxed">
             Ich erstelle Websites für Selbstständige und kleine Unternehmen, die nicht nur gut aussehen, sondern <strong className="text-[#001D3D]">aktiv neue Kundenanfragen liefern</strong>.
+            <br /><br />
+            Gezielt für Unternehmen aus <span className="text-[#00A6FB] font-semibold">Ennepetal, <a href="/websites-hagen" className="text-[#00A6FB] font-semibold underline transition hover:text-[#003566]">Hagen</a> & Umgebung.</span>
           </p>
+
           <div className="flex flex-wrap justify-center gap-6 text-[#001D3D]/80 text-sm md:text-base font-medium">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-[#00A6FB] rounded-full" />
@@ -102,13 +106,12 @@ const Service = () => {
         <div className="bg-gradient-to-r from-[#001D3D] to-[#003566] rounded-3xl p-10 text-center text-white shadow-xl transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl font-bold mb-10 md:px-12">
-              Lokale-Anfragen-System: Das komplette Website-System für planbare Anfragen
+              Lokale-Anfragen-System™: Das Website System für planbare Kundenanfragen
             </h3>
 
             <p className="md:text-lg text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Website als Verkaufssystem + Conversion-Optimierung + Google Maps Integration →  messbare neue Anfragen.
-              <br />
-              <br />
+              Website als Verkaufssystem + Conversion-Optimierung + Google Maps Integration → messbare neue Anfragen.
+              <br /><br />
               <strong>Aktuell inklusive Bonus:</strong> Website-Besucher-Startpaket. 2 fertige Social-Media-Posts + kurzes persönliches Video, wie Sie gezielt Besucher auf Ihre Website lenken. <span className="italic">Bonus nur für die nächsten 3 Kunden enthalten!</span>
             </p>
 
@@ -140,22 +143,20 @@ const Service = () => {
                 <p className="text-white/80 text-sm">Alle Besucher und Anfragen jederzeit sichtbar und steuerbar</p>
               </div>
               <div className="text-center">
-            <div className="w-12 h-12 bg-[#00A6FB] rounded-xl flex items-center justify-center mx-auto mb-3">
-              <FaCheck className="w-5 h-5 text-white" />
-            </div>
-            <h4 className="font-semibold mb-2">Risikofreier Start</h4>
-            <p className="text-white/80 text-sm">
-              Starten Sie mit 50% Anzahlung. Den Rest zahlen Sie erst nach erfolgreichem Launch.
-            </p>
-          </div>
-
+                <div className="w-12 h-12 bg-[#00A6FB] rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <FaCheck className="w-5 h-5 text-white" />
+                </div>
+                <h4 className="font-semibold mb-2">Risikofreier Start</h4>
+                <p className="text-white/80 text-sm">
+                  Starten Sie mit 50% Anzahlung. Den Rest zahlen Sie erst nach erfolgreichem Launch.
+                </p>
+              </div>
             </div>
 
             <CTAProjectStart />
             <p className="text-[13px] text-white/60 mt-3">Kostenloses Erstgespräch – unverbindlich & ohne Risiko</p>
           </div>
         </div>
-
       </div>
     </section>
   );

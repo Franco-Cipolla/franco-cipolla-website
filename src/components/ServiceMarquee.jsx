@@ -19,7 +19,7 @@ const ServiceMarquee = () => {
     <div className='mt-[100px] xl:mt-[200px] mb-[140px]'>
       {/* Intro-Text */}
       <p className="text-center text-md lg:text-xl text-[#000814]/80 max-w-2xl mx-auto mb-8">
-        Ich bringe die Websites von KMUs näher an echte Ergebnisse: <span className="font-semibold block text-[#001D3D]">mehr Sichtbarkeit, mehr Anfragen, mehr Umsatz.</span>
+        Ich bringe die Websites von Unternehmen näher an echte Ergebnisse: <span className="font-semibold block text-[#001D3D]">mehr Sichtbarkeit, mehr Anfragen, mehr Umsatz.</span>
       </p>
 
       {/* Mobile Marquee */}
