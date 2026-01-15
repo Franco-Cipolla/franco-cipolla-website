@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { gsap, ScrollTrigger } from "./gsapSetup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaWhatsapp } from "react-icons/fa";
 
 // Utils
 import { buildFormsparkUrl, submitToFormspark } from '../components/formspark';
@@ -172,6 +173,10 @@ Ich unterstütze lokale Unternehmen in Ennepetal & Umgebung dabei, ihre Website 
           </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlinePhone className="text-black text-2xl" />
+            <a href="tel:+4917675398004" className='text-[#000814] hover:text-[#003566] transition-colors'>+49 176 75398004</a>
+          </div>
+          <div className="contact-animate flex items-center gap-3 mt-8">
+            <FaWhatsapp className="text-black text-2xl" />
             <a href="tel:+4917675398004" className='text-[#000814] hover:text-[#003566] transition-colors'>+49 176 75398004</a>
           </div>
           <div className="contact-animate flex items-center gap-3 mt-8">

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { gsap, ScrollTrigger } from "../gsapSetup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { FaWhatsapp } from "react-icons/fa";
 // Utils
 import { buildFormsparkUrl, submitToFormspark } from '/src/components/formspark';
 
@@ -174,6 +174,10 @@ const Contact = () => {
             <HiOutlinePhone className="text-black text-2xl" />
             <a href="tel:+4917675398004" className='text-[#000814] hover:text-[#003566] transition-colors'>+49 176 75398004</a>
           </div>
+          <div className="contact-animate flex items-center gap-3 mt-8">
+                      <FaWhatsapp className="text-black text-2xl" />
+                      <a href="tel:+4917675398004" className='text-[#000814] hover:text-[#003566] transition-colors'>+49 176 75398004</a>
+                    </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <FiInstagram className="text-black text-2xl" />
             <a

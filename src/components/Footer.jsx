@@ -3,9 +3,8 @@ import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
 import { FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import CookieBanner from './CookieBanner'
-import { FaLinkedin } from 'react-icons/fa'
-import { FaLinkedinIn } from 'react-icons/fa6'
 
+import { FaWhatsapp } from "react-icons/fa";
 const Footer = () => {
   const [showCookieSettings, setShowCookieSettings] = useState(false)
 
@@ -48,6 +47,16 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-3 mt-3">
               <HiOutlinePhone className="text-black text-xl" />
+              <a
+                className="text-[#000814] hover:text-[#003566] transition-colors"
+                href="tel:+4917675398004"
+
+              >
+                +49 176 75398004
+              </a>
+            </div>
+            <div className="flex items-center gap-3 mt-3">
+              <FaWhatsapp className="text-black text-xl" />
               <a
                 className="text-[#000814] hover:text-[#003566] transition-colors"
                 href="tel:+4917675398004"
