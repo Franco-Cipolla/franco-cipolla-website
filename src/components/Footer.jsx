@@ -59,10 +59,10 @@ const Footer = () => {
               <FaWhatsapp className="text-black text-xl" />
               <a
                 className="text-[#000814] hover:text-[#003566] transition-colors"
-                href="tel:+4917675398004"
+                 href="https://wa.me/4917675398004" target="_blank" rel="noopener noreferrer"
 
               >
-                +49 176 75398004
+                WhatsApp schreiben
               </a>
             </div>
           </div>

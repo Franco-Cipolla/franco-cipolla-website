@@ -115,7 +115,7 @@ const Hero = () => {
             <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm">
                 <span className="text-[13px] text-center md:text-sm font-medium text-[#003566] tracking-tight">
-                  🚀 Webdesigner für lokale Unternehmen in Hagen & Umgebung
+                  🚀 Webdesigner für lokale Unternehmen in Hagen
                 </span>
               </div>
             </div>
