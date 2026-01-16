@@ -119,6 +119,7 @@ const Hero = () => {
                 </span>
               </div>
             </div>
+            
 
             {/* Headline */}
             <h1

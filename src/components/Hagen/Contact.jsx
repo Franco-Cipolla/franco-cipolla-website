@@ -1,13 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi';
+import { HiOutlinePhone } from 'react-icons/hi';
 import { FiInstagram } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { gsap, ScrollTrigger } from "../gsapSetup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaWhatsapp } from "react-icons/fa";
+
 // Utils
-import { buildFormsparkUrl, submitToFormspark } from '/src/components/formspark';
+import { buildFormsparkUrl, submitToFormspark } from '.././formspark';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,7 @@ const Contact = () => {
 
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    phone: '', // statt email
     message: '',
     privacy: false,
     website: '' // Honeypot field
@@ -53,10 +54,10 @@ const Contact = () => {
       case 'name':
         if (!value.trim()) error = 'Bitte gib deinen Namen ein.';
         break;
-      case 'email':
-        if (!value.trim()) error = 'Bitte gib deine E-Mail ein.';
-        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
-          error = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+      case 'phone':
+        if (!value.trim()) error = 'Bitte gib deine Telefonnummer ein.';
+        else if (!/^\+?\d{7,15}$/.test(value))
+          error = 'Bitte gib eine gültige Telefonnummer ein.';
         break;
       case 'message':
         if (!value.trim()) error = 'Bitte gib eine Nachricht ein.';
@@ -98,7 +99,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Honeypot check — wenn ausgefüllt, einfach abbrechen
+    // Honeypot check
     if (formData.website.trim() !== '') {
       console.warn('Bot detected via honeypot field');
       return;
@@ -107,7 +108,7 @@ const Contact = () => {
     // Validierung
     const newErrors = {};
     Object.entries(formData).forEach(([key, val]) => {
-      if (key !== 'website') { // Honeypot wird nicht validiert
+      if (key !== 'website') {
         const error = validateField(key, val);
         if (error) newErrors[key] = error;
       }
@@ -125,14 +126,12 @@ const Contact = () => {
 
     try {
       const payload = { ...formData };
-
       const result = await submitToFormspark(formsparkURL, payload);
 
       toast.dismiss();
-
       if (result.ok) {
         toast.success('Danke für deine Anfrage!');
-        setFormData({ name: '', email: '', message: '', privacy: false, website: '' });
+        setFormData({ name: '', phone: '', message: '', privacy: false, website: '' });
         setErrors({});
       } else {
         toast.error(result.message || 'Fehler beim Senden. Bitte versuche es erneut.');
@@ -159,25 +158,17 @@ const Contact = () => {
           <h1 className="contact-animate text-3xl md:text-4xl font-bold mb-6 lg:mb-10">
             Kontaktieren Sie mich
           </h1>
-          <p className="contact-animate lg:hidden text-lg text-[#000814] mx-auto my-6">
-          Ich unterstütze lokale Unternehmen in Hagen dabei, ihre Website zu einem echten Verkaufssystem zu machen. Direkt, verständlich und ohne unnötigen Aufwand.          </p>
           <p className="contact-animate text-[#000814] text-lg my-6 hidden lg:block lg:pr-10">
             Sie möchten eine Website, die Anfragen bringt? Dann lassen sie uns unverbindlich sprechen.
           </p>
-          <div className="contact-animate flex items-center gap-3 mt-8">
-            <HiOutlineMail className="text-black text-2xl" />
-            <a href="mailto:franco_cipolla@web.de" className="text-[#000814] hover:text-[#003566] transition-colors">
-              franco_cipolla@web.de
-            </a>
-          </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <HiOutlinePhone className="text-black text-2xl" />
             <a href="tel:+4917675398004" className='text-[#000814] hover:text-[#003566] transition-colors'>+49 176 75398004</a>
           </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
-                      <FaWhatsapp className="text-black text-2xl" />
-                      <a href="tel:+4917675398004" className='text-[#000814] hover:text-[#003566] transition-colors'>+49 176 75398004</a>
-                    </div>
+            <FaWhatsapp className="text-black text-2xl" />
+            <a href="tel:+4917675398004" className='text-[#000814] hover:text-[#003566] transition-colors'>+49 176 75398004</a>
+          </div>
           <div className="contact-animate flex items-center gap-3 mt-8">
             <FiInstagram className="text-black text-2xl" />
             <a
@@ -193,7 +184,7 @@ const Contact = () => {
 
         <div>
           <form onSubmit={handleSubmit} noValidate>
-            {/* Honeypot Field - hidden from users */}
+            {/* Honeypot Field */}
             <input
               type="text"
               name="website"
@@ -204,58 +195,64 @@ const Contact = () => {
               autoComplete="off"
             />
 
-            <div className="contact-animate my-8">
-              <label htmlFor="name" className="block text-lg font-semibold mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`border w-full p-2.5 font-semibold text-[#000814] rounded ${
-                  errors.name ? 'border-red-600' : 'border-black'
-                }`}
-              />
-              {errors.name && <p className="text-red-600 mt-1 text-sm">{errors.name}</p>}
-            </div>
 
-            <div className="contact-animate my-8">
-              <label htmlFor="email" className="block text-lg font-semibold mb-2">
-                E-Mail
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`border w-full p-2.5 font-semibold text-[#000814] rounded ${
-                  errors.email ? 'border-red-600' : 'border-black'
-                }`}
-              />
-              {errors.email && <p className="text-red-600 mt-1 text-sm">{errors.email}</p>}
-            </div>
 
-            <div className="contact-animate my-6">
-              <label htmlFor="message" className="block text-lg font-semibold mb-2">
-                Ihre Nachricht
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`border w-full p-2.5 h-35 font-semibold text-[#000814] rounded ${
-                  errors.message ? 'border-red-600' : 'border-black'
-                }`}
-              />
-              {errors.message && <p className="text-red-600 mt-1 text-sm">{errors.message}</p>}
-            </div>
+          <div className="contact-animate my-8">
+            <label htmlFor="name" className="block text-lg font-semibold mb-2">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Max Mustermann"
+              value={formData.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={`border w-full p-2.5 font-semibold text-[#000814] rounded placeholder:font-medium ${
+                errors.name ? 'border-red-600' : 'border-black'
+              }`}
+            />
+            {errors.name && <p className="text-red-600 mt-1 text-sm">{errors.name}</p>}
+          </div>
+
+          <div className="contact-animate my-8">
+            <label htmlFor="phone" className="block text-lg font-semibold mb-2">
+              Telefonnummer
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+49 176 12345678"
+              value={formData.phone}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={`border w-full p-2.5 font-semibold text-[#000814] rounded placeholder:font-medium  ${
+                errors.phone ? 'border-red-600' : 'border-black'
+              }`}
+            />
+            {errors.phone && <p className="text-red-600 mt-1 text-sm">{errors.phone}</p>}
+          </div>
+
+          <div className="contact-animate my-6">
+            <label htmlFor="message" className="block text-lg font-semibold mb-2">
+              Ihre Nachricht
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Schreiben Sie mir kurz, wie ich Ihnen helfen kann…"
+              value={formData.message}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={`border w-full p-2.5 h-35 font-semibold text-[#000814] rounded placeholder:font-medium  ${
+                errors.message ? 'border-red-600' : 'border-black'
+              }`}
+            />
+            {errors.message && <p className="text-red-600 mt-1 text-sm">{errors.message}</p>}
+          </div>
+
 
             <div className="contact-animate flex items-center gap-2">
               <input
