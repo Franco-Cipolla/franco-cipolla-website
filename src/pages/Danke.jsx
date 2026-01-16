@@ -58,14 +58,14 @@ const Danke = () => {
 
         {/* Headline */}
         <h1 className="cta-animate text-3xl md:text-5xl font-black text-black tracking-tight mb-6">
-          Perfekt, ich habe deine Nachricht erhalten!
+          Perfekt, ich habe ihre Nachricht erhalten!
         </h1>
 
         {/* Subtext */}
         <p className="cta-animate text-lg xl:text-xl text-[#000814]/90 mb-8 max-w-xl">
-          Ich melde mich schnellstmöglich bei dir. <br />
+          Ich melde mich schnellstmöglich bei ihnen. <br />
           <br />
-          Folge mir auf Instagram für Tipps, Insights und praxisnahe Beispiele, wie du planbar mehr Kunden über deine Website bekommst.
+          Folgen sie mir auf Instagram für Tipps, Insights und praxisnahe Beispiele, wie sie planbar mehr Kunden über ihre Website bekommen.
         </p>
 
         {/* Instagram CTA */}
