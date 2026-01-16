@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { HiOutlinePhone } from 'react-icons/hi';
 import { FiInstagram } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // <--- useNavigate
 import { gsap, ScrollTrigger } from "../gsapSetup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const sectionRef = useRef(null);
+  const navigate = useNavigate(); // <--- Navigator
 
   const [formData, setFormData] = useState({
     name: '',
@@ -112,9 +113,8 @@ const Contact = () => {
 
       toast.dismiss();
       if (result.ok) {
-        toast.success('Danke für deine Anfrage! Ich melde mich schnellstmöglich.');
-        setFormData({ name: '', phone: '', message: '', privacy: false, website: '' });
-        setErrors({});
+        // ✅ Erfolgreich -> weiterleiten zur Danke-Seite
+        navigate('/danke');
       } else {
         toast.error(result.message || 'Fehler beim Senden. Bitte versuche es erneut.');
       }
