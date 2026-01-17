@@ -78,7 +78,7 @@ const ErstGespraech = () => {
         <title>Kostenlose Website-Analyse – Erstgespräch buchen | Franco Cipolla</title>
         <meta
           name="description"
-          content="Buche jetzt deine kostenlose Website-Analyse. Max. 2 Projekte pro Monat. Konkrete Optimierungsideen oder kostenloser Design-Prototyp."
+          content="Buche jetzt deine kostenlose Website-Analyse/Erstgespräch. Max. 2 Projekte pro Monat. Konkrete Optimierungsideen oder kostenloser Design-Prototyp."
         />
         <link rel="canonical" href="https://www.franco-cipolla.de/erstgespraech" />
 

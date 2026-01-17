@@ -12,6 +12,7 @@ import CheckList from './pages/CheckList.jsx';
 // Lazy Imports
 const HomePage = lazy(() => import('./pages/HomePage'));
 const Hagenlanding = lazy(() => import('./pages/Hagenlanding'));
+const Wuppertallanding = lazy(() => import('./pages/Wuppertallanding'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const Datenschutzerklärung = lazy(() => import('./pages/Datenschutzerklärung'));
 const ErstGespraech = lazy(() => import('./pages/ErstGespraech.jsx'));
@@ -37,7 +38,8 @@ function App() {
           <Route path="erstgespraech" element={<ErstGespraech />} />
           <Route path="impressum" element={<Impressum />} />
           <Route path="danke" element={<Danke />} />
-          <Route path="websites-hagen" element={<Hagenlanding />} />
+          <Route path="hagen" element={<Hagenlanding />} />
+          <Route path="wuppertal" element={<Wuppertallanding />} />
 
         </Route>
 

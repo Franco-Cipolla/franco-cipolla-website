@@ -5,19 +5,17 @@ import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const faqsHagen = [
+const faqsWuppertal = [
   {
-    question: 'Warum bekomme ich über meine Website in Hagen keine Anfragen?',
+    question: 'Warum bekomme ich über meine Website in Wuppertal keine Anfragen?',
     answer: (
       <div className="space-y-2">
         <p>
-          Viele Websites sehen gut aus, <strong>aber Besucher wissen nicht, was sie tun sollen</strong>. Ergebnis: keine Anfragen.
+          Viele Websites sehen gut aus, <strong>aber Besucher wissen nicht, was sie tun sollen</strong>.
+          Ergebnis: keine Anfragen.
         </p>
         <p>
-          Ich erstelle Websites, die Besucher Schritt für Schritt führen, Vertrauen aufbauen und gezielt zur Anfrage bringen.
-        </p>
-        <p>
-          Inklusive: <strong>Conversion-optimierte Struktur, Google Maps Integration</strong> & <strong>Bonus: Social-Media Starterkit</strong> zur gezielten Besucherlenkung.
+          Ich baue Websites, die Besucher Schritt für Schritt führen, Vertrauen aufbauen und gezielt zur Anfrage bringen.
         </p>
       </div>
     ),
@@ -26,11 +24,11 @@ const faqsHagen = [
     question: 'Ich habe noch keine Website. Kann ich trotzdem starten?',
     answer: (
       <div className="space-y-2">
-        <p>Absolut! Auch ohne bestehende Website können wir sofort starten.</p>
+        <p>Ja. Wir starten sofort, auch ohne bestehende Website.</p>
         <p>
-          Sie erhalten einen <strong>kostenlosen Design-Prototypen in unserem Erstgespräch</strong>, der zeigt, wie Besucher aus zu Kunden werden können.
+          Im Erstgespräch bekommen Sie einen <strong>kostenlosen Mini-Prototyp</strong>, der zeigt, wie Besucher aus Wuppertal zu Kunden werden.
         </p>
-        <p><strong>Wichtig:</strong> Ich betreue nur 2 Kunden pro Monat – volles Fokus auf meine Projekte.</p>
+        <p><strong>Wichtig:</strong> Ich nehme nur 2 Projekte pro Monat an – Fokus statt Masse.</p>
       </div>
     ),
   },
@@ -38,15 +36,16 @@ const faqsHagen = [
     question: 'Was genau bekomme ich?',
     answer: (
       <div className="space-y-2">
-        <p>Keine „schöne Website“ allein, sondern ein <strong>System, das Besucher direkt zu Anfragen führt</strong>.</p>
+        <p>
+          Nicht nur eine „schöne Website“ – sondern ein <strong>System, das Besucher gezielt zur Anfrage führt</strong>.
+        </p>
         <ul className="list-disc list-inside space-y-2">
-          <li>Conversion-optimierte Struktur & Texte → Interessenten werden Kunden</li>
-          <li>Modernes Design & Branding → Vertrauen & Professionalität</li>
-          <li>Mobile-optimiert & schnell → keine verlorenen Besucher</li>
-          <li>Google Maps & lokale Sichtbarkeit → Kunden finden Sie sofort</li>
-          <li><strong>Bonus:</strong> Website-Besucher-Startpaket → 2 fertige Posts + kurzes Video zur Besuchersteigerung</li>
+          <li>Conversion-optimierte Struktur & Texte</li>
+          <li>Modernes Design & Vertrauen</li>
+          <li>Mobile & schnell – keine verlorenen Besucher</li>
+          <li>Google Maps & lokale Sichtbarkeit</li>
+          <li><strong>Inklusive Bonus:</strong> Website-Besucher-Startpaket (2 Posts + kurzes Video) Im Wert von 300€. Für die nächsten drei Kunden.</li>
         </ul>
-        <p className="text-sm text-gray-600 mt-2">Sofort umsetzbar – erste Besucher bereits in den ersten Tagen.</p>
       </div>
     ),
   },
@@ -54,8 +53,8 @@ const faqsHagen = [
     question: 'Wie viel Zeit muss ich investieren?',
     answer: (
       <div className="space-y-2">
-        <p>Minimal. Sie liefern nur Briefing & Hosting-Zugang – <strong>den Rest erledige ich</strong>.</p>
-        <p>Ihre Website entsteht im Hintergrund, während Sie sich um Ihr Business kümmern.</p>
+        <p>Minimal. Sie liefern nur Briefing & Zugang – <strong>den Rest erledige ich</strong>.</p>
+        <p>Die Website entsteht im Hintergrund, während Sie Ihr Business weiterführen.</p>
       </div>
     ),
   },
@@ -63,8 +62,8 @@ const faqsHagen = [
     question: 'Wie lange dauert die Umsetzung?',
     answer: (
       <div className="space-y-2">
-        <p>Websites für Unternehmen in Hagen sind in <strong>2–4 Wochen</strong> live.</p>
-        <p>Klarer Ablauf → minimaler Aufwand, kein Stress.</p>
+        <p>In Wuppertal sind Websites meist in <strong>2–4 Wochen</strong> live.</p>
+        <p>Klare Schritte, minimaler Aufwand, kein Stress.</p>
       </div>
     ),
   },
@@ -72,8 +71,8 @@ const faqsHagen = [
     question: 'Was, wenn die Website keine Anfragen bringt?',
     answer: (
       <div className="space-y-2">
-        <p>Ich baue Websites mit klarer Struktur, optimierten Kontaktpunkten & nachvollziehbaren Besucherwegen.</p>
-        <p>Im Erstgespräch prüfen wir, ob eine neue Website jetzt Sinn macht oder andere Maßnahmen effektiver sind.</p>
+        <p>Ich baue Websites mit klaren Kontaktpunkten und nachvollziehbaren Besucherwegen.</p>
+        <p>Im Erstgespräch prüfen wir, ob eine neue Website jetzt Sinn macht oder andere Maßnahmen besser sind.</p>
       </div>
     ),
   },
@@ -81,14 +80,14 @@ const faqsHagen = [
     question: 'Kann ich später Änderungen vornehmen?',
     answer: (
       <div className="space-y-2">
-        <p>Ja, kleinere Anpassungen jederzeit möglich, ohne dass Ihre Anfragen leiden.</p>
-        <p>Für regelmäßige Optimierungen gibt es optionale Wartungspakete – <strong>monatlich kündbar, ohne Risiko</strong>.</p>
+        <p>Ja. Kleine Anpassungen sind jederzeit möglich.</p>
+        <p>Für regelmäßige Optimierung gibt es optionale Wartungspakete – <strong>monatlich kündbar</strong>.</p>
       </div>
     ),
   },
 ];
 
-const FAQSectionHagen = () => {
+const FAQSectionWuppertal = () => {
   const sectionRef = useRef(null);
   const ctaRef = useRef(null);
   const [openIndex, setOpenIndex] = useState(null);
@@ -140,7 +139,7 @@ const FAQSectionHagen = () => {
       </h1>
 
       <div className="max-w-3xl mx-auto space-y-6">
-        {faqsHagen.map((faq, index) => (
+        {faqsWuppertal.map((faq, index) => (
           <div
             key={index}
             className="faq-item border cursor-pointer border-gray-200 rounded-xl p-6 shadow-sm transition duration-300"
@@ -167,7 +166,7 @@ const FAQSectionHagen = () => {
       <div ref={ctaRef} className="text-center mt-12 w-full flex flex-col items-center">
         <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto my-6">
           Noch unsicher? <br />
-          Lassen Sie uns prüfen, wie Ihre Website in Hagen gezielt neue Kunden bringt.
+          Lassen Sie uns prüfen, wie Ihre Website in Wuppertal gezielt neue Kunden bringt.
         </p>
         <button
           onClick={handleClick}
@@ -180,4 +179,4 @@ const FAQSectionHagen = () => {
   );
 };
 
-export default FAQSectionHagen;
+export default FAQSectionWuppertal;

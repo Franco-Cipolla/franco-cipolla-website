@@ -19,14 +19,14 @@ const HagenLanding = () => {
           name="description"
           content="Ihre Website bringt keine Kunden? Ich erstelle Websites für Selbstständige & Unternehmen in Hagen, die wirklich Kundenanfragen bringen. Modernes Design, klare Struktur und Conversion-Optimierung – starten Sie jetzt durch und sichern sich planbare Anfragen."
         />
-        <link rel="canonical" href="https://www.franco-cipolla.de/websites-hagen" />
+        <link rel="canonical" href="https://www.franco-cipolla.de/hagen" />
         <meta property="og:title" content="Websites, die Kunden bringen – Franco Cipolla" />
         <meta
           property="og:description"
           content="Individuelle Websites für Selbstständige & Unternehmen in Hagen, die planbare Kundenanfragen generieren."
         />
         <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
-        <meta property="og:url" content="https://www.franco-cipolla.de/websites-hagen" />
+        <meta property="og:url" content="https://www.franco-cipolla.de/hagen" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Websites, die Kunden bringen – Franco Cipolla" />

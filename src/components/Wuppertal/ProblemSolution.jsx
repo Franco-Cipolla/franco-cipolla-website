@@ -34,30 +34,30 @@ const ProblemSolution = () => {
   }, []);
 
   const problems = [
-    { icon: <FaUserTimes className="text-red-600" />, title: "Besucher wissen nicht, was Sie anbieten", text: "Besucher finden sich auf Ihrer Seite nicht zurecht und springen zur Konkurrenz ab." },
-    { icon: <FaPhone className="text-red-600" />, title: "Interessenten schauen – und melden sich nie", text: "Ihre Website motiviert Interessenten nicht, Sie direkt zu kontaktieren." },
-    { icon: <FaMobileAlt className="text-red-600" />, title: "Neue Kunden kommen nur zufällig", text: "Neue Kunden kommen meist über Empfehlungen – planbare Anfragen fehlen." },
-    { icon: <FaClock className="text-red-600" />, title: "Die Website wirkt unprofessionell oder alt", text: "Besucher verlieren Geduld oder Vertrauen, bevor sie Ihr Angebot sehen." }
+    { icon: <FaUserTimes className="text-red-600" />, title: "Besucher verstehen Ihr Angebot nicht", text: "Potenzielle Kunden wissen nicht sofort, was Sie anbieten – und klicken weg." },
+    { icon: <FaPhone className="text-red-600" />, title: "Interessenten kommen – aber melden sich nicht", text: "Die Website erzeugt keine klare Handlungsaufforderung, deshalb bleibt der Kontakt aus." },
+    { icon: <FaMobileAlt className="text-red-600" />, title: "Neue Kunden kommen nur zufällig", text: "Sie sind abhängig von Empfehlungen – statt planbar neue Anfragen zu bekommen." },
+    { icon: <FaClock className="text-red-600" />, title: "Ihre Seite wirkt veraltet oder unübersichtlich", text: "Das schafft kein Vertrauen und Interessenten suchen sich schnell einen anderen Anbieter." }
   ];
 
   const solutions = [
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Klare Orientierung", text: "Kunden erkennen sofort, was Sie anbieten und wie sie Kontakt aufnehmen." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Messbare Anfragen", text: "Ihre Website wird zum aktiven Verkäufer – Sie sehen genau, wer Interesse hat." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Unabhängig von Empfehlungen", text: "Gewinnen Sie neue Kunden, ohne auf Mundpropaganda warten zu müssen." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Schnell & mobil", text: "Optimiert für Smartphones, Tablets und Desktop – keine verlorenen Interessenten." }
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Sofortige Klarheit", text: "Besucher wissen in Sekunden, was Sie tun, für wen und wie sie Sie erreichen." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Mehr Anfragen – messbar", text: "Die Website wird zum aktiven Verkäufer – mit Tracking und klaren CTAs." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Unabhängig von Empfehlungen", text: "Sie gewinnen konstant neue Kunden auch ohne Mundpropaganda." },
+    { icon: <FaCheckCircle className="text-green-600" />, title: "Schnell & mobil optimiert", text: "Keine verlorenen Anfragen mehr durch langsame oder schlecht lesbare Seiten." }
   ];
 
   return (
     <>
       <div className="relative overflow-hidden">
         <span ref={leftCircleRef} className="fixed w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] blur-[80px] sm:blur-[100px] md:blur-[100px] bg-gradient-to-br from-red-600 via-red-700 to-red-800 rounded-full opacity-0 z-[-1]" />
-        <span ref={rightCircleRef} className="fixed w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] blur-[60px] sm:blur-[80px] md:blur-[100px] bg-gradient-to-tl from-green-600 via-green-700 to-green-800 rounded-full opacity-0 z-[-1]" />
+        <span ref={rightCircleRef} className="fixed w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] md:blur-[100px] blur-[60px] sm:blur-[80px] bg-gradient-to-tl from-green-600 via-green-700 to-green-800 rounded-full opacity-0 z-[-1]" />
       </div>
 
       <section ref={sectionRef} className="w-full mt-5 py-16 sm:py-20 md:py-24 xl:py-28 px-6 mx-auto max-w-[1100px]">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            Warum viele Websites in Hagen keine Anfragen liefern
+            Warum viele Websites in Wuppertal keine Anfragen liefern
           </h2>
           <p className="text-lg text-[#000814] max-w-2xl mx-auto">
             Viele lokale Websites sehen professionell aus, liefern aber keine planbaren Anfragen.
@@ -74,7 +74,7 @@ const ProblemSolution = () => {
                 <h3 className="text-2xl font-bold text-red-700">Die Herausforderungen</h3>
               </div>
               <p className="text-base text-[#000814]">
-                Ohne gezielte Strategie verlieren Sie wertvolle Interessenten in Hagen.
+                Ohne gezielte Strategie verlieren Sie wertvolle Interessenten in Wuppertal.
               </p>
             </div>
             <div className="space-y-4 flex-grow">
@@ -90,7 +90,7 @@ const ProblemSolution = () => {
             </div>
             <div className="p-5 bg-red-100 rounded-2xl text-center shadow-md">
               <p className="text-red-800 font-bold text-base">
-                Mit einer klaren Website-Struktur gewinnen Konkurrenten in Hagen planbar neue Kunden.
+                Mit einer klaren Website-Struktur gewinnen Konkurrenten in Wuppertal planbar neue Kunden.
               </p>
             </div>
           </div>
@@ -103,7 +103,7 @@ const ProblemSolution = () => {
                 <h3 className="text-2xl font-bold text-green-700">Meine Lösung</h3>
               </div>
               <p className="text-base text-[#000814]">
-                Ein maßgeschneidertes Website-System, das gezielt Besucher aus Hagen zu Anfragen führt – einfach, messbar und zuverlässig.
+                Ein maßgeschneidertes Website-System, das Besucher aus Wuppertal gezielt zu Anfragen führt – einfach, messbar und zuverlässig.
               </p>
             </div>
             <div className="space-y-4 flex-grow">
@@ -119,7 +119,7 @@ const ProblemSolution = () => {
             </div>
             <div className="p-5 bg-green-100 rounded-2xl text-center shadow-md">
               <p className="text-green-800 font-bold text-base">
-                Eine Website, die Besucher aus Hagen & Umgebung gezielt zur Anfrage führen.
+                Eine Website, die Besucher aus Wuppertal & Umgebung gezielt zur Anfrage führt.
                 <span className="block mt-1 text-sm font-normal text-green-700">
                   50% Anzahlung – Rest nach erfolgreichem Launch.
                 </span>

@@ -94,6 +94,37 @@ const SEOJsonLD = ({ page }) => {
         ]
       };
       break;
+      case "wuppertal":
+      pageSchema = {
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "name": "Franco Cipolla",
+            "image": "https://franco-cipolla.de/Franco2.jpeg",
+            "url": "https://www.franco-cipolla.de",
+            "telephone": "+49-17675398004",
+            "sameAs": [
+              "https://www.instagram.com/francocipolla.de/",
+              "https://www.linkedin.com/in/franco-cipolla-00217a37a/",
+              "https://www.facebook.com/people/Franco-Cipolla/61585491870754/#"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Websites, die Kunden bringen für Wuppertal – Franco Cipolla",
+            "url": "https://www.franco-cipolla.de/websites-wuppertal",
+            "description": "Websites für Unternehmen in Wuppertal, die darauf ausgelegt sind planbar Kundenanfragen generieren. Modernes Design, klare Struktur & lokale SEO.",
+            "mainEntity": [
+              {
+                "@type": "Service",
+                "name": "Lokale-Anfragen-System™",
+                "description": "Websites für Unternehmen in Wuppertal, die Besucher gezielt zur Anfrage führen."
+              }
+            ]
+          }
+        ]
+      };
+      break;
 
     default:
       pageSchema = {};
