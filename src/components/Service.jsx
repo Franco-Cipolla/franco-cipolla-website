@@ -76,7 +76,7 @@ const Service = () => {
           <p className="text-lg text-[#000814]/80 max-w-3xl mx-auto mb-8 leading-relaxed">
             Ich erstelle Websites für Selbstständige und kleine Unternehmen, die nicht nur gut aussehen, sondern <strong className="text-[#001D3D]">aktiv neue Kundenanfragen liefern</strong>.
             <br /><br />
-            Gezielt für Unternehmen aus <span className="text-[#00A6FB] font-semibold">Ennepetal, <a href="/websites-hagen" className="text-[#00A6FB] font-semibold underline transition hover:text-[#003566]">Hagen</a> & Umgebung.</span>
+            Gezielt für Unternehmen aus <span className="text-[#00A6FB] font-semibold">Ennepetal, <a href="/hagen" className="text-[#00A6FB] font-semibold underline transition hover:text-[#003566]">Hagen</a> & Umgebung.</span>
           </p>
 
           <div className="flex flex-wrap justify-center gap-6 text-[#001D3D]/80 text-sm md:text-base font-medium">
