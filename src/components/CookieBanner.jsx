@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from './gsapSetup';
 
 const COOKIE_NAME = 'cookieConsent';
-const GA_ID = import.meta.env.VITE_GA_ID; // GA-ID aus .env
 
-const CookieBanner = ({ forceShow = false, onClose }) => {
+const CookieBanner = ({ forceShow = false, onClose, onConsentChange }) => {
   const [showBanner, setShowBanner] = useState(false);
   const [consent, setConsent] = useState({
     necessary: true,
@@ -13,19 +12,18 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
   });
   const bannerRef = useRef(null);
 
-  // Prüfen, ob ein Consent schon im localStorage gespeichert ist
   useEffect(() => {
     const savedConsent = localStorage.getItem(COOKIE_NAME);
     if (savedConsent) {
       const parsed = JSON.parse(savedConsent);
       setConsent(parsed);
       setShowBanner(false);
+      onConsentChange && onConsentChange(parsed);
     } else if (!forceShow) {
       setShowBanner(true);
     }
   }, [forceShow]);
 
-  // Banner Animation
   useEffect(() => {
     if ((showBanner || forceShow) && bannerRef.current) {
       const ctx = gsap.context(() => {
@@ -39,61 +37,31 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
     }
   }, [showBanner, forceShow]);
 
-  const enableAnalytics = () => {
-    if (!GA_ID) return;
-
-    // Script nur einmal hinzufügen
-    if (!document.getElementById('ga-script')) {
-      const script1 = document.createElement('script');
-      script1.async = true;
-      script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-      script1.id = 'ga-script';
-      document.head.appendChild(script1);
-
-      const script2 = document.createElement('script');
-      script2.id = 'ga-init';
-      script2.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GA_ID}', { 'anonymize_ip': true });
-      `;
-      document.head.appendChild(script2);
-
-      script1.onload = () => {
-        if (window.gtag) {
-          window.gtag('event', 'cookie_consent', { method: 'banner' });
-        }
-      };
-    } else {
-      window.gtag && window.gtag('event', 'cookie_consent', { method: 'banner' });
-    }
-
-    console.log('Google Analytics aktiviert');
-  };
-
-  const enableMarketing = () => {
-    console.log('Marketing Cookies aktiviert');
+  const saveConsent = (newConsent) => {
+    localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent));
+    setConsent(newConsent);
+    onConsentChange && onConsentChange(newConsent);
   };
 
   const handleAcceptAll = () => {
     const newConsent = { necessary: true, analytics: true, marketing: true };
-    localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent));
-    setConsent(newConsent);
+    saveConsent(newConsent);
     setShowBanner(false);
     onClose && onClose();
-    enableAnalytics();
-    enableMarketing();
   };
 
   const handleSavePreferences = () => {
     const newConsent = { ...consent, necessary: true };
-    localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent));
-    setConsent(newConsent);
+    saveConsent(newConsent);
     setShowBanner(false);
     onClose && onClose();
-    if (newConsent.analytics) enableAnalytics();
-    if (newConsent.marketing) enableMarketing();
+  };
+
+  const handleDecline = () => {
+    const newConsent = { necessary: true, analytics: false, marketing: false };
+    saveConsent(newConsent);
+    setShowBanner(false);
+    onClose && onClose();
   };
 
   const handleToggle = (key) => {
@@ -168,15 +136,8 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
           <button onClick={handleSavePreferences} className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2  transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition">
             Auswahl speichern
           </button>
-          <button
-            onClick={() => {
-              setShowBanner(false);
-              onClose && onClose();
-            }}
-            className="text-gray-600 hover:text-gray-900 px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
-            aria-label="Cookie-Banner schließen"
-          >
-            Schließen
+          <button onClick={handleDecline} className="text-gray-600 hover:text-gray-900 px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition">
+            Ablehnen
           </button>
         </div>
       </div>
