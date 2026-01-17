@@ -114,10 +114,10 @@ const AboutPage = () => {
           className="text-base sm:text-lg font-bold text-[#003566] mb-6"
         >
           <span className="block md:hidden">
-            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/websites-hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, über ihre Website planbar neue Kunden zu gewinnen.
+            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, über ihre Website planbar neue Kunden zu gewinnen.
           </span>
           <span className="hidden md:block">
-            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/websites-hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, mit ihrer Website planbar Kundenanfragen zu gewinnen – statt auf Empfehlungen angewiesen zu sein.
+            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, mit ihrer Website planbar Kundenanfragen zu gewinnen – statt auf Empfehlungen angewiesen zu sein.
           </span>
         </p>
 
