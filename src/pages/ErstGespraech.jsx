@@ -110,7 +110,20 @@ const ErstGespraech = () => {
           {/* Benefits */}
           <div className="contact-animate mb-10 text-center">
             <ul className="inline-block text-left space-y-3">
-              <li className='flex  items-center gap-2  '> <CheckIcon/> Für Selbstständige & Unternehmen aus <a href="/" className=' underline transition hover:text-[#003566]'>Ennepetal,</a> <a href="/websites-hagen" className=' underline transition hover:text-[#003566]'>Hagen</a> & Umgebung</li>
+              <li className="flex items-center gap-2">
+  <CheckIcon />
+  <span>
+    Für Selbstständige & Unternehmen aus{" "}
+    <a href="/" className="underline transition hover:text-[#003566]">
+      Ennepetal,
+    </a>{" "}
+    <a href="/hagen" className="underline transition hover:text-[#003566]">
+      Hagen
+    </a>{" "}
+    & Umgebung
+  </span>
+</li>
+
               <li className='flex  items-center gap-2 '> <CheckIcon/> Klare Empfehlungen, wie ihre Website Anfragen auslösen kann</li>
               <li className='flex  items-center gap-2 pr-2'> <CheckIcon/> Alternativ: Kostenloser Design-Prototyp für ihr Unternehmen</li>
               <li className='flex  items-center gap-2 '> <CheckIcon/> Termindetails, Bestätigung, sowie zusätzliche Infos per E-Mail</li>
