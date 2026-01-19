@@ -1,71 +1,128 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { gsap } from './gsapSetup';
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "./gsapSetup";
 
-const COOKIE_NAME = 'cookieConsent';
+const COOKIE_NAME = "cookieConsent_v1";
+const GA_ID = import.meta.env.VITE_GA_ID;
 
-const CookieBanner = ({ forceShow = false, onClose, onConsentChange }) => {
+const CookieBanner = ({ forceShow = false, onClose }) => {
   const [showBanner, setShowBanner] = useState(false);
   const [consent, setConsent] = useState({
     necessary: true,
     analytics: false,
     marketing: false,
   });
+
   const bannerRef = useRef(null);
 
+  // --- 1) Consent laden
   useEffect(() => {
-    const savedConsent = localStorage.getItem(COOKIE_NAME);
-    if (savedConsent) {
-      const parsed = JSON.parse(savedConsent);
+    const saved = localStorage.getItem(COOKIE_NAME);
+    if (saved) {
+      const parsed = JSON.parse(saved);
       setConsent(parsed);
       setShowBanner(false);
-      onConsentChange && onConsentChange(parsed);
+
+      // GA laden, wenn erlaubt
+      if (parsed.analytics) {
+        enableGA();
+      } else {
+        disableGA();
+      }
     } else if (!forceShow) {
       setShowBanner(true);
     }
   }, [forceShow]);
 
+  // --- 2) Animation
   useEffect(() => {
     if ((showBanner || forceShow) && bannerRef.current) {
       const ctx = gsap.context(() => {
         gsap.fromTo(
           bannerRef.current,
           { y: 100, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
+          { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
         );
       }, bannerRef);
       return () => ctx.revert();
     }
   }, [showBanner, forceShow]);
 
+  // --- 3) GA loader (in Banner)
+  const enableGA = () => {
+    if (!GA_ID) return;
+
+    // Disable flag entfernen
+    window[`ga-disable-${GA_ID}`] = false;
+
+    // Wenn schon geladen, nichts tun
+    if (window.gaLoaded) return;
+
+    window.gaLoaded = true;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+
+    gtag("js", new Date());
+    gtag("config", GA_ID, { anonymize_ip: true });
+  };
+
+  const disableGA = () => {
+    if (!GA_ID) return;
+
+    // Disable flag setzen
+    window[`ga-disable-${GA_ID}`] = true;
+
+    // GA nicht mehr ausführen lassen
+    window.gtag = function () {
+      return null;
+    };
+
+    // GA loaded zurücksetzen
+    window.gaLoaded = false;
+
+    // GA Cookies entfernen (nur die wichtigsten)
+    document.cookie = `_ga=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
+    document.cookie = `_gid=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
+    document.cookie = `_gat_gtag_${GA_ID}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
+  };
+
+  // --- 4) Consent speichern
   const saveConsent = (newConsent) => {
     localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent));
     setConsent(newConsent);
-    onConsentChange && onConsentChange(newConsent);
+
+    if (newConsent.analytics) enableGA();
+    else disableGA();
   };
 
   const handleAcceptAll = () => {
-    const newConsent = { necessary: true, analytics: true, marketing: true };
-    saveConsent(newConsent);
+    saveConsent({ necessary: true, analytics: true, marketing: true });
     setShowBanner(false);
     onClose && onClose();
   };
 
   const handleSavePreferences = () => {
-    const newConsent = { ...consent, necessary: true };
-    saveConsent(newConsent);
+    saveConsent({ ...consent, necessary: true });
     setShowBanner(false);
     onClose && onClose();
   };
 
   const handleDecline = () => {
-    const newConsent = { necessary: true, analytics: false, marketing: false };
-    saveConsent(newConsent);
+    saveConsent({ necessary: true, analytics: false, marketing: false });
     setShowBanner(false);
     onClose && onClose();
   };
 
   const handleToggle = (key) => {
-    if (key === 'necessary') return;
+    if (key === "necessary") return;
     setConsent((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
@@ -82,7 +139,7 @@ const CookieBanner = ({ forceShow = false, onClose, onConsentChange }) => {
       <div className="mb-4 md:mb-0 md:max-w-[60%] text-gray-700 leading-relaxed text-base md:text-lg">
         <p className="font-semibold mb-2 text-black">Wir verwenden Cookies</p>
         <p>
-          Diese Website verwendet Cookies, um deine Nutzererfahrung zu verbessern und bestimmte Funktionen zu ermöglichen. Du kannst auswählen, welche Cookies du erlaubst. Details findest du in unserer{' '}
+          Diese Website verwendet Cookies, um die Nutzererfahrung zu verbessern und Funktionen zu ermöglichen. Du kannst auswählen, welche Cookies du erlaubst. Details findest du in unserer{" "}
           <a
             href="/datenschutz"
             target="_blank"
@@ -90,13 +147,14 @@ const CookieBanner = ({ forceShow = false, onClose, onConsentChange }) => {
             className="underline text-[#003566] hover:text-[#001D3D] transition-colors duration-200"
           >
             Datenschutzerklärung
-          </a>.
+          </a>
+          .
         </p>
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center gap-4 w-full md:w-auto">
         <div className="flex flex-col space-y-2 md:mr-6 min-w-[220px]">
-          <label className="flex items-center cursor-not-allowed select-none text-gray-500" title="Diese Cookies sind notwendig und können nicht deaktiviert werden">
+          <label className="flex items-center cursor-not-allowed select-none text-gray-500">
             <input type="checkbox" checked disabled className="mr-2" />
             Notwendige Cookies
           </label>
@@ -105,7 +163,7 @@ const CookieBanner = ({ forceShow = false, onClose, onConsentChange }) => {
             <input
               type="checkbox"
               checked={consent.analytics}
-              onChange={() => handleToggle('analytics')}
+              onChange={() => handleToggle("analytics")}
               className="mr-2 accent-[#003566]"
               aria-checked={consent.analytics}
               aria-label="Analyse-Cookies (Google Analytics)"
@@ -117,26 +175,36 @@ const CookieBanner = ({ forceShow = false, onClose, onConsentChange }) => {
             <input
               type="checkbox"
               checked={consent.marketing}
-              onChange={() => handleToggle('marketing')}
+              onChange={() => handleToggle("marketing")}
               className="mr-2 accent-[#003566]"
               aria-checked={consent.marketing}
               aria-label="Marketing-Cookies (optional)"
             />
             Marketing-Cookies (optional)
           </label>
+
           <small className="text-gray-500 mt-1 max-w-xs">
             Marketing-Cookies ermöglichen personalisierte Werbung und werden nur mit deiner Zustimmung aktiviert.
           </small>
         </div>
 
         <div className="flex flex-wrap gap-3 flex-col md:justify-end md:min-w-[180px]">
-          <button onClick={handleAcceptAll} className="bg-[#003566] hover:bg-[#001D3D] text-white px-5 py-2  transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition">
+          <button
+            onClick={handleAcceptAll}
+            className="bg-[#003566] hover:bg-[#001D3D] text-white px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
+          >
             Alle akzeptieren
           </button>
-          <button onClick={handleSavePreferences} className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2  transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition">
+          <button
+            onClick={handleSavePreferences}
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
+          >
             Auswahl speichern
           </button>
-          <button onClick={handleDecline} className="text-gray-600 hover:text-gray-900 px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition">
+          <button
+            onClick={handleDecline}
+            className="text-gray-600 hover:text-gray-900 px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
+          >
             Ablehnen
           </button>
         </div>

@@ -4,7 +4,6 @@ import ScrollToTop from '../components/ScrollToTop'
 import { useLocation, useNavigate, Outlet } from 'react-router-dom'
 import { useEffect } from 'react'
 import Footer from '../components/Footer'
-import CookieBanner from '../components/CookieBanner' // importiere hier deinen CookieBanner
 
 const MainLayout = () => {
   const location = useLocation()
@@ -36,7 +35,6 @@ const MainLayout = () => {
     <div>
       <ScrollToTop />
       <Navbar />
-      <CookieBanner /> {/* Hier den CookieBanner einfügen */}
       <Outlet />
       <Footer />
     </div>

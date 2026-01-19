@@ -1,4 +1,4 @@
-import { Suspense, useEffect, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -8,8 +8,8 @@ import {
 import MainLayout from './layouts/MainLayout.jsx';
 import Loader from './components/Loader.jsx';
 import CheckList from './pages/CheckList.jsx';
+import CookieBanner from './components/CookieBanner.jsx';
 
-// Lazy Imports
 const HomePage = lazy(() => import('./pages/HomePage'));
 const Hagenlanding = lazy(() => import('./pages/Hagenlanding'));
 const Wuppertallanding = lazy(() => import('./pages/Wuppertallanding'));
@@ -21,16 +21,10 @@ const Danke = lazy(() => import('./pages/Danke'));
 
 import NotFound from "./pages/NotFound"
 
-
 function App() {
-  useEffect(() => {
-    window.addEventListener('scroll', () => {}, { passive: true });
-  }, []);
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        {/* Alle Seiten MIT MainLayout */}
         <Route path="/" element={<MainLayout />} errorElement={<NotFound />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
@@ -40,10 +34,8 @@ function App() {
           <Route path="danke" element={<Danke />} />
           <Route path="hagen" element={<Hagenlanding />} />
           <Route path="wuppertal" element={<Wuppertallanding />} />
-
         </Route>
 
-        {/* Landingpage OHNE MainLayout */}
         <Route path="checkliste" element={<CheckList />} />
       </>
     )
@@ -52,6 +44,7 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <RouterProvider router={router} />
+      <CookieBanner />
     </Suspense>
   );
 }
