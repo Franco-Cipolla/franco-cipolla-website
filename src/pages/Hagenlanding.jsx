@@ -14,10 +14,10 @@ const HagenLanding = () => {
   return (
     <>
       <Helmet>
-        <title>Websites, die Kunden bringen für Hagen – Franco Cipolla, Webdesigner für Hagen</title>
+        <title>Webdesign Hagen – Websites, die Kundenanfragen bringen | Franco Cipolla</title>
         <meta
           name="description"
-          content="Ihre Website bringt keine Kunden? Ich erstelle Websites für Selbstständige & Unternehmen in Hagen, die wirklich Kundenanfragen bringen. Modernes Design, klare Struktur und Conversion-Optimierung – starten Sie jetzt durch und sichern sich planbare Anfragen."
+          content="Ihre Website bringt keine Anfragen? Ich erstelle Websites in Hagen, die Besucher in Kunden verwandeln – klar strukturiert, conversion-optimiert und messbar."
         />
         <link rel="canonical" href="https://www.franco-cipolla.de/hagen" />
         <meta property="og:title" content="Websites, die Kunden bringen – Franco Cipolla" />

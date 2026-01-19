@@ -33,35 +33,40 @@ const AboutPage = () => {
       tl.to(leftCircleRef.current, { x: '-105vw', opacity: 0 }, 0.5)
       tl.to(rightCircleRef.current, { x: '105vw', opacity: 0 }, 0.5)
     }, heroRef)
-    return () => {
-      ctx.revert()
-      ScrollTrigger.killAll()
-    }
+
+    return () => ctx.revert()
   }, [])
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      const elements = [
+        headlineRef.current,
+        sublineRef.current,
+        imageRef.current,
+        ...textBlockRefs.current.filter(Boolean),
+        ctaRef.current,
+      ]
+
+      // Startzustand setzen (wichtig für Reloads / Strict Mode)
+      gsap.set(elements, { opacity: 0, y: 50 })
+
       const animateContent = () => {
-        gsap.from(
-          [
-            headlineRef.current,
-            sublineRef.current,
-            imageRef.current,
-            ...textBlockRefs.current.filter(Boolean),
-            ctaRef.current,
-          ],
+        gsap.fromTo(
+          elements,
+          { opacity: 0, y: 50 },
           {
-            y: 50,
-            opacity: 0,
+            opacity: 1,
+            y: 0,
             duration: 1,
             stagger: 0.2,
             ease: 'power3.out',
+            overwrite: true,
           }
         )
       }
 
       if (imageRef.current && !imageRef.current.complete) {
-        imageRef.current.onload = animateContent
+        imageRef.current.addEventListener('load', animateContent)
       } else {
         animateContent()
       }
@@ -73,23 +78,24 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>Über mich – Franco Cipolla, Webdesigner aus Ennepetal</title>
+        <title>Über mich – Webdesigner aus Ennepetal | Franco Cipolla</title>
         <meta
           name="description"
-          content="Ich helfe Unternehmen aus Ennepetal & Umgebung, Websites zu bauen, die planbar Kundenanfragen bringen – klar strukturiert, conversion-optimiert und auf Wachstum ausgelegt."
+          content="Ich baue Websites für Unternehmen aus Ennepetal & Umgebung, die nicht nur gut aussehen, sondern auch wirklich Anfragen bringen – strukturiert, conversion-orientiert und ohne Schnickschnack."
         />
         <link rel="canonical" href="https://www.franco-cipolla.de/about" />
-        <meta property="og:title" content="Über mich – Franco Cipolla, Webdesigner aus Ennepetal" />
-        <meta property="og:description" content="Websites, die planbar Kundenanfragen generieren. Klar strukturiert, strategisch aufgebaut und conversion-optimiert für Unternehmen aus Ennepetal & Umgebung." />
+        <meta property="og:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
+        <meta property="og:description" content="Websites, die wirklich Kunden bringen. Klar strukturiert, strategisch aufgebaut und auf Anfragen ausgelegt – für lokale Unternehmen." />
         <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
         <meta property="og:url" content="https://www.franco-cipolla.de/about" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Über mich – Franco Cipolla, Webdesigner aus Ennepetal" />
-        <meta name="twitter:description" content="Websites, die planbar Kundenanfragen generieren. Klar strukturiert, strategisch aufgebaut und conversion-optimiert für Unternehmen aus Ennepetal & Umgebung." />
+        <meta name="twitter:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
+        <meta name="twitter:description" content="Websites, die wirklich Kunden bringen. Klar strukturiert, strategisch aufgebaut und auf Anfragen ausgelegt – für lokale Unternehmen." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
-<SEOJsonLD page="about" />
+      <SEOJsonLD page="about" />
+
       {/* Hintergrundkreise */}
       <div className="relative overflow-hidden">
         <span
@@ -114,10 +120,10 @@ const AboutPage = () => {
           className="text-base sm:text-lg font-bold text-[#003566] mb-6"
         >
           <span className="block md:hidden">
-            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, über ihre Website planbar neue Kunden zu gewinnen.
+            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, über ihre Website gezielt neue Kunden zu gewinnen.
           </span>
           <span className="hidden md:block">
-            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, mit ihrer Website planbar Kundenanfragen zu gewinnen – statt auf Empfehlungen angewiesen zu sein.
+            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, mit ihrer Website strategisch für Anfragen und Wachstum zu arbeiten – statt auf Empfehlungen angewiesen zu sein.
           </span>
         </p>
 
@@ -140,7 +146,7 @@ const AboutPage = () => {
               Die meisten Websites sehen gut aus und bringen nichts
             </h2>
             <p ref={(el) => (textBlockRefs.current[1] = el)} className="text-base leading-relaxed mb-4">
-              Viele Unternehmen investieren Zeit und Geld in ihre Website und bekommen dafür… Stille. Keine Anfragen. Keine Messbarkeit. Keine Klarheit, woran es liegt.
+              Viele Unternehmen investieren Zeit und Geld in ihre Website und bekommen dafür… Stille. Keine Anfragen. Keine Messbarkeit. Keine Ahnung, woran es liegt.
             </p>
             <p ref={(el) => (textBlockRefs.current[2] = el)} className="text-base leading-relaxed mb-8">
               Das Problem ist selten das Design, sondern fehlende Struktur, fehlende Psychologie und kein klares Ziel.
@@ -174,7 +180,7 @@ const AboutPage = () => {
               Kurz zu mir
             </h2>
             <p ref={(el) => (textBlockRefs.current[11] = el)} className="text-base leading-relaxed mb-4">
-              Mein Name ist <strong>Franco Cipolla</strong>. Ich arbeite als Webdesigner mit Fokus auf Conversion, Verkaufspsychologie und lokale Sichtbarkeit. Mein Anspruch ist simpel: Websites zu bauen, die messbar etwas bringen.
+              Ich bin <strong>Franco Cipolla</strong>. Ich mache Websites mit Fokus auf Conversion, Verkaufspsychologie und lokale Sichtbarkeit. Mein Anspruch ist simpel: Websites bauen, die wirklich etwas bringen – messbar, nicht nur schön.
             </p>
           </div>
         </section>
@@ -182,7 +188,7 @@ const AboutPage = () => {
         {/* CTA */}
         <section className="mt-10" ref={ctaRef}>
           <CTA1 />
-          <p className='cta-animate text-[15px] mt-3 text-black/60'>Ohne Risiko & vollkommen unverbindlich</p>
+          <p className='cta-animate text-[15px] mt-3 text-black/60'>Unverbindlich. Klar. Ohne Verkaufsdruck.</p>
         </section>
       </main>
     </>
