@@ -13,6 +13,8 @@ const Hero = () => {
   const headlineRef = useRef(null);
   const text1Ref = useRef(null);
   const text2Ref = useRef(null);
+  const text3Ref = useRef(null);
+
   const disclaimerRef = useRef(null);
   const ctaRef = useRef(null);
   const imageRef = useRef(null);
@@ -66,7 +68,7 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const textRefs = [headlineRef, text1Ref, text2Ref, ctaRef, disclaimerRef];
+      const textRefs = [headlineRef, text1Ref, text2Ref, text3Ref, ctaRef, disclaimerRef];
       gsap.from(textRefs.map(ref => ref.current).filter(Boolean), {
         y: 50,
         opacity: 0,
@@ -119,14 +121,17 @@ const Hero = () => {
                 </span>
               </div>
             </div>
-            
+
 
             {/* Headline */}
             <h1
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
-              Websites, die lokal <br/> <span className="text-[#003566]">planbar Kunden bringen.</span>
+              Websites, die gezielt
+        <span className="text-[#003566]"> auf Kundenanfragen ausgelegt sind.</span>
+
+
             </h1>
 
             {/* Subheadline & Text */}
@@ -136,7 +141,7 @@ const Hero = () => {
                 className="text-lg xl:text-xl text-[#000814] mb-4 font-semibold"
               >
                 Ihre Website soll keine Visitenkarte sein,
-                sondern kontinuierlich  Besucher zu Anfragen führen.
+                sondern kontinuierlich Besucher zu Anfragen führen.
               </p>
 
               <p
@@ -144,9 +149,14 @@ const Hero = () => {
                 className="text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5"
               >
                 Ohne ein System, das aktiv Anfragen erzeugt,
-                bleiben Sie abhängig von Empfehlungen - und wissen nie, wie viele Anfragen nächsten Monat kommen könnten.
+                bleiben Sie abhängig von Empfehlungen - und wissen nie, wie viele Anfragen nächsten Monat tatsächlich kommen.
 
               </p>
+              <p ref={text3Ref}
+              className="text-sm text-[#000814]/60 mt-2">
+              Keine klassische Website – sondern ein strukturiertes System zur Anfragengenerierung.
+            </p>
+
             </div>
 
             {/* CTA */}

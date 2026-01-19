@@ -115,7 +115,7 @@ const Hero = () => {
             <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm">
                 <span className="text-[13px] text-center md:text-sm font-medium text-[#003566] tracking-tight">
-                  🚀 Webdesigner für lokale Unternehmen in Hagen
+                  🚀 Websites mit Fokus auf Kundengewinnung in Hagen
                 </span>
               </div>
             </div>
@@ -125,7 +125,8 @@ const Hero = () => {
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
-             Mehr Kunden über Ihre Website  <span className="text-[#003566]">für Unternehmen in Hagen  </span>
+            Websites für lokale Unternehmen in Hagen
+<span className="text-[#003566]"> mit Fokus auf Kundengewinnung</span>
             </h1>
 
             {/* Subheadline & Text */}
@@ -134,15 +135,16 @@ const Hero = () => {
                 ref={text1Ref}
                 className="text-lg xl:text-xl text-[#000814] mb-4 font-semibold"
               >
-                Eine schöne Website reicht heute nicht mehr – entscheidend ist, ob sie regelmäßig qualifizierte Anfragen bringt.
-              </p>
+              Eine Website sollte nicht nur schön aussehen,
+              sondern klar strukturiert und entwickelt sein, um Besucher gezielt zur Anfrage zu führen.              </p>
 
               <p
                 ref={text2Ref}
                 className="text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5"
               >
                 Viele Unternehmen in Hagen sind online sichtbar, aber ohne klares System zur Kundengewinnung.<br/><br/>
-                Besucher kommen oft – und verschwinden wieder, ohne anzufragen und sie bleiben abhängig von Empfehlungen.
+               Besucher kommen – und gehen wieder,
+              weil Struktur, Nutzerführung und Messbarkeit fehlen. Sie bleiben abhängig von Empfehlungen.
               </p>
             </div>
 
@@ -172,7 +174,7 @@ const Hero = () => {
             <img
               ref={imageRef}
               src={HeroIllustration}
-              alt="Webdesigner für Unternehmen in Hagen – Websites, die planbar Kundenanfragen bringen"
+              alt="Webdesigner für Unternehmen in Hagen – Website mit Fokus auf Kundengewinnung"
               className={`xl:block w-full max-w-[600px] ${!isXL ? 'hidden' : ''}`}
             />
           </div>
