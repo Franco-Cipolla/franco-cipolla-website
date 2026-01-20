@@ -10,10 +10,19 @@ const CTA1 = ({
 }) => {
   const navigate = useNavigate()
 
-  const handleClick = () => {
-    if (onClick) onClick() // Menü schließen, falls nötig
-    navigate('/erstgespraech') // hier zur Erstgespräch-Seite navigieren
+ const handleClick = () => {
+  if (onClick) onClick();
+
+  if (window.gtag) {
+    window.gtag("event", "cta_click", {
+      label: "Kostenlose Website-Analyse",
+      location: "CTA1",
+    });
   }
+
+  navigate("/erstgespraech");
+};
+
 
   return (
     <button

@@ -4,9 +4,18 @@ import { FaRocket} from "react-icons/fa"
 const CTAProjectStart = ({ text = "Jetzt Projekt starten" ,onClick}) => {
   const navigate = useNavigate()
   const handleClick = () => {
-    if (onClick) onClick() // Menü schließen, falls nötig
-    navigate('/erstgespraech') // hier zur Erstgespräch-Seite navigieren
+  if (onClick) onClick();
+
+  if (window.gtag) {
+    window.gtag("event", "cta_click", {
+      label: "Projekt starten",
+      location: "CTAProjectStart",
+    });
   }
+
+  navigate("/erstgespraech");
+};
+
 
   return (
 

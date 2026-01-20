@@ -7,18 +7,29 @@ const CalendlyConsentEmbed = () => {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('cookieConsent');
+    const saved = localStorage.getItem('cookieConsent_v1');
     if (saved) {
-      setConsent(JSON.parse(saved));
+      const parsed = JSON.parse(saved);
+      setConsent(parsed);
+
+      // Wenn bereits Consent vorhanden ist -> Calendly aktivieren
+      if (parsed.analytics || parsed.marketing) {
+        setEnabled(true);
+      }
     }
   }, []);
 
   const openCalendly = () => {
-    // Wenn kein Consent gesetzt ist, zwinge Marketing auf true
-    const newConsent = { necessary: true, analytics: false, marketing: true };
-    localStorage.setItem('cookieConsent', JSON.stringify(newConsent));
+    const newConsent = { necessary: true, analytics: true, marketing: true };
+    localStorage.setItem("cookieConsent_v1", JSON.stringify(newConsent));
     setConsent(newConsent);
     setEnabled(true);
+
+    if (window.gtag) {
+      window.gtag("event", "calendly_open", {
+        location: "Erstgespräch",
+      });
+    }
   };
 
   return (
@@ -43,6 +54,15 @@ const CalendlyConsentEmbed = () => {
         <InlineWidget
           url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
           styles={{ minWidth: "320px", height: "700px" }}
+          onEvent={(e) => {
+            if (e.event === "calendly.event_scheduled") {
+              if (window.gtag) {
+                window.gtag("event", "calendly_booked", {
+                  location: "Erstgespräch",
+                });
+              }
+            }
+          }}
         />
       )}
     </div>

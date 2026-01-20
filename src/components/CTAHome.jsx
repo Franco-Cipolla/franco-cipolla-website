@@ -11,8 +11,16 @@ const CTAHome = () => {
   const sectionRef = useRef(null)
 
   const handleClick = () => {
-    navigate('/erstgespraech')
+  if (window.gtag) {
+    window.gtag("event", "cta_click", {
+      label: "Kostenlose Website-Analyse starten",
+      location: "CTAHome",
+    });
   }
+
+  navigate("/erstgespraech");
+};
+
 
   useEffect(() => {
     if (!sectionRef.current) return
