@@ -106,7 +106,7 @@ const Hero = () => {
       {/* Hero Section */}
       <main
         ref={heroRef}
-        className="w-full mt-20 lg:mt-16 xl:mt-30 py-12 sm:py-24 md:py-32 px-4 sm:px-6 xl:px-0"
+        className="w-full mt-12 lg:mt-16 xl:mt-30 py-12 sm:py-24 md:py-32 px-4 sm:px-6 xl:px-0"
       >
         <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col  lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
 
