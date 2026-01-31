@@ -155,12 +155,18 @@ const ErstGespraech = () => {
           {/* Post-Consent / Instagram + WhatsApp CTA */}
           {enabled && (
             <div className="w-full flex flex-col items-center justify-center mt-16 px-4">
+              <p className="contact-animate text-lg text-center xl:text-xl text-[#000814]/90 mb-2 max-w-xl leading-relaxed">
+                Ich freue mich auf unser Gespräch und darauf, Ihre Website so zu optimieren, dass Sie mehr Anfragen bekommen.
+
+              </p>
+              <p className="contact-animate text-sm text-black/50 mb-8 max-w-md text-center">
+                🕒 Ihre Anfrage wird innerhalb von 24–48 Stunden bearbeitet.
+              </p>
               <p className="contact-animate text-lg text-center xl:text-xl text-[#000814]/90 mb-6 max-w-xl leading-relaxed">
-                Ich freue mich auf unser Gespräch und darauf, Ihre Website so zu optimieren, dass Sie mehr Anfragen bekommen.<br /><br />
                 Folgen Sie mir auf Instagram für Tipps & Praxisbeispiele oder schreiben Sie mir direkt eine WhatsApp-Nachricht für schnelle Rückfragen.
               </p>
 
-              <div className="contact-animate flex flex-col sm:flex-row gap-4 mt-4 w-full lg:max-w-xl">
+              <div className="contact-animate flex flex-col justify-center sm:flex-row gap-4 mt-4 w-full lg:max-w-xl">
                 <a
                   href="https://www.instagram.com/francocipolla.de/"
                   target="_blank"
@@ -182,9 +188,7 @@ const ErstGespraech = () => {
                 </a>
               </div>
 
-              <p className="contact-animate text-sm text-black/50 mt-6 max-w-md text-center">
-                🕒 Ihre Anfrage wird innerhalb von 24–48 Stunden bearbeitet.
-              </p>
+
             </div>
           )}
         </div>
