@@ -105,7 +105,7 @@ const ErstGespraech = () => {
           {/* Header */}
           <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              In 15 Minuten Klarheit, warum Ihre Website keine Anfragen bringt – <br />
+              In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert – <br />
               Und was Sie konkret ändern können.
             </h1>
             <p className="text-lg text-black/70 mb-4">
