@@ -183,7 +183,7 @@ const ErstGespraech = () => {
               </div>
 
               <p className="contact-animate text-sm text-black/50 mt-6 max-w-md text-center">
-                ⚡ Hinweis: Ich nehme nur <strong>2 Projekte pro Monat</strong> an, um die bestmöglichen Ergebnisse für meine Kunden zu erzielen. Ihre Anfrage wird innerhalb von 24–48 Stunden bearbeitet.
+                🕒 Ihre Anfrage wird innerhalb von 24–48 Stunden bearbeitet.
               </p>
             </div>
           )}
