@@ -138,17 +138,12 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
     >
       <div className="mb-4 md:mb-0 md:max-w-[60%] text-gray-700 leading-relaxed text-base md:text-lg">
         <p className="font-semibold mb-2 text-black">Wir verwenden Cookies</p>
-        <p>
-          Diese Website verwendet Cookies, um die Nutzererfahrung zu verbessern und Funktionen zu ermöglichen. Du kannst auswählen, welche Cookies du erlaubst. Details findest du in unserer{" "}
-          <a
-            href="/datenschutz"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline text-[#003566] hover:text-[#001D3D] transition-colors duration-200"
-          >
+         <p>
+          Um die Website für Sie zu optimieren, setzen wir notwendige Cookies und Analytics.
+          Details in der{" "}
+          <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="underline text-[#003566] hover:text-[#001D3D]">
             Datenschutzerklärung
-          </a>
-          .
+          </a>.
         </p>
       </div>
 
