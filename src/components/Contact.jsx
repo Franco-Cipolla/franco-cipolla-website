@@ -161,6 +161,21 @@ const Contact = () => {
 
         {/* FORM */}
         <form onSubmit={handleSubmit} noValidate>
+          {/* STEP INDICATOR – REDUZIERT & FOKUSSIERT */}
+<div className="mb-6">
+  <div className="flex justify-between text-xs text-gray-500 mb-2">
+    <span>Schritt {step} von 5</span>
+    <span>~40 Sekunden</span>
+  </div>
+
+  <div className="w-full h-1.5 bg-gray-200 rounded overflow-hidden">
+    <div
+      className="h-full bg-black transition-all duration-300 ease-out"
+      style={{ width: `${(step / 5) * 100}%` }}
+    />
+  </div>
+</div>
+
 
           {/* STEP 1 */}
           {step === 1 && (
