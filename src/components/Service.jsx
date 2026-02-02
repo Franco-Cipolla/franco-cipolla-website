@@ -131,6 +131,8 @@ const Service = () => {
                 <a href="https://wa.me/4917675398004" target="_blank" rel="noopener noreferrer" className="underline text-white/80 hover:text-white mx-1">WhatsApp</a>,
                 <a href="#contact" className="underline text-white/80 hover:text-white mx-1">Kontaktformular</a> oder
                 <a href="tel:+4917675398004" className="underline text-white/80 hover:text-white mx-1">Telefon</a>.
+                <br/>  <br/> oder
+
               </p>
             </div>
 
