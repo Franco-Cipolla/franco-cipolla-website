@@ -35,13 +35,13 @@ const Contact = () => {
   const painOptions = [
     'Ich bekomme keine messbaren Anfragen',
     'Meine Website bringt mir nichts',
-    'Ich bin stark von Empfehlungen abhängig',
+    'Ich bin von Empfehlungen abhängig',
     'Neue Kunden kommen unregelmäßig',
     'Ich habe aktuell gar keine Website'
   ];
 
   const goalOptions = [
-    'Regelmäßig neue Kundenanfragen erhalten',
+    'Regelmäßig messbare Kundenanfragen erhalten',
     'Unabhängiger von Empfehlungen werden',
     'Online seriöser & professioneller wirken',
     'Mehr passende Kunden statt Zeitverschwender'
@@ -128,7 +128,7 @@ const Contact = () => {
             Kontaktieren Sie mich
           </h1>
           <p className="contact-animate text-lg mb-3">
-            Sie sind nur wenige Klicks davon entfernt, messbar Kunden zu gewinnen.
+            Sie sind nur wenige Klicks davon entfernt, messbar Anfragen zu gewinnen.
           </p>
           <p className='contact-animate mb-6 text-sm md:text-[16px] text-black/90'> Kurze Anfrage – ehrliche Rückmeldung – keine Verpflichtung.</p>
 
