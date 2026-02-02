@@ -81,7 +81,7 @@ const Service = () => {
             <br />
             Sondern ein <strong>klar aufgebautes Website-System</strong>,
             das speziell für lokale Unternehmen entwickelt wurde,
-            um Besucher strukturiert <strong>in Anfragen zu führen</strong>. <br/> <strong>Aktuell Inklusive Bonus (im Wert von 300€): </strong> Website-Besucher-Startpaket. 2 fertige Social-Media-Posts + kurzes Video, um Besucher auf Ihre Website lenken.  <span className="italic">Bonus nur für die nächsten 3 Kunden inklusive!</span>
+            um Besucher strukturiert <strong>in Anfragen zu führen</strong>.  <br/> <br/> <strong> Aktuell Inklusive Bonus (im Wert von 300€): </strong> Website-Besucher-Startpaket. 2 fertige Social-Media-Posts + kurzes Video, um Besucher auf Ihre Website lenken.  <span className="italic">Bonus nur für die nächsten 3 Kunden inklusive!</span>
           </p>
            <p className="text-sm text-white/70 max-w-3xl mx-auto my-6 mb-12">
             Wenn Sie wissen möchten, wie das System auch für andere Regionen funktioniert:
