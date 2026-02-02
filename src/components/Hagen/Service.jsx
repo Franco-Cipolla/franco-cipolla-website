@@ -109,10 +109,15 @@ const Service = () => {
             ))}
           </div>
 
+          <div className="flex flex-col justify-center items-center">
           <CTAProjectStart />
-          <p className="text-[13px] text-white/60 mt-3">
-            Kostenloses Erstgespräch · ehrlich · unverbindlich
+          <p className="text-[13px] text-white/60 mt-3 text-center sm:text-left">
+            Wir können starten über:
+            <a href="https://wa.me/4917675398004" target="_blank" rel="noopener noreferrer" className="underline text-white/80 hover:text-white mx-1">WhatsApp</a>,
+            <a href="#contact" className="underline text-white/80 hover:text-white mx-1">Kontaktformular</a>oder
+            <a href="tel:+4917675398004" className="underline text-white/80 hover:text-white mx-1">Telefon</a>.
           </p>
+          </div>
         </div>
 
       </div>

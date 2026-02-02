@@ -50,6 +50,36 @@ const faqsWuppertal = [
     ),
   },
   {
+ question: 'Wie viel kostet eine Website?',
+answer: (
+  <div className="space-y-2">
+    <p>
+      Für lokale Unternehmen in Wuppertal & Umgebung starten Projekte aktuell bei <strong>800 € im Founders-Paket</strong>.
+      Dieses Angebot ist auf <strong>die nächsten 3 Kunden </strong> limitiert.
+    </p>
+    <p>
+      Sie zahlen <strong>50% Anzahlung</strong>, den Rest erst, wenn Ihre Website live geht.
+      So behalten Sie volle Kontrolle und Sicherheit.
+    </p>
+
+
+  </div>
+),
+
+},
+{
+    question: 'Worum geht es in der Website-Analyse?',
+    answer: (
+      <div className="space-y-2">
+        <p>
+      In der kostenlosen Website-Analyse zeige ich genau, wo Ihr Website Anfragen verliert, und zeige Ihnen,
+      wie Sie diese Punkte beheben könnten um mehr Anfragen zu gewinnen. <br/> <br/>
+      Danach erhalten Sie wenn Sie möchten ein <strong>transparentes Festpreis-Angebot</strong> – ohne versteckte Kosten.
+    </p>
+      </div>
+    ),
+  },
+  {
     question: 'Wie viel Zeit muss ich investieren?',
     answer: (
       <div className="space-y-2">

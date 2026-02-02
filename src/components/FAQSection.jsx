@@ -71,22 +71,35 @@ const faqs = [
     ),
   },
  {
-  question: 'Wie viel kostet eine Website?',
-  answer: (
-    <div className="space-y-2">
-      <p>
-        Für Selbstständige und kleine Unternehmen liegen Projekte meist zwischen <strong>800 € und 1.500 €</strong>.
-      </p>
-      <p>
-        Sie starten mit <strong>50% Anzahlung.</strong> Den Rest zahlen Sie erst, wenn Ihre Website live geht.
-      </p>
-      <p>
-        Im kostenlosen Erstgespräch zeige ich Ihnen, was Sie wirklich brauchen. Danach erhalten Sie ein <strong>transparentes Festpreis-Angebot</strong>. Ohne versteckte Kosten.
-      </p>
+ question: 'Wie viel kostet eine Website?',
+answer: (
+  <div className="space-y-2">
+    <p>
+      Für lokale Unternehmen in Ennepetal & Umgebung starten Projekte aktuell bei <strong>800 € im Founders-Paket</strong>.
+      Dieses Angebot ist auf <strong>die nächsten 3 Kunden </strong> limitiert.
+    </p>
+    <p>
+      Sie zahlen <strong>50% Anzahlung</strong>, den Rest erst, wenn Ihre Website live geht.
+      So behalten Sie volle Kontrolle und Sicherheit.
+    </p>
 
-    </div>
-  ),
+
+  </div>
+),
+
 },
+{
+    question: 'Worum geht es in der Website-Analyse?',
+    answer: (
+      <div className="space-y-2">
+        <p>
+      In der kostenlosen Website-Analyse zeige ich genau, wo Ihr Website Anfragen verliert, und zeige Ihnen,
+      wie Sie diese Punkte beheben könnten um mehr Anfragen zu gewinnen. <br/> <br/>
+      Danach erhalten Sie wenn Sie möchten ein <strong>transparentes Festpreis-Angebot</strong> – ohne versteckte Kosten.
+    </p>
+      </div>
+    ),
+  },
 
   {
     question: 'Wie lange dauert die Umsetzung?',
