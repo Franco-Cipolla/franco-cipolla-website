@@ -103,14 +103,14 @@ const Service = () => {
             Lokale-Anfragen-System™
           </h2>
           <p className="mb-8 text-white/90 leading-relaxed text-sm sm:text-base">
-            Ihr Website-System für messbare Kundenanfragen – alles aus einer Hand, ohne dass Sie sich kümmern müssen. <br /> <br />
+            Ihr Website-System für messbare Kundenanfragen – alles aus einer Hand. <br /> <br />
             <strong>Aktuell inklusive Bonus:</strong> Website-Besucher-Startpaket mit 2 fertigen Social-Media-Posts & kurzem Video → erste echte Besucher schon in den ersten Tagen
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center mb-10 text-white/90">
             <div className="flex items-start gap-2">
               <CheckIcon className="mt-1" />
-              <span>Ein Ansprechpartner → keine verlorene Zeit durch Abstimmung mit mehreren Dienstleistern</span>
+              <span>Ein Ansprechpartner → keine verlorene Zeit durch Abstimmungen</span>
             </div>
             <div className="flex items-start gap-2">
               <CheckIcon className="mt-1" />
