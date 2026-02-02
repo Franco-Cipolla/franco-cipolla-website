@@ -48,7 +48,7 @@ const CTAHome = () => {
       className="text-black py-12 my-32 px-6 text-center"
     >
       <h2 className="cta-animate text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
-        Ihre Website verschenkt Anfragen? <br/>Lassen Sie uns das ändern. Unverbindlich.
+        Verschenkt ihre Website Anfragen? <br/>Lassen Sie mich das prüfen. Unverbindlich.
       </h2>
 
       <p className="cta-animate text-base sm:text-lg mb-6 max-w-xl mx-auto">

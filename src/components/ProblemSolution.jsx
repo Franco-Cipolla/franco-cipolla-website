@@ -57,10 +57,10 @@ const ProblemSolution = () => {
       <section ref={sectionRef} className="w-full mt-5 py-16 sm:py-20 md:py-24 xl:py-28 px-6 mx-auto max-w-[1100px]">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            Ihre Website kostet Sie täglich neue Kunden?
+            Ihre Website kostet Sie täglich neue Kunden.
           </h2>
           <p className="text-lg text-[#000814] max-w-2xl mx-auto">
-            Viele lokale Websites sind online, sehen gut aus, bringen aber keine Anfragen.
+            Viele lokale Websites sind online, sehen gut aus, bringen aber nur wenige Anfragen.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ const ProblemSolution = () => {
             </div>
             <div className="p-5 bg-red-100 rounded-2xl text-center shadow-md">
               <p className="text-red-800 font-bold text-base">
-                Unternehmen mit klarer Website gewinnen planbar Kunden – täglich.
+                Unternehmen mit klarer Website gewinnen planbar Kunden.
               </p>
             </div>
           </div>

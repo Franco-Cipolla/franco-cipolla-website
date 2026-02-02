@@ -40,8 +40,8 @@ const CTAHome = () => {
       className="text-black py-12 my-32 px-6 text-center "
     >
       <h2 className="cta-animate text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
-        Ihre Website verliert Kunden in Wuppertal? <br />
-        Lassen Sie uns das ändern – unverbindlich.
+        Verliert Ihre Website Kunden in Wuppertal? <br />
+        Lassen Sie mich das prüfen – unverbindlich.
       </h2>
 
       <p className="cta-animate text-base sm:text-lg mb-6 max-w-xl mx-auto">
