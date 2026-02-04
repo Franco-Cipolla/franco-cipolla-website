@@ -1,64 +1,130 @@
-import React from 'react';
-import Marquee from 'react-fast-marquee';
-import { FaLaptopCode, FaSearch, FaRocket, FaPenNib, FaReact, FaGitAlt, FaChartLine, FaHandshake, FaSmileBeam, FaWordpress, FaFigma } from 'react-icons/fa';
+import React, { useState } from "react";
+import Marquee from "react-fast-marquee";
+import UseInView from "./UseInView";
+import { FaTimes } from "react-icons/fa";
 
-const services = [
-  { label: 'Webdesign', icon: <FaFigma /> },
-  { label: 'Webentwicklung', icon: <FaLaptopCode /> },
-  { label: 'SEO', icon: <FaSearch /> },
-  { label: 'Performance Optimierung', icon: <FaRocket /> },
-  { label: 'Copywriting', icon: <FaPenNib /> },
-  { label: 'Wordpress', icon: <FaWordpress /> },
-  { label: 'Gewinnsteigerung', icon: <FaChartLine /> },
-  { label: "Kundengewinnung", icon: <FaHandshake /> },
-  { label: "Kundenzufriedenheit", icon: <FaSmileBeam /> },
+import FahrschuleOnepager from "../assets/FahrschuleOnepager.avif";
+import DachdeckerOnepager from "../assets/DachdeckerOnepager.avif";
+
+const projects = [
+  { title: "Dachdecker Onepager", image: DachdeckerOnepager },
+  { title: "Fahrschule Onepager", image: FahrschuleOnepager },
 ];
 
-const ServiceMarquee = () => {
+const ProjectMarquee = () => {
+  const [activeProject, setActiveProject] = useState(null);
+  const { ref, inView } = UseInView();
+
   return (
-    <div className='mt-[100px] xl:mt-[200px] mb-[140px]'>
-      {/* Intro-Text */}
-      <p className="text-center text-md lg:text-xl text-[#000814]/80 max-w-2xl mx-auto mb-8">
-        Ich bringe die Websites von Unternehmen näher an echte Ergebnisse: <span className="font-semibold block text-[#001D3D]">mehr Sichtbarkeit, mehr Anfragen, mehr Umsatz.</span>
-      </p>
+    <>
+      {/* SECTION */}
+      <section ref={ref} className="relative mt-24 mb-32 overflow-hidden">
+        <p className="text-center text-lg text-[#000814]/80 max-w-xl mx-auto mb-10">
+          Beispiele meines Lokalen-Anfragen-Systems –{" "}
+          <span className="font-semibold text-[#001D3D]">
+            klicken & komplette Website ansehen
+          </span>
+        </p>
 
-      {/* Mobile Marquee */}
-      <div className='lg:hidden space-y-5'>
-        <Marquee gradient={false} speed={50} pauseOnHover={false} direction='right'>
-          {services.slice(0, 5).map((service, i) => (
-            <span key={i} className="flex items-center gap-2 text-xl md:text-2xl font-semibold text-[#001D3D] px-6 whitespace-nowrap">
-              {service.icon} {service.label}
-            </span>
-          ))}
-        </Marquee>
-        <Marquee gradient={false} speed={75} pauseOnHover={false} direction='left'>
-          {services.slice(5).map((service, i) => (
-            <span key={i} className="flex items-center gap-2 text-xl md:text-2xl font-semibold text-[#003566] px-6 whitespace-nowrap">
-              {service.icon} {service.label}
-            </span>
-          ))}
-        </Marquee>
-      </div>
+        {inView && (
+          <>
+            {/* MOBILE – swipe */}
+            <div className="md:hidden overflow-x-auto">
+              <div className="flex gap-4 px-4 snap-x snap-mandatory">
+                {projects.map((project) => (
+                  <div
+                    key={project.title}
+                    onClick={() => setActiveProject(project)}
+                    className="snap-start shrink-0 cursor-pointer"
+                  >
+                    <div className="w-[260px] h-[170px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-md">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        decoding="async"
+                        draggable={false}
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-      {/* Desktop Marquee */}
-      <div className='hidden lg:block space-y-10'>
-        <Marquee gradient={false} speed={75} pauseOnHover={false}>
-          {services.map((service, i) => (
-            <span key={i} className="flex items-center gap-2 text-xl md:text-2xl font-semibold text-[#001D3D] px-6 whitespace-nowrap">
-              {service.icon} {service.label}
-            </span>
-          ))}
-        </Marquee>
-        <Marquee gradient={false} speed={75} pauseOnHover={false} direction='right'>
-          {services.map((service, i) => (
-            <span key={i} className="flex items-center gap-2 text-xl md:text-2xl font-semibold text-[#003566] px-6 whitespace-nowrap">
-              {service.icon} {service.label}
-            </span>
-          ))}
-        </Marquee>
-      </div>
+            {/* DESKTOP – marquee */}
+            <div className="hidden md:block">
+              <Marquee speed={15} gradient={false} pauseOnHover autoFill>
+                {projects.map((project) => (
+                  <div
+                    key={project.title}
+                    onClick={() => setActiveProject(project)}
+                    className="mx-6 cursor-pointer py-4 select-none"
+                  >
+                    <div className="w-[320px] h-[210px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-md hover:shadow-lg transition">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        decoding="async"
+                        draggable={false}
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </Marquee>
+            </div>
+          </>
+        )}
+      </section>
+
+     {/* POPUP */}
+{activeProject && (
+  <div
+    className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4"
+    onClick={() => setActiveProject(null)}
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="relative bg-white rounded-2xl w-full max-w-[900px] max-h-[90vh] overflow-y-auto shadow-2xl"
+    >
+      {/* CLOSE */}
+      <button
+        onClick={() => setActiveProject(null)}
+        className="
+          absolute top-4 right-4 z-10
+          bg-black text-white
+          p-3 rounded-full
+          shadow-lg
+          hover:scale-110
+          transition
+          cursor-pointer
+        "
+      >
+        <FaTimes size={18} />
+      </button>
+
+      {/* IMAGE – scharf auf Mobile */}
+      <img
+        src={activeProject.image}
+        alt={activeProject.title}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+        className="w-full max-w-[900px] h-auto block"
+        style={{
+          imageRendering: "auto",
+          display: "block",
+        }}
+        sizes="(max-width: 768px) 100vw, 900px"
+      />
     </div>
+  </div>
+)}
+
+    </>
   );
 };
 
-export default ServiceMarquee;
+export default ProjectMarquee;
