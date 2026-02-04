@@ -15,6 +15,7 @@ const ProjectMarquee = () => {
   const [activeProject, setActiveProject] = useState(null);
   const [loadedImages, setLoadedImages] = useState({});
   const [previewLoaded, setPreviewLoaded] = useState({});
+  const [imageErrors, setImageErrors] = useState({});
   const { ref, inView } = UseInView();
 
   const handleImageLoad = (title) => {
@@ -25,12 +26,17 @@ const ProjectMarquee = () => {
     setPreviewLoaded((prev) => ({ ...prev, [title]: true }));
   };
 
+  const handleImageError = (title) => {
+    setImageErrors((prev) => ({ ...prev, [title]: true }));
+    console.error(`Fehler beim Laden: ${title}`);
+  };
+
   return (
     <>
       {/* SECTION */}
       <section ref={ref} className="relative mt-24 mb-32 overflow-hidden">
         <p className="text-center text-lg text-[#000814]/80 max-w-xl mx-auto mb-10">
-          Beispiele meines Lokalen-Anfragen-Systems –{" "}
+          So sieht eine Website aus, die auf messbare Anfragen ausgerichtet ist –{" "}
           <span className="font-semibold text-[#001D3D]">
             klicken & komplette Website ansehen
           </span>
@@ -44,27 +50,40 @@ const ProjectMarquee = () => {
                 {projects.map((project) => (
                   <div
                     key={project.title}
-                    onClick={() => previewLoaded[project.title] && setActiveProject(project)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (previewLoaded[project.title] && !imageErrors[project.title]) {
+                        setActiveProject(project);
+                      }
+                    }}
                     className={`snap-start shrink-0 ${
-                      previewLoaded[project.title] ? "cursor-pointer" : "cursor-wait"
+                      previewLoaded[project.title] && !imageErrors[project.title]
+                        ? "cursor-pointer"
+                        : "cursor-wait"
                     }`}
                   >
-                    <div className="w-[260px] h-[170px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-md relative">
-                      {!previewLoaded[project.title] && (
+                    <div className="w-[260px] h-[170px] overflow-hidden rounded-xl border border-black/10 bg-gray-100 shadow-md relative">
+                      {!previewLoaded[project.title] && !imageErrors[project.title] && (
                         <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
                           <div className="w-8 h-8 border-3 border-gray-400 border-t-gray-600 rounded-full animate-spin" />
+                        </div>
+                      )}
+                      {imageErrors[project.title] && (
+                        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center text-gray-500 text-sm px-4 text-center">
+                          Bild konnte nicht geladen werden
                         </div>
                       )}
                       <img
                         src={project.image}
                         alt={project.title}
-                        loading="lazy"
+                        loading="eager"
                         decoding="async"
                         draggable={false}
-                        className={`w-full h-auto block ${
+                        className={`w-full h-full object-cover block ${
                           previewLoaded[project.title] ? "opacity-100" : "opacity-0"
                         }`}
                         onLoad={() => handlePreviewLoad(project.title)}
+                        onError={() => handleImageError(project.title)}
                       />
                     </div>
                   </div>
@@ -78,27 +97,40 @@ const ProjectMarquee = () => {
                 {projects.map((project) => (
                   <div
                     key={project.title}
-                    onClick={() => previewLoaded[project.title] && setActiveProject(project)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (previewLoaded[project.title] && !imageErrors[project.title]) {
+                        setActiveProject(project);
+                      }
+                    }}
                     className={`mx-6 py-4 select-none ${
-                      previewLoaded[project.title] ? "cursor-pointer" : "cursor-wait"
+                      previewLoaded[project.title] && !imageErrors[project.title]
+                        ? "cursor-pointer"
+                        : "cursor-wait"
                     }`}
                   >
-                    <div className="w-[320px] h-[210px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-md hover:shadow-lg transition relative">
-                      {!previewLoaded[project.title] && (
+                    <div className="w-[320px] h-[210px] overflow-hidden rounded-xl border border-black/10 bg-gray-100 shadow-md hover:shadow-lg transition relative">
+                      {!previewLoaded[project.title] && !imageErrors[project.title] && (
                         <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
                           <div className="w-10 h-10 border-4 border-gray-400 border-t-gray-600 rounded-full animate-spin" />
+                        </div>
+                      )}
+                      {imageErrors[project.title] && (
+                        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center text-gray-500">
+                          Bild konnte nicht geladen werden
                         </div>
                       )}
                       <img
                         src={project.image}
                         alt={project.title}
-                        loading="lazy"
+                        loading="eager"
                         decoding="async"
                         draggable={false}
-                        className={`w-full h-auto block transition-opacity duration-300 ${
+                        className={`w-full h-full object-cover block transition-opacity duration-300 ${
                           previewLoaded[project.title] ? "opacity-100" : "opacity-0"
                         }`}
                         onLoad={() => handlePreviewLoad(project.title)}
+                        onError={() => handleImageError(project.title)}
                       />
                     </div>
                   </div>
@@ -115,7 +147,10 @@ const ProjectMarquee = () => {
           className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4"
           onClick={() => setActiveProject(null)}
         >
-          <div className="relative w-full max-w-[900px] max-h-[90vh] shadow-2xl">
+          <div
+            className="relative w-full max-w-[900px] max-h-[90vh] shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* FIXED CLOSE BUTTON */}
             <button
               onClick={() => setActiveProject(null)}
