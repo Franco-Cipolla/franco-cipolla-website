@@ -42,10 +42,7 @@ const ProjectMarquee = () => {
                     onClick={() => setActiveProject(project)}
                     className="snap-start shrink-0 cursor-pointer"
                   >
-                    <div className="w-[260px] h-[170px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-md relative">
-                      {!loadedImages[project.title] && (
-                        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-                      )}
+                    <div className="w-[260px] h-[170px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-md">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -53,7 +50,6 @@ const ProjectMarquee = () => {
                         decoding="async"
                         draggable={false}
                         className="w-full h-auto block"
-                        onLoad={() => handleImageLoad(project.title)}
                       />
                     </div>
                   </div>
@@ -70,10 +66,7 @@ const ProjectMarquee = () => {
                     onClick={() => setActiveProject(project)}
                     className="mx-6 cursor-pointer py-4 select-none"
                   >
-                    <div className="w-[320px] h-[210px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-md hover:shadow-lg transition relative">
-                      {!loadedImages[project.title] && (
-                        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-                      )}
+                    <div className="w-[320px] h-[210px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-md hover:shadow-lg transition">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -81,7 +74,6 @@ const ProjectMarquee = () => {
                         decoding="async"
                         draggable={false}
                         className="w-full h-auto block"
-                        onLoad={() => handleImageLoad(project.title)}
                       />
                     </div>
                   </div>
@@ -93,54 +85,40 @@ const ProjectMarquee = () => {
       </section>
 
       {/* POPUP */}
-{activeProject && (
-  <div
-    className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4"
-    onClick={() => setActiveProject(null)}
-  >
-    <div
-      onClick={(e) => e.stopPropagation()}
-      className="relative bg-white rounded-2xl w-full max-w-[900px] max-h-[90vh] overflow-y-auto shadow-2xl"
-    >
-      {/* CLOSE – innerhalb der Box fixiert */}
-      <div className="sticky top-0 right-0 z-[10000] flex justify-end p-4 bg-white/0">
-        <button
+      {activeProject && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4"
           onClick={() => setActiveProject(null)}
-          className="
-            bg-black text-white
-            p-3 rounded-full
-            shadow-lg
-            hover:scale-110
-            transition
-            cursor-pointer
-          "
         >
-          <FaTimes size={18} />
-        </button>
-      </div>
+          <div className="relative w-full max-w-[900px] max-h-[90vh] shadow-2xl">
+            {/* FIXED CLOSE BUTTON */}
+            <button
+              onClick={() => setActiveProject(null)}
+              className="fixed top-6 right-6 z-[10000] bg-black text-white p-3 rounded-full shadow-lg hover:scale-110 transition cursor-pointer"
+            >
+              <FaTimes size={18} />
+            </button>
 
-      {/* IMAGE – scharf auf Mobile */}
-      {!loadedImages[activeProject.title] && (
-        <div className="w-full h-[80vh] bg-gray-200 animate-pulse" />
+            {/* SCROLLABLE IMAGE */}
+            <div className="bg-white rounded-2xl max-h-[90vh] overflow-y-auto">
+              {!loadedImages[activeProject.title] && (
+                <div className="w-full h-[80vh] bg-gray-200 animate-pulse rounded-t-2xl" />
+              )}
+              <img
+                src={activeProject.image}
+                alt={activeProject.title}
+                draggable={false}
+                className={`w-full max-w-[900px] h-auto block rounded-t-2xl ${
+                  loadedImages[activeProject.title] ? "block" : "hidden"
+                }`}
+                onLoad={() => handleImageLoad(activeProject.title)}
+                sizes="(max-width: 768px) 100vw, 900px"
+                style={{ imageRendering: "auto", display: "block" }}
+              />
+            </div>
+          </div>
+        </div>
       )}
-      <img
-        src={activeProject.image}
-        alt={activeProject.title}
-        loading="lazy"
-        decoding="async"
-        draggable={false}
-        className="w-full max-w-[900px] h-auto block"
-        style={{
-          imageRendering: "auto",
-          display: loadedImages[activeProject.title] ? "block" : "none",
-        }}
-        sizes="(max-width: 768px) 100vw, 900px"
-        onLoad={() => handleImageLoad(activeProject.title)}
-      />
-    </div>
-  </div>
-)}
-
     </>
   );
 };
