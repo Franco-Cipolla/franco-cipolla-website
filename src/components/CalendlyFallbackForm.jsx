@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { buildFormsparkUrl, submitToFormspark } from "./formspark";
 
-const CalendlyFallbackForm = () => {
+const CalendlyFallBackForm = () => {
   const navigate = useNavigate();
   const formsparkURL = buildFormsparkUrl(
     import.meta.env.VITE_FORMSPARK_FORM_ID_CONTACT
@@ -349,4 +349,4 @@ const CalendlyFallbackForm = () => {
   );
 };
 
-export default CalendlyFallbackForm;
+export default CalendlyFallBackForm;
