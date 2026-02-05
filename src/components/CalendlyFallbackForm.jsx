@@ -15,7 +15,7 @@ const CalendlyFallBackForm = () => {
     pain: [],
     goal: "",
     name: "",
-    message: "", // für Formspark Nachricht (Datum + Uhrzeit)
+    message: "",
     messageDate: "",
     messageTime: "",
     phone: "",
@@ -24,6 +24,13 @@ const CalendlyFallBackForm = () => {
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+
+  const [bookedSlots, setBookedSlots] = useState([
+    { date: "2026-02-06", time: "16:30" },
+    { date: "2026-02-06", time: "18:00" },
+  ]);
+
+  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const painOptions = [
     "Ich bekomme keine messbaren Anfragen",
@@ -85,7 +92,6 @@ const CalendlyFallBackForm = () => {
 
     setSubmitting(true);
     try {
-      // Datum + Uhrzeit schön formatieren
       const date = new Date(formData.messageDate);
       const formattedMessage = `Ihr Wunschtermin: ${String(date.getDate()).padStart(
         2,
@@ -104,7 +110,11 @@ const CalendlyFallBackForm = () => {
 
       if (result.ok) {
         toast.success("Ihre Anfrage wurde erfolgreich gesendet!");
-        navigate("/danke"); // Weiterleitung
+        setBookedSlots((prev) => [
+          ...prev,
+          { date: formData.messageDate, time: formData.messageTime },
+        ]);
+        navigate("/danke");
       } else {
         toast.error("Fehler beim Senden. Bitte erneut versuchen.");
       }
@@ -115,31 +125,78 @@ const CalendlyFallBackForm = () => {
     }
   };
 
-  // generiere Uhrzeiten 16:00–20:00 in 30-Minuten-Schritten
-  // generiere Uhrzeiten 15:30–20:30 in 30-Minuten-Schritten
-const generateTimes = () => {
-  const times = [];
-  for (let hour = 15; hour <= 20; hour++) {
-    if (hour === 15) {
-      times.push("15:30");
-    } else {
-      times.push(`${String(hour).padStart(2, "0")}:00`);
-      if (hour !== 20) times.push(`${String(hour).padStart(2, "0")}:30`);
+  // Uhrzeiten 15:30–20:30
+  const generateTimes = () => {
+    const times = [];
+    for (let hour = 15; hour <= 20; hour++) {
+      if (hour === 15) times.push("15:30");
+      else {
+        const fullHour = `${String(hour).padStart(2, "0")}:00`;
+        const halfHour = `${String(hour).padStart(2, "0")}:30`;
+        if (!times.includes(fullHour)) times.push(fullHour);
+        if (!times.includes(halfHour)) times.push(halfHour);
+      }
     }
-  }
-  times.push("20:30"); // letzte Option
-  return times;
-};
+    if (!times.includes("20:30")) times.push("20:30");
+    return times;
+  };
 
+  const getAvailableTimes = () => {
+    if (!formData.messageDate) return [];
+    const allTimes = generateTimes();
+    const bookedForDay = bookedSlots
+      .filter((slot) => slot.date === formData.messageDate)
+      .map((slot) => slot.time);
+    return allTimes.filter((time) => !bookedForDay.includes(time));
+  };
+
+  const handleMonthChange = (direction) => {
+    const newMonth = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth() + direction,
+      1
+    );
+    const now = new Date();
+    // Nicht in die Vergangenheit
+    if (
+      newMonth.getFullYear() < now.getFullYear() ||
+      (newMonth.getFullYear() === now.getFullYear() &&
+        newMonth.getMonth() < now.getMonth())
+    ) {
+      return;
+    }
+    setCurrentMonth(newMonth);
+    setFormData((prev) => ({ ...prev, messageDate: "", messageTime: "" }));
+  };
+
+  // Generiere Tage für aktuellen Monat, keine Vergangenheit
+  const generateMonthDays = () => {
+    const days = [];
+    const now = new Date();
+    const startDate =
+      currentMonth.getFullYear() === now.getFullYear() &&
+      currentMonth.getMonth() === now.getMonth()
+        ? now.getDate()
+        : 1;
+
+    const totalDays = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth() + 1,
+      0
+    ).getDate();
+
+    for (let d = startDate; d <= totalDays; d++) {
+      const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), d);
+      const dateString = date.toISOString().split("T")[0];
+      days.push({ date, dateString });
+    }
+    return days;
+  };
 
   return (
-    <section className="w-full flex justify-center py-10 ">
+    <section className="w-full flex justify-center py-10 px-5">
       <ToastContainer />
-      <form
-        onSubmit={handleSubmit}
-        noValidate
-        className="lg:max-w-[600px] w-full "
-      >
+      <form onSubmit={handleSubmit} noValidate className="lg:max-w-[600px] w-full">
         {/* STEP INDICATOR */}
         <div className="mb-6">
           <div className="flex justify-between text-xs text-gray-500 mb-2">
@@ -154,7 +211,7 @@ const generateTimes = () => {
           </div>
         </div>
 
-        {/* STEP 1: Pain */}
+        {/* STEP 1 */}
         {step === 1 && (
           <div>
             <p className="font-semibold text-lg mb-3">
@@ -187,20 +244,16 @@ const generateTimes = () => {
           </div>
         )}
 
-        {/* STEP 2: Goal */}
+        {/* STEP 2 */}
         {step === 2 && (
           <div>
-            <p className="font-semibold text-lg mb-3">
-              Was ist aktuell Ihr wichtigstes Ziel?*
-            </p>
+            <p className="font-semibold text-lg mb-3">Was ist aktuell Ihr wichtigstes Ziel?*</p>
             <div className="flex flex-col gap-3">
               {goalOptions.map((option) => (
                 <button
                   key={option}
                   type="button"
-                  onClick={() =>
-                    setFormData((prev) => ({ ...prev, goal: option }))
-                  }
+                  onClick={() => setFormData((prev) => ({ ...prev, goal: option }))}
                   className={`py-2 px-4 border rounded text-left cursor-pointer transition ${
                     formData.goal === option
                       ? "bg-gray-200 border-black font-semibold"
@@ -227,7 +280,7 @@ const generateTimes = () => {
           </div>
         )}
 
-        {/* STEP 3: Name */}
+        {/* STEP 3 */}
         {step === 3 && (
           <div>
             <label className="font-semibold">Wie darf ich Sie ansprechen?*</label>
@@ -254,50 +307,90 @@ const generateTimes = () => {
           </div>
         )}
 
-        {/* STEP 4: Date + Uhrzeit */}
+        {/* STEP 4 */}
         {step === 4 && (
           <div>
-            <label className="font-semibold">
+            <p className="font-semibold text-lg mb-3">
               Wunschtermin*
               <span className="block text-sm text-gray-600 mt-1">
                 Bitte wählen Sie Ihr Wunschdatum und Ihre Wunschzeit aus
               </span>
-            </label>
+            </p>
 
-            <input
-              type="date"
-              name="messageDate"
-              value={formData.messageDate}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, messageDate: e.target.value }))
-              }
-              className="border w-full p-2 rounded mt-2 cursor-pointer text-gray-700"
-            />
-
-            <select
-              name="messageTime"
-              value={formData.messageTime}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, messageTime: e.target.value }))
-              }
-              className="border w-full p-2 rounded mt-2 cursor-pointer text-gray-700"
-            >
-              <option value="">Uhrzeit auswählen</option>
-              {generateTimes().map((time) => (
-                <option key={time} value={time}>
-                  {time}
-                </option>
-              ))}
-            </select>
-
-            {errors.message && <p className="text-red-600 mt-1">{errors.message}</p>}
-
-            <div className="flex gap-2 mt-4">
+            {/* Monatsauswahl */}
+            <div className="flex justify-between items-center mb-2">
               <button
                 type="button"
-                onClick={() => setStep(3)}
-                className="cursor-pointer"
+                onClick={() => handleMonthChange(-1)}
+                className="px-3 py-1 border rounded disabled:opacity-50 cursor-pointer"
+                disabled={
+                  currentMonth.getMonth() === new Date().getMonth() &&
+                  currentMonth.getFullYear() === new Date().getFullYear()
+                }
               >
+                &larr;
+              </button>
+              <span className="font-semibold">
+                {currentMonth.toLocaleDateString("de-DE", { month: "long", year: "numeric" })}
+              </span>
+              <button type="button" onClick={() => handleMonthChange(1)} className="px-3 cursor-pointer py-1 border rounded">
+              &rarr;
+              </button>
+            </div>
+
+            {/* Tage */}
+            <div className="flex gap-2 overflow-x-auto py-2 mb-4">
+              {generateMonthDays().map(({ date, dateString }) => {
+                const isSelected = formData.messageDate === dateString;
+                return (
+                  <button
+                    key={dateString}
+                    type="button"
+                    onClick={() =>
+                      setFormData((prev) => ({ ...prev, messageDate: dateString, messageTime: "" }))
+                    }
+                    className={`flex flex-col items-center px-4 py-2 min-w-[75px] border rounded cursor-pointer transition ${
+                      isSelected
+                        ? "bg-black text-white border-black"
+                        : "border-gray-300 hover:bg-gray-100"
+                    }`}
+                  >
+                    <span className="text-xs font-semibold">
+                      {date.toLocaleDateString("de-DE", { weekday: "short" })}
+                    </span>
+                    <span className="text-sm">{date.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" })}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Uhrzeiten */}
+            {formData.messageDate && (
+              <div className="flex flex-wrap gap-2">
+                {getAvailableTimes().map((time) => {
+                  const isSelected = formData.messageTime === time;
+                  return (
+                    <button
+                      key={time}
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, messageTime: time }))}
+                      className={`px-4 py-2 border rounded cursor-pointer transition ${
+                        isSelected
+                          ? "bg-black text-white border-black"
+                          : "border-gray-300 hover:bg-gray-100"
+                      }`}
+                    >
+                      {time}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {errors.message && <p className="text-red-600 mt-2">{errors.message}</p>}
+
+            <div className="flex gap-2 mt-4">
+              <button type="button" onClick={() => setStep(3)} className="cursor-pointer">
                 Zurück
               </button>
               <button
@@ -311,7 +404,7 @@ const generateTimes = () => {
           </div>
         )}
 
-        {/* STEP 5: Telefonnummer + Datenschutz */}
+        {/* STEP 5 */}
         {step === 5 && (
           <div>
             <label className="font-semibold">

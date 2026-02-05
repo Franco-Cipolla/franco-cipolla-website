@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import SEOJsonLD from "../components/SEOJsonLD";
 import CheckIcon from "../components/CheckIcon";
 import CalendlyFallBackForm from "../components/CalendlyFallbackForm";
-import CalendlyOptional from "../components/CalendlyConsentEmbed";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -115,16 +115,7 @@ const ErstGespraech = () => {
             <CalendlyFallBackForm />
           </div>
 
-          {/* DIVIDER + CALENDLY OPTIONAL */}
-          <div className="contact-animate my-14 flex items-center">
-            <div className="flex-grow border-t" />
-            <span className="mx-4 text-sm text-gray-500">ODER</span>
-            <div className="flex-grow border-t" />
-          </div>
 
-          <div className="contact-animate">
-            <CalendlyOptional />
-          </div>
 
           {/* DSGVO HINWEIS */}
           <p className="contact-animate text-xs text-black/50 mt-6 text-center">
