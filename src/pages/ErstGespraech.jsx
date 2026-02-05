@@ -1,81 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Helmet } from "react-helmet-async";
-import { InlineWidget } from "react-calendly";
 import SEOJsonLD from "../components/SEOJsonLD";
 import CheckIcon from "../components/CheckIcon";
-import CalendlyFallbackForm from "../components/CalendlyFallBackForm"; // Unser neues Multi-Step-Fallback
+import CalendlyFallBackForm from "../components/CalendlyFallBackForm";
+import CalendlyOptional from "../components/CalendlyConsentEmbed";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CalendlyConsentWithFallback = ({ enabled, setEnabled }) => {
-  const [widgetAvailable, setWidgetAvailable] = useState(false);
-  const [fallback, setFallback] = useState(false);
-
-  useEffect(() => {
-    if (!enabled) return;
-
-    // Timeout: fallback nach 5 Sekunden
-    const timeout = setTimeout(() => {
-      if (!widgetAvailable) setFallback(true);
-    }, 5000);
-
-    // Calendly Script laden
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    script.onload = () => setWidgetAvailable(true);
-    script.onerror = () => setFallback(true);
-    document.body.appendChild(script);
-
-    return () => {
-      clearTimeout(timeout);
-      document.body.removeChild(script);
-    };
-  }, [enabled]);
-
-  if (!enabled) {
-    return (
-      <div className="border p-6 text-center bg-gray-50 rounded-lg shadow-sm">
-        <p className="mb-6 text-lg">
-          Die Terminbuchung wird über <strong>Calendly</strong> bereitgestellt.
-        </p>
-        <button
-          onClick={() => setEnabled(true)}
-          className="bg-[#003566] cursor-pointer hover:bg-[#001D3D] text-white px-6 py-3 rounded font-semibold transition transform hover:-translate-y-1 hover:scale-105 duration-200"
-        >
-          Terminbuchung aktivieren
-        </button>
-        <p className="text-sm text-gray-500 mt-3">
-          Dabei können Cookies gesetzt und Daten an Drittanbieter übertragen werden.
-        </p>
-      </div>
-    );
-  }
-
-  return fallback ? (
-    <CalendlyFallbackForm />
-  ) : (
-    <InlineWidget
-      url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
-      styles={{ minWidth: "320px", height: "700px" }}
-      pageSettings={{
-        hideLandingPageDetails: true,
-        hideEventTypeDetails: false,
-        hideGdprBanner: false,
-      }}
-      onError={() => setFallback(true)}
-      onLoad={() => setWidgetAvailable(true)}
-    />
-  );
-};
-
 const ErstGespraech = () => {
   const sectionRef = useRef(null);
-  const [enabled, setEnabled] = useState(false);
 
+  // Animation für Elemente beim Scrollen
   useEffect(() => {
     if (!sectionRef.current) return;
     const elements = sectionRef.current.querySelectorAll(".contact-animate");
@@ -120,11 +58,11 @@ const ErstGespraech = () => {
         className="w-full flex justify-center mt-20 px-4"
       >
         <div className="md:py-20 py-16 max-w-[1100px] w-full">
-          {/* Header */}
+          {/* HEADER */}
           <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
               In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert – <br />
-              Und was Sie konkret ändern können.
+              und was Sie konkret ändern können.
             </h1>
             <p className="text-lg text-black/70 mb-4">
               Limitierte Kapazität: <strong>max. 2 Projekte pro Monat</strong>
@@ -134,7 +72,7 @@ const ErstGespraech = () => {
             </p>
           </div>
 
-          {/* Benefits */}
+          {/* BENEFITS */}
           <div className="contact-animate mb-10 text-center">
             <ul className="inline-block text-left space-y-3">
               <li className="flex items-center gap-2">
@@ -166,19 +104,30 @@ const ErstGespraech = () => {
                 Unternehmen
               </li>
               <li className="flex items-center gap-2">
-                <CheckIcon /> Termindetails, Bestätigung, sowie zusätzliche Infos
+                <CheckIcon /> Termindetails, Bestätigung und zusätzliche Infos
                 per E-Mail
               </li>
             </ul>
           </div>
 
-          {/* Calendly + Fallback */}
+          {/* MULTI-STEP FORM */}
           <div className="contact-animate mt-20">
-            <CalendlyConsentWithFallback enabled={enabled} setEnabled={setEnabled} />
+            <CalendlyFallBackForm />
           </div>
 
-          {/* DSGVO Hinweis */}
-          <p className="contact-animate text-xs text-black/50 mt-2 text-center">
+          {/* DIVIDER + CALENDLY OPTIONAL */}
+          <div className="contact-animate my-14 flex items-center">
+            <div className="flex-grow border-t" />
+            <span className="mx-4 text-sm text-gray-500">ODER</span>
+            <div className="flex-grow border-t" />
+          </div>
+
+          <div className="contact-animate">
+            <CalendlyOptional />
+          </div>
+
+          {/* DSGVO HINWEIS */}
+          <p className="contact-animate text-xs text-black/50 mt-6 text-center">
             🔒 Mehr Infos in der{" "}
             <Link to="/datenschutz" className="underline">
               Datenschutzerklärung

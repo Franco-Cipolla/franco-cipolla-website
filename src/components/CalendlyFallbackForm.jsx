@@ -27,7 +27,7 @@ const CalendlyFallBackForm = () => {
 
   const painOptions = [
     "Ich bekomme keine messbaren Anfragen",
-    "Meine Website bringt mir nichts",
+    "Meine Website generiert keine/wenige Kundenanfragen",
     "Ich bin von Empfehlungen abhängig",
     "Neue Kunden kommen unregelmäßig",
     "Ich habe aktuell gar keine Website",
@@ -116,22 +116,29 @@ const CalendlyFallBackForm = () => {
   };
 
   // generiere Uhrzeiten 16:00–20:00 in 30-Minuten-Schritten
-  const generateTimes = () => {
-    const times = [];
-    for (let hour = 16; hour <= 20; hour++) {
+  // generiere Uhrzeiten 15:30–20:30 in 30-Minuten-Schritten
+const generateTimes = () => {
+  const times = [];
+  for (let hour = 15; hour <= 20; hour++) {
+    if (hour === 15) {
+      times.push("15:30");
+    } else {
       times.push(`${String(hour).padStart(2, "0")}:00`);
       if (hour !== 20) times.push(`${String(hour).padStart(2, "0")}:30`);
     }
-    return times;
-  };
+  }
+  times.push("20:30"); // letzte Option
+  return times;
+};
+
 
   return (
-    <section className="w-full flex justify-center py-10 px-10">
+    <section className="w-full flex justify-center py-10 ">
       <ToastContainer />
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="lg:max-w-[600px] w-full bg-gray-50 p-6 rounded-lg shadow-md"
+        className="lg:max-w-[600px] w-full "
       >
         {/* STEP INDICATOR */}
         <div className="mb-6">
@@ -172,7 +179,7 @@ const CalendlyFallBackForm = () => {
             {errors.pain && <p className="text-red-600 mt-2">{errors.pain}</p>}
             <button
               type="button"
-              className="mt-5 bg-black text-white px-5 py-2 rounded"
+              className="mt-5 bg-black text-white px-5 py-2 rounded cursor-pointer"
               onClick={() => validateStep(1) && setStep(2)}
             >
               Weiter
@@ -206,12 +213,12 @@ const CalendlyFallBackForm = () => {
             </div>
             {errors.goal && <p className="text-red-600 mt-2">{errors.goal}</p>}
             <div className="flex gap-2 mt-4">
-              <button type="button" onClick={() => setStep(1)}>
+              <button type="button" className="cursor-pointer" onClick={() => setStep(1)}>
                 Zurück
               </button>
               <button
                 type="button"
-                className="bg-black text-white px-5 py-2 rounded"
+                className="bg-black text-white px-5 py-2 rounded cursor-pointer"
                 onClick={() => validateStep(2) && setStep(3)}
               >
                 Weiter
@@ -233,12 +240,12 @@ const CalendlyFallBackForm = () => {
             />
             {errors.name && <p className="text-red-600 mt-1">{errors.name}</p>}
             <div className="flex gap-2 mt-4">
-              <button type="button" onClick={() => setStep(2)}>
+              <button type="button" className="cursor-pointer" onClick={() => setStep(2)}>
                 Zurück
               </button>
               <button
                 type="button"
-                className="bg-black text-white px-5 py-2 rounded"
+                className="bg-black text-white px-5 py-2 rounded cursor-pointer"
                 onClick={() => validateStep(3) && setStep(4)}
               >
                 Weiter
@@ -289,13 +296,13 @@ const CalendlyFallBackForm = () => {
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="px-4 py-2 border rounded hover:bg-gray-100"
+                className="cursor-pointer"
               >
                 Zurück
               </button>
               <button
                 type="button"
-                className="bg-black text-white px-5 py-2 rounded hover:opacity-90"
+                className="bg-black text-white px-5 py-2 rounded cursor-pointer"
                 onClick={() => validateStep(4) && setStep(5)}
               >
                 Weiter
@@ -308,7 +315,7 @@ const CalendlyFallBackForm = () => {
         {step === 5 && (
           <div>
             <label className="font-semibold">
-              Telefonnummer* <span className="block text-sm text-gray-600 mt-1">Für eine kurze Rückmeldung (Kein Spam)</span>
+              Telefonnummer* <span className="block text-sm text-gray-600 mt-1">📞 Für eine kurze Rückmeldung (Kein Spam)</span>
             </label>
             <input
               type="tel"
@@ -335,10 +342,10 @@ const CalendlyFallBackForm = () => {
             {errors.phone && <p className="text-red-600 mt-1">{errors.phone}</p>}
             {errors.privacy && <p className="text-red-600 mt-1">{errors.privacy}</p>}
             <div className="flex gap-2 mt-5">
-              <button type="button" onClick={() => setStep(4)} className="px-4 py-2 border rounded hover:bg-gray-100">
+              <button type="button" onClick={() => setStep(4)} className="cursor-pointer">
                 Zurück
               </button>
-              <button type="submit" disabled={submitting} className="bg-black text-white px-5 py-2 rounded hover:opacity-90">
+              <button type="submit" disabled={submitting} className="bg-black text-white px-5 py-2 rounded cursor-pointer">
                 {submitting ? "Wird gesendet…" : "Jetzt Anfrage senden"}
               </button>
             </div>

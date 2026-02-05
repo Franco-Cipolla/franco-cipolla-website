@@ -34,7 +34,7 @@ const Contact = () => {
 
   const painOptions = [
     'Ich bekomme keine messbaren Anfragen',
-    'Meine Website bringt mir nichts',
+    'Meine Website generiert keine/wenige Kundenanfragen',
     'Ich bin von Empfehlungen abhängig',
     'Neue Kunden kommen unregelmäßig',
     'Ich habe aktuell gar keine Website'
