@@ -1,15 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Helmet } from "react-helmet-async";
 import { InlineWidget } from "react-calendly";
-import SEOJsonLD from '../components/SEOJsonLD';
-import CheckIcon from '../components/CheckIcon';
-import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import SEOJsonLD from "../components/SEOJsonLD";
+import CheckIcon from "../components/CheckIcon";
+import CalendlyFallbackForm from "../components/CalendlyFallBackForm"; // Unser neues Multi-Step-Fallback
 
-const CalendlyConsentEmbed = ({ enabled, setEnabled }) => {
-  const [widgetError, setWidgetError] = useState(false);
+gsap.registerPlugin(ScrollTrigger);
+
+const CalendlyConsentWithFallback = ({ enabled, setEnabled }) => {
+  const [widgetAvailable, setWidgetAvailable] = useState(false);
+  const [fallback, setFallback] = useState(false);
+
+  useEffect(() => {
+    if (!enabled) return;
+
+    // Timeout: fallback nach 5 Sekunden
+    const timeout = setTimeout(() => {
+      if (!widgetAvailable) setFallback(true);
+    }, 5000);
+
+    // Calendly Script laden
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    script.onload = () => setWidgetAvailable(true);
+    script.onerror = () => setFallback(true);
+    document.body.appendChild(script);
+
+    return () => {
+      clearTimeout(timeout);
+      document.body.removeChild(script);
+    };
+  }, [enabled]);
 
   if (!enabled) {
     return (
@@ -17,15 +42,12 @@ const CalendlyConsentEmbed = ({ enabled, setEnabled }) => {
         <p className="mb-6 text-lg">
           Die Terminbuchung wird über <strong>Calendly</strong> bereitgestellt.
         </p>
-
         <button
           onClick={() => setEnabled(true)}
-          aria-pressed={enabled}
           className="bg-[#003566] cursor-pointer hover:bg-[#001D3D] text-white px-6 py-3 rounded font-semibold transition transform hover:-translate-y-1 hover:scale-105 duration-200"
         >
           Terminbuchung aktivieren
         </button>
-
         <p className="text-sm text-gray-500 mt-3">
           Dabei können Cookies gesetzt und Daten an Drittanbieter übertragen werden.
         </p>
@@ -33,28 +55,19 @@ const CalendlyConsentEmbed = ({ enabled, setEnabled }) => {
     );
   }
 
-  return widgetError ? (
-    <a
-      href="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="bg-[#003566] hover:bg-[#001D3D] text-white px-6 py-3 rounded font-semibold cursor-pointer transition w-full max-w-xs block mx-auto text-center"
-    >
-      Direkt zu Calendly
-    </a>
+  return fallback ? (
+    <CalendlyFallbackForm />
   ) : (
     <InlineWidget
-      key="calendly-inline"
       url="https://calendly.com/franco_cipolla/unverbindliche-website-analyse-erstgesprach"
       styles={{ minWidth: "320px", height: "700px" }}
-      prefill={{}}
       pageSettings={{
         hideLandingPageDetails: true,
         hideEventTypeDetails: false,
         hideGdprBanner: false,
       }}
-      onLoad={() => setWidgetError(false)}
-      onError={() => setWidgetError(true)}
+      onError={() => setFallback(true)}
+      onLoad={() => setWidgetAvailable(true)}
     />
   );
 };
@@ -64,10 +77,8 @@ const ErstGespraech = () => {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     if (!sectionRef.current) return;
-    const elements = sectionRef.current.querySelectorAll('.contact-animate');
+    const elements = sectionRef.current.querySelectorAll(".contact-animate");
 
     gsap.fromTo(
       elements,
@@ -76,11 +87,11 @@ const ErstGespraech = () => {
         opacity: 1,
         y: 0,
         duration: 0.6,
-        ease: 'power2.out',
+        ease: "power2.out",
         stagger: 0.15,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: "top 80%",
         },
       }
     );
@@ -89,19 +100,26 @@ const ErstGespraech = () => {
   return (
     <>
       <Helmet>
-        <title>Kostenlose Website-Analyse – Erstgespräch buchen | Franco Cipolla</title>
+        <title>
+          Kostenlose Website-Analyse – Erstgespräch buchen | Franco Cipolla
+        </title>
         <meta
           name="description"
           content="Buche jetzt deine kostenlose Website-Analyse/Erstgespräch. Max. 2 Projekte pro Monat. Konkrete Optimierungsideen oder kostenloser Design-Prototyp."
         />
-        <link rel="canonical" href="https://www.franco-cipolla.de/erstgespraech" />
+        <link
+          rel="canonical"
+          href="https://www.franco-cipolla.de/erstgespraech"
+        />
       </Helmet>
 
       <SEOJsonLD page="erstgespraech" />
 
-      <section ref={sectionRef} className="w-full flex justify-center mt-20 px-4">
+      <section
+        ref={sectionRef}
+        className="w-full flex justify-center mt-20 px-4"
+      >
         <div className="md:py-20 py-16 max-w-[1100px] w-full">
-
           {/* Header */}
           <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
@@ -123,74 +141,49 @@ const ErstGespraech = () => {
                 <CheckIcon />
                 <span>
                   Für Selbstständige & Unternehmen aus{" "}
-                  <Link to="/" className="underline transition hover:text-[#003566]">Ennepetal</Link>,{" "}
-                  <Link to="/hagen" className="underline transition hover:text-[#003566]">Hagen</Link> & Umgebung
+                  <Link
+                    to="/"
+                    className="underline transition hover:text-[#003566]"
+                  >
+                    Ennepetal
+                  </Link>
+                  ,{" "}
+                  <Link
+                    to="/hagen"
+                    className="underline transition hover:text-[#003566]"
+                  >
+                    Hagen
+                  </Link>{" "}
+                  & Umgebung
                 </span>
               </li>
               <li className="flex items-center gap-2">
-                <CheckIcon /> Klare Empfehlungen, wie Ihre Website Anfragen auslösen kann
+                <CheckIcon /> Klare Empfehlungen, wie Ihre Website Anfragen auslösen
+                kann
               </li>
               <li className="flex items-center gap-2 pr-2">
-                <CheckIcon /> Alternativ: Kostenloser Design-Prototyp für Ihr Unternehmen
+                <CheckIcon /> Alternativ: Kostenloser Design-Prototyp für Ihr
+                Unternehmen
               </li>
               <li className="flex items-center gap-2">
-                <CheckIcon /> Termindetails, Bestätigung, sowie zusätzliche Infos per E-Mail
+                <CheckIcon /> Termindetails, Bestätigung, sowie zusätzliche Infos
+                per E-Mail
               </li>
             </ul>
           </div>
 
-          {/* Calendly Consent */}
+          {/* Calendly + Fallback */}
           <div className="contact-animate mt-20">
-            <CalendlyConsentEmbed enabled={enabled} setEnabled={setEnabled} />
+            <CalendlyConsentWithFallback enabled={enabled} setEnabled={setEnabled} />
           </div>
 
           {/* DSGVO Hinweis */}
           <p className="contact-animate text-xs text-black/50 mt-2 text-center">
-            🔒 Mehr Infos in der{' '}
+            🔒 Mehr Infos in der{" "}
             <Link to="/datenschutz" className="underline">
               Datenschutzerklärung
             </Link>
           </p>
-
-          {/* Post-Consent / Instagram + WhatsApp CTA */}
-          {enabled && (
-            <div className="w-full flex flex-col items-center justify-center mt-16 px-4">
-              <p className="contact-animate text-lg text-center xl:text-xl text-[#000814]/90 mb-2 max-w-xl leading-relaxed">
-                Ich freue mich auf unser Gespräch und darauf, Ihre Website so zu optimieren, dass Sie mehr Anfragen bekommen.
-
-              </p>
-              <p className="contact-animate text-sm text-black/50 mb-8 max-w-md text-center">
-                🕒 Ihre Anfrage wird innerhalb von 24–48 Stunden bearbeitet.
-              </p>
-              <p className="contact-animate text-lg text-center xl:text-xl text-[#000814]/90 mb-6 max-w-xl leading-relaxed">
-                Folgen Sie mir auf Instagram für Tipps & Praxisbeispiele oder schreiben Sie mir direkt eine WhatsApp-Nachricht für schnelle Rückfragen.
-              </p>
-
-              <div className="contact-animate flex flex-col justify-center sm:flex-row gap-4 mt-4 w-full lg:max-w-xl">
-                <a
-                  href="https://www.instagram.com/francocipolla.de/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-[#003566] via-[#001D3D] to-[#00A6FB] text-white px-6 py-3 rounded-lg shadow-md font-semibold transition transform hover:-translate-y-1 hover:scale-105 cursor-pointer w-full sm:w-auto flex items-center justify-center gap-2"
-                >
-                  <FaInstagram className="text-lg" />
-                  Instagram folgen
-                </a>
-
-                <a
-                  href="https://wa.me/4917675398004"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-md font-semibold transition transform hover:-translate-y-1 hover:scale-105 cursor-pointer w-full sm:w-auto flex items-center justify-center gap-2"
-                >
-                  <FaWhatsapp className="text-lg" />
-                  Direkt WhatsApp schreiben
-                </a>
-              </div>
-
-
-            </div>
-          )}
         </div>
       </section>
     </>
