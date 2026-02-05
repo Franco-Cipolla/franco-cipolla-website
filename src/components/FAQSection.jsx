@@ -17,7 +17,7 @@ const faqs = [
         <p>
           Ich erstelle Websites, die Besucher gezielt führen, Vertrauen aufbauen und Schritt für Schritt zu einer Anfrage bringen.
           <br /><br />
-          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration</strong> und <strong> aktuell inklusive Bonus: Social-Media Starterkit</strong>, damit Sie nach dem Launch gezielt Besucher auf Ihre Website lenken können.
+          Inklusive <strong>Conversion-optimierter Struktur, Google Maps Integration</strong> und <strong> aktuell inklusive Bonus: Website-Besucher-Startpaket</strong>, damit Sie nach dem Launch gezielt Besucher auf Ihre Website lenken können.
         </p>
       </div>
     ),
@@ -51,7 +51,7 @@ const faqs = [
           <li>Modernes Design & Branding → Vertrauen & Professionalität</li>
           <li>Mobile-optimiert & blitzschnell → kein Kunde geht verloren</li>
           <li>Google Maps & lokale Sichtbarkeit → Kunden finden Sie sofort</li>
-          <li><strong>Bonus (aktuell inklusive):</strong> Social-Media Starterkit → 2 vorgefertigte Posts für Instagram & Facebook + Persönliches Video, wie Sie Ihre Website aktiv bewerben. <span className="text-white/80">Wert: 300€</span></li>
+          <li><strong>Bonus (aktuell inklusive):</strong> Website-Besucher-Startpaket → 2 vorgefertigte Posts für Instagram & Facebook + Persönliches Video, wie Sie Ihre Website aktiv bewerben. <span className="text-white/80">Wert: 300€</span></li>
         </ul>
         <p className="text-sm text-gray-600 mt-2">Sofort umsetzbar → erste Besucher schon in den ersten Tagen.</p>
       </div>

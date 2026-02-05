@@ -17,7 +17,7 @@ const faqsHagen = [
           Ich erstelle Websites, die Besucher Schritt für Schritt führen, Vertrauen aufbauen und gezielt zur Anfrage bringen.
         </p>
         <p>
-          Inklusive: <strong>Conversion-optimierte Struktur, Google Maps Integration</strong> & <strong>Bonus: Social-Media Starterkit</strong> zur gezielten Besucherlenkung.
+          Inklusive: <strong>Conversion-optimierte Struktur, Google Maps Integration</strong> & <strong>Bonus: Website-Besucher-Startpaket</strong> zur gezielten Besucherlenkung.
         </p>
       </div>
     ),

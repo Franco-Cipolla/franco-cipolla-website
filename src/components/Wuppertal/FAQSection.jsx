@@ -15,7 +15,7 @@ const faqsWuppertal = [
           Ergebnis: keine Anfragen.
         </p>
         <p>
-          Ich baue Websites, die Besucher Schritt für Schritt führen, Vertrauen aufbauen und gezielt zur Anfrage bringen.
+          Ich baue Websites, die Besucher Schritt für Schritt führen, Vertrauen aufbauen und gezielt zur Anfrage bringen. Aktuell inklusive Bonus: Website-Besucher-Startpaket.
         </p>
       </div>
     ),
