@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Helmet } from "react-helmet-async";
 import SEOJsonLD from "../components/SEOJsonLD";
 import CheckIcon from "../components/CheckIcon";
-import CalendlyFallBackForm from "../components/CalendlyFallBackForm";
+import CalendlyFallBackForm from "../components/CalendlyFallbackForm";
 import CalendlyOptional from "../components/CalendlyConsentEmbed";
 
 gsap.registerPlugin(ScrollTrigger);
