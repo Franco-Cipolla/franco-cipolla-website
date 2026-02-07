@@ -35,31 +35,31 @@ const ProcessSection = () => {
       icon: <FaSearch className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
       title: 'Briefing & Strategie',
       description:
-        'Ich verstehe Ihr Business, Ihre Zielgruppe und Ihre Ziele. Ergebnis: Klarer Plan für Ihre Website.',
+        'Wir klären, wie Ihre Website Besucher zu Kunden macht und definieren klare Ziele für messbare Anfragen.',
     },
     {
       icon: <FaDraftingCompass className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
       title: 'Design & Struktur',
       description:
-        'Beispiele, Seitenstruktur und Layout das Besucher führt. Alles auf Ihre Zielgruppe abgestimmt.',
+        'Seitenaufbau, der Besucher intuitiv führt und Ihr Angebot klar präsentiert – für maximale Relevanz.',
     },
     {
       icon: <FaCode className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
       title: 'Entwicklung & Optimierung',
       description:
-        'Responsive, schnell und für SEO & Conversion optimiert.',
+        'Responsiv, schnell und conversion-orientiert – damit Besucher einfach Kontakt aufnehmen können.',
     },
     {
       icon: <FaRocket className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
       title: 'Launch & Kontrolle',
       description:
-        'Wir gehen live, stellen Analytics & Besucher-Tracking ein. Sie sehen sofort, wie Besucher zu Kunden werden.',
+        'Website live – Besucher-Tracking eingerichtet, damit Sie sehen, wie Anfragen zustande kommen.',
     },
     {
       icon: <FaTools className="text-[#00A6FB] w-6 h-6 md:w-8 md:h-8" />,
       title: 'Wartung & Anpassung',
       description:
-        'Optionale monatliche Optimierungen, Sicherheitsupdates, kleine Änderungen. Flexibel, ohne Vertragsbindung.',
+        'Optionale Optimierungen, Updates und kleine Änderungen – flexibel, ohne langfristige Bindung.',
     },
   ];
 
@@ -69,11 +69,11 @@ const ProcessSection = () => {
       className="relative py-20 my-20 px-4 md:px-6 bg-gradient-to-b from-[#f8fafc] to-white"
     >
       <div className="max-w-7xl mx-auto text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center  mb-4">
-          Ihr Weg zur planbaren Kunden-Website
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          So kommen Sie zu messbaren Anfragen 
         </h2>
-        <p className="text-lg  text-[#000814]/80 max-w-3xl mx-auto">
-          Transparenter Prozess – Von der Idee bis zur Website, die Kunden anzieht.
+        <p className="text-lg text-[#000814]/80 max-w-3xl mx-auto">
+          Klare Schritte – Von der Idee bis zu einer Website, die Besucher zu Anfragen führt.
         </p>
       </div>
 
