@@ -143,45 +143,46 @@ const AboutPage = () => {
           {/* Text */}
           <div className="order-2 md:order-1">
             <h2 ref={(el) => (textBlockRefs.current[0] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
-              Die meisten Websites sehen gut aus und bringen nichts
+              Kurz zu mir
             </h2>
             <p ref={(el) => (textBlockRefs.current[1] = el)} className="text-base leading-relaxed mb-4">
+              Ich bin <strong>Franco Cipolla</strong>. Ich mache Websites mit Fokus auf Conversion, Verkaufspsychologie und lokale Sichtbarkeit. Mein Anspruch ist simpel: Websites bauen, die wirklich etwas bringen – messbar, nicht nur schön.
+            </p>
+            <h2 ref={(el) => (textBlockRefs.current[2] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+              Die meisten Websites sehen gut aus und bringen nichts
+            </h2>
+            <p ref={(el) => (textBlockRefs.current[3] = el)} className="text-base leading-relaxed mb-4">
               Viele Unternehmen investieren Zeit und Geld in ihre Website und bekommen dafür… Stille. Keine Anfragen. Keine Messbarkeit. Keine Ahnung, woran es liegt.
             </p>
-            <p ref={(el) => (textBlockRefs.current[2] = el)} className="text-base leading-relaxed mb-8">
+            <p ref={(el) => (textBlockRefs.current[4] = el)} className="text-base leading-relaxed mb-8">
               Das Problem ist selten das Design, sondern fehlende Struktur, fehlende Psychologie und kein klares Ziel.
             </p>
 
-            <h2 ref={(el) => (textBlockRefs.current[3] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+            <h2 ref={(el) => (textBlockRefs.current[5] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
               Deshalb arbeite ich nicht nur „kreativ“, sondern systematisch
             </h2>
-            <p ref={(el) => (textBlockRefs.current[4] = el)} className="text-base leading-relaxed mb-8">
+            <p ref={(el) => (textBlockRefs.current[6] = el)} className="text-base leading-relaxed mb-8">
               Jede Website folgt einer klaren Struktur: Problem erkennen, Lösung verständlich machen, Vertrauen aufbauen, Handlung auslösen. Ziel ist immer dasselbe: <strong>Besucher → Anfrage → Kunde</strong>.
             </p>
 
-            <h2 ref={(el) => (textBlockRefs.current[5] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+            <h2 ref={(el) => (textBlockRefs.current[7] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
               Minimaler Aufwand für Sie. Klare Ergebnisse für Ihr Unternehmen
             </h2>
-            <p ref={(el) => (textBlockRefs.current[6] = el)} className="text-base leading-relaxed mb-8">
+            <p ref={(el) => (textBlockRefs.current[8] = el)} className="text-base leading-relaxed mb-8">
               Sie liefern die Basisinfos. Ich übernehme Struktur, Texte, Design und Umsetzung. Klarer Prozess. Klare Kommunikation. Keine Agentur-Spielchen.
             </p>
 
-            <h2 ref={(el) => (textBlockRefs.current[7] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
+            <h2 ref={(el) => (textBlockRefs.current[9] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
               Für wen ich arbeite – und für wen nicht
             </h2>
-            <p ref={(el) => (textBlockRefs.current[8] = el)} className="text-base leading-relaxed mb-4">
+            <p ref={(el) => (textBlockRefs.current[10] = el)} className="text-base leading-relaxed mb-4">
               Ich arbeite mit Unternehmen, die planbar wachsen wollen, Entscheidungen treffen und Ergebnisse wichtiger finden als Spielereien.
             </p>
-            <p ref={(el) => (textBlockRefs.current[9] = el)} className="text-base leading-relaxed mb-8">
+            <p ref={(el) => (textBlockRefs.current[11] = el)} className="text-base leading-relaxed mb-8">
               Ich arbeite <strong>nicht</strong> mit reinen Preisvergleichen, endlosen Entscheidungsprozessen oder Projekten ohne klares Ziel.
             </p>
 
-            <h2 ref={(el) => (textBlockRefs.current[10] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
-              Kurz zu mir
-            </h2>
-            <p ref={(el) => (textBlockRefs.current[11] = el)} className="text-base leading-relaxed mb-4">
-              Ich bin <strong>Franco Cipolla</strong>. Ich mache Websites mit Fokus auf Conversion, Verkaufspsychologie und lokale Sichtbarkeit. Mein Anspruch ist simpel: Websites bauen, die wirklich etwas bringen – messbar, nicht nur schön.
-            </p>
+
           </div>
         </section>
 
