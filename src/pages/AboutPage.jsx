@@ -108,7 +108,7 @@ const AboutPage = () => {
         />
       </div>
 
-      <main ref={heroRef} className="max-w-250 xl:max-w-291.25 mx-auto px-4 mt-20 py-28 text-black">
+      <main ref={heroRef} className="max-w-250 xl:max-w-291.25 mx-auto px-4 md:mt-10 py-28 text-black">
         {/* HERO */}
         <h1 ref={headlineRef} className="text-3xl sm:text-4xl font-bold mb-3">
           Websites sind kein Designprojekt. Sie sind ein Vertriebskanal.
