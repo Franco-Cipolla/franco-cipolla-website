@@ -26,7 +26,7 @@ const HomePage = () => {
         <meta name="twitter:title" content="Websites, die Kunden bringen – Franco Cipolla" />
         <meta name="twitter:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
-        <meta name="google-site-verification" content="RntTlHjncxGYktcnlxnljaMFeST4qUYauLstfZKlEzc" />
+        
       </Helmet>
       <SEOJsonLD page="home" />
 
