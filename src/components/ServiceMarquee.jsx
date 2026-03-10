@@ -48,7 +48,7 @@ const ProjectCarousel = () => {
             So könnte Ihr Lokales-Anfragen-System aussehen
           </h2>
           <p className="text-lg text-[#000814] max-w-2xl mx-auto">
-             Beispiele von Websites, die auf Anfragen ausgerichtet sind. Sehen Sie, wie Ihr System aufgebaut sein könnte – <strong>klicken & komplette Website ansehen.</strong>
+             Beispiele von Websites, die auf Anfragen ausgerichtet sind. Mit Markierungen und kurzen Erklärungen, welche Elemente Vertrauen aufbauen und Besucher zur Anfrage führen – <strong>klicken & komplette Website ansehen.</strong>
           </p>
           </div>
 
