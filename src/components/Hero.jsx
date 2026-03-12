@@ -19,7 +19,7 @@ const Hero = () => {
   const ctaRef = useRef(null);
   const imageRef = useRef(null);
 
-  const [isXL, setIsXL] = useState(false);
+  const [, setIsXL] = useState(false);
 
   const handleClick = () => {
     navigate('/erstgespraech');
@@ -180,7 +180,7 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* Illustration */}
+
           {/* Illustration */}
 <div className="hidden xl:flex flex-1 justify-center lg:justify-end pt-6 lg:pt-0 relative">
 

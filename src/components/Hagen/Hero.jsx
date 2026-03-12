@@ -17,7 +17,7 @@ const Hero = () => {
   const ctaRef = useRef(null);
   const imageRef = useRef(null);
 
-  const [isXL, setIsXL] = useState(false);
+  const [, setIsXL] = useState(false);
 
   const handleClick = () => {
     navigate('/erstgespraech');
@@ -169,14 +169,43 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* Illustration */}
-          <div className="flex-1 flex justify-center lg:justify-end pt-6 lg:pt-0">
+                {/* Illustration */}
+          <div className="hidden xl:flex flex-1 justify-center lg:justify-end pt-6 lg:pt-0 relative">
+
             <img
               ref={imageRef}
               src={HeroIllustration}
-              alt="Webdesigner für Unternehmen in Hagen – Website mit Fokus auf Kundengewinnung"
-              className={`xl:block w-full max-w-[600px] ${!isXL ? 'hidden' : ''}`}
+              alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen"
+              className="w-full rounded-2xl max-w-[600px]"
             />
+
+            {/* Badge oben rechts */}
+            <div className="absolute top-0 left-60">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2 shadow-sm">
+                <span className="text-[12px] font-bold text-[#003566] whitespace-nowrap">
+                  📈 Mehr Anfragen
+                </span>
+              </div>
+            </div>
+
+            {/* Badge unten rechts */}
+            <div className="absolute bottom-6 right-6">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2 shadow-sm">
+                <span className="text-[12px] font-bold text-[#003566] whitespace-nowrap">
+                  🛡️ DSGVO-konform
+                </span>
+              </div>
+            </div>
+
+            {/* Badge links mittig */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-1">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2 shadow-sm">
+                <span className="text-[12px] font-bold text-[#ffffff] whitespace-nowrap">
+                 📍 Lokal bei Google auffindbar
+                </span>
+              </div>
+            </div>
+
           </div>
 
         </div>
