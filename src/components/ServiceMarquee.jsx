@@ -43,14 +43,24 @@ const ProjectCarousel = () => {
     <>
       {/* SECTION */}
       <section className="relative mt-24 mb-32 px-5 md:px-0">
-        <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            So könnte Ihr Lokales-Anfragen-System aussehen
-          </h2>
-          <p className="text-lg text-[#000814] max-w-2xl mx-auto">
-             Beispiele von Websites, die auf Anfragen ausgerichtet sind. Mit Markierungen und kurzen Erklärungen, welche Elemente Vertrauen aufbauen und Besucher zur Anfrage führen – <strong>klicken & komplette Website ansehen.</strong>
-          </p>
-          </div>
+        {/* Hero Untertitel / Erklärung */}
+<div className="text-center mb-12">
+
+  <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
+    So könnte Ihr Lokales-Anfragen-System aussehen
+  </h2>
+
+  {/* Desktop Version */}
+  <p className="text-lg text-[#000814] max-w-2xl mx-auto hidden xl:block ">
+    Beispiele von Websites, die auf Anfragen ausgerichtet sind. Mit Markierungen und kurzen Erklärungen, welche Elemente Vertrauen aufbauen und Besucher zur Anfrage führen. <strong>Klicken & komplette Website ansehen.</strong>
+  </p>
+
+  {/* Mobile Version */}
+  <p className="text-lg text-[#000814] max-w-2xl mx-auto block xl:hidden ">
+    Beispiele von Websites, die auf Anfragen ausgerichtet sind. <strong>Klicken & komplette Website und Erklärungen ansehen.</strong>
+  </p>
+
+</div>
 
 
         {/* MOBILE */}
