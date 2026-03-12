@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { gsap, ScrollTrigger } from '../gsapSetup';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
-import HeroIllustration from '/src/assets/Hero-Illustration.webp';
+import HeroIllustration from '/src/assets/Untitled design.avif';
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -138,7 +138,7 @@ const Hero = () => {
                 className="text-lg xl:text-xl text-[#000814] mb-4 font-semibold"
               >
               Eine Website sollte nicht nur gut aussehen,
-              sondern klar strukturiert sein, um Besucher gezielt zur Anfrage zu führen.
+              sondern Verkaufspsychologisch optimiert sein, um Besucher gezielt zur Anfrage zu führen.
               </p>
 
               <p

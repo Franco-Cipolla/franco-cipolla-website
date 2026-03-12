@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { gsap, ScrollTrigger } from './gsapSetup';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
-import HeroIllustration from '../assets/Hero-Illustration.webp';
+import HeroIllustration from '../assets/Untitled design.avif';
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -181,14 +181,16 @@ const Hero = () => {
           </div>
 
           {/* Illustration */}
-          <div className="flex-1 flex justify-center lg:justify-end pt-6 lg:pt-0">
-            <img
-              ref={imageRef}
-              src={HeroIllustration}
-              alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen"
-              className={`xl:block w-full max-w-[600px] ${!isXL ? 'hidden' : ''}`}
-            />
-          </div>
+          <div className="flex-1 flex justify-center lg:justify-end pt-6 lg:pt-0 relative">
+
+  <img
+    ref={imageRef}
+    src={HeroIllustration}
+    alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen"
+    className={`xl:block w-full rounded-2xl max-w-[600px] ${!isXL ? 'hidden' : ''}`}
+  />
+
+</div>
 
         </div>
       </main>
