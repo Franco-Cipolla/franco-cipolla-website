@@ -90,6 +90,19 @@ answer: (
     ),
   },
   {
+  question: 'Erstellst du auch E-Commerce Systeme?',
+  answer: (
+    <div className="space-y-2">
+      <p>
+        Ich erstelle keine E-Commerce Systeme. Das Lokale-Anfragen-System™ wurde speziell für lokale Unternehmenswebsites entwickelt, um Besucher gezielt in Anfragen zu verwandeln. Nicht für Shops oder andere komplexe Onlinesysteme.
+      </p>
+      <p>
+        <strong>Alles rund um Ihre Unternehmenswebsite erledige ich für Sie.</strong> Ihre Website entsteht komplett im Hintergrund, während Sie sich auf Ihr Business konzentrieren.
+      </p>
+    </div>
+  ),
+},
+  {
     question: 'Wie lange dauert die Umsetzung?',
     answer: (
       <div className="space-y-2">
