@@ -83,7 +83,7 @@ answer: (
     question: 'Wie viel Zeit muss ich investieren?',
     answer: (
       <div className="space-y-2">
-        <p>Minimal. Sie liefern nur Briefing & Zugang – <strong>den Rest erledige ich</strong>.</p>
+        <p>Minimal. Sie liefern nur Briefing & Zugänge – <strong>den Rest erledige ich</strong>.</p>
         <p>Die Website entsteht im Hintergrund, während Sie Ihr Business weiterführen.</p>
       </div>
     ),
