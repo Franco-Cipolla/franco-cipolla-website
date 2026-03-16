@@ -62,7 +62,7 @@ const faqs = [
     answer: (
       <div className="space-y-2">
         <p>
-          Minimal. Sie liefern Hosting, Zugänge, Logos, Fotos.  <strong>Alles andere erledige ich.</strong>.
+          Minimal. Sie liefern Hosting, Zugänge, Logos, Fotos und rechtliche Texte  <strong>Alles andere erledige ich.</strong>.
         </p>
         <p>
           Ihre Website entsteht vollständig im Hintergrund, während Sie sich auf Ihr Business konzentrieren.
