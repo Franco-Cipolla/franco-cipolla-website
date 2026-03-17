@@ -48,7 +48,7 @@ const steps = [
     descriptionDesktop:
       'Eine Website zu haben reicht heute nicht mehr. Entscheidend ist, ob sie Besucher aktiv zur Kontaktaufnahme führt - oder sie still wieder gehen lässt. Das Lokale-Anfragen-System™ ist genau darauf ausgelegt: Interessierte aus Ihrer Region finden Sie bei Google, verstehen sofort Ihr Angebot und wissen auf Anhieb, wie sie Sie erreichen. Und Sie sehen selbst, was passiert - messbar, nachvollziehbar, transparent.',
     descriptionMobile:
-      'Interessierte aus Ihrer Region finden Sie bei Google, verstehen Ihr Angebot sofort und wissen, wie sie Sie erreichen. Messbar, nachvollziehbar - das Lokale-Anfragen-System™ arbeiter 24/7 für Sie.',
+      'Interessierte aus Ihrer Region finden Sie bei Google, verstehen Ihr Angebot sofort und wissen, wie sie Sie erreichen. Messbar, nachvollziehbar - das Lokale-Anfragen-System™ arbeitet 24/7 für Sie.',
     badge: '🚀 Lokal auffindbar · auf Anfragen optimiert · messbar statt unsichtbar',
   },
 ];
