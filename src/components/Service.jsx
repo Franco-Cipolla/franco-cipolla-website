@@ -12,7 +12,7 @@ const stackItems = [
         <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
       </svg>
     ),
-    title: 'Neues Webdesign',
+    title: 'Optimiertes Webdesign',
     descMobile: 'Vertrauen entsteht auf den ersten Blick',
     descDesktop: 'Modern, sauber - Besucher sehen sofort: das ist ein Betrieb dem ich vertrauen kann',
   },
@@ -113,8 +113,8 @@ const valueBadges = [
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
     ),
-    title: 'Ihr Aufwand: ein Briefing',
-    sub: 'Den Rest erledige ich komplett',
+    title: 'Direkter Kontakt',
+    sub: 'Ein Ansprechpartner - kein Callcenter'
   },
 ];
 
@@ -171,7 +171,7 @@ const Service = () => {
           </h2>
           <p className="text-[15px] md:text-lg text-[#000814] max-w-2xl mx-auto">
             <span className="md:hidden">Für lokale Betriebe, die Anfragen wollen - nicht nur irgendeine Website.</span>
-            <span className="hidden md:inline">Für lokale Betriebe in Ennepetal & Umgebung, die gefunden werden wollen - ohne auf Empfehlungen zu warten.</span>
+            <span className="hidden md:inline">Für lokale Betriebe in Ennepetal & Umgebung, die Anfragen wollen - ohne auf Empfehlungen zu warten.</span>
           </p>
         </div>
 
@@ -266,7 +266,7 @@ const Service = () => {
             <span className="text-[18px] sm:text-[20px] flex-shrink-0 mt-[2px]">🎁</span>
             <div>
               <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-[#003566] mb-1">
-                Bonus - inklusive, ohne Aufpreis
+                Bonus - inklusive, ohne Aufpreis (300€ Wert)
               </p>
               <p className="text-[13px] sm:text-[14px] font-bold text-[#000814] mb-1">
                 2 branchenspezifische Social-Media-Posts + Loom-Video
