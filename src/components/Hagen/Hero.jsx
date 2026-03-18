@@ -165,7 +165,7 @@ const Hero = () => {
               ref={disclaimerRef}
               className="text-[13px] md:text-sm mt-3 text-black/40"
             >
-             Solange Sie warten, fragt jemand bei der Konkurrenz an.
+             Unverbindlich · 15 Minuten · Keine Vorbereitung nötig
             </p>
           </div>
 
