@@ -54,7 +54,7 @@ const CTAHome = () => {
       <p className="cta-animate text-base sm:text-lg mb-6 max-w-xl mx-auto">
         Ich zeige Ihnen Schritt für Schritt, <strong>wo Ihre Website Anfragen verliert </strong>
         und wie Sie daraus <strong>mehr Neukunden</strong> gewinnen können. <br /><br />
-        Nur 2 neue Kunden pro Monat – so kann ich mich voll auf echte Ergebnisse konzentrieren.      </p>
+        Solange Sie warten, fragt jemand bei der Konkurrenz an.    </p>
 
       <button
         onClick={handleClick}
@@ -62,7 +62,7 @@ const CTAHome = () => {
       >
         Kostenlose Website-Analyse starten <FaArrowRight />
       </button>
-      <p className='cta-animate text-[15px] mt-3 text-black/60'>Ohne Risiko & vollkommen unverbindlich</p>
+      <p className='cta-animate text-[15px] mt-3 text-black/60'>Ohne Risiko & unverbindlich</p>
 
     </section>
   )

@@ -68,7 +68,7 @@ const ErstGespraech = () => {
               Limitierte Kapazität: <strong>max. 2 Projekte pro Monat</strong>
             </p>
             <p className="text-base text-black/60">
-              Sichern Sie jetzt Ihr unverbindliches Website-Analyse/Erstgespräch.
+              Sichern Sie jetzt Ihre unverbindliche Website-Analyse/Erstgespräch.
             </p>
           </div>
 
@@ -91,6 +91,12 @@ const ErstGespraech = () => {
                     className="underline transition hover:text-[#003566]"
                   >
                     Hagen
+                  </Link>{" "}
+                  <Link
+                    to="/wuppertal"
+                    className="underline transition hover:text-[#003566]"
+                  >
+                    Wuppertal
                   </Link>{" "}
                   & Umgebung
                 </span>

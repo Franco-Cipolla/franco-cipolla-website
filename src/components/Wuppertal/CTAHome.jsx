@@ -47,7 +47,7 @@ const CTAHome = () => {
       <p className="cta-animate text-base sm:text-lg mb-6 max-w-xl mx-auto">
         Ich zeige Ihnen Schritt für Schritt, <strong>wo Ihre Website Besucher verliert </strong>
         und wie Sie daraus <strong>messbar mehr Neukunden aus Wuppertal</strong> gewinnen. <br /><br />
-        Ich betreue nur 2 neue Kunden pro Monat – so kann ich mich voll auf echte Ergebnisse konzentrieren.
+        Solange Sie warten, fragt jemand bei der Konkurrenz an.
       </p>
 
       <button

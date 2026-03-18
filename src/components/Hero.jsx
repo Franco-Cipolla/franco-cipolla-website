@@ -176,7 +176,7 @@ const Hero = () => {
               ref={disclaimerRef}
               className="text-[13px] md:text-sm mt-3 text-black/40"
             >
-              Unverbindlich & kostenlos – ohne Verkaufsdruck
+             Solange Sie warten, fragt jemand bei der Konkurrenz an.
             </p>
           </div>
 
