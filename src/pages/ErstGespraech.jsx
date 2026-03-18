@@ -61,7 +61,7 @@ const ErstGespraech = () => {
           {/* HEADER */}
           <div className="contact-animate mb-12 text-center max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert – <br />
+              In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert - <br />
               und was Sie konkret ändern können.
             </h1>
             <p className="text-lg text-black/70 mb-4">
@@ -111,7 +111,7 @@ const ErstGespraech = () => {
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon /> Termindetails, Bestätigung und zusätzliche Infos
-                per E-Mail
+                per Nachricht
               </li>
             </ul>
           </div>
