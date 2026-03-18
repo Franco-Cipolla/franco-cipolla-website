@@ -154,7 +154,7 @@ const Hero = () => {
               </p>
               <p ref={text3Ref}
               className="text-sm text-[#000814]/60 mt-2">
-              Keine klassische Website – sondern ein strukturiertes System zur Anfragengenerierung.
+              Keine klassische Website - sondern ein strukturiertes System zur Anfragengenerierung.
             </p>
 
             </div>
