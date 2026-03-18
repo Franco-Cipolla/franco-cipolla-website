@@ -253,7 +253,20 @@ const Contact = () => {
               <label className="font-semibold">Telefonnummer*
                 <span className="block text-sm text-gray-600 mt-1">📞 Für eine kurze Rückmeldung zu Ihrer Anfrage (Kein Spam)</span>
               </label>
-              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="border w-full p-2 rounded mt-2" />
+             <input
+  type="tel"
+  name="phone"
+  inputMode="numeric"
+  pattern="[0-9+\s\-()]+"
+  placeholder="0176 12345678"
+  autoComplete="tel"
+  value={formData.phone}
+  onChange={(e) => {
+    const val = e.target.value.replace(/[^0-9+\s\-()]/g, '');
+    handleChange({ target: { name: 'phone', value: val } });
+  }}
+  className="border w-full p-2 rounded mt-2"
+/>
               {errors.phone && <p className="text-red-600 mt-1">{errors.phone}</p>}
               <div className="flex gap-2 mt-4">
                 <button type="button" onClick={() => setStep(3)} className="cursor-pointer">Zurück</button>
