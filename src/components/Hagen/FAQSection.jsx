@@ -54,10 +54,9 @@ const faqsHagen = [
  question: 'Wie viel kostet eine Website?',
 answer: (
   <div className="space-y-2">
-    <p>
-      Für lokale Unternehmen in Hagen & Umgebung starten Projekte aktuell bei <strong>800 € im Founders-Paket</strong>.
-      Dieses Angebot ist auf <strong>die nächsten 3 Kunden </strong> limitiert.
-    </p>
+     <p>
+    Für lokale Unternehmen in Hagen & Umgebung besprechen wir den Projektpreis persönlich. Entweder im <strong>Erstgespräch</strong> oder während Ihrer <strong>Website-Analyse</strong>.
+  </p>
     <p>
       Sie zahlen <strong>50% Anzahlung</strong>, den Rest erst, wenn Ihre Website live geht.
       So behalten Sie volle Kontrolle und Sicherheit.
