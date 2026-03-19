@@ -5,17 +5,17 @@ const Impressum = () => {
   return (
     <>
       <Helmet>
-        <title>Impressum – Franco Cipolla, Webdesigner aus Ennepetal</title>
+        <title>Impressum – Franco Cipolla, Webdesign & Digitale Kundengewinnung</title>
         <meta
           name="description"
-          content="Impressum der Website von Franco Cipolla, Webdesigner aus Ennepetal. Rechtliche Informationen und Kontaktdaten zu Franco Cipolla."
+          content="Impressum der Website von Franco Cipolla, Webdesigner aus Ennepetal. Rechtliche Informationen, Kontaktdaten und Datenschutzhinweise."
         />
         <link rel="canonical" href="https://www.franco-cipolla.de/impressum" />
 
         <meta property="og:title" content="Impressum – Franco Cipolla, Webdesigner" />
         <meta
           property="og:description"
-          content="Impressum der Website von Franco Cipolla, Webdesigner aus Ennepetal. Rechtliche Informationen und Kontaktdaten zu Franco Cipolla."
+          content="Impressum der Website von Franco Cipolla, Webdesigner aus Ennepetal. Rechtliche Informationen, Kontaktdaten und Datenschutzhinweise."
         />
         <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
         <meta property="og:url" content="https://www.franco-cipolla.de/impressum" />
@@ -25,7 +25,7 @@ const Impressum = () => {
         <meta name="twitter:title" content="Impressum – Franco Cipolla, Webdesigner" />
         <meta
           name="twitter:description"
-          content="Impressum der Website von Franco Cipolla. Rechtliche Informationen und Kontaktdaten zu Franco Cipolla."
+          content="Impressum der Website von Franco Cipolla. Rechtliche Informationen, Kontaktdaten und Datenschutzhinweise."
         />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
@@ -39,6 +39,7 @@ const Impressum = () => {
               <p className="font-semibold">Angaben gemäß § 5 DDG</p>
               <p className="mt-2">
                 Franco Cipolla<br />
+                Einzelunternehmen / Kleingewerbe<br />
                 Wuppermannstraße 14<br />
                 58256 Ennepetal<br />
                 Deutschland
@@ -66,18 +67,32 @@ const Impressum = () => {
               </p>
             </div>
 
-            <div>
-              <p className="font-semibold">Rechtsstatus</p>
-              <p className="mt-2">
-                Diese Website wird aktuell rein privat betrieben und dient der Information. Es besteht derzeit keine
-                gewerbliche Tätigkeit oder ein eingetragenes Gewerbe.
-              </p>
-            </div>
 
-            <div>
-              <p className="font-semibold">Verantwortlich für den Inhalt gemäß § 55 Abs. 2 RStV</p>
-              <p className="mt-2">Franco Cipolla, Anschrift wie oben.</p>
-            </div>
+<div>
+
+  <p className="mt-2">
+    Gemäß § 19 UStG wird keine Umsatzsteuer erhoben und folglich auch nicht ausgewiesen (Kleinunternehmerstatus).
+  </p>
+</div>
+ <div>
+        <p className="font-semibold">EU-Streitbeilegung</p>
+        <p className="mt-2">
+          Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+          <a href="https://ec.europa.eu" target="_blank" rel="noopener noreferrer" className="underline ml-1">https://ec.europa.eu</a>.<br />
+          Unsere E-Mail-Adresse finden Sie oben im Impressum.
+        </p>
+      </div>
+
+      <div>
+        <p className="font-semibold">Verbraucherstreitbeilegung/Universalschlichtungsstelle</p>
+        <p className="mt-2">
+          Als Anbieter von Leistungen ausschließlich für Unternehmen (B2B) sind wir weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+      </div>
+
+
+
+
 
             <div>
               <p className="font-semibold">Haftung für Inhalte</p>
@@ -103,6 +118,14 @@ const Impressum = () => {
                 Die durch mich erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht.
                 Beiträge Dritter sind als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der
                 Verwertung außerhalb der Grenzen des Urheberrechts bedürfen meiner schriftlichen Zustimmung.
+              </p>
+            </div>
+
+            <div>
+              <p className="font-semibold">Datenschutz</p>
+              <p className="mt-2">
+                Personenbezogene Daten, die über Kontakt- oder Analyseformulare erhoben werden, werden ausschließlich für die
+                Bearbeitung Ihrer Anfrage verwendet. Weitere Informationen finden Sie in meiner <a href="/datenschutz" className="underline text-[#003566] hover:text-[#001D3D]">Datenschutzerklärung</a>.
               </p>
             </div>
           </div>
