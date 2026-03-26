@@ -14,10 +14,10 @@ const HagenLanding = () => {
   return (
     <>
       <Helmet>
-        <title>Webdesign Hagen – Websites, die Kundenanfragen bringen | Franco Cipolla</title>
+       <title>Webdesign Hagen – Warum 90% der Websites zu wenig Anfragen bringen - Franco Cipolla</title>
         <meta
           name="description"
-          content="Ihre Website bringt keine Anfragen? Ich erstelle Websites in Hagen, die Besucher in Kunden verwandeln – klar strukturiert, conversion-optimiert und messbar."
+          content="Die meisten Websites in Hagen sehen gut aus, bringen aber keine Kunden. Ich zeige Ihnen, wie Ihre Website mehr Anfragen generiert. Kostenlose Analyse."
         />
         <link rel="canonical" href="https://www.franco-cipolla.de/hagen" />
         <meta property="og:title" content="Websites, die Kunden bringen – Franco Cipolla" />
@@ -29,11 +29,8 @@ const HagenLanding = () => {
         <meta property="og:url" content="https://www.franco-cipolla.de/hagen" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Websites, die Kunden bringen – Franco Cipolla" />
-        <meta
-          name="twitter:description"
-          content="Individuelle Websites für Selbstständige & Unternehmen in Hagen, die planbare Kundenanfragen generieren."
-        />
+        <meta property="og:title" content="Warum Ihre Website keine Kunden bringt (Hagen) - Franco Cipolla" />
+<meta property="og:description" content="Und wie Sie das in messbare Anfragen verwandeln ohne viel Zeit zu investieren." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
 

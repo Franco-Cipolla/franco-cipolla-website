@@ -38,7 +38,7 @@ const Wuppertallanding = () => {
       </Helmet>
 
       {/* WICHTIG: page="Wuppertal" */}
-      <SEOJsonLD page="Wuppertal" />
+      <SEOJsonLD page="wuppertal" />
 
       <main>
         <Hero />
