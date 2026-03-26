@@ -299,7 +299,7 @@ const ErstGespraech = () => {
               ref: pain1Ref,
               icon: "📭",
               title: "Anfragen kommen - aber selten und unregelmäßig",
-              body: "Manchmal meldet sich jemand, manchmal wochenlang nicht. Sie wissen nie, was nächsten Monat kommt.",
+              body: "Manchmal meldet sich jemand, manchmal wochenlang nicht. Sie wissen nie, was nächsten Monat über die Website kommt.",
             },
             {
               ref: pain2Ref,
