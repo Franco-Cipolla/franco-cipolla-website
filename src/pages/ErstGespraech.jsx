@@ -185,7 +185,7 @@ const ErstGespraech = () => {
             <div className="inline-flex  items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 border border-[#003566]/15 rounded-full px-3.5 sm:px-4 py-2 mb-5 sm:mb-6 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
               <span className="text-[11px] sm:text-[13px] font-medium text-[#003566] tracking-tight">
-                Lokal in Ennepetal & NRW
+                Lokal für Betriebe in Ennepetal & NRW
               </span>
             </div>
 
