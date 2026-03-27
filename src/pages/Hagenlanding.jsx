@@ -14,8 +14,7 @@ const HagenLanding = () => {
   return (
     <>
       <Helmet>
-       <title>Webdesign Hagen – Warum 90% der Websites zu wenig Anfragen bringen - Franco Cipolla</title>
-        <meta
+        <title>Webdesign Hagen – Warum viele Websites keine Anfragen bringen (und wie es besser geht) | Franco Cipolla</title>        <meta
           name="description"
           content="Die meisten Websites in Hagen sehen gut aus, bringen aber keine Kunden. Ich zeige Ihnen, wie Ihre Website mehr Anfragen generiert. Kostenlose Analyse."
         />

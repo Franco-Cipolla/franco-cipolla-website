@@ -14,7 +14,7 @@ const Wuppertallanding = () => {
   return (
     <>
       <Helmet>
-       <title>Webdesign Wuppertal – Websites, die Kundenanfragen bringen | Franco Cipolla</title>
+        <title>Webdesign Wuppertal – Websites als System für messbare Anfragen | Franco Cipolla</title>
         <meta
           name="description"
           content="Ihre Website bringt keine Kunden? Ich erstelle Websites für Selbstständige & Unternehmen in Wuppertal, die wirklich Kundenanfragen bringen. Modernes Design, klare Struktur und Conversion-Optimierung – starten Sie jetzt durch und sichern sich planbare Anfragen."

@@ -14,11 +14,9 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>Websites, die Kunden bringen – Franco Cipolla, Webdesigner aus Ennepetal</title>
-        <meta name="description" content="Ihre Website bringt keine Kunden? Ich erstelle Websites für Selbstständige & Unternehmen in Ennepetal & Umgebung, die wirklich Kundenanfragen bringen. Modernes Design, klare Struktur und Conversion-Optimierung – starten Sie jetzt durch und sichern sich planbare Anfragen." />
+<title>Webdesign Ennepetal – Websites für mehr Kundenanfragen | Franco Cipolla</title>        <meta name="description" content="Webdesign in Ennepetal für Betriebe & Unternehmen: Websites mit klarem System zur Kundengewinnung. Mehr Anfragen durch Struktur, Nutzerführung & Conversion-Optimierung." />
         <link rel="canonical" href="https://www.franco-cipolla.de/" />
-        <meta property="og:title" content="Websites, die Kunden bringen – Franco Cipolla" />
-        <meta property="og:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
+        <meta property="og:title" content="Webdesign Ennepetal – Websites, die Kunden bringen" />        <meta property="og:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
         <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
         <meta property="og:url" content="https://www.franco-cipolla.de/" />
         <meta property="og:type" content="website" />
@@ -26,7 +24,7 @@ const HomePage = () => {
         <meta name="twitter:title" content="Websites, die Kunden bringen – Franco Cipolla" />
         <meta name="twitter:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
-        
+
       </Helmet>
       <SEOJsonLD page="home" />
 
