@@ -337,14 +337,14 @@ const ErstGespraech = () => {
       </Section>
 
       {/* ══ ABLAUF ══════════════════════════════════════════════════════════ */}
-      <Section>
+     <Section>
         <div ref={ablaufHeadRef} className="text-center mb-8 sm:mb-12">
           <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.14em] uppercase text-[#003566] mb-2 sm:mb-3">
-            Ablauf
+            So läuft es ab
           </p>
           <h2 className="text-[22px] sm:text-[28px] lg:text-[36px] font-bold text-[#000814] leading-tight">
-            Was passiert in den{" "}
-            <span className="text-[#003566]">15 Minuten?</span>
+            15 Minuten.{" "}
+            <span className="text-[#003566]">Kein Aufwand für Sie.</span>
           </h2>
         </div>
 
@@ -352,62 +352,69 @@ const ErstGespraech = () => {
           {[
             {
               ref: step1Ref, num: "01",
-              label: "Schritt 1 · kostenlos · 15 Minuten · kein Aufwand",
-              labelShort: "Schritt 1 · kostenlos · 15 Min",
-              title: "Ich schaue mir Ihre Website an",
-              highlight: "- aus Sicht Ihrer Kunden",
-              body: "Keine Vorbereitung, kein Technik-Gespräch. Ich analysiere Ihre Seite vorher und zeige Ihnen konkret, an welchen Stellen Besucher abspringen.",
+              badge: "Vor dem Gespräch · 0 € · Sie machen: nichts",
+              title: "Ich analysiere Ihre Website – bevor wir telefonieren",
+              body: "Sie müssen mir nichts erklären, nichts vorbereiten. Ich schaue mir Ihre Seite vorher an und weiß beim Gespräch bereits, wo das Problem liegt.",
+              result: "→ Sie kommen nicht vorbereitet. Sie kommen neugierig.",
             },
             {
               ref: step2Ref, num: "02",
-              label: "Schritt 2 · konkrete Ergebnisse · direkt auf Ihrer Seite",
-              labelShort: "Schritt 2 · konkrete Ergebnisse",
-              title: "Ich zeige Ihnen 2-3 konkrete Schwachstellen",
-              highlight: "- direkt auf Ihrer Seite",
-              body: "Keine Präsentation, keine Folien. Ich zeige live, was fehlt, damit ein Interessent zum Telefonhörer greift.",
+              badge: "Im Gespräch · 15 Minuten · live auf Ihrer Seite",
+              title: "Sie sehen genau, warum Besucher kommen – aber nicht anrufen",
+              body: "Ich teile meinen Bildschirm und zeige Ihnen direkt auf Ihrer Seite 2–3 Stellen, die Interessenten still wieder verschwinden lassen. Keine Theorie – nur das, was bei Ihnen konkret passiert.",
+              result: "→ Nach 15 Minuten wissen Sie mehr als vorher – ganz sicher.",
             },
             {
               ref: step3Ref, num: "03",
-              label: "Schritt 3 · Ihre Entscheidung · ohne Druck",
-              labelShort: "Schritt 3 · Ihre Entscheidung",
-              title: "Sie entscheiden, was als nächstes passiert",
-              highlight: "- ohne Druck",
-              body: "Manche setzen die Hinweise selbst um - völlig in Ordnung. Wenn Sie wollen, erkläre ich danach kurz, was ich anbiete.",
+              badge: "Danach · Ihre Entscheidung · kein Druck",
+              title: "Sie entscheiden. Ich akzeptiere jede Antwort.",
+              body: "Manche setzen die Hinweise selbst um – gut. Manche fragen, ob ich das übernehmen kann – auch gut. Und manche sagen einfach Danke und gehen. Das ist völlig in Ordnung. ",
+              result: "→ Sie sind zu nichts verpflichtet. Sie entscheiden, was als nächstes passiert.",
             },
-          ].map(({ ref, num, label, labelShort, title, highlight, body }, i, arr) => (
+          ].map(({ ref, num, badge, title, body, result }, i, arr) => (
             <div
               key={num}
               ref={ref}
-              className="grid grid-cols-[36px_1fr] sm:grid-cols-[52px_1fr] gap-4 sm:gap-6 py-6 sm:py-8 border-b border-[#003566]/12"
+              className="grid grid-cols-[36px_1fr] sm:grid-cols-[52px_1fr] gap-4 sm:gap-6 py-6 sm:py-9 border-b border-[#003566]/12"
             >
-              {/* Number + connector */}
-              <div className="flex flex-col items-center gap-2 pt-0.5">
-                <span className="text-[11px] sm:text-[12px] font-bold tracking-[0.1em] text-[#003566]">{num}</span>
+              {/* Number + connector line */}
+              <div className="flex flex-col items-center gap-2 pt-1">
+                <span className="text-[11px] sm:text-[12px] font-bold tracking-[0.1em] text-[#003566]">
+                  {num}
+                </span>
                 {i < arr.length - 1 && (
-                  <div className="w-px flex-1 min-h-[32px] bg-[#003566]/15" />
+                  <div className="w-px flex-1 min-h-[40px] bg-[#003566]/15" />
                 )}
               </div>
 
               {/* Content */}
               <div>
-                <p className="sm:hidden text-[10px] font-bold tracking-[0.1em] uppercase text-[#000814]/35 mb-1.5">
-                  {labelShort}
-                </p>
-                <p className="hidden sm:block text-[10px] lg:text-[11px] font-bold tracking-[0.1em] uppercase text-[#000814]/35 mb-1.5">
-                  {label}
-                </p>
-                <h3 className="text-[15px] sm:text-[17px] lg:text-[20px] font-black text-[#000814] tracking-tight leading-snug mb-2 sm:mb-3">
-                  {title}{" "}
-                  <span className="text-[#003566]">{highlight}</span>
+                {/* Badge */}
+                <span className="inline-flex items-center text-[10px] sm:text-[10.5px] font-bold tracking-[0.1em] uppercase text-[#003566]/70 border-b border-[#003566]/20 pb-[1px] mb-2 sm:mb-3">
+                  {badge}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-[15px] sm:text-[17px] lg:text-[19px] font-black text-[#000814] tracking-tight leading-snug mb-2 sm:mb-3">
+                  {title}
                 </h3>
-                <p className="text-[13px] sm:text-[14px] lg:text-[15px] text-[#000814]/60 leading-[1.7]">
+
+                {/* Body */}
+                <p className="text-[13px] sm:text-[14px] lg:text-[15px] text-[#000814]/60 leading-[1.72] mb-3">
                   {body}
+                </p>
+
+                {/* Result line – konkrete Konsequenz pro Schritt */}
+                <p className="text-[12px] sm:text-[13px] font-semibold text-[#003566] leading-snug">
+                  {result}
                 </p>
               </div>
             </div>
           ))}
         </div>
       </Section>
+
+
 
       {/* ══ DEMO-EINBLICK ═══════════════════════════════════════════════════ */}
       <Section>
