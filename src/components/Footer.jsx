@@ -3,8 +3,10 @@ import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
 import { FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import CookieBanner from './CookieBanner'
+import { FaWhatsapp} from "react-icons/fa";
+import { RiGoogleLine } from "react-icons/ri";
 
-import { FaWhatsapp } from "react-icons/fa";
+
 const Footer = () => {
   const [showCookieSettings, setShowCookieSettings] = useState(false)
 
@@ -50,7 +52,6 @@ const Footer = () => {
               <a
                 className="text-[#000814] hover:text-[#003566] transition-colors"
                 href="tel:+4917675398004"
-
               >
                 +49 176 75398004
               </a>
@@ -60,14 +61,13 @@ const Footer = () => {
               <a
                 className="text-[#000814] hover:text-[#003566] transition-colors"
                  href="https://wa.me/4917675398004" target="_blank" rel="noopener noreferrer"
-
               >
                 WhatsApp schreiben
               </a>
             </div>
           </div>
 
-          {/* Social Media */}
+          {/* Social Media & Google Business */}
           <div>
             <h2 className="font-semibold">Social Media</h2>
             <div className="flex items-center gap-3 mt-3">
@@ -103,6 +103,18 @@ const Footer = () => {
                 Franco Cipolla
               </a>
             </div>
+            {/* HIER IST DER NEUE GOOGLE LINK */}
+            <div className="flex items-center gap-3 mt-3">
+            <RiGoogleLine className="text-black text-xl" />
+            <a
+              href="https://share.google/Ms10yJGkXK6sjmL57"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#000814] hover:text-[#003566] transition-colors font-medium"
+            >
+              Google Unternehmensprofil
+            </a>
+          </div>
           </div>
         </div>
       </div>

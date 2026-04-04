@@ -244,7 +244,7 @@ const ErstGespraech = () => {
                 <span className="text-[#003566]">Jetzt sichern.</span>
               </h2>
               <p className="text-[11.5px] sm:text-[12px] text-[#000814]/40 mt-1">
-                15 Minuten · unverbindlich · ich rufe Sie an
+                15 Minuten · unverbindlich · keine Vorbereitung nötig
               </p>
               <div className="flex items-center gap-2 mt-2.5">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
@@ -255,7 +255,7 @@ const ErstGespraech = () => {
             </div>
 
             {/* Form */}
-            <div className="-my-4">
+            <div className="px-5 sm:px-6 lg:px-8 pt-5 sm:pt-6 lg:pt-7 pb-4 sm:pb-5">
               <CalendlyFallBackForm />
             </div>
 
@@ -543,7 +543,7 @@ const ErstGespraech = () => {
       {/* ══ BOTTOM CTA ══════════════════════════════════════════════════════ */}
       {/* pb-28 Mobile = Sticky CTA bar Platz */}
       <section className="w-full border-t border-[#003566]/12 py-14 sm:py-20 lg:py-24 px-5 sm:px-8 lg:px-0 pb-28 sm:pb-20 lg:pb-24">
-        <div className="mx-auto w-full max-w-[600px] sm:max-w-[720px] lg:max-w-[860px]">
+        <div className="mx-auto w-full max-w-[600px]  sm:max-w-[720px] lg:max-w-[860px]">
 
           <div ref={bottomRef} className="border border-[#003566]/20 bg-white">
 
@@ -557,7 +557,7 @@ const ErstGespraech = () => {
                 <span className="text-[#003566]">Jetzt sichern.</span>
               </h2>
               <p className="text-[11.5px] sm:text-[12px] text-[#000814]/40 mt-1">
-                15 Minuten · unverbindlich · ich rufe Sie an
+                15 Minuten · unverbindlich · keine Vorbereitung nötig
               </p>
               <div className="flex items-center gap-2 mt-2.5">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
@@ -568,7 +568,7 @@ const ErstGespraech = () => {
             </div>
 
             {/* Form */}
-            <div className="-my-4">
+            <div className="px-5 sm:px-6 lg:px-8 pt-5 sm:pt-6 lg:pt-7 pb-4 sm:pb-5">
               <CalendlyFallBackForm />
             </div>
 

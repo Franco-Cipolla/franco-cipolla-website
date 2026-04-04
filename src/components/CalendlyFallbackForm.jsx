@@ -16,18 +16,17 @@ const BTN_OPTION    = (active) =>
 const INPUT_BASE    = "border border-gray-200 focus:border-[#003566] focus:outline-none w-full px-3.5 py-2.5 rounded-lg mt-2 text-[14px] text-[#000814] transition-colors placeholder:text-[#000814]/30";
 
 // ── Schritt-Indikatoren ───────────────────────────────────────────────────────
-const TOTAL_STEPS = 5;
-
-const StepIndicator = ({ step }) => (
+// Gesamtschritte hängen davon ab ob "keine Website" gewählt wurde
+const StepIndicator = ({ step, total }) => (
   <div className="mb-6 sm:mb-7">
     <div className="flex justify-between text-[11px] sm:text-[12px] text-[#000814]/40 mb-2">
-      <span>Schritt {step} von {TOTAL_STEPS}</span>
-      <span>~30 Sekunden</span>
+      <span>Schritt {step} von {total}</span>
+      <span>~40 Sekunden</span>
     </div>
     <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
       <div
         className="h-full bg-[#003566] rounded-full transition-all duration-400 ease-out"
-        style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
+        style={{ width: `${(step / total) * 100}%` }}
       />
     </div>
   </div>
@@ -38,32 +37,59 @@ const CalendlyFallbackForm = () => {
   const navigate     = useNavigate();
   const formsparkURL = buildFormsparkUrl(import.meta.env.VITE_FORMSPARK_FORM_ID_CONTACT);
 
-  const [step, setStep]           = useState(1);
+  const [step, setStep]            = useState(1);
   const [submitting, setSubmitting] = useState(false);
-  const [errors, setErrors]        = useState({});
+  const [errors, setErrors]         = useState({});
 
   const [formData, setFormData] = useState({
     pain:        [],
     name:        "",
-    siteUrl:     "",   // neu: Website-URL
+    siteUrl:     "",
     messageDate: "",
     messageTime: "",
     phone:       "",
     privacy:     false,
-    website:     "",   // Honeypot
+    website:     "", // Honeypot
   });
 
+  // ── Kein-Website-Logik ───────────────────────────────────────────────────
+  // Wenn dieser Pain-Point gewählt ist, wird Schritt 3 (URL) übersprungen
+  const NO_WEBSITE_OPTION = "Ich habe noch keine Website";
+  const hasNoWebsite = formData.pain.includes(NO_WEBSITE_OPTION);
+
+  // Interne Schritte: 1=Situation, 2=Name, 3=URL (skip wenn keine Website),
+  //                   4=Termin, 5=Telefon
+  // Angezeigte Schrittnummer und Total passen sich dynamisch an
+  const totalSteps   = hasNoWebsite ? 4 : 5;
+  const displayStep  = (s) => {
+    if (!hasNoWebsite) return s;
+    // Schritt 3 (URL) existiert nicht → ab Schritt 3 eins abziehen
+    return s >= 3 ? s - 1 : s;
+  };
+
+  const goNext = (s) => {
+    if (!validate(s)) return;
+    // Wenn keine Website: nach Schritt 2 direkt zu 4
+    if (hasNoWebsite && s === 2) { setStep(4); return; }
+    setStep(s + 1);
+  };
+
+  const goBack = (s) => {
+    // Wenn keine Website: von Schritt 4 zurück zu 2
+    if (hasNoWebsite && s === 4) { setStep(2); return; }
+    setStep(s - 1);
+  };
+
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [bookedSlots]                   = useState([
-    { date: "2026-02-06", time: "16:30" },
-    { date: "2026-02-06", time: "18:00" },
+  const [bookedSlots] = useState([
+       { date: "2026-02-06", time: "16:30" },
   ]);
 
   // ── Pain-Optionen (auf Analyse zugeschnitten) ────────────────────────────
   const painOptions = [
     "Meine Website bringt kaum oder keine Anfragen",
     "Ich weiß nicht, warum Besucher nicht anrufen",
-    "Ich bin von Empfehlungen abhängig – das ist nicht messbar und schwer skalierbar",
+    "Ich bin von Empfehlungen abhängig – das ist nicht planbar",
     "Ich hatte schon eine Agentur – hat nichts gebracht",
     "Ich habe noch keine Website",
   ];
@@ -91,7 +117,7 @@ const CalendlyFallbackForm = () => {
       e.pain = "Bitte mindestens eine Option auswählen.";
     if (s === 2 && !formData.name.trim())
       e.name = "Bitte geben Sie Ihren Namen ein.";
-    if (s === 3 && formData.siteUrl.trim() && !isValidUrl(formData.siteUrl))
+    if (s === 3 && !hasNoWebsite && formData.siteUrl.trim() && !isValidUrl(formData.siteUrl))
       e.siteUrl = "Bitte eine gültige Website-Adresse eingeben (z.B. www.meinbetrieb.de).";
     if (s === 4 && (!formData.messageDate || !formData.messageTime))
       e.message = "Bitte Datum und Uhrzeit auswählen.";
@@ -108,21 +134,19 @@ const CalendlyFallbackForm = () => {
     try { new URL(v); return true; } catch { return false; }
   };
 
-  const next = (s) => validate(s) && setStep(s + 1);
-  const back = (s) => setStep(s - 1);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.website.trim() !== "") return; // Honeypot
     if (!validate(5)) return;
     setSubmitting(true);
     try {
-      const date = new Date(formData.messageDate);
+      // Datum lokal parsen (kein UTC-Versatz)
+      const [year, month, day] = formData.messageDate.split("-").map(Number);
       const payload = {
         ...formData,
         pain:    formData.pain.join(", "),
         siteUrl: formData.siteUrl.trim() || "Keine Website angegeben",
-        message: `Wunschtermin: ${String(date.getDate()).padStart(2,"0")}.${String(date.getMonth()+1).padStart(2,"0")}.${date.getFullYear()} um ${formData.messageTime} Uhr`,
+        message: `Wunschtermin: ${String(day).padStart(2,"0")}.${String(month).padStart(2,"0")}.${year} um ${formData.messageTime} Uhr`,
       };
       const result = await submitToFormspark(formsparkURL, payload);
       if (result.ok) {
@@ -140,17 +164,11 @@ const CalendlyFallbackForm = () => {
   // ── Kalender-Helfer ───────────────────────────────────────────────────────
   const generateTimes = () => {
     const times = [];
-    for (let h = 15; h <= 20; h++) {
-      if (h === 15) times.push("15:30");
-      else {
-        const fh = `${String(h).padStart(2,"0")}:00`;
-        const hh = `${String(h).padStart(2,"0")}:30`;
-        if (!times.includes(fh)) times.push(fh);
-        if (!times.includes(hh)) times.push(hh);
-      }
+    for (let h = 17; h <= 20; h++) {
+      times.push(`${String(h).padStart(2,"0")}:00`);
+      times.push(`${String(h).padStart(2,"0")}:30`);
     }
-    if (!times.includes("20:30")) times.push("20:30");
-    return times;
+    return times; // 17:00, 17:30, 18:00, 18:30, 19:00, 19:30, 20:00, 20:30
   };
 
   const getAvailableTimes = () => {
@@ -176,8 +194,12 @@ const CalendlyFallbackForm = () => {
     const total = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
     return Array.from({ length: total - start + 1 }, (_, i) => {
       const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), start + i);
-      return { date, dateString: date.toISOString().split("T")[0] };
-    });
+      // Lokal formatieren statt toISOString() – vermeidet UTC-Versatz
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, "0");
+      const d = String(date.getDate()).padStart(2, "0");
+      return { date, dateString: `${y}-${m}-${d}` };
+    }).filter(({ date }) => date.getDay() !== 0 && date.getDay() !== 6);
   };
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -189,9 +211,9 @@ const CalendlyFallbackForm = () => {
       <input type="text" name="website" value={formData.website}
         onChange={handleChange} style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
-      <form onSubmit={handleSubmit} noValidate className="w-full max-w-[560px]">
+      <form onSubmit={handleSubmit} noValidate className="w-full ">
 
-        <StepIndicator step={step} />
+        <StepIndicator step={displayStep(step)} total={totalSteps} />
 
         {/* ── SCHRITT 1: Situation ────────────────────────────────────────── */}
         {step === 1 && (
@@ -218,7 +240,7 @@ const CalendlyFallbackForm = () => {
               <p className="text-red-500 text-[12px] mt-2">{errors.pain}</p>
             )}
             <div className="mt-5">
-              <button type="button" className={BTN_PRIMARY} onClick={() => next(1)}>
+              <button type="button" className={BTN_PRIMARY} onClick={() => goNext(1)}>
                 Weiter →
               </button>
             </div>
@@ -247,18 +269,18 @@ const CalendlyFallbackForm = () => {
               <p className="text-red-500 text-[12px] mt-1.5">{errors.name}</p>
             )}
             <div className="flex items-center gap-4 mt-5">
-              <button type="button" className={BTN_PRIMARY} onClick={() => next(2)}>
+              <button type="button" className={BTN_PRIMARY} onClick={() => goNext(2)}>
                 Weiter →
               </button>
-              <button type="button" className={BTN_SECONDARY} onClick={() => back(2)}>
+              <button type="button" className={BTN_SECONDARY} onClick={() => goBack(2)}>
                 Zurück
               </button>
             </div>
           </div>
         )}
 
-        {/* ── SCHRITT 3: Website-URL ───────────────────────────────────────── */}
-        {step === 3 && (
+        {/* ── SCHRITT 3: Website-URL (nur wenn Website vorhanden) ─────────── */}
+        {step === 3 && !hasNoWebsite && (
           <div>
             <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
               Wie lautet Ihre Website-Adresse?
@@ -266,7 +288,7 @@ const CalendlyFallbackForm = () => {
             <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
               Ich schaue sie mir vor unserem Gespräch an – damit wir keine Zeit verlieren.
               <span className="block mt-2 text-[#000814]/35">
-                Noch keine Website? Einfach freilassen – dann sprechen wir im Erstgespräch darüber, was Sie brauchen und wie ein Einstieg aussehen könnte.
+                Noch keine Website? Einfach freilassen.
               </span>
             </p>
             <input
@@ -281,20 +303,17 @@ const CalendlyFallbackForm = () => {
             {errors.siteUrl && (
               <p className="text-red-500 text-[12px] mt-1.5">{errors.siteUrl}</p>
             )}
-
-            {/* Micro-copy: warum das Sinn macht */}
             {formData.siteUrl.trim() && (
               <p className="text-[11px] sm:text-[12px] text-[#003566] mt-2 flex items-center gap-1.5">
                 <span>✓</span>
                 <span>Ich schaue mir die Seite vorher an – Sie müssen im Gespräch nichts erklären.</span>
               </p>
             )}
-
             <div className="flex items-center gap-4 mt-5">
-              <button type="button" className={BTN_PRIMARY} onClick={() => next(3)}>
+              <button type="button" className={BTN_PRIMARY} onClick={() => goNext(3)}>
                 Weiter →
               </button>
-              <button type="button" className={BTN_SECONDARY} onClick={() => back(3)}>
+              <button type="button" className={BTN_SECONDARY} onClick={() => goBack(3)}>
                 Zurück
               </button>
             </div>
@@ -336,7 +355,7 @@ const CalendlyFallbackForm = () => {
               </button>
             </div>
 
-            {/* Tage – horizontal scroll */}
+            {/* Tage */}
             <div className="flex gap-2 overflow-x-auto pb-2 mb-4 -mx-1 px-1">
               {generateMonthDays().map(({ date, dateString }) => {
                 const selected = formData.messageDate === dateString;
@@ -397,10 +416,10 @@ const CalendlyFallbackForm = () => {
             )}
 
             <div className="flex items-center gap-4 mt-5">
-              <button type="button" className={BTN_PRIMARY} onClick={() => next(4)}>
+              <button type="button" className={BTN_PRIMARY} onClick={() => goNext(4)}>
                 Weiter →
               </button>
-              <button type="button" className={BTN_SECONDARY} onClick={() => back(4)}>
+              <button type="button" className={BTN_SECONDARY} onClick={() => goBack(4)}>
                 Zurück
               </button>
             </div>
@@ -414,14 +433,21 @@ const CalendlyFallbackForm = () => {
               Unter welcher Nummer erreiche ich Sie?
             </p>
             <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
-              Ich schreibe Sie zur Terminbestätigung kurz an – kein Spam
+              Ich senden Ihnen zur Terminbestätigung eine Nachricht – kein Spam
             </p>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
-              onChange={handleChange}
-              placeholder="Ihre Telefonnummer"
+              onChange={(e) => {
+                // Nur Ziffern, +, Leerzeichen, Bindestrich erlauben
+                const val = e.target.value.replace(/[^\d+\s\-()]/g, "");
+                setFormData((prev) => ({ ...prev, phone: val }));
+                setErrors((prev) => ({ ...prev, phone: "" }));
+              }}
+              placeholder="z.B. 0234 567890"
+              inputMode="tel"
+              pattern="[0-9+\s\-()]+"
               className={INPUT_BASE}
               autoFocus
             />
@@ -429,7 +455,6 @@ const CalendlyFallbackForm = () => {
               <p className="text-red-500 text-[12px] mt-1.5">{errors.phone}</p>
             )}
 
-            {/* Datenschutz */}
             <label className="flex items-start gap-2.5 mt-5 cursor-pointer group">
               <input
                 type="checkbox"
@@ -449,26 +474,34 @@ const CalendlyFallbackForm = () => {
               <p className="text-red-500 text-[12px] mt-1.5">{errors.privacy}</p>
             )}
 
-            {/* Zusammenfassung vor dem Absenden */}
+            {/* Zusammenfassung + Erstgespräch-Hinweis wenn keine Website */}
             {formData.messageDate && formData.messageTime && (
               <div className="mt-4 border border-[#003566]/15 bg-[#003566]/[0.03] rounded-lg px-4 py-3">
-                <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wide text-[#003566] mb-1">
-                  Ihre Anfrage
+                <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wide text-[#003566] mb-1.5">
+                  {hasNoWebsite ? "Ihr Erstgespräch" : "Ihre Analyse"}
                 </p>
                 <p className="text-[12px] sm:text-[13px] text-[#000814]/65 leading-relaxed">
-                  Wunschtermin:{" "}
+                  Termin:{" "}
                   <span className="font-semibold text-[#000814]">
-                    {new Date(formData.messageDate).toLocaleDateString("de-DE", {
-                      weekday: "long", day: "2-digit", month: "long"
-                    })} um {formData.messageTime} Uhr
+                    {(() => {
+                      const [y, m, d] = formData.messageDate.split("-").map(Number);
+                      return new Date(y, m - 1, d).toLocaleDateString("de-DE", {
+                        weekday: "long", day: "2-digit", month: "long",
+                      });
+                    })()} um {formData.messageTime} Uhr
                   </span>
                 </p>
-                {formData.siteUrl && (
+                {hasNoWebsite ? (
+                  <p className="text-[12px] sm:text-[13px] text-[#000814]/55 mt-1.5 leading-snug">
+                    Da Sie noch keine Website haben, sprechen wir im Gespräch darüber,
+                    was Sie brauchen – und ob eine neue Seite für Sie Sinn macht.
+                  </p>
+                ) : formData.siteUrl ? (
                   <p className="text-[12px] sm:text-[13px] text-[#000814]/65 mt-0.5">
                     Website:{" "}
                     <span className="font-semibold text-[#000814]">{formData.siteUrl}</span>
                   </p>
-                )}
+                ) : null}
               </div>
             )}
 
@@ -478,9 +511,9 @@ const CalendlyFallbackForm = () => {
                 disabled={submitting}
                 className={`${BTN_PRIMARY} ${submitting ? "opacity-60 cursor-not-allowed" : ""}`}
               >
-                {submitting ? "Wird gesendet…" : "🔍 Jetzt Analyse anfragen"}
+                {submitting ? "Wird gesendet…" : hasNoWebsite ? "Jetzt Erstgespräch anfragen" : "🔍 Jetzt Analyse anfragen"}
               </button>
-              <button type="button" className={BTN_SECONDARY} onClick={() => back(5)}>
+              <button type="button" className={BTN_SECONDARY} onClick={() => goBack(5)}>
                 Zurück
               </button>
             </div>
