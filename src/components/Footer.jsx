@@ -121,7 +121,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="flex flex-col sm:flex-row justify-between items-center pt-6 gap-4">
-        <p className="text-[#000814] text-sm">© 2025 Franco Cipolla</p>
+        <p className="text-[#000814] text-sm">© 2026 Franco Cipolla</p>
         <Link
           to="/"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
