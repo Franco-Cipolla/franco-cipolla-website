@@ -57,38 +57,34 @@ const CalendlyFallbackForm = () => {
   const NO_WEBSITE_OPTION = "Ich habe noch keine Website";
   const hasNoWebsite = formData.pain.includes(NO_WEBSITE_OPTION);
 
-  // Interne Schritte: 1=Situation, 2=Name, 3=URL (skip wenn keine Website),
-  //                   4=Termin, 5=Telefon
+  // Interne Schritte: 1=Situation, 2=URL (skip wenn keine Website),
+  //                   3=Name, 4=Termin, 5=Telefon
   // Angezeigte Schrittnummer und Total passen sich dynamisch an
-  const totalSteps   = hasNoWebsite ? 4 : 5;
-  const displayStep  = (s) => {
+  const totalSteps  = hasNoWebsite ? 4 : 5;
+  const displayStep = (s) => {
     if (!hasNoWebsite) return s;
-    // Schritt 3 (URL) existiert nicht → ab Schritt 3 eins abziehen
-    return s >= 3 ? s - 1 : s;
+    return s >= 2 ? s - 1 : s;
   };
 
   const goNext = (s) => {
     if (!validate(s)) return;
-    // Wenn keine Website: nach Schritt 2 direkt zu 4
-    if (hasNoWebsite && s === 2) { setStep(4); return; }
+    // Wenn keine Website: nach Schritt 1 direkt zu 3 (URL überspringen)
+    if (hasNoWebsite && s === 1) { setStep(3); return; }
     setStep(s + 1);
   };
 
   const goBack = (s) => {
-    // Wenn keine Website: von Schritt 4 zurück zu 2
-    if (hasNoWebsite && s === 4) { setStep(2); return; }
+    // Wenn keine Website: von Schritt 3 zurück zu 1
+    if (hasNoWebsite && s === 3) { setStep(1); return; }
     setStep(s - 1);
   };
 
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [bookedSlots] = useState([
-       { date: "2026-02-06", time: "16:30" },
-  ]);
+  const [bookedSlots] = useState([]);
 
-  // ── Pain-Optionen (auf Analyse zugeschnitten) ────────────────────────────
+  // ── Pain-Optionen: zusammengeführt, kein Overlap ────────────────────────
   const painOptions = [
     "Meine Website bringt kaum oder keine Anfragen",
-    "Ich weiß nicht, warum Besucher nicht anrufen",
     "Ich bin von Empfehlungen abhängig – das ist nicht planbar",
     "Ich hatte schon eine Agentur – hat nichts gebracht",
     "Ich habe noch keine Website",
@@ -115,10 +111,10 @@ const CalendlyFallbackForm = () => {
     const e = {};
     if (s === 1 && formData.pain.length === 0)
       e.pain = "Bitte mindestens eine Option auswählen.";
-    if (s === 2 && !formData.name.trim())
-      e.name = "Bitte geben Sie Ihren Namen ein.";
-    if (s === 3 && !hasNoWebsite && formData.siteUrl.trim() && !isValidUrl(formData.siteUrl))
+    if (s === 2 && !hasNoWebsite && formData.siteUrl.trim() && !isValidUrl(formData.siteUrl))
       e.siteUrl = "Bitte eine gültige Website-Adresse eingeben (z.B. www.meinbetrieb.de).";
+    if (s === 3 && !formData.name.trim())
+      e.name = "Bitte geben Sie Ihren Namen ein.";
     if (s === 4 && (!formData.messageDate || !formData.messageTime))
       e.message = "Bitte Datum und Uhrzeit auswählen.";
     if (s === 5 && !formData.phone.trim())
@@ -204,14 +200,14 @@ const CalendlyFallbackForm = () => {
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
-    <section className="w-full flex justify-center py-8 sm:py-10 px-0">
+    <section className="w-full py-6 sm:py-8">
       <ToastContainer position="top-center" />
 
       {/* Honeypot */}
       <input type="text" name="website" value={formData.website}
         onChange={handleChange} style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
-      <form onSubmit={handleSubmit} noValidate className="w-full ">
+      <form onSubmit={handleSubmit} noValidate className="w-full">
 
         <StepIndicator step={displayStep(step)} total={totalSteps} />
 
@@ -239,6 +235,13 @@ const CalendlyFallbackForm = () => {
             {errors.pain && (
               <p className="text-red-500 text-[12px] mt-2">{errors.pain}</p>
             )}
+            {/* Fix 2: Micro-commitment Bestätigung nach Auswahl */}
+            {formData.pain.length > 0 && (
+              <p className="text-[12px] text-[#003566] mt-3 flex items-center gap-1.5">
+                <span>✓</span>
+                <span>Gut – genau das schaue ich mir in der Analyse an.</span>
+              </p>
+            )}
             <div className="mt-5">
               <button type="button" className={BTN_PRIMARY} onClick={() => goNext(1)}>
                 Weiter →
@@ -247,40 +250,8 @@ const CalendlyFallbackForm = () => {
           </div>
         )}
 
-        {/* ── SCHRITT 2: Name ─────────────────────────────────────────────── */}
-        {step === 2 && (
-          <div>
-            <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
-              Wie darf ich Sie ansprechen?
-            </p>
-            <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
-              Damit ich Sie beim Gespräch namentlich begrüßen kann
-            </p>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Ihr Name oder Vorname"
-              className={INPUT_BASE}
-              autoFocus
-            />
-            {errors.name && (
-              <p className="text-red-500 text-[12px] mt-1.5">{errors.name}</p>
-            )}
-            <div className="flex items-center gap-4 mt-5">
-              <button type="button" className={BTN_PRIMARY} onClick={() => goNext(2)}>
-                Weiter →
-              </button>
-              <button type="button" className={BTN_SECONDARY} onClick={() => goBack(2)}>
-                Zurück
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* ── SCHRITT 3: Website-URL (nur wenn Website vorhanden) ─────────── */}
-        {step === 3 && !hasNoWebsite && (
+        {/* ── SCHRITT 2: Website-URL (nur wenn Website vorhanden) ─────────── */}
+        {step === 2 && !hasNoWebsite && (
           <div>
             <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
               Wie lautet Ihre Website-Adresse?
@@ -310,6 +281,38 @@ const CalendlyFallbackForm = () => {
               </p>
             )}
             <div className="flex items-center gap-4 mt-5">
+              <button type="button" className={BTN_PRIMARY} onClick={() => goNext(2)}>
+                Weiter →
+              </button>
+              <button type="button" className={BTN_SECONDARY} onClick={() => goBack(2)}>
+                Zurück
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ── SCHRITT 3: Name ─────────────────────────────────────────────── */}
+        {step === 3 && (
+          <div>
+            <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
+              Wie darf ich Sie ansprechen?
+            </p>
+            <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
+              Damit ich Sie beim Gespräch namentlich begrüßen kann
+            </p>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Ihr Name oder Vorname"
+              className={INPUT_BASE}
+              autoFocus
+            />
+            {errors.name && (
+              <p className="text-red-500 text-[12px] mt-1.5">{errors.name}</p>
+            )}
+            <div className="flex items-center gap-4 mt-5">
               <button type="button" className={BTN_PRIMARY} onClick={() => goNext(3)}>
                 Weiter →
               </button>
@@ -330,7 +333,6 @@ const CalendlyFallbackForm = () => {
               Wählen Sie einen Wunschtermin – ich melde mich zur Bestätigung
             </p>
 
-            {/* Monatsnavigation */}
             <div className="flex justify-between items-center mb-3">
               <button
                 type="button"
@@ -355,7 +357,6 @@ const CalendlyFallbackForm = () => {
               </button>
             </div>
 
-            {/* Tage */}
             <div className="flex gap-2 overflow-x-auto pb-2 mb-4 -mx-1 px-1">
               {generateMonthDays().map(({ date, dateString }) => {
                 const selected = formData.messageDate === dateString;
@@ -383,7 +384,6 @@ const CalendlyFallbackForm = () => {
               })}
             </div>
 
-            {/* Uhrzeiten */}
             {formData.messageDate && (
               <>
                 <p className="text-[11px] sm:text-[12px] text-[#000814]/40 mb-2">
@@ -416,7 +416,15 @@ const CalendlyFallbackForm = () => {
             )}
 
             <div className="flex items-center gap-4 mt-5">
-              <button type="button" className={BTN_PRIMARY} onClick={() => goNext(4)}>
+              {/* Fix 4: Weiter nur aktiv wenn Datum UND Zeit gewählt */}
+              <button
+                type="button"
+                onClick={() => goNext(4)}
+                disabled={!formData.messageDate || !formData.messageTime}
+                className={`${BTN_PRIMARY} ${
+                  !formData.messageDate || !formData.messageTime ? "opacity-40 cursor-not-allowed" : ""
+                }`}
+              >
                 Weiter →
               </button>
               <button type="button" className={BTN_SECONDARY} onClick={() => goBack(4)}>
@@ -429,18 +437,21 @@ const CalendlyFallbackForm = () => {
         {/* ── SCHRITT 5: Telefon + Datenschutz ────────────────────────────── */}
         {step === 5 && (
           <div>
+            {/* Fix 5: Goal-Gradient */}
+            <p className="text-[11px] sm:text-[12px] font-semibold text-[#003566] uppercase tracking-wide mb-3">
+              ✦ Letzter Schritt
+            </p>
             <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
               Unter welcher Nummer erreiche ich Sie?
             </p>
             <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
-              Ich senden Ihnen zur Terminbestätigung eine Nachricht – kein Spam
+              Ich rufe zur Terminbestätigung kurz an – kein Spam, kein Verkaufsgespräch
             </p>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={(e) => {
-                // Nur Ziffern, +, Leerzeichen, Bindestrich erlauben
                 const val = e.target.value.replace(/[^\d+\s\-()]/g, "");
                 setFormData((prev) => ({ ...prev, phone: val }));
                 setErrors((prev) => ({ ...prev, phone: "" }));
@@ -454,7 +465,6 @@ const CalendlyFallbackForm = () => {
             {errors.phone && (
               <p className="text-red-500 text-[12px] mt-1.5">{errors.phone}</p>
             )}
-
             <label className="flex items-start gap-2.5 mt-5 cursor-pointer group">
               <input
                 type="checkbox"
@@ -473,8 +483,6 @@ const CalendlyFallbackForm = () => {
             {errors.privacy && (
               <p className="text-red-500 text-[12px] mt-1.5">{errors.privacy}</p>
             )}
-
-            {/* Zusammenfassung + Erstgespräch-Hinweis wenn keine Website */}
             {formData.messageDate && formData.messageTime && (
               <div className="mt-4 border border-[#003566]/15 bg-[#003566]/[0.03] rounded-lg px-4 py-3">
                 <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wide text-[#003566] mb-1.5">
@@ -498,13 +506,11 @@ const CalendlyFallbackForm = () => {
                   </p>
                 ) : formData.siteUrl ? (
                   <p className="text-[12px] sm:text-[13px] text-[#000814]/65 mt-0.5">
-                    Website:{" "}
-                    <span className="font-semibold text-[#000814]">{formData.siteUrl}</span>
+                    Website: <span className="font-semibold text-[#000814]">{formData.siteUrl}</span>
                   </p>
                 ) : null}
               </div>
             )}
-
             <div className="flex items-center gap-4 mt-5">
               <button
                 type="submit"
@@ -517,12 +523,13 @@ const CalendlyFallbackForm = () => {
                 Zurück
               </button>
             </div>
-
-
+            <p className="text-[11px] text-[#000814]/35 mt-4">
+              🔒 Ihre Daten werden nicht weitergegeben.
+            </p>
           </div>
         )}
 
-      </form>
+            </form>
     </section>
   );
 };

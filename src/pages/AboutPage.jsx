@@ -120,10 +120,10 @@ const AboutPage = () => {
           className="text-base sm:text-lg font-bold text-[#003566] mb-6"
         >
           <span className="block md:hidden">
-            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, über ihre Website gezielt neue Kunden zu gewinnen.
+            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/wuppertal" className="cursor-pointer underline hover:text-[#001D3D] transition">Wuppertal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, über ihre Website gezielt neue Kunden zu gewinnen.
           </span>
           <span className="hidden md:block">
-            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, mit ihrer Website strategisch für Anfragen und Wachstum zu arbeiten – statt auf Empfehlungen angewiesen zu sein.
+            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/wuppertal" className="cursor-pointer underline hover:text-[#001D3D] transition">Wuppertal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, mit ihrer Website strategisch für Anfragen und Wachstum zu arbeiten – statt auf Empfehlungen angewiesen zu sein.
           </span>
         </p>
 

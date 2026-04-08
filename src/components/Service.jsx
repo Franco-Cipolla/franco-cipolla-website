@@ -167,7 +167,8 @@ const Service = () => {
         <div className="text-center mb-10 sm:mb-12">
           <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
             Ihre Website als{' '}
-            <span className="text-[#003566]">aktiver Anfragen-Kanal</span>
+            <span className="text-[#003566] ">aktiver Anfragen-Kanal</span>
+            <span className="block text-xl font-normal ">Webdesigner Ennepetal</span>
           </h2>
           <p className="text-[15px] md:text-lg text-[#000814] max-w-2xl mx-auto">
             <span className="md:hidden">Für lokale Betriebe, die Anfragen wollen - nicht nur irgendeine Website.</span>

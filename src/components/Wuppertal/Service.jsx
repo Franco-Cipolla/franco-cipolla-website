@@ -167,6 +167,7 @@ const Service = () => {
           <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
             Ihre Website als{' '}
             <span className="text-[#003566]">aktiver Anfragen-Kanal</span>
+            <span className="block text-xl font-normal ">Webdesign Wuppertal</span>
           </h2>
           <p className="text-[15px] md:text-lg text-[#000814] max-w-2xl mx-auto">
             <span className="md:hidden">Für lokale Betriebe in Wuppertal, die Anfragen wollen - nicht nur eine Website.</span>

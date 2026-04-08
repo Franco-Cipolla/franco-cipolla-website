@@ -10,58 +10,54 @@ import { buildFormsparkUrl, submitToFormspark } from '../formspark';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ── Branding (identisch zu CalendlyFallbackForm) ──────────────────────────────
+const BTN_PRIMARY   = "bg-[#001D3D] hover:bg-[#003566] text-white font-semibold px-5 py-2.5 rounded-lg border-2 border-[#003566] hover:border-[#001D3D] transition-all cursor-pointer text-[14px] active:scale-95";
+const BTN_SECONDARY = "text-[#000814]/50 hover:text-[#000814] text-[13px] underline underline-offset-2 cursor-pointer transition-colors";
+const BTN_OPTION    = (active) =>
+  `w-full py-3 px-4 border rounded-lg text-left cursor-pointer transition-all text-[13px] sm:text-[14px] leading-snug ${
+    active
+      ? "bg-[#003566]/[0.07] border-[#003566] font-semibold text-[#000814]"
+      : "border-gray-200 hover:border-[#003566]/40 hover:bg-gray-50 text-[#000814]/75"
+  }`;
+const INPUT_BASE    = "border border-gray-200 focus:border-[#003566] focus:outline-none w-full px-3.5 py-2.5 rounded-lg mt-2 text-[14px] text-[#000814] transition-colors placeholder:text-[#000814]/30";
+
+// 4 Schritte: Pain → Name → Telefon + Nachricht → Absenden
+const TOTAL_STEPS = 4;
+
 const Contact = () => {
   const sectionRef = useRef(null);
-  const navigate = useNavigate();
+  const navigate   = useNavigate();
 
   const [formData, setFormData] = useState({
-    pain: [],
-    goal: '',
-    name: '',
-    phone: '',
+    pain:    [],
+    name:    '',
+    phone:   '',
     message: '',
     privacy: false,
-    website: ''
+    website: '', // Honeypot
   });
 
-  const [errors, setErrors] = useState({});
-  const [step, setStep] = useState(1);
+  const [errors,     setErrors]     = useState({});
+  const [step,       setStep]       = useState(1);
   const [submitting, setSubmitting] = useState(false);
 
-  const formsparkURL = buildFormsparkUrl(
-    import.meta.env.VITE_FORMSPARK_FORM_ID_CONTACT
-  );
+  const formsparkURL = buildFormsparkUrl(import.meta.env.VITE_FORMSPARK_FORM_ID_CONTACT);
 
   const painOptions = [
-    'Ich bekomme keine messbaren Anfragen',
-    'Meine Website generiert keine/wenige Kundenanfragen',
-    'Ich bin von Empfehlungen abhängig',
+    'Meine Website bringt kaum oder keine Anfragen',
+    'Ich bin von Empfehlungen abhängig – das ist nicht planbar',
     'Neue Kunden kommen unregelmäßig',
-    'Ich habe aktuell gar keine Website'
-  ];
-
-  const goalOptions = [
-    'Regelmäßig messbare Kundenanfragen erhalten',
-    'Unabhängiger von Empfehlungen werden',
-    'Online seriöser & professioneller wirken',
-    'Mehr passende Kunden statt Zeitverschwender'
+    'Ich habe aktuell gar keine Website',
   ];
 
   useEffect(() => {
     if (!sectionRef.current) return;
     gsap.fromTo(
-      sectionRef.current.querySelectorAll('.contact-animate'),
-      { opacity: 0, scale: 0.95 },
+      sectionRef.current.querySelectorAll('.ca'),
+      { opacity: 0, y: 20 },
       {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power2.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
       }
     );
   }, []);
@@ -71,43 +67,35 @@ const Contact = () => {
       ...prev,
       pain: prev.pain.includes(option)
         ? prev.pain.filter(p => p !== option)
-        : [...prev.pain, option]
+        : [...prev.pain, option],
     }));
     setErrors(prev => ({ ...prev, pain: '' }));
   };
 
   const handleChange = (e) => {
     const { name, type, checked, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
+    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
     setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
-  const validateStep = (currentStep) => {
-    const newErrors = {};
-
-    if (currentStep === 1 && formData.pain.length === 0) newErrors.pain = 'Bitte mindestens eine Option auswählen.';
-    if (currentStep === 2 && !formData.goal) newErrors.goal = 'Bitte ein Ziel auswählen.';
-    if (currentStep === 3 && !formData.name.trim()) newErrors.name = 'Bitte geben Sie Ihren Namen ein.';
-    if (currentStep === 4 && !formData.phone.trim()) newErrors.phone = 'Bitte geben Sie eine Telefonnummer ein.';
-    if (currentStep === 5 && !formData.privacy) newErrors.privacy = 'Bitte Datenschutzerklärung akzeptieren.';
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const validate = (s) => {
+    const e = {};
+    if (s === 1 && formData.pain.length === 0) e.pain    = 'Bitte mindestens eine Option auswählen.';
+    if (s === 2 && !formData.name.trim())      e.name    = 'Bitte geben Sie Ihren Namen ein.';
+    if (s === 3 && !formData.phone.trim())     e.phone   = 'Bitte geben Sie eine Telefonnummer ein.';
+    if (s === 4 && !formData.privacy)          e.privacy = 'Bitte Datenschutzerklärung akzeptieren.';
+    setErrors(e);
+    return Object.keys(e).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.website.trim() !== '') return; // Honeypot
-
-    if (!validateStep(5)) return;
-
+    if (!validate(4)) return;
     setSubmitting(true);
     try {
       const payload = { ...formData, pain: formData.pain.join(', ') };
-      const result = await submitToFormspark(formsparkURL, payload);
+      const result  = await submitToFormspark(formsparkURL, payload);
       if (result.ok) navigate('/danke');
       else toast.error('Fehler beim Senden. Bitte erneut versuchen.');
     } catch {
@@ -118,191 +106,265 @@ const Contact = () => {
   };
 
   return (
-    <section ref={sectionRef} className="w-full flex justify-center py-20">
-      <ToastContainer />
-      <div className="px-6 lg:grid lg:grid-cols-2 max-w-[1000px] gap-12">
+    <section ref={sectionRef} className="w-full flex justify-center py-16 sm:py-20 px-5 sm:px-8 lg:px-0">
+      <ToastContainer position="top-center" />
 
-        {/* LEFT */}
-        <div className="mb-15 lg:mb-0">
-          <h1 className="contact-animate text-4xl font-bold mb-6" id="contact">
+      {/* Honeypot */}
+      <input type="text" name="website" value={formData.website}
+        onChange={handleChange} style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
+      <div className="w-full max-w-[600px] sm:max-w-[720px] lg:max-w-[1000px] lg:grid lg:grid-cols-2 gap-12 lg:gap-16">
+
+        {/* ── LINKS ── */}
+        <div className="mb-10 lg:mb-0">
+          <h1 className="ca text-[26px] sm:text-[32px] lg:text-[36px] font-bold text-[#000814] tracking-tight mb-4" id="contact">
             Kontaktieren Sie mich
           </h1>
-          <p className="contact-animate text-lg mb-3">
-            Sie sind nur wenige Klicks davon entfernt, messbar Anfragen zu gewinnen.
+          <p className="ca text-[14px] sm:text-[15px] text-[#000814]/70 leading-[1.7] mb-2">
+            Kurze Anfrage – ehrliche Rückmeldung – keine Verpflichtung.
           </p>
-          <p className='contact-animate mb-6 text-sm md:text-[16px] text-black/90'> Kurze Anfrage – ehrliche Rückmeldung – keine Verpflichtung.</p>
 
-          {/* DIREKTE KONTAKT-LINKS INLINE */}
-          <div className="contact-animate flex items-center gap-3 mt-8">
-            <HiOutlinePhone className="text-black text-2xl" />
-            <a href="tel:+4917675398004" className='text-[#000814] hover:text-[#003566] transition-colors'>+49 176 75398004</a>
+          {/* Dringlichkeit – Loss Aversion */}
+          <div className="ca flex items-center gap-2 mb-8">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
+            <p className="text-[12px] sm:text-[13px] text-[#000814]/50">
+              Noch Plätze verfügbar – ich antworte innerhalb von 24 Stunden
+            </p>
           </div>
 
-          <div className="contact-animate flex items-center gap-3 mt-6">
-            <FaWhatsapp className="text-black text-2xl" />
-            <a href="https://wa.me/4917675398004" target="_blank" rel="noopener noreferrer" className='text-[#000814] hover:text-[#003566] transition-colors'>WhatsApp schreiben</a>
-          </div>
-
-          <div className="contact-animate flex items-center gap-3 mt-6">
-            <FiInstagram className="text-black text-2xl" />
-            <a
-              href="https://instagram.com/francocipolla.de"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#000814] hover:text-[#003566] transition-colors duration-200 font-medium"
-            >
-              @francocipolla.de
-            </a>
-          </div>
-
-
-
+          {/* Kontakt-Links */}
+          {[
+            {
+              icon: <HiOutlinePhone className="text-[#003566] text-[18px]" />,
+              href: 'tel:+4917675398004',
+              label: '+49 176 75398004',
+              external: false,
+            },
+            {
+              icon: <FaWhatsapp className="text-[#003566] text-[18px]" />,
+              href: 'https://wa.me/4917675398004',
+              label: 'WhatsApp schreiben',
+              external: true,
+            },
+            {
+              icon: <FiInstagram className="text-[#003566] text-[18px]" />,
+              href: 'https://instagram.com/francocipolla.de',
+              label: '@francocipolla.de',
+              external: true,
+            },
+          ].map(({ icon, href, label, external }) => (
+            <div key={label} className="ca flex items-center gap-3 mb-4">
+              <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center border border-[#003566]/20 bg-[#003566]/[0.04] rounded-lg">
+                {icon}
+              </span>
+              <a
+                href={href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+                className="text-[13px] sm:text-[14px] text-[#000814]/70 hover:text-[#003566] transition-colors"
+              >
+                {label}
+              </a>
+            </div>
+          ))}
         </div>
 
-        {/* FORM */}
-        <form onSubmit={handleSubmit} noValidate>
-          {/* STEP INDICATOR – REDUZIERT & FOKUSSIERT */}
-<div className="mb-6">
-  <div className="flex justify-between text-xs text-gray-500 mb-2">
-    <span>Schritt {step} von 5</span>
-    <span>~40 Sekunden</span>
-  </div>
+        {/* ── RECHTS: Formular ── */}
+        <form onSubmit={handleSubmit} noValidate className="w-full">
 
-  <div className="w-full h-1.5 bg-gray-200 rounded overflow-hidden">
-    <div
-      className="h-full bg-black transition-all duration-300 ease-out"
-      style={{ width: `${(step / 5) * 100}%` }}
-    />
-  </div>
-</div>
+          {/* Progress Bar */}
+          <div className="mb-6 sm:mb-7">
+            <div className="flex justify-between text-[11px] sm:text-[12px] text-[#000814]/40 mb-2">
+              <span>Schritt {step} von {TOTAL_STEPS}</span>
+              <span>~30 Sekunden</span>
+            </div>
+            <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#003566] rounded-full transition-all duration-300 ease-out"
+                style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
+              />
+            </div>
+          </div>
 
-
-          {/* STEP 1 */}
+          {/* ── SCHRITT 1: Pain ── */}
           {step === 1 && (
-            <div className="contact-animate">
-              <p className="font-semibold text-lg mb-3">
-                Was trifft aktuell auf Sie zu? (Mehrfachauswahl)*
+            <div>
+              <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
+                Was trifft aktuell auf Sie zu?
               </p>
-              <div className="flex flex-col gap-3">
+              <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-4">
+                Mehrfachauswahl möglich
+              </p>
+              <div className="flex flex-col gap-2.5">
                 {painOptions.map(option => (
                   <button
                     key={option}
                     type="button"
                     onClick={() => togglePain(option)}
-                    className={`py-2 px-4 border rounded text-left cursor-pointer transition
-                      ${formData.pain.includes(option) ? 'bg-gray-200 border-black font-semibold' : 'border-gray-300 hover:bg-gray-100'}
-                    `}
+                    className={BTN_OPTION(formData.pain.includes(option))}
                   >
                     {option}
                   </button>
                 ))}
               </div>
-              {errors.pain && <p className="text-red-600 mt-2">{errors.pain}</p>}
-              <button
-                type="button"
-                className="mt-5 bg-black text-white px-5 py-2 rounded cursor-pointer"
-                onClick={() => validateStep(1) && setStep(2)}
-              >
-                Weiter
-              </button>
+              {errors.pain && <p className="text-red-500 text-[12px] mt-2">{errors.pain}</p>}
+
+              {/* Micro-commitment nach Auswahl */}
+              {formData.pain.length > 0 && (
+                <p className="text-[12px] text-[#003566] mt-3 flex items-center gap-1.5">
+                  <span>✓</span>
+                  <span>Gut – ich melde mich mit einer ehrlichen Einschätzung.</span>
+                </p>
+              )}
+
+              <div className="mt-5">
+                <button type="button" className={BTN_PRIMARY} onClick={() => validate(1) && setStep(2)}>
+                  Weiter →
+                </button>
+              </div>
             </div>
           )}
 
-          {/* STEP 2 */}
+          {/* ── SCHRITT 2: Name ── */}
           {step === 2 && (
-            <div className="contact-animate">
-              <p className="font-semibold text-lg mb-3">Was ist aktuell Ihr wichtigstes Ziel?*</p>
-              <div className="flex flex-col gap-3">
-                {goalOptions.map(option => (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => setFormData(prev => ({ ...prev, goal: option }))}
-                    className={`py-2 px-4 border rounded text-left cursor-pointer transition
-                      ${formData.goal === option ? 'bg-gray-200 border-black font-semibold' : 'border-gray-300 hover:bg-gray-100'}
-                    `}
-                  >
-                    {option}
-                  </button>
-                ))}
-              </div>
-              {errors.goal && <p className="text-red-600 mt-2">{errors.goal}</p>}
-              <div className="flex gap-2 mt-4">
-                <button type="button" onClick={() => setStep(1)} className="cursor-pointer">Zurück</button>
-                <button type="button" className="bg-black text-white px-5 py-2 rounded cursor-pointer" onClick={() => validateStep(2) && setStep(3)}>Weiter</button>
-              </div>
-            </div>
-          )}
-
-          {/* STEP 3 */}
-          {step === 3 && (
-            <div className="contact-animate">
-              <label className="font-semibold">Wie darf ich Sie ansprechen?*</label>
-              <input type="text" name="name" value={formData.name} onChange={handleChange} className="border w-full p-2 rounded mt-2" />
-              {errors.name && <p className="text-red-600 mt-1">{errors.name}</p>}
-              <div className="flex gap-2 mt-4">
-                <button type="button" onClick={() => setStep(2)} className="cursor-pointer">Zurück</button>
-                <button type="button" className="bg-black text-white px-5 py-2 rounded cursor-pointer" onClick={() => validateStep(3) && setStep(4)}>Weiter</button>
-              </div>
-            </div>
-          )}
-
-          {/* STEP 4 */}
-          {step === 4 && (
-            <div className="contact-animate">
-              <label className="font-semibold">Telefonnummer*
-                <span className="block text-sm text-gray-600 mt-1">📞 Für eine kurze Rückmeldung zu Ihrer Anfrage (Kein Spam)</span>
-              </label>
+            <div>
+              <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
+                Wie darf ich Sie ansprechen?
+              </p>
+              <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-2">
+                Damit ich Sie namentlich begrüßen kann
+              </p>
               <input
-  type="tel"
-  name="phone"
-  inputMode="numeric"
-  pattern="[0-9+\s\-()]+"
-  placeholder="0176 12345678"
-  autoComplete="tel"
-  value={formData.phone}
-  onChange={(e) => {
-    const val = e.target.value.replace(/[^0-9+\s\-()]/g, '');
-    handleChange({ target: { name: 'phone', value: val } });
-  }}
-  className="border w-full p-2 rounded mt-2"
-/>
-              {errors.phone && <p className="text-red-600 mt-1">{errors.phone}</p>}
-              <div className="flex gap-2 mt-4">
-                <button type="button" onClick={() => setStep(3)} className="cursor-pointer">Zurück</button>
-                <button type="button" className="bg-black text-white px-5 py-2 rounded cursor-pointer" onClick={() => validateStep(4) && setStep(5)}>Weiter</button>
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Ihr Name oder Vorname"
+                className={INPUT_BASE}
+                autoFocus
+              />
+              {errors.name && <p className="text-red-500 text-[12px] mt-1.5">{errors.name}</p>}
+              <div className="flex items-center gap-4 mt-5">
+                <button type="button" className={BTN_PRIMARY} onClick={() => validate(2) && setStep(3)}>
+                  Weiter →
+                </button>
+                <button type="button" className={BTN_SECONDARY} onClick={() => setStep(1)}>
+                  Zurück
+                </button>
               </div>
             </div>
           )}
 
-          {/* STEP 5 */}
-          {step === 5 && (
-            <div className="contact-animate">
-              <label className="font-semibold">Ihre Nachricht (Optional)</label>
+          {/* ── SCHRITT 3: Telefon + optionale Nachricht ── */}
+          {step === 3 && (
+            <div>
+              <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
+                Unter welcher Nummer erreiche ich Sie?
+              </p>
+              <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-2">
+                Für eine kurze Rückmeldung – kein Spam
+              </p>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/[^\d+\s\-()]/g, '');
+                  setFormData(prev => ({ ...prev, phone: val }));
+                  setErrors(prev => ({ ...prev, phone: '' }));
+                }}
+                placeholder="z.B. 0176 75398004"
+                inputMode="tel"
+                pattern="[0-9+\s\-()]+"
+                className={INPUT_BASE}
+                autoFocus
+              />
+              {errors.phone && <p className="text-red-500 text-[12px] mt-1.5">{errors.phone}</p>}
+
+              {/* Nachricht direkt hier – kein eigener Schritt mehr */}
+              <p className="font-semibold text-[13px] sm:text-[14px] text-[#000814] mt-5 mb-1">
+                Ihre Nachricht <span className="font-normal text-[#000814]/40">(optional)</span>
+              </p>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 rows={3}
-                className={`border w-full p-2 rounded mt-2 min-h-[160px] cursor-pointer ${errors.message ? 'border-red-500' : 'border-gray-300 focus:border-black'}`}
-                placeholder="Beschreiben Sie kurz Ihr Anliegen..."
+                placeholder="Was läuft nicht so wie Sie möchten? Was haben Sie schon probiert? Was wäre ein gutes Ergebnis?"
+                className="border border-gray-200 focus:border-[#003566] focus:outline-none w-full px-3.5 py-2.5 rounded-lg mt-1 text-[14px] text-[#000814] transition-colors placeholder:text-[#000814]/30 resize-none"
               />
-              <ul className="mt-3 text-sm text-gray-600 list-disc list-inside space-y-1">
-                <li>Was läuft aktuell nicht so, wie Sie es möchten?</li>
-                <li>Was haben Sie bisher ausprobiert?</li>
-                <li>Was wäre für Sie ein gutes Ergebnis?</li>
-              </ul>
-              <div className="flex items-center gap-2 mt-5">
-                <input type="checkbox" name="privacy" checked={formData.privacy} onChange={handleChange} className="w-4 h-4 cursor-pointer" />
-                <span className="text-sm">Ich akzeptiere die <Link to="/datenschutz" className="underline">Datenschutzerklärung</Link></span>
-              </div>
-              {errors.privacy && <p className="text-red-600 text-sm mt-1">{errors.privacy}</p>}
-              <div className="flex gap-2 mt-5">
-                <button type="button" onClick={() => setStep(4)} className="px-4 py-2 border rounded cursor-pointer hover:bg-gray-100">Zurück</button>
-                <button type="submit" disabled={submitting} className="bg-black text-white px-5 py-2 rounded cursor-pointer hover:opacity-90">
-                  {submitting ? 'Wird gesendet…' : 'Jetzt Anfrage senden'}
+
+              <div className="flex items-center gap-4 mt-5">
+                <button type="button" className={BTN_PRIMARY} onClick={() => validate(3) && setStep(4)}>
+                  Weiter →
+                </button>
+                <button type="button" className={BTN_SECONDARY} onClick={() => setStep(2)}>
+                  Zurück
                 </button>
               </div>
+            </div>
+          )}
+
+          {/* ── SCHRITT 4: Datenschutz + Absenden ── */}
+          {step === 4 && (
+            <div>
+              {/* Goal-Gradient */}
+              <p className="text-[11px] sm:text-[12px] font-semibold text-[#003566] uppercase tracking-wide mb-3">
+                ✦ Letzter Schritt
+              </p>
+              <p className="font-bold text-[15px] sm:text-[16px] text-[#000814] mb-1">
+                Fast geschafft.
+              </p>
+              <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-5">
+                Bestätigen Sie kurz Ihre Anfrage – ich melde mich innerhalb von 24 Stunden.
+              </p>
+
+              {/* Zusammenfassung */}
+              <div className="border border-[#003566]/15 bg-[#003566]/[0.03] rounded-lg px-4 py-3 mb-5">
+                <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wide text-[#003566] mb-1.5">
+                  Ihre Anfrage
+                </p>
+                <p className="text-[12px] sm:text-[13px] text-[#000814]/65">
+                  Name: <span className="font-semibold text-[#000814]">{formData.name}</span>
+                </p>
+                <p className="text-[12px] sm:text-[13px] text-[#000814]/65 mt-0.5">
+                  Thema: <span className="font-semibold text-[#000814]">{formData.pain.join(', ')}</span>
+                </p>
+              </div>
+
+              <label className="flex items-start gap-2.5 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  name="privacy"
+                  checked={formData.privacy}
+                  onChange={handleChange}
+                  className="w-4 h-4 mt-0.5 cursor-pointer accent-[#003566] flex-shrink-0"
+                />
+                <span className="text-[12px] sm:text-[13px] text-[#000814]/60 leading-snug group-hover:text-[#000814]/80 transition-colors">
+                  Ich akzeptiere die{' '}
+                  <Link to="/datenschutz" className="underline hover:text-[#003566] transition-colors">
+                    Datenschutzerklärung
+                  </Link>
+                </span>
+              </label>
+              {errors.privacy && <p className="text-red-500 text-[12px] mt-1.5">{errors.privacy}</p>}
+
+              <div className="flex items-center gap-4 mt-5">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className={`${BTN_PRIMARY} ${submitting ? 'opacity-60 cursor-not-allowed' : ''}`}
+                >
+                  {submitting ? 'Wird gesendet…' : 'Jetzt Anfrage senden'}
+                </button>
+                <button type="button" className={BTN_SECONDARY} onClick={() => setStep(3)}>
+                  Zurück
+                </button>
+              </div>
+
+              <p className="text-[11px] text-[#000814]/35 mt-4">
+                🔒 Ihre Daten werden nicht weitergegeben.
+              </p>
             </div>
           )}
 
