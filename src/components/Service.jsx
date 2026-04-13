@@ -238,8 +238,7 @@ const Service = () => {
               Ihre Investition
             </p>
             <p className="text-[20px] sm:text-[22px] font-black text-[#001D3D] tracking-tight">
-              Preis im Erstgespräch
-            </p>
+ Preis je nach Projektumfang            </p>
             <p className="text-[12px] text-[#000814]/38 mt-1 mb-4 leading-relaxed">
               <strong className="text-[#003566]">50 % bei Start · 50 % vor Launch</strong><br />
               Kostenlose Analyse zuerst - Sie entscheiden danach
