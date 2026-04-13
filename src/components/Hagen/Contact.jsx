@@ -117,9 +117,9 @@ const Contact = () => {
 
         {/* ── LINKS ── */}
         <div className="mb-10 lg:mb-0">
-          <h1 className="ca text-[26px] sm:text-[32px] lg:text-[36px] font-bold text-[#000814] tracking-tight mb-4" id="contact">
+          <h2 className="ca text-[26px] sm:text-[32px] lg:text-[36px] font-bold text-[#000814] tracking-tight mb-4" id="contact">
             Kontaktieren Sie mich
-          </h1>
+          </h2>
           <p className="ca text-[14px] sm:text-[15px] text-[#000814]/70 leading-[1.7] mb-2">
             Kurze Anfrage – ehrliche Rückmeldung – keine Verpflichtung.
           </p>
