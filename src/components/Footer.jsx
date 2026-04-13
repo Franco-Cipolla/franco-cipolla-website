@@ -22,13 +22,13 @@ const Footer = () => {
     <footer className="px-2 py-12 border-t mx-2 border-black ">
       {/* Hauptbereich */}
       <div className="border-b border-black pb-10">
-        <h1 className="text-2xl md:text-3xl font-bold mb-8">Franco Cipolla</h1>
+        <h2 className="text-2xl md:text-3xl font-bold mb-8">Franco Cipolla</h2>
 
         {/* Responsive Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {/* Adresse */}
           <div>
-            <h2 className="font-semibold">Adresse</h2>
+            <h3 className="font-semibold">Adresse</h3>
             <p className="text-[#000814] mt-2">
               Wuppermannstraße 14<br />
               58256 Ennepetal
@@ -37,7 +37,7 @@ const Footer = () => {
 
           {/* Kontakt */}
           <div>
-            <h2 className="font-semibold">Kontakt</h2>
+            <h3 className="font-semibold">Kontakt</h3>
             <div className="flex items-center gap-3 mt-3">
               <HiOutlineMail className="text-black text-xl" />
               <a
@@ -69,7 +69,7 @@ const Footer = () => {
 
           {/* Social Media & Google Business */}
           <div>
-            <h2 className="font-semibold">Social Media</h2>
+            <h3 className="font-semibold">Social Media</h3>
             <div className="flex items-center gap-3 mt-3">
               <FiInstagram className="text-black text-xl" />
               <a
