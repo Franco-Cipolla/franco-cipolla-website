@@ -17,10 +17,11 @@ Franco Cipolla ist ein Webdesigner aus Ennepetal, der sich auf Websites speziali
 - Mobile-optimierte & schnelle Websites
 
 ## Target Audience
-- Handwerksbetriebe
+- Handwerksbetriebe in Ennepetal & Umgebung
 - Dienstleister in Ennepetal & Umgebung
-- Lokale Unternehmen ohne funktionierende Website
-- Unternehmen mit zu wenigen Anfragen
+- Lokale Unternehmen ohne funktionierende Website in Ennepetal & Umgebung
+- Unternehmen mit zu wenigen Anfragen in Ennepetal & Umgebung
+- Kleine und mittelständische Unternehmen in Ennepetal & Umgebung
 
 ## Key Value Proposition
 Websites sind keine Visitenkarten, sondern Systeme zur Kundengewinnung.

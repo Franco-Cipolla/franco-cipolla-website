@@ -18,9 +18,10 @@ Diese Seite richtet sich an Unternehmen in Hagen und Umgebung, die eine Website 
 - Struktur für mehr Anfragen
 
 ## Target Audience
-- Handwerker in Hagen
-- Lokale Dienstleister
-- Kleine und mittelständische Unternehmen
+- Handwerker in Hagen & Umgebung
+- Lokale Dienstleister in Hagen & Umgebung
+- Kleine und mittelständische Unternehmen in Hagen & Umgebung
+- Unternehmen ohne funktionierende Website in Hagen & Umgebung
 
 ## Search Intents
 - Webdesigner Hagen
