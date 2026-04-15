@@ -6,7 +6,7 @@ Role: Webdesigner für lokale Unternehmen
 Location: Hagen, Deutschland
 
 ## Description
-Franco Cipolla erstellt Websites für Unternehmen in Hagen, die gezielt neue Kundenanfragen generieren. Fokus liegt auf lokalen Betrieben, die online besser gefunden werden wollen.
+Franco Cipolla erstellt Websites für Unternehmen in Hagen, die gezielt neue Kundenanfragen generieren. Sein Fokus liegt auf lokalen Unternehmen, die messbar neue Kunden gewinnen möchten, ohne abhängig von Empfehlungen zu sein.
 
 ## Local Relevance
 Diese Seite richtet sich an Unternehmen in Hagen und Umgebung, die eine Website benötigen, die aktiv Anfragen generiert.
