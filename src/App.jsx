@@ -27,9 +27,9 @@ function App() {
       <>
         <Route path="/" element={<MainLayout />} errorElement={<NotFound />}>
           <Route index element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
+          <Route path="ueber-mich" element={<AboutPage />} />
           <Route path="datenschutz" element={<Datenschutzerklärung />} />
-          <Route path="erstgespraech" element={<ErstGespraech />} />
+          <Route path="website-analyse" element={<ErstGespraech />} />
           <Route path="impressum" element={<Impressum />} />
           <Route path="danke" element={<Danke />} />
           <Route path="hagen" element={<Hagenlanding />} />

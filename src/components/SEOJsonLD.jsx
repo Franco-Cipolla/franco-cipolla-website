@@ -35,7 +35,7 @@ const SEOJsonLD = ({ page }) => {
         "@type": "Offer",
         "name": "Kostenlose Website-Analyse",
         "description": "Unverbindliche Analyse deiner Website mit konkreten Optimierungspotenzialen.",
-        "url": "https://www.franco-cipolla.de/erstgespraech",
+        "url": "https://www.franco-cipolla.de/website-analyse",
         "price": "0",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
@@ -78,7 +78,7 @@ const SEOJsonLD = ({ page }) => {
         },
         "potentialAction": {
           "@type": "ReserveAction",
-          "target": "https://www.franco-cipolla.de/erstgespraech"
+"target": "https://www.franco-cipolla.de/website-analyse"
         }
       };
       break;

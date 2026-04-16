@@ -177,7 +177,7 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null)
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate('/erstgespraech');
+navigate('/website-analyse');
   };
 
   useEffect(() => {

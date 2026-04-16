@@ -11,7 +11,7 @@ const CTAHome = () => {
   const sectionRef = useRef(null)
 
   const handleClick = () => {
-    navigate('/erstgespraech')
+navigate('/website-analyse')
   }
 
   useEffect(() => {

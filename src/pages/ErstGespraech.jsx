@@ -165,9 +165,9 @@ const ErstGespraech = () => {
           name="description"
           content="In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert - kostenlos, direkt auf Ihrer Seite gezeigt."
         />
-        <link rel="canonical" href="https://www.franco-cipolla.de/erstgespraech" />
+<link rel="canonical" href="https://www.franco-cipolla.de/website-analyse"/>
       </Helmet>
-      <SEOJsonLD page="erstgespraech" />
+<SEOJsonLD page="website-analyse"/>
 
       <StickyMobileCTA formRef={formRef} />
 

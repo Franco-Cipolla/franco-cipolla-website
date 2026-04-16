@@ -136,7 +136,7 @@ const FAQSectionHagen = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const navigate = useNavigate();
 
-  const handleClick = () => navigate('/erstgespraech');
+const handleClick = () => navigate('/website-analyse')
 
   useEffect(() => {
     if (!sectionRef.current) return;

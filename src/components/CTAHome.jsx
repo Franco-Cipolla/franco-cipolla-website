@@ -18,7 +18,7 @@ const CTAHome = () => {
     });
   }
 
-  navigate("/erstgespraech");
+navigate("/website-analyse");
 };
 
 

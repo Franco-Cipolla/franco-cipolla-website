@@ -20,7 +20,7 @@ const Hero = () => {
   const [, setIsXL] = useState(false);
 
   const handleClick = () => {
-    navigate('/erstgespraech');
+ navigate('/website-analyse');
   };
 
   useEffect(() => {

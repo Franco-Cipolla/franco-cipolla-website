@@ -83,18 +83,18 @@ const AboutPage = () => {
           name="description"
           content="Ich baue Websites für Unternehmen aus Ennepetal & Umgebung, die nicht nur gut aussehen, sondern auch wirklich Anfragen bringen – strukturiert, conversion-orientiert und ohne Schnickschnack."
         />
-        <link rel="canonical" href="https://www.franco-cipolla.de/about" />
+href="https://www.franco-cipolla.de/ueber-mich"
         <meta property="og:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
         <meta property="og:description" content="Websites, die wirklich Kunden bringen. Klar strukturiert, strategisch aufgebaut und auf Anfragen ausgelegt – für lokale Unternehmen." />
         <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
-        <meta property="og:url" content="https://www.franco-cipolla.de/about" />
+content="https://www.franco-cipolla.de/ueber-mich"
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
         <meta name="twitter:description" content="Websites, die wirklich Kunden bringen. Klar strukturiert, strategisch aufgebaut und auf Anfragen ausgelegt – für lokale Unternehmen." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
-      <SEOJsonLD page="about" />
+page="ueber-mich"
 
       {/* Hintergrundkreise */}
       <div className="relative overflow-hidden">

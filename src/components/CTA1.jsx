@@ -21,7 +21,7 @@ const CTA1 = ({
     });
   }
 
-  navigate("/erstgespraech");
+  navigate("/website-analyse");
 };
 
 

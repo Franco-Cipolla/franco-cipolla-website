@@ -22,6 +22,25 @@
       ]
     }
   ],
+
+  "redirects": [
+    {
+      "source": "/about",
+      "destination": "/ueber-mich",
+      "permanent": true
+    },
+    {
+      "source": "/erstgespraech",
+      "destination": "/website-analyse",
+      "permanent": true
+    },
+    {
+      "source": "/websites-hagen",
+      "destination": "/hagen",
+      "permanent": true
+    }
+  ],
+
   "rewrites": [
     {
       "source": "/((?!assets/|sitemap\\.xml|favicon\\.ico|robots\\.txt).*)",
