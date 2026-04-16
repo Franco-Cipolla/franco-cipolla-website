@@ -37,9 +37,7 @@ const SEOJsonLD = ({ page }) => {
         "description": "Unverbindliche Analyse deiner Website mit konkreten Optimierungspotenzialen.",
         "url": "https://www.franco-cipolla.de/website-analyse",
         "price": "0",
-        "priceCurrency": "EUR",
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-03-26T00:00"
+        "priceCurrency": "EUR"
       }
     ]
   };
@@ -47,6 +45,7 @@ const SEOJsonLD = ({ page }) => {
   let pageSchema = {};
 
   switch (page) {
+
     case "home":
       pageSchema = {
         "@type": "WebPage",
@@ -60,26 +59,53 @@ const SEOJsonLD = ({ page }) => {
           "serviceType":
             "Webdesign & Conversion-Optimierung für lokale Unternehmen",
           "description":
-            "Websites, die Besucher gezielt zur Anfrage führen, mit klarer Struktur, Nutzerführung und messbarem System.",
+            "Websites, die Besucher gezielt zur Anfrage führen.",
           "areaServed": [
-            "Ennepetal",
-            "Hagen",
-            "Wuppertal",
-            "Schwelm",
-            "Gevelsberg",
-            "Sprockhövel",
-            "Breckerfeld",
-            "Remscheid",
-            "Hattingen",
-            "Wetter",
-            "Herdecke"
+            "Ennepetal","Hagen","Wuppertal","Schwelm","Gevelsberg",
+            "Sprockhövel","Breckerfeld","Remscheid","Hattingen",
+            "Wetter","Herdecke"
           ],
           "hasOfferCatalog": offerCatalog
         },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://www.franco-cipolla.de"
+        },
         "potentialAction": {
-          "@type": "ReserveAction",
-"target": "https://www.franco-cipolla.de/website-analyse"
+          "@type": "Action",
+          "target": "https://www.franco-cipolla.de/website-analyse"
         }
+      };
+      break;
+
+    case "analyse":
+      pageSchema = {
+        "@type": "WebPage",
+        "name": "Kostenlose Website Analyse – Franco Cipolla",
+        "url": "https://www.franco-cipolla.de/website-analyse",
+        "description":
+          "Kostenlose Analyse deiner Website mit konkreten Optimierungspotenzialen für mehr Anfragen.",
+        "mainEntity": {
+          "@type": "Service",
+          "name": "Kostenlose Website Analyse",
+          "serviceType": "Website Analyse & Conversion-Optimierung",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+          }
+        }
+      };
+      break;
+
+    case "about":
+      pageSchema = {
+        "@type": "AboutPage",
+        "name": "Über mich – Franco Cipolla",
+        "url": "https://www.franco-cipolla.de/ueber-mich",
+        "description":
+          "Webdesigner für conversion-optimierte Websites für lokale Unternehmen.",
+        "mainEntity": basePerson
       };
       break;
 
@@ -96,22 +122,14 @@ const SEOJsonLD = ({ page }) => {
           },
           {
             "@type": "WebPage",
-            "name":
-              "Websites, die Kunden bringen für Hagen – Franco Cipolla",
+            "name": "Websites für Hagen – Franco Cipolla",
             "url": "https://www.franco-cipolla.de/hagen",
             "description":
-              "Websites für Unternehmen in Hagen, die darauf ausgelegt sind planbar Kundenanfragen generieren.",
+              "Websites für Unternehmen in Hagen, die messbar Anfragen generieren.",
             "mainEntity": {
               "@type": "Service",
               "name": "Lokale-Anfragen-System™",
-              "serviceType":
-                "Webdesign & Conversion-Optimierung für lokale Unternehmen",
-              "description":
-                "Websites für Unternehmen in Hagen, die Besucher gezielt zur Anfrage führen.",
-              "areaServed": {
-                "@type": "City",
-                "name": "Hagen"
-              },
+              "areaServed": { "@type": "City", "name": "Hagen" },
               "hasOfferCatalog": offerCatalog
             }
           }
@@ -132,31 +150,20 @@ const SEOJsonLD = ({ page }) => {
           },
           {
             "@type": "WebPage",
-            "name":
-              "Websites, die Kunden bringen für Wuppertal – Franco Cipolla",
+            "name": "Websites für Wuppertal – Franco Cipolla",
             "url": "https://www.franco-cipolla.de/wuppertal",
             "description":
-              "Websites für Unternehmen in Wuppertal, die Besucher gezielt zu Kundenanfragen führen.",
+              "Websites für Unternehmen in Wuppertal, die Kundenanfragen generieren.",
             "mainEntity": {
               "@type": "Service",
               "name": "Lokale-Anfragen-System™",
-              "serviceType":
-                "Webdesign & Conversion-Optimierung für lokale Unternehmen",
-              "description":
-                "Websites für Unternehmen in Wuppertal, die Besucher gezielt zur Anfrage führen.",
-              "areaServed": {
-                "@type": "City",
-                "name": "Wuppertal"
-              },
+              "areaServed": { "@type": "City", "name": "Wuppertal" },
               "hasOfferCatalog": offerCatalog
             }
           }
         ]
       };
       break;
-
-    default:
-      pageSchema = {};
   }
 
   const jsonLD = {
