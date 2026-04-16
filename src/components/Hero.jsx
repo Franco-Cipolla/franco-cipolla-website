@@ -128,6 +128,7 @@ navigate('/website-analyse');
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
+
               Websites, die gezielt
         <span className="text-[#003566]"> auf Kundenanfragen ausgelegt sind.</span>
 
@@ -174,7 +175,7 @@ navigate('/website-analyse');
 
             <p
               ref={disclaimerRef}
-              className="text-[13px] md:text-sm mt-3 text-black/40"
+              className="text-[13px] md:text-sm mt-3 text-black/60"
             >
              Unverbindlich · 15 Minuten · Keine Vorbereitung nötig
             </p>

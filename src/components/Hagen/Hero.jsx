@@ -115,7 +115,7 @@ const Hero = () => {
             <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm">
                 <span className="text-[13px] text-center md:text-sm font-medium text-[#003566] tracking-tight">
-                  🚀 Mehr Kundenanfragen durch Ihre Website in Hagen
+                  🔧 Für Handwerker & lokale Betriebe in Hagen
                 </span>
               </div>
             </div>
@@ -135,16 +135,16 @@ const Hero = () => {
                 ref={text1Ref}
                 className="text-lg xl:text-xl text-[#000814] mb-4 font-semibold"
               >
-              Eine Website sollte nicht nur schön aussehen,
-              sondern Verkaufspsychologisch entwickelt sein, um Besucher gezielt zur Anfrage zu führen.              </p>
+              Viele Unternehmen in Hagen haben eine Website, aber kaum eine davon bringt regelmäßig messbar neue Anfragen rein.         </p>
 
               <p
                 ref={text2Ref}
                 className="text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5"
               >
-                Viele Unternehmen in Hagen sind online sichtbar, aber ohne klares System zur Kundengewinnung.<br/><br/>
-               Besucher kommen – und gehen wieder,
-              weil Struktur, Nutzerführung und Messbarkeit fehlen. Sie bleiben abhängig von Empfehlungen.
+                Wer kein System dahinter hat, bleibt auf Empfehlungen angewiesen
+  und weiß nie, wie viele Aufträge nächsten Monat tatsächlich kommen könnten.<br/><br/>
+                 Eine Website allein reicht nicht - sie muss den Besucher
+  gezielt zu einer Kontaktaufnahme führen.
               </p>
             </div>
 

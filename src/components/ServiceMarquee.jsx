@@ -47,7 +47,7 @@ const ProjectCarousel = () => {
 <div className="text-center mb-12">
 
   <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-    So könnte Ihr Lokales-Anfragen-System aussehen
+    So könnte Ihre Website aussehen
   </h2>
 
   {/* Desktop Version */}
