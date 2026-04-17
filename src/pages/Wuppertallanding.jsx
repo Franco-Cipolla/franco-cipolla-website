@@ -14,7 +14,7 @@ const Wuppertallanding = () => {
   return (
     <>
       <Helmet>
-        <title>Webdesign Wuppertal – Websites als System für messbare Anfragen | Franco Cipolla</title>
+        <title>Websites als System für messbare Anfragen - Webdesign Wuppertal | Franco Cipolla</title>
         <meta
           name="description"
        content="Kostenlose Website-Analyse für Betriebe in Wuppertal. Ihr Webdesign-Experte für mehr Kundenanfragen durch SEO, Verkaufspsychologie & Conversion-Optimierung."   />

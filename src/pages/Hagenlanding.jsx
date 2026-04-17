@@ -14,7 +14,7 @@ const HagenLanding = () => {
   return (
     <>
       <Helmet>
-        <title>Webdesign Hagen – Warum viele Websites keine Anfragen bringen (und wie es besser geht) | Franco Cipolla</title>        <meta
+        <title>Websites für mehr Kundenanfragen - Webdesign Hagen | Franco Cipolla</title>        <meta
           name="description"
                  content="Kostenlose Website-Analyse für Betriebe in Hagen. Ihr Webdesign-Experte für mehr Kundenanfragen durch SEO, Verkaufspsychologie & Conversion-Optimierung."    />
         <link rel="canonical" href="https://www.franco-cipolla.de/hagen" />
