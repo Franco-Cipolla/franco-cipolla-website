@@ -172,7 +172,7 @@ const Service = () => {
           </h2>
           <p className="text-[15px] md:text-lg text-[#000814] max-w-2xl mx-auto">
             <span className="md:hidden">Für lokale Betriebe, die Anfragen wollen - nicht nur irgendeine Website.</span>
-            <span className="hidden md:inline">Für lokale Betriebe in Ennepetal & Umgebung, die Anfragen wollen - ohne auf Empfehlungen zu warten.</span>
+            <span className="hidden md:inline">Für lokale Betriebe in Ennepetal  <a href="/wuppertal" className="cursor-pointer underline hover:text-[#001D3D] transition">Wuppertal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, die Anfragen wollen - ohne auf Empfehlungen zu warten.</span>
           </p>
         </div>
 

@@ -170,8 +170,8 @@ const Service = () => {
              <span className="block text-xl font-normal ">Webdesign Hagen</span>
           </h2>
           <p className="text-[15px] md:text-lg text-[#000814] max-w-2xl mx-auto">
-            <span className="md:hidden">Für lokale Betriebe in Hagen, die Anfragen wollen - nicht nur eine Website.</span>
-            <span className="hidden md:inline">Für lokale Betriebe in Hagen & Umgebung, die Anfragen wollen - ohne auf Empfehlungen zu warten.</span>
+            <span className="md:hidden">Für lokale Betriebe in Hagen von Haspe bis Hohenlimburg, die Anfragen wollen - nicht nur eine Website.</span>
+            <span className="hidden md:inline">Für lokale Betriebe in Hagen von Haspe bis Hohenlimburg, die Anfragen wollen - ohne auf Empfehlungen zu warten.</span>
           </p>
         </div>
 
