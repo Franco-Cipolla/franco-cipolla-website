@@ -14,7 +14,7 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-<title>Webdesign Ennepetal – Websites für mehr Kundenanfragen | Franco Cipolla</title>        <meta name="description" content="Webdesign in Ennepetal für Betriebe & Unternehmen: Websites mit klarem System zur Kundengewinnung. Mehr Anfragen durch Struktur, Nutzerführung & Conversion-Optimierung." />
+<title>Webdesign Ennepetal – Websites für mehr Kundenanfragen | Franco Cipolla</title>        <meta name="description" content="Kostenlose Website-Analyse: Ich zeige, wo Ihre Website Kundenanfragen verliert. Webdesign für Unternehmen in Ennepetal & Umgebung mit Fokus auf Onpage-SEO, Verkaufspsychologie, Nutzerführung und Conversion-Optimierung." />
         <link rel="canonical" href="https://www.franco-cipolla.de/" />
         <meta property="og:title" content="Webdesign Ennepetal – Websites, die Kunden bringen" />        <meta property="og:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
         <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
