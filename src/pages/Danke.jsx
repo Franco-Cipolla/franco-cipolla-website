@@ -41,19 +41,19 @@ const Danke = () => {
         {/* Badge */}
         <div className="cta-animate inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/10 via-[#001D3D]/5 to-[#00A6FB]/10 backdrop-blur-sm border border-[#003566]/15 rounded-full px-5 py-2.5 shadow-sm mb-6">
           <span className="text-[13px] md:text-sm font-medium text-[#003566] tracking-tight">
-            ✅ Nachricht erfolgreich gesendet
+            🚀 Anfrage erfolgreich übermittelt
           </span>
         </div>
 
         {/* Headline */}
         <h1 className="cta-animate text-3xl md:text-5xl font-black text-black tracking-tight mb-6">
-          Perfekt! Ich habe ihre Nachricht erhalten.
+          Perfekt! Ich habe ihre Anfrage erhalten.
         </h1>
 
         {/* Subtext */}
         <p className="cta-animate text-lg xl:text-xl text-[#000814]/90 mb-8 max-w-xl leading-relaxed">
-          Ich melde mich innerhalb von 24–48 Stunden bei Ihnen.<br /><br />
-          Folgen Sie mir auf Instagram für praxisnahe Tipps, Einblicke und konkrete Strategien, wie Sie mehr Kunden über Ihre Website gewinnen.
+          Ich schaue mir Ihre Website (oder Anliegen) jetzt genau an und melde mich innerhalb 48h persönlich bei Ihnen.<br /><br />
+          Folgen Sie mir auf Instagram für praxisnahe Tipps, Einblicke und konkrete Strategien, wie Sie mehr Kunden über Ihre Website gewinnen können.
         </p>
 
         {/* Haupt-CTA Instagram */}
