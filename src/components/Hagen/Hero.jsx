@@ -175,7 +175,7 @@ const Hero = () => {
             <img
               ref={imageRef}
               src={HeroIllustration}
-              alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen"
+              alt="Franco Cipolla – Webdesigner für Hagen – Websites für mehr Kundenanfragen"
               className="w-full rounded-2xl max-w-[600px]"
             />
 
