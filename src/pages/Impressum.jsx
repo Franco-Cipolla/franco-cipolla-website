@@ -30,8 +30,8 @@ const Impressum = () => {
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
       </Helmet>
 
-      <section className="w-full flex items-center mt-20 justify-center bg-white text-black">
-        <div className="max-w-[950px] xl:max-w-[1100px] px-6 py-20">
+      <section className="max-w-4xl mx-auto  px-6  mt-20 text-gray-800">
+        <div className="max-w-[950px] xl:max-w-[1100px] py-20">
           <h1 className="text-3xl md:text-4xl font-bold mb-10">Impressum</h1>
 
           <div className="space-y-8 text-gray-700 text-lg leading-relaxed">
