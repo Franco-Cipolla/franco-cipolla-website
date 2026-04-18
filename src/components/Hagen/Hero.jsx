@@ -111,10 +111,10 @@ const Hero = () => {
         <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col  lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
 
           <div className='xl:max-w-[60%]'>
-            {/* Badge */}
+            {/* Header-Badge (Text-Bereich) */}
             <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2.5 shadow-sm">
-                <span className="text-[13px] text-center md:text-sm font-medium text-[#003566] tracking-tight">
+              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-1deg]">
+                <span className="text-[13px] md:text-sm font-bold text-[#001D3D] tracking-tight">
                   🔧 Für Handwerker & lokale Betriebe in Hagen
                 </span>
               </div>
@@ -179,32 +179,32 @@ const Hero = () => {
               className="w-full rounded-2xl max-w-[600px]"
             />
 
-            {/* Badge oben rechts */}
-            <div className="absolute top-0 left-60">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2 shadow-sm">
-                <span className="text-[12px] font-bold text-[#003566] whitespace-nowrap">
-                  📈 Mehr Anfragen
-                </span>
-              </div>
-            </div>
+            {/* Badge oben rechts – Illustration */}
+<div className="absolute top-0 left-60">
+  <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[2deg]">
+    <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">
+      📈 Mehr Anfragen
+    </span>
+  </div>
+</div>
 
-            {/* Badge unten rechts */}
-            <div className="absolute bottom-6 right-6">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2 shadow-sm">
-                <span className="text-[12px] font-bold text-[#003566] whitespace-nowrap">
-                  🛡️ DSGVO-konform
-                </span>
-              </div>
-            </div>
+{/* Badge unten rechts – Illustration */}
+<div className="absolute bottom-6 right-6">
+  <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-2deg]">
+    <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">
+      🛡️ DSGVO-konform
+    </span>
+  </div>
+</div>
 
-            {/* Badge links mittig */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-1">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/8 via-[#001D3D]/5 to-[#00A6FB]/8 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 py-2 shadow-sm">
-                <span className="text-[12px] font-bold text-[#ffffff] whitespace-nowrap">
-                 📍 Lokal bei Google auffindbar
-                </span>
-              </div>
-            </div>
+{/* Badge links mittig – Illustration */}
+<div className="absolute top-1/2 -translate-y-1/2 left-1">
+  <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[1.5deg]">
+    <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">
+      📍 Lokal bei Google auffindbar
+    </span>
+  </div>
+</div>
 
           </div>
 

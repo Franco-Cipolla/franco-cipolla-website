@@ -80,7 +80,7 @@ const NavBar = () => {
         </ul>
 
         {/* Branding */}
-        <h2 className="font-bold text-[1.3rem] lg:text-2xl">Franco Cipolla</h2>
+        <h2 className="font-bold text-[1.3rem] lg:text-center lg:text-2xl">Franco Cipolla <span className='block lg:text-[18px] font-normal text-black/90 text-[0.87rem]'>Webdesign & Digitale Kundengewinnung</span></h2>
 
         {/* Burger div */}
         <button
@@ -95,10 +95,10 @@ const NavBar = () => {
 
 
 
-        {/* Desktop CTA */}
+         {/* Desktop CTA */}
         <div className="hidden lg:flex space-x-2 items-center">
-          <CTA2 />
-          <CTA1 />
+
+          <CTA1 bg = "bg-[#001D3D]"color = "text-white" border="001D3D" hover= "hover:text-[#fffff]" />
         </div>
       </div>
 
@@ -173,7 +173,8 @@ const NavBar = () => {
           <li role="none">
             <div role="menuitem"
                tabIndex={0} onClick={() => setIsOpen(false)}>
-               <CTA1   />
+          <CTA1 bg = "bg-[#001D3D]"color = "text-white" border="001D3D" hover= "hover:text-[#fffff]" />
+          <p className="text-[12px] md:text-sm mt-2 text-black/60">Unverbindlich · 15 Minuten · Ohne Vorbereitung </p>
               </div >
           </li>
         </ul>

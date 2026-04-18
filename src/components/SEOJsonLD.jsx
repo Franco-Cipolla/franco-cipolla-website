@@ -42,10 +42,23 @@ const SEOJsonLD = ({ page }) => {
     ]
   };
 
+  const review = {
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "Google Nutzer"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5"
+    },
+    "reviewBody":
+      "Franco hat meine Website analysiert und mir gezeigt, dass meine Website an verschiedenen Stellen Anfragen verliert. Teilweise gab es Stellen die sogar mein alter Webdesigner nicht gesehen hat. Franco’s Expertise ist wirklich auf einem ganz anderen Level. Ich bereue es zu keiner Sekunde mich auf ihn eingelassen zu haben. Er kann locker mit Dienstleistern mithalten die weitaus mehr Erfahrung haben. Durch Franco habe ich nun spürbar mehr Anfragen. Meiner Meinung nach einer der besten Webdesigner in ganz Ennepetal und Umgebung. Klare Empfehlung!"
+  };
+
   let pageSchema = {};
 
   switch (page) {
-
     case "home":
       pageSchema = {
         "@type": "WebPage",
@@ -58,12 +71,19 @@ const SEOJsonLD = ({ page }) => {
           "name": "Lokale-Anfragen-System™",
           "serviceType":
             "Webdesign & Conversion-Optimierung für lokale Unternehmen",
-          "description":
-            "Websites, die Besucher gezielt zur Anfrage führen.",
+          "description": "Websites, die Besucher gezielt zur Anfrage führen.",
           "areaServed": [
-            "Ennepetal","Hagen","Wuppertal","Schwelm","Gevelsberg",
-            "Sprockhövel","Breckerfeld","Remscheid","Hattingen",
-            "Wetter","Herdecke"
+            "Ennepetal",
+            "Hagen",
+            "Wuppertal",
+            "Schwelm",
+            "Gevelsberg",
+            "Sprockhövel",
+            "Breckerfeld",
+            "Remscheid",
+            "Hattingen",
+            "Wetter",
+            "Herdecke"
           ],
           "hasOfferCatalog": offerCatalog
         },
@@ -118,7 +138,13 @@ const SEOJsonLD = ({ page }) => {
             "image": "https://franco-cipolla.de/Franco2.jpeg",
             "url": "https://www.franco-cipolla.de",
             "telephone": "+49-17675398004",
-            "sameAs": basePerson.sameAs
+            "sameAs": basePerson.sameAs,
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "1"
+            },
+            "review": [review]
           },
           {
             "@type": "WebPage",
@@ -146,7 +172,13 @@ const SEOJsonLD = ({ page }) => {
             "image": "https://franco-cipolla.de/Franco2.jpeg",
             "url": "https://www.franco-cipolla.de",
             "telephone": "+49-17675398004",
-            "sameAs": basePerson.sameAs
+            "sameAs": basePerson.sameAs,
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "1"
+            },
+            "review": [review]
           },
           {
             "@type": "WebPage",

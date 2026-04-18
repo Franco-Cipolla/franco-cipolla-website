@@ -205,17 +205,56 @@ const handleClick = () => navigate('/website-analyse')
         ))}
       </div>
 
+       {/* Weiter-Fragen-Box */}
+<div className="max-w-3xl mx-auto mt-6">
+  <div className="faq-item rounded-xl border border-[#003566]/25 bg-gradient-to-r from-[#001D3D]/4 via-transparent to-[#00A6FB]/5 px-8 py-8">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+
+      <div className="flex items-start gap-4">
+        {/* Akzent-Linie links */}
+        <div className="mt-1 h-full w-[3px] self-stretch rounded-full bg-[#003566] opacity-70 hidden sm:block" />
+        <div>
+          <p className="font-semibold text-lg text-black">
+            Noch eine offene Frage?
+          </p>
+          <p className="mt-1 text-sm text-black/55 leading-relaxed">
+            Ich antworte persönlich – kein Automatikantworter.
+            <br className="hidden sm:block" /> Antwort in der Regel innerhalb von 24 Stunden.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-start sm:items-end gap-2 shrink-0">
+        <button
+          onClick={() => navigate('/', { state: { scrollTo: 'contact' } })}
+          className="px-5 py-2.5 cursor-pointer text-white bg-[#001D3D] flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 transition border-[#003566] hover:border-[#001D3D] whitespace-nowrap"
+        >
+          ✉️ Direkt fragen
+        </button>
+        <span className="text-xs text-black/35">Unverbindlich · Schnelle Antwort</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
       <div ref={ctaRef} className="text-center mt-12 w-full flex flex-col items-center">
         <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto my-6">
-          Noch unsicher? <br />
-          Lassen Sie uns prüfen, wie Ihre Website in Wuppertal gezielt neue Kunden bringt.
+          Noch unsicher, ob das für Sie Sinn macht? <br />
+          Lassen Sie uns gemeinsam klären, wie Ihre Website direkt neue Kunden bringen kann.
         </p>
         <button
-          onClick={handleClick}
-          className="px-5 py-2 cursor-pointer text-white bg-[#001D3D] flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 transition border-[#003566] hover:border-[#001D3D]"
-        >
+            onClick={handleClick}
+          className="px-5 py-2.5 cursor-pointer text-white bg-[#001D3D] flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 transition border-[#003566] hover:border-[#001D3D]">
           🔍 Kostenlose Website-Analyse
-        </button>
+          </button>
+          <p
+
+              className="text-[13px] md:text-sm mt-3 text-black/60"
+            >
+             Unverbindlich · 15 Minuten · Keine Vorbereitung nötig
+            </p>
+
       </div>
     </section>
   );
