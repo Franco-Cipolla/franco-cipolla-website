@@ -270,9 +270,9 @@ navigate('/website-analyse');
       <div className="flex flex-col items-start sm:items-end gap-2 shrink-0">
         <button
           onClick={() => navigate('/', { state: { scrollTo: 'contact' } })}
-          className="px-5 py-2.5 cursor-pointer text-white bg-[#001D3D] flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 transition border-[#003566] hover:border-[#001D3D] whitespace-nowrap"
+          className="px-5 py-2.5 cursor-pointer text-[#001D3D] bg-white flex items-center gap-2 justify-center rounded shadow-md border-2 transform hover:-translate-y-1 transition border-[#003566] hover:border-[#001D3D] whitespace-nowrap"
         >
-          ✉️ Direkt fragen
+          Direkt fragen
         </button>
         <span className="text-xs text-black/35">Unverbindlich · Schnelle Antwort</span>
       </div>
@@ -292,7 +292,7 @@ navigate('/website-analyse');
           🔍 Kostenlose Website-Analyse
           </button>
           <p
-            
+
               className="text-[13px] md:text-sm mt-3 text-black/60"
             >
              Unverbindlich · 15 Minuten · Keine Vorbereitung nötig
