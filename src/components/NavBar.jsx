@@ -91,7 +91,11 @@ const NavBar = () => {
         </ul>
 
         {/* Branding */}
-        <h2 className="font-bold text-[1.3rem] lg:text-center lg:text-2xl">Franco Cipolla <span className='block lg:text-[18px] font-normal text-black/90 text-[0.87rem]'>Webdesign & Digitale Kundengewinnung</span></h2>
+        <h2 to="/"
+              className="text-black text-lg hover:text-[#003566] transition"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }} className="font-bold text-[1.3rem] lg:text-center lg:text-2xl">Franco Cipolla <span className='block lg:text-[18px] font-normal text-black/90 text-[0.87rem]'>Webdesign & Digitale Kundengewinnung</span></h2>
 
         {/* Burger div */}
         <button
