@@ -23,13 +23,13 @@ const HagenLanding = () => {
           property="og:description"
           content="Individuelle Websites für Selbstständige & Unternehmen in Hagen, die planbare Kundenanfragen generieren."
         />
-        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta property="og:image" content="https://franco-cipolla.de/og-preview.jpg" />
         <meta property="og:url" content="https://www.franco-cipolla.de/hagen" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content="Warum Ihre Website Kunden verliert (Hagen) - Franco Cipolla" />
 <meta property="og:description" content="Und wie Sie das in messbare Anfragen verwandeln ohne viel Zeit zu investieren." />
-        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
       </Helmet>
 
       {/* WICHTIG: page="hagen" */}

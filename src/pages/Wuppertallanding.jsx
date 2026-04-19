@@ -25,7 +25,7 @@ const Wuppertallanding = () => {
           property="og:description"
           content="Individuelle Websites für Selbstständige & Unternehmen in Wuppertal, die planbare Kundenanfragen generieren."
         />
-        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta property="og:image" content="https://franco-cipolla.de/og-preview.jpg" />
         <meta property="og:url" content="https://www.franco-cipolla.de/wuppertal" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +34,7 @@ const Wuppertallanding = () => {
           name="twitter:description"
           content="Individuelle Websites für Selbstständige & Unternehmen in Wuppertal, die planbare Kundenanfragen generieren."
         />
-        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
       </Helmet>
 
       {/* WICHTIG: page="Wuppertal" */}

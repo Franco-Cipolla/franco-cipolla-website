@@ -17,7 +17,7 @@ const Impressum = () => {
           property="og:description"
           content="Impressum der Website von Franco Cipolla, Webdesigner aus Ennepetal. Rechtliche Informationen, Kontaktdaten und Datenschutzhinweise."
         />
-        <meta property="og:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta property="og:image" content="https://franco-cipolla.de/og-preview.jpg" />
         <meta property="og:url" content="https://www.franco-cipolla.de/impressum" />
         <meta property="og:type" content="website" />
 
@@ -27,7 +27,7 @@ const Impressum = () => {
           name="twitter:description"
           content="Impressum der Website von Franco Cipolla. Rechtliche Informationen, Kontaktdaten und Datenschutzhinweise."
         />
-        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.png" />
+        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
       </Helmet>
 
       <section className="max-w-4xl mx-auto  px-6  mt-20 text-gray-800">
