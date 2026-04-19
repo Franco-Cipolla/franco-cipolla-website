@@ -9,6 +9,7 @@ import ProcessSection from '../components/Wuppertal/ProcessSection.jsx';
 import FAQSection from '../components/Wuppertal/FAQSection.jsx';
 import CTAHome from '../components/Wuppertal/CTAHome.jsx';
 import Contact from '../components/Wuppertal/Contact.jsx';
+import Testimonials from '../components/Testimonials';
 
 const Wuppertallanding = () => {
   return (
@@ -41,6 +42,7 @@ const Wuppertallanding = () => {
 
       <main>
         <Hero />
+        <Testimonials />
         <ServiceMarquee />
         <ProblemSolution />
         <Service />
