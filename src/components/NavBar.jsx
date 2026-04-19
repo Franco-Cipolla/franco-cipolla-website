@@ -48,17 +48,7 @@ const NavBar = () => {
       <div className="mx-auto w-full xl:max-w-[1100px] px-4 sm:px-6 xl:px-0 flex justify-between items-center py-4">
         {/* Desktop Navigation */}
         <ul className="gap-10 hidden lg:flex">
-          <li>
-            <Link
-              to="/"
-              className="text-black text-lg hover:text-[#003566] transition"
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }}
-            >
-              Home
-            </Link>
-          </li>
+          
           {deskMenuItems.map((item) => (
             <li key={item.label}>
               <Link
@@ -91,11 +81,11 @@ const NavBar = () => {
         </ul>
 
         {/* Branding */}
-        <h2 to="/"
-              className="text-black text-lg hover:text-[#003566] transition"
+        <h2  className="font-bold text-[1.3rem]  cursor-pointer lg:text-center lg:text-2xl"> <Link to="/"
+              className="text-black hover:text-[#003566] text-lg  transition"
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
-              }} className="font-bold text-[1.3rem] lg:text-center lg:text-2xl">Franco Cipolla <span className='block lg:text-[18px] font-normal text-black/90 text-[0.87rem]'>Webdesign & Digitale Kundengewinnung</span></h2>
+              }} >Franco Cipolla <span className='block lg:text-[18px] font-normal  text-black/90 text-[0.87rem]'>Webdesign & Digitale Kundengewinnung</span></Link></h2>
 
         {/* Burger div */}
         <button
@@ -130,20 +120,7 @@ const NavBar = () => {
             aria-label="Mobile Navigation"
             id="mobile-menu"
         >
-          <li role="none">
-            <Link
-              to="/"
-              className="text-black text-2xl font-semibold hover:text-[#003566] transition"
-              onClick={() => {
-                setIsOpen(false)
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }}
-              role="menuitem"
-              tabIndex={0}
-            >
-              Home
-            </Link>
-          </li>
+
 
           {mobileMenuItems.map((item) => (
             <li role="none" key={item.label}>
