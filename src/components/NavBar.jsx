@@ -77,6 +77,17 @@ const NavBar = () => {
               Service
             </button>
           </li>
+          <li>
+            <button
+              onClick={() => {
+                setIsOpen(false)
+                navigate('/', { state: { scrollTo: 'contact' } })
+              }}
+              className="text-black cursor-pointer text-lg hover:text-[#003566] transition"
+            >
+              Kontakt
+            </button>
+          </li>
         </ul>
 
         {/* Branding */}
