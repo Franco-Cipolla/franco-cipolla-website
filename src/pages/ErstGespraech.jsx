@@ -202,7 +202,7 @@ const ErstGespraech = () => {
             {/* Subline */}
             <p className="text-[14px] sm:text-[15px] lg:text-[17px] text-[#000814]/68 leading-[1.7] mb-3 sm:mb-4">
 
-              In 15 Minuten wissen Sie genau, was fehlt, damit Ihr Telefon
+              Danach wissen Sie genau, was fehlt, damit Ihr Telefon
               öfter klingelt und zwar von Leuten aus Ihrer Region,
               die Sie noch nicht kennen.
             </p>

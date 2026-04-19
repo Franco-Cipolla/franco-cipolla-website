@@ -16,11 +16,12 @@ const Hero = () => {
   const disclaimerRef = useRef(null);
   const ctaRef = useRef(null);
   const imageRef = useRef(null);
+  const mobileImageRef = useRef(null);
 
   const [, setIsXL] = useState(false);
 
   const handleClick = () => {
-navigate('/website-analyse');
+    navigate('/website-analyse');
   };
 
   useEffect(() => {
@@ -76,14 +77,21 @@ navigate('/website-analyse');
       });
 
       const imgEl = imageRef.current;
-      if (imgEl && !imgEl.complete) {
-        const handleLoad = () => {
+      if (imgEl) {
+        if (!imgEl.complete) {
+          const handleLoad = () => {
+            gsap.from(imgEl, { y: 50, opacity: 0, duration: 1, ease: 'power3.out' });
+          };
+          imgEl.addEventListener('load', handleLoad);
+          return () => imgEl.removeEventListener('load', handleLoad);
+        } else {
           gsap.from(imgEl, { y: 50, opacity: 0, duration: 1, ease: 'power3.out' });
-        };
-        imgEl.addEventListener('load', handleLoad);
-        return () => imgEl.removeEventListener('load', handleLoad);
-      } else if (imgEl) {
-        gsap.from(imgEl, { y: 50, opacity: 0, duration: 1, ease: 'power3.out' });
+        }
+      }
+
+      const mobileImg = mobileImageRef.current;
+      if (mobileImg) {
+        gsap.from(mobileImg, { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out', delay: 0.6 });
       }
     }, heroRef);
     return () => ctx.revert();
@@ -108,13 +116,13 @@ navigate('/website-analyse');
         ref={heroRef}
         className="w-full mt-12 lg:mt-16 xl:mt-30 py-12 sm:py-24 md:py-32 px-4 sm:px-6 xl:px-0"
       >
-        <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col  lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
+        <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px] flex flex-col lg:flex-row gap-10 lg:justify-start lg:items-start xl:text-left md:items-center md:text-center">
 
-          <div className='xl:max-w-[60%]'>
+          <div className='xl:max-w-[60%] '>
 
-            {/* Header-Badge (Text-Bereich) */}
-            <div className="flex justify-center xl:justify-start mb-4 md:mb-6">
-              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-1deg]">
+            {/* Badge */}
+            <div className="flex mt-5 xl:mt-0 justify-center xl:justify-start mb-5 md:mb-6">
+              <div className="inline-flex  items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-1deg]">
                 <span className="text-[13px] md:text-sm font-bold text-[#001D3D] tracking-tight">
                   🔧 Für Handwerker & lokale Betriebe in Wuppertal
                 </span>
@@ -127,28 +135,37 @@ navigate('/website-analyse');
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
               Websites für lokale Unternehmen in Wuppertal
-<span className="text-[#003566]"> mit Fokus auf Kundengewinnung</span>
-
+              <span className="text-[#003566]"> mit Fokus auf Kundengewinnung</span>
             </h1>
 
-            {/* Subheadline & Text */}
+            {/* Subtext */}
             <div className="max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl">
+
+              {/* Mobile only – versickernde Besucher-Winkel */}
               <p
                 ref={text1Ref}
-                className="text-lg xl:text-xl text-[#000814] mb-4 font-semibold"
+                className="md:hidden text-[15px] text-[#000814]/75 mb-5"
               >
-              Viele Unternehmen in Wuppertal haben eine Website, aber kaum eine davon bringt regelmäßig messbar neue Anfragen rein.
+                Besucher kommen täglich auf Ihre Website und gehen wieder,
+                weil nichts sie zur Anfrage führt. <br />Die Kunden gehen dann zum Konkurrenten.
               </p>
 
+              {/* md+ only */}
               <p
                 ref={text2Ref}
-                className="text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5"
+                className="hidden md:block text-lg xl:text-xl text-[#000814] mb-4 font-semibold"
               >
-                 Wer kein System dahinter hat, bleibt auf Empfehlungen angewiesen
-  und weiß nie, wie viele Aufträge nächsten Monat tatsächlich kommen könnten.<br /><br />
-  Eine Website allein reicht nicht - sie muss den Besucher
-  gezielt zu einer Kontaktaufnahme führen.
+                Viele Unternehmen in Wuppertal haben eine Website, aber kaum eine davon
+                bringt regelmäßig messbar neue Anfragen rein.
               </p>
+
+              <p className="hidden md:block text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5">
+                Wer kein System dahinter hat, bleibt auf Empfehlungen angewiesen
+                und weiß nie, wie viele Aufträge nächsten Monat tatsächlich kommen könnten.<br /><br />
+                Eine Website allein reicht nicht – sie muss den Besucher
+                gezielt zu einer Kontaktaufnahme führen.
+              </p>
+
             </div>
 
             {/* CTA */}
@@ -170,45 +187,70 @@ navigate('/website-analyse');
             >
               Unverbindlich · 15 Minuten · Keine Vorbereitung nötig
             </p>
+
+            {/* Bild + Badges – nur Mobile */}
+            <div
+              ref={mobileImageRef}
+              className="block md:hidden mt-10 w-full"
+            >
+              <div className="relative max-w-[420px] mx-auto">
+                <img
+                  src={HeroIllustration}
+                  alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen in Wuppertal"
+                  className="w-full rounded-2xl"
+                />
+
+                {/* Badge linke Schulter – Augenhöhe */}
+                <div className="absolute" style={{ top: '30%', left: '-12px' }}>
+                  <div className="inline-flex items-center gap-1.5 bg-white border-2 border-[#001D3D] rounded-xl px-3 py-1.5 shadow-[2px_2px_0px_#001D3D] rotate-[-2deg]">
+                    <span className="text-[11px] font-bold text-[#001D3D] whitespace-nowrap">📈 Mehr Anfragen</span>
+                  </div>
+                </div>
+
+                {/* Badge rechte Schulter – Augenhöhe */}
+                <div className="absolute" style={{ top: '30%', right: '-12px' }}>
+                  <div className="inline-flex items-center gap-1.5 bg-white border-2 border-[#001D3D] rounded-xl px-3 py-1.5 shadow-[2px_2px_0px_#001D3D] rotate-[2deg]">
+                    <span className="text-[11px] font-bold text-[#001D3D] whitespace-nowrap">📍 Lokal bei Google</span>
+                  </div>
+                </div>
+
+                {/* Badge unten mittig */}
+                <div className="absolute" style={{ bottom: '20px', left: '50%', transform: 'translateX(-50%)' }}>
+                  <div className="inline-flex items-center gap-1.5 bg-white border-2 border-[#001D3D] rounded-xl px-3 py-1.5 shadow-[2px_2px_0px_#001D3D] rotate-[-1deg]">
+                    <span className="text-[11px] font-bold text-[#001D3D] whitespace-nowrap">🛡️ DSGVO-konform</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-                {/* Illustration */}
+          {/* Illustration – nur Desktop (xl+) */}
           <div className="hidden xl:flex flex-1 justify-center lg:justify-end pt-6 lg:pt-0 relative">
-
             <img
               ref={imageRef}
               src={HeroIllustration}
-              alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen"
+              alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen in Wuppertal"
               className="w-full rounded-2xl max-w-[600px]"
             />
 
-           {/* Badge oben rechts – Illustration */}
-<div className="absolute top-0 left-60">
-  <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[2deg]">
-    <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">
-      📈 Mehr Anfragen
-    </span>
-  </div>
-</div>
+            <div className="absolute top-0 left-60">
+              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[2deg]">
+                <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">📈 Mehr Anfragen</span>
+              </div>
+            </div>
 
-{/* Badge unten rechts – Illustration */}
-<div className="absolute bottom-6 right-6">
-  <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-2deg]">
-    <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">
-      🛡️ DSGVO-konform
-    </span>
-  </div>
-</div>
+            <div className="absolute bottom-6 right-6">
+              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-2deg]">
+                <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">🛡️ DSGVO-konform</span>
+              </div>
+            </div>
 
-{/* Badge links mittig – Illustration */}
-<div className="absolute top-1/2 -translate-y-1/2 left-1">
-  <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[1.5deg]">
-    <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">
-      📍 Lokal bei Google auffindbar
-    </span>
-  </div>
-</div>
-
+            <div className="absolute top-1/2 -translate-y-1/2 left-1">
+              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[1.5deg]">
+                <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">📍 Lokal bei Google auffindbar</span>
+              </div>
+            </div>
           </div>
 
         </div>
