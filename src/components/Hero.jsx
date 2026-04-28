@@ -140,7 +140,7 @@ const Hero = () => {
               Websites, die gezielt
               <span className="text-[#003566]"> auf Kundenanfragen ausgelegt sind.</span>
             </h1>
-           
+
 
             {/* Subtext */}
             <div className="max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl">
@@ -150,8 +150,8 @@ const Hero = () => {
                 ref={text1Ref}
                 className="md:hidden text-[15px] text-[#000814]/75 mb-5"
               >
-                Ihre Website kann messbar mehr Anfragen bringen -
-                ohne Werbebudget, ohne auf Empfehlungen warten.
+                Die meisten Websites haben keinen klaren Aufbau und
+              genau das sorgt dafür, dass Anfragen ausbleiben.
               </p>
 
               {/* md+ only – ausführlich */}

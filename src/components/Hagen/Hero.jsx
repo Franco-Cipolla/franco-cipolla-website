@@ -13,6 +13,8 @@ const Hero = () => {
   const headlineRef = useRef(null);
   const text1Ref = useRef(null);
   const text2Ref = useRef(null);
+  const text3Ref = useRef(null);
+  const text4Ref = useRef(null);
   const disclaimerRef = useRef(null);
   const ctaRef = useRef(null);
   const imageRef = useRef(null);
@@ -67,7 +69,7 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const textRefs = [headlineRef, text1Ref, text2Ref, ctaRef, disclaimerRef];
+      const textRefs = [headlineRef, text1Ref, text2Ref, text3Ref, text4Ref, ctaRef, disclaimerRef];
       gsap.from(textRefs.map(ref => ref.current).filter(Boolean), {
         y: 50,
         opacity: 0,
@@ -146,8 +148,7 @@ const Hero = () => {
                 ref={text1Ref}
                 className="md:hidden text-[15px] text-[#000814]/75 mb-5"
               >
-                Ohne System bleibt jeder Auftrag Zufall –
-                und Sie wissen nie, wie viele Anfragen nächsten Monat kommen.
+                Viele Unternehmenswebsites in Hagen bringen Anfragen aber nicht konstant genug, um darauf zu bauen.
               </p>
 
               {/* md+ only */}
@@ -156,15 +157,18 @@ const Hero = () => {
                 className="hidden md:block text-lg xl:text-xl text-[#000814] mb-4 font-semibold"
               >
                 Viele Unternehmen in Hagen haben eine Website, aber kaum eine davon
-                bringt regelmäßig messbar neue Anfragen rein.
+                bringt regelmäßig & messbar neue Anfragen rein.
               </p>
 
-              <p className="hidden md:block text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5">
+              <p ref={text3Ref} className="hidden md:block text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5">
                 Wer kein System dahinter hat, bleibt auf Empfehlungen angewiesen
-                und weiß nie, wie viele Aufträge nächsten Monat tatsächlich kommen könnten.<br /><br />
-                Eine Website allein reicht nicht – sie muss den Besucher
+                und weiß nie, wie viele Aufträge nächsten Monat tatsächlich kommen könnten.
+              </p>
+              <p ref={text4Ref} className=" text-[15px] xl:text-[1.05rem] text-[#000814]/85 mb-5">
+                Eine Website allein reicht nicht, sie muss den Besucher
                 gezielt zu einer Kontaktaufnahme führen.
               </p>
+
 
             </div>
 

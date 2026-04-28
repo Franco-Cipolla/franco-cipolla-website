@@ -146,8 +146,7 @@ const Hero = () => {
                 ref={text1Ref}
                 className="md:hidden text-[15px] text-[#000814]/75 mb-5"
               >
-                Besucher kommen täglich auf Ihre Website und gehen wieder,
-                weil nichts sie zur Anfrage führt. <br />Die Kunden gehen dann zum Konkurrenten.
+                Die meisten Websites verlieren regelmäßig potenzielle Kunden, ohne dass es auffällt.
               </p>
 
               {/* md+ only */}
