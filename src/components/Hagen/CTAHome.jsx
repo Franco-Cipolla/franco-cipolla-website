@@ -54,7 +54,7 @@ navigate('/website-analyse')
         onClick={handleClick}
         className="cta-animate inline-flex cursor-pointer transform hover:-translate-y-1 ease-in items-center gap-2 bg-[#001D3D] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#003566] transition"
       >
-        Kostenlose Website-Analyse starten <FaArrowRight />
+        Kostenlose Website-Analyse vereinbaren <FaArrowRight />
       </button>
       <p className='cta-animate text-[15px] mt-3 text-black/60'>
         Ohne Risiko & vollkommen unverbindlich – Individuell für ihr Unternehmen in Hagen

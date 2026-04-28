@@ -287,7 +287,7 @@ const Service = () => {
               </p>
             </div>
             <div className="flex flex-col items-start sm:items-end gap-[0.35rem] flex-shrink-0">
-              <CTA1 />
+              <CTA1 bg='bg-[#001D3D]' text2='text-white' hover='text-white' />
               <span className="text-[11px] text-[#000814]/28">Unverbindlich · ohne Vorbereitung</span>
             </div>
           </div>

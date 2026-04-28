@@ -161,6 +161,7 @@ const Service = () => {
       id="service-start"
       className="relative py-16 sm:py-20 px-4 sm:px-6 xl:px-0"
     >
+
       <div className="mx-auto w-full max-w-[700px] xl:max-w-[860px]">
 
         {/* Section Header */}
@@ -171,7 +172,7 @@ const Service = () => {
             <span className="block text-xl font-normal ">Webdesigner Ennepetal</span>
           </h2>
           <p className="text-[15px] md:text-lg text-[#000814] max-w-2xl mx-auto">
-            <span className="md:hidden">Für lokale Betriebe, die Anfragen wollen - nicht nur irgendeine Website.</span>
+            <span className="md:hidden">Für lokale Betriebe, die mehr Anfragen wollen - nicht nur irgendeine Website.</span>
             <span className="hidden md:inline">Für lokale Betriebe in Ennepetal  <a href="/wuppertal" className="cursor-pointer underline hover:text-[#001D3D] transition">Wuppertal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, die Anfragen wollen - ohne auf Empfehlungen zu warten.</span>
           </p>
         </div>
@@ -194,7 +195,7 @@ const Service = () => {
           {/* DESIRE - Header */}
           <div ref={headRef} className="p-5 sm:p-8 border-b border-[#003566]/10">
             <p className="text-[10px] font-bold tracking-[0.13em] uppercase text-[#003566] border-b border-[#003566]/25 pb-[2px] inline-block mb-3 sm:mb-4">
-              ✦ Lokales-Anfragen-System™
+              ✦ Lokales-Anfragen-System
             </p>
             <h3 className="text-lg sm:text-2xl font-black text-[#000814] leading-tight tracking-tight mb-3">
 
@@ -290,7 +291,7 @@ const Service = () => {
               </p>
             </div>
             <div className="flex flex-col items-start sm:items-end gap-[0.35rem] flex-shrink-0">
-              <CTA1 />
+              <CTA1  bg='bg-[#001D3D]' text2='text-white' hover='text-white' />
               <span className="text-[11px] text-[#000814]/28">Unverbindlich · ohne Vorbereitung</span>
             </div>
           </div>

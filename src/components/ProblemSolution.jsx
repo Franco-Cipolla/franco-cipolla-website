@@ -119,9 +119,9 @@ const ProblemSolution = () => {
             </div>
             <div className="p-5 bg-green-100 rounded-2xl text-center shadow-md">
               <p className="text-green-800 font-bold text-base">
-                Ich baue Websites die Anfragen erzeugen. Sie wissen jede Woche, woher neue Anfragen kommen.
+                Sie haben eine Website, die auf messbare Anfragen optimiert ist
                 <span className="block mt-1 text-sm font-normal text-green-700">
-                  Starten Sie mit 50% Anzahlung – den Rest zahlen Sie erst nach erfolgreichem Launch.
+                  Starten Sie mit 50% Anzahlung – den Rest zahlen Sie erst vor Launch.
                 </span>
               </p>
             </div>
@@ -131,7 +131,7 @@ const ProblemSolution = () => {
 
         {/* CTA */}
         <div className="w-full mt-10 flex justify-center">
-          <CTA1 bg="bg-white" />
+          <CTA1 bg="bg-[#001D3D]" text2='text-white' hover='text-white' />
         </div>
 
         <div className="text-center mt-8">

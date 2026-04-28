@@ -351,7 +351,7 @@ const ProcessSection = () => {
 
         {/* ── CTA ── */}
         <div className="mt-10 md:mt-12 justify-center items-center flex flex-col gap-2.5">
-          <CTA1 />
+          <CTA1 bg='bg-[#001D3D]' text2='text-white' hover='text-white' />
           <p className="text-[12px] md:text-[13px] text-[#000814]/36">
             Kostenlos & unverbindlich · 15 Minuten · Keine Vorbereitung nötig
           </p>
