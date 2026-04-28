@@ -193,7 +193,7 @@ const Service = () => {
           {/* DESIRE - Header */}
           <div ref={headRef} className="p-5 sm:p-8 border-b border-[#003566]/10">
             <p className="text-[10px] font-bold tracking-[0.13em] uppercase text-[#003566] border-b border-[#003566]/25 pb-[2px] inline-block mb-3 sm:mb-4">
-              ✦ Lokales-Anfragen-System™
+              ✦ Lokales-Anfragen-System
             </p>
             <h3 className="text-lg sm:text-2xl font-black text-[#000814] leading-tight tracking-tight mb-3">
               <span className="text-[#003566]">Eine Website die für Sie arbeitet, auch wenn Sie es nicht tun</span>

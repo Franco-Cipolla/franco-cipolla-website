@@ -140,6 +140,7 @@ const Hero = () => {
               Websites, die gezielt
               <span className="text-[#003566]"> auf Kundenanfragen ausgelegt sind.</span>
             </h1>
+           
 
             {/* Subtext */}
             <div className="max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl">

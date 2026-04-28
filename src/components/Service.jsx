@@ -179,7 +179,7 @@ const Service = () => {
         {/* Dream Outcome */}
         <div ref={dreamRef} className="border-l-[3px] border-[#003566] bg-[#003566]/[0.04] px-4 sm:px-5 py-4 mb-8 sm:mb-10">
           <p className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#003566] mb-1">
-            Was das Lokale-Anfragen-System™ erreicht
+            Was das Lokale-Anfragen-System erreicht
           </p>
           <p className="text-[13px] sm:text-[15px] font-bold text-[#000814] leading-relaxed">
             Ihr Telefon klingelt - ein Interessent aus Ihrer Region.<br />
