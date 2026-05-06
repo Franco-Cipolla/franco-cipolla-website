@@ -445,7 +445,7 @@ const CalendlyFallbackForm = () => {
               Unter welcher Nummer erreiche ich Sie?
             </p>
             <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
-              Ich rufe zur Terminbestätigung kurz an – kein Spam, kein Verkaufsgespräch
+              Ich schreibe sie zur Terminbestätigung kurz an – kein Spam
             </p>
             <input
               type="tel"
@@ -486,7 +486,7 @@ const CalendlyFallbackForm = () => {
             {formData.messageDate && formData.messageTime && (
               <div className="mt-4 border border-[#003566]/15 bg-[#003566]/[0.03] rounded-lg px-4 py-3">
                 <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wide text-[#003566] mb-1.5">
-                  {hasNoWebsite ? "Ihr Erstgespräch" : "Ihre Analyse"}
+                  {hasNoWebsite ? "Ihr Erstgespräch" : "Ihre Website-Analyse"}
                 </p>
                 <p className="text-[12px] sm:text-[13px] text-[#000814]/65 leading-relaxed">
                   Termin:{" "}
