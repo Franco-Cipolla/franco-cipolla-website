@@ -188,7 +188,7 @@ page="ueber-mich"
 
         {/* CTA */}
         <section className="mt-10" ref={ctaRef}>
-          <CTA1 />
+          <CTA1 color="text-white" bg=" bg-[#001D3D]" hover="text-white"/>
           <p className='cta-animate text-[15px] mt-3 text-black/60'>Unverbindlich. Klar. Ohne Verkaufsdruck.</p>
         </section>
       </main>

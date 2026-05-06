@@ -511,7 +511,7 @@ const ErstGespraech = () => {
               },
               {
                 q: "Was kostet eine neue Website bei Ihnen, falls ich Interesse hätte?",
-                a: "Den genauen Preis besprechen wir im Gespräch - er hängt vom Umfang ab. Keine monatlichen Gebühren, kein verstecktes Abo.",
+                a: " Eine Website die auf Anfragen ausgerichtet ist, fängt bei 800€ an. Den genauen Preis besprechen wir im Gespräch - er hängt vom Umfang ab. Keine monatlichen Gebühren, kein verstecktes Abo.",
               },
             ].map((faq, i) => (
               <div

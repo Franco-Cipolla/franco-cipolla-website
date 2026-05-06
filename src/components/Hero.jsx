@@ -127,7 +127,7 @@ const Hero = () => {
             <div className="flex justify-center xl:justify-start mb-5 md:mb-6">
               <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-1deg]">
                 <span className="text-[13px] md:text-sm font-bold text-[#001D3D] tracking-tight">
-                  🚀 Für lokale Unternehmen in Ennepetal & Umgebung
+                  🚀 Für lokale Handwerker & Unternehmen
                 </span>
               </div>
             </div>

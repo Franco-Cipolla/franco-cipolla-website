@@ -55,7 +55,7 @@ const faqsHagen = [
 answer: (
   <div className="space-y-2">
      <p>
-    Für lokale Unternehmen in Hagen & Umgebung besprechen wir den Projektpreis persönlich. Entweder im <strong>Erstgespräch</strong> oder während Ihrer <strong>Website-Analyse</strong>.
+    Eine Website die auf Anfragen ausgerichtet ist, fängt bei 800€ an.
   </p>
     <p>
       Sie zahlen <strong>50% Anzahlung</strong>, den Rest erst, wenn Ihre Website live geht.

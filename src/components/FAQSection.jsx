@@ -88,7 +88,7 @@ const faqs = [
 answer: (
   <div className="space-y-2">
     <p>
-    Für lokale Unternehmen in Ennepetal & Umgebung besprechen wir den Projektpreis persönlich. Entweder im <strong>Erstgespräch</strong> oder während Ihrer <strong>Website-Analyse</strong>.
+    Eine Website die auf Anfragen ausgerichtet ist, fängt bei 800€ an.
   </p>
     <p>
       Sie zahlen <strong>50% Anzahlung</strong>, den Rest erst, wenn Ihre Website live geht.
@@ -107,7 +107,7 @@ answer: (
         <p>
       In der kostenlosen Website-Analyse zeige ich genau, wo Ihr Website Anfragen verliert, und zeige Ihnen,
       wie Sie diese Punkte beheben könnten um mehr Anfragen zu gewinnen. <br/> <br/>
-      Danach erhalten Sie wenn Sie möchten ein <strong>transparentes Festpreis-Angebot</strong> – ohne versteckte Kosten.
+      Danach erhalten Sie wenn Sie möchten ein <strong>transparentes Angebot</strong> – ohne versteckte Kosten.
     </p>
       </div>
     ),
