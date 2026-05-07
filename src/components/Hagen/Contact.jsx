@@ -48,6 +48,7 @@ const Contact = () => {
     'Ich bin von Empfehlungen abhängig – das ist nicht planbar',
     'Neue Kunden kommen unregelmäßig',
     'Ich habe aktuell gar keine Website',
+    "Ich möchte eine neue Website erstellen"
   ];
 
   useEffect(() => {
