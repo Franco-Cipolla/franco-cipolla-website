@@ -150,8 +150,8 @@ const Hero = () => {
                 ref={text1Ref}
                 className="md:hidden text-[15px] text-[#000814]/75 mb-5"
               >
-                Die meisten Websites haben keinen klaren Aufbau und
-              genau das sorgt dafür, dass Anfragen ausbleiben.
+              Die meisten Websites sehen gut aus, aber verlieren täglich potenzielle Kunden, weil kein klares System dahinter steckt.
+              <br/> <br/>Entscheidend ist nicht das Design, sondern ob deine Website messbar Anfragen erzeugt.
               </p>
 
               {/* md+ only – ausführlich */}

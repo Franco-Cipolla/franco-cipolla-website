@@ -136,7 +136,7 @@ const Hero = () => {
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
               Websites für lokale Unternehmen in Wuppertal
-              <span className="text-[#003566]"> mit Fokus auf Kundengewinnung</span>
+              <span className="text-[#003566]"> mit Fokus auf Kundenanfragen</span>
             </h1>
 
             {/* Subtext */}
@@ -147,7 +147,8 @@ const Hero = () => {
                 ref={text1Ref}
                 className="md:hidden text-[15px] text-[#000814]/75 mb-5"
               >
-                Die meisten Websites verlieren regelmäßig potenzielle Kunden, ohne dass es auffällt.
+                Die meisten Websites sehen gut aus, aber verlieren täglich potenzielle Kunden, weil kein klares System dahinter steckt.
+              <br/> <br/>Entscheidend ist nicht das Design, sondern ob deine Website messbar Anfragen erzeugt.
               </p>
 
               {/* md+ only */}
