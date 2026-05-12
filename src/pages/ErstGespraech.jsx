@@ -160,7 +160,7 @@ const ErstGespraech = () => {
   return (
     <>
       <Helmet>
-        <title>Kostenlose Website-Analyse - Erstgespräch buchen | Franco Cipolla</title>
+        <title>Kostenlose Website-Analyse - Franco Cipolla</title>
         <meta
           name="description"
           content="In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert - kostenlos, direkt auf Ihrer Seite gezeigt."

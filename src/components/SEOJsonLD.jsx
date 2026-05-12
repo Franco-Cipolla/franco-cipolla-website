@@ -22,7 +22,7 @@ const SEOJsonLD = ({ page }) => {
   const baseBusiness = {
     "@type": "LocalBusiness",
     "@id": `${domain}/#localbusiness`,
-    "name": "Franco Cipolla Webdesign",
+    "name": "Franco Cipolla Webdesign & Digitale Kundengewinnung",
     "image": `${domain}/Franco2.jpeg`,
     "logo": `${domain}/Franco2.jpeg`,
     "url": domain,
