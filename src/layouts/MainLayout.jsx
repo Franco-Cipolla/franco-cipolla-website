@@ -4,6 +4,7 @@ import ScrollToTop from '../components/ScrollToTop'
 import { useLocation, useNavigate, Outlet } from 'react-router-dom'
 import { useEffect } from 'react'
 import Footer from '../components/Footer'
+import ProvenExpertWidget from '../components/ProvenExpertWidget'
 
 const MainLayout = () => {
   const location = useLocation()
@@ -37,6 +38,7 @@ const MainLayout = () => {
       <Navbar />
       <Outlet />
       <Footer />
+       <ProvenExpertWidget />
     </div>
   )
 }
