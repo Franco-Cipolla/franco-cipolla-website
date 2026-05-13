@@ -195,8 +195,8 @@ const ErstGespraech = () => {
 
             {/* H1 */}
             <h1 className="text-[24px] sm:text-[32px] lg:text-[40px] font-bold leading-[1.25] tracking-tight mb-4 sm:mb-5">
-              In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert -
-              und was Sie konkret ändern können.
+              In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert
+              und was Sie konkret dagegen tun können.
             </h1>
 
             {/* Subline */}
@@ -209,7 +209,7 @@ const ErstGespraech = () => {
 
             {/* Micro-copy */}
             <p className="text-[11px] sm:text-[12px] text-black/35 tracking-wide">
-              Kostenlos &nbsp;·&nbsp; Keine Vorbereitung nötig &nbsp;·&nbsp; Sie entscheiden danach
+              Kostenlos &nbsp;·&nbsp; Keine Vorbereitung nötig &nbsp;·&nbsp; Unverbindlich
             </p>
           </div>
 
