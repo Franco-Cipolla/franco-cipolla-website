@@ -14,6 +14,7 @@ import Testimonials from '../components/Testimonials';
 const HomePage = () => {
   return (
     <>
+    
       <Helmet>
 <title>Websites für mehr Kundenanfragen - Webdesign Ennepetal & Ruhrgebiet</title>        <meta name="description" content="Kostenlose Website-Analyse für Betriebe in Ennepetal & Umgebung. Ihr Webdesign-Experte für mehr Kundenanfragen durch SEO, Verkaufspsychologie & Conversion-Optimierung." />
         <link rel="canonical" href="https://www.franco-cipolla.de/" />

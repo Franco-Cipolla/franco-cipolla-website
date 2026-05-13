@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 import ProvenExpertWidget from '../components/ProvenExpertWidget'
 
 const MainLayout = () => {
+  console.log("version 1.0.1");
   const location = useLocation()
   const navigate = useNavigate()
 
