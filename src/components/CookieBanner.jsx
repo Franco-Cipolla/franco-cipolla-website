@@ -9,7 +9,6 @@ const GA_ID = import.meta.env.VITE_GA_ID;
 // GLOBAL STATE (prior blocking layer)
 // -----------------------------
 let gaInitialized = false;
-let provenExpertInitialized = false;
 
 // -----------------------------
 // LOAD GA ONLY AFTER CONSENT
@@ -40,36 +39,41 @@ const loadGA = (id) => {
 // PROVEN EXPERT (lazy loaded)
 // -----------------------------
 const loadProvenExpert = () => {
-  if (provenExpertInitialized) return;
+  if (window.__provenExpertLoaded) return;
+  window.__provenExpertLoaded = true;
 
-  provenExpertInitialized = true;
+  const initWidget = () => {
+    if (!window.provenExpert) return;
+
+    window.provenExpert.proSeal({
+      widgetId: "cd5dad9a-26e9-48a2-a2ac-25bc1e102927",
+      language: "de-DE",
+      bannerColor: "#003566",
+      textColor: "#FFFFFF",
+      showReviews: true,
+      hideDate: true,
+      hideName: false,
+      hideOnMobile: false,
+      bottom: "30px",
+      stickyToSide: "right",
+      googleStars: true,
+      zIndex: "9999",
+    });
+  };
 
   const script = document.createElement("script");
   script.src = "https://s.provenexpert.net/seals/proseal-v2.js";
   script.async = true;
 
   script.onload = () => {
-    if (window.provenExpert) {
-      window.provenExpert.proSeal({
-        widgetId: "cd5dad9a-26e9-48a2-a2ac-25bc1e102927",
-        language: "de-DE",
-        bannerColor: "#003566",
-        textColor: "#FFFFFF",
-        showReviews: true,
-        hideDate: true,
-        hideName: false,
-        hideOnMobile: false,
-        bottom: "30px",
-        stickyToSide: "right",
-        googleStars: true,
-        zIndex: "9999",
-      });
-    }
+    // wichtig: delay damit DOM ready ist
+    requestAnimationFrame(() => {
+      setTimeout(initWidget, 200);
+    });
   };
 
   document.body.appendChild(script);
 };
-
 const CookieBanner = ({ forceShow = false, onClose }) => {
   const [showBanner, setShowBanner] = useState(false);
   const [consent, setConsent] = useState({
@@ -93,9 +97,11 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
       setShowBanner(false);
 
       if (parsed.analytics) {
-        loadGA(GA_ID);
-        loadProvenExpert();
-      }
+  setTimeout(() => {
+    loadGA(GA_ID);
+    loadProvenExpert();
+  }, 300);
+}
     } else if (!forceShow) {
       setShowBanner(true);
     }
