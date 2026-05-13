@@ -26,7 +26,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://s.provenexpert.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net https://submit-form.com https://s.provenexpert.net; frame-src 'self' https://www.google.com https://s.provenexpert.net;"
+          "value": "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://s.provenexpert.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net https://submit-form.com https://s.provenexpert.net https://d.provenexpert.net; frame-src 'self' https://www.google.com https://s.provenexpert.net;"
         }
       ]
     }
