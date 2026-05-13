@@ -2,7 +2,73 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "./gsapSetup";
 
 const COOKIE_NAME = "cookieConsent_v1";
+const CONSENT_VERSION = "1.0";
 const GA_ID = import.meta.env.VITE_GA_ID;
+
+// -----------------------------
+// GLOBAL STATE (prior blocking layer)
+// -----------------------------
+let gaInitialized = false;
+let provenExpertInitialized = false;
+
+// -----------------------------
+// LOAD GA ONLY AFTER CONSENT
+// -----------------------------
+const loadGA = (id) => {
+  if (!id || gaInitialized) return;
+
+  gaInitialized = true;
+
+  window[`ga-disable-${id}`] = false;
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  window.gtag = gtag;
+
+  gtag("js", new Date());
+  gtag("config", id, { anonymize_ip: true });
+};
+
+// -----------------------------
+// PROVEN EXPERT (lazy loaded)
+// -----------------------------
+const loadProvenExpert = () => {
+  if (provenExpertInitialized) return;
+
+  provenExpertInitialized = true;
+
+  const script = document.createElement("script");
+  script.src = "https://s.provenexpert.net/seals/proseal-v2.js";
+  script.async = true;
+
+  script.onload = () => {
+    if (window.provenExpert) {
+      window.provenExpert.proSeal({
+        widgetId: "cd5dad9a-26e9-48a2-a2ac-25bc1e102927",
+        language: "de-DE",
+        bannerColor: "#003566",
+        textColor: "#FFFFFF",
+        showReviews: true,
+        hideDate: true,
+        hideName: false,
+        hideOnMobile: false,
+        bottom: "30px",
+        stickyToSide: "right",
+        googleStars: true,
+        zIndex: "9999",
+      });
+    }
+  };
+
+  document.body.appendChild(script);
+};
 
 const CookieBanner = ({ forceShow = false, onClose }) => {
   const [showBanner, setShowBanner] = useState(false);
@@ -14,116 +80,76 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
 
   const bannerRef = useRef(null);
 
-  // --- 1) Consent laden
+  // -----------------------------
+  // INIT CONSENT (with proof layer)
+  // -----------------------------
   useEffect(() => {
     const saved = localStorage.getItem(COOKIE_NAME);
+
     if (saved) {
       const parsed = JSON.parse(saved);
+
       setConsent(parsed);
       setShowBanner(false);
 
-      // GA laden, wenn erlaubt
       if (parsed.analytics) {
-        enableGA();
-      } else {
-        disableGA();
+        loadGA(GA_ID);
+        loadProvenExpert();
       }
     } else if (!forceShow) {
       setShowBanner(true);
     }
   }, [forceShow]);
 
-  // --- 2) Animation
+  // -----------------------------
+  // ANIMATION
+  // -----------------------------
   useEffect(() => {
     if ((showBanner || forceShow) && bannerRef.current) {
-      const ctx = gsap.context(() => {
-        gsap.fromTo(
-          bannerRef.current,
-          { y: 100, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
-        );
-      }, bannerRef);
-      return () => ctx.revert();
+      gsap.fromTo(
+        bannerRef.current,
+        { y: 60, opacity: 0, scale: 0.98 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6 }
+      );
     }
   }, [showBanner, forceShow]);
 
-  // --- 3) GA loader (in Banner)
-  const enableGA = () => {
-    if (!GA_ID) return;
-
-    // Disable flag entfernen
-    window[`ga-disable-${GA_ID}`] = false;
-
-    // Wenn schon geladen, nichts tun
-    if (window.gaLoaded) return;
-
-    window.gaLoaded = true;
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-    document.head.appendChild(script);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      window.dataLayer.push(arguments);
-    }
-    window.gtag = gtag;
-
-    gtag("js", new Date());
-    gtag("config", GA_ID, { anonymize_ip: true });
-  };
-
-  const disableGA = () => {
-    if (!GA_ID) return;
-
-    // Disable flag setzen
-    window[`ga-disable-${GA_ID}`] = true;
-
-    // GA nicht mehr ausführen lassen
-    window.gtag = function () {
-      return null;
+  // -----------------------------
+  // CONSENT SAVE (WITH PROOF LOGGING)
+  // -----------------------------
+  const saveConsent = (newConsent) => {
+    const payload = {
+      ...newConsent,
+      timestamp: Date.now(),
+      version: CONSENT_VERSION,
+      userAgent: navigator.userAgent,
     };
 
-    // GA loaded zurücksetzen
-    window.gaLoaded = false;
-
-    // GA Cookies entfernen (nur die wichtigsten)
-    document.cookie = `_ga=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
-    document.cookie = `_gid=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
-    document.cookie = `_gat_gtag_${GA_ID}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
-  };
-
-  // --- 4) Consent speichern
-  const saveConsent = (newConsent) => {
-    localStorage.setItem(COOKIE_NAME, JSON.stringify(newConsent));
+    localStorage.setItem(COOKIE_NAME, JSON.stringify(payload));
     setConsent(newConsent);
 
-    if (newConsent.analytics) enableGA();
-    else disableGA();
+    if (newConsent.analytics) {
+      loadGA(GA_ID);
+      loadProvenExpert();
+    }
   };
 
   const handleAcceptAll = () => {
     saveConsent({ necessary: true, analytics: true, marketing: true });
     setShowBanner(false);
-    onClose && onClose();
+    onClose?.();
   };
 
   const handleSavePreferences = () => {
     saveConsent({ ...consent, necessary: true });
     setShowBanner(false);
-    onClose && onClose();
+    onClose?.();
   };
 
   const handleDecline = () => {
     saveConsent({ necessary: true, analytics: false, marketing: false });
     setShowBanner(false);
-    onClose && onClose();
-  };
-
-  const handleToggle = (key) => {
-    if (key === "necessary") return;
-    setConsent((prev) => ({ ...prev, [key]: !prev[key] }));
+    onClose?.();
   };
 
   if (!(showBanner || forceShow)) return null;
@@ -131,78 +157,48 @@ const CookieBanner = ({ forceShow = false, onClose }) => {
   return (
     <div
       ref={bannerRef}
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-8 md:bottom-8 max-w-[950px] bg-white border border-gray-300 rounded-lg shadow-lg p-6 text-black z-[9999] flex flex-col md:flex-row md:items-center md:justify-between"
+      className="
+        fixed bottom-6 left-1/2 -translate-x-1/2
+        w-[95%] md:w-auto max-w-[950px]
+        bg-white border border-gray-300
+        rounded-lg shadow-lg p-6 text-black
+        z-[10000]
+        flex flex-col md:flex-row md:items-center md:justify-between
+      "
       role="dialog"
-      aria-live="polite"
       aria-label="Cookie-Einstellungen"
     >
-      <div className="mb-4 md:mb-0 md:max-w-[60%] text-gray-700 leading-relaxed text-base md:text-lg">
-        <p className="font-semibold mb-2 text-black">Wir verwenden Cookies</p>
-         <p>
-          Um die Website für Sie zu optimieren, setzen wir notwendige Cookies und Analytics.
-          Details in der{" "}
-          <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="underline text-[#003566] hover:text-[#001D3D]">
+      <div className="mb-4 md:mb-0 md:max-w-[60%] text-gray-700">
+        <p className="font-semibold text-black mb-2">Cookies</p>
+        <p>
+          Wir nutzen notwendige Cookies und optional Analytics. Details in der{" "}
+          <a href="/datenschutz" className="underline text-[#003566]">
             Datenschutzerklärung
           </a>.
         </p>
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center gap-4 w-full md:w-auto">
-        <div className="flex flex-col space-y-2 md:mr-6 min-w-[220px]">
-          <label className="flex items-center cursor-not-allowed select-none text-gray-500">
-            <input type="checkbox" checked disabled className="mr-2" />
-            Notwendige Cookies
-          </label>
+      <div className="flex flex-col gap-3 md:min-w-[200px]">
+        <button
+          onClick={handleAcceptAll}
+          className="bg-[#003566] text-white px-5 cursor-pointer py-2 rounded font-semibold"
+        >
+          Alle akzeptieren
+        </button>
 
-          <label className="flex items-center cursor-pointer text-gray-800 hover:text-[#003566] transition-colors duration-200">
-            <input
-              type="checkbox"
-              checked={consent.analytics}
-              onChange={() => handleToggle("analytics")}
-              className="mr-2 accent-[#003566]"
-              aria-checked={consent.analytics}
-              aria-label="Analyse-Cookies (Google Analytics)"
-            />
-            Analyse-Cookies (Google Analytics)
-          </label>
+        <button
+          onClick={handleSavePreferences}
+          className="bg-gray-200 px-5 py-2 cursor-pointer rounded font-semibold"
+        >
+          Auswahl speichern
+        </button>
 
-          <label className="flex items-center cursor-pointer text-gray-800 hover:text-[#003566] transition-colors duration-200">
-            <input
-              type="checkbox"
-              checked={consent.marketing}
-              onChange={() => handleToggle("marketing")}
-              className="mr-2 accent-[#003566]"
-              aria-checked={consent.marketing}
-              aria-label="Marketing-Cookies (optional)"
-            />
-            Marketing-Cookies (optional)
-          </label>
-
-          <small className="text-gray-500 mt-1 max-w-xs">
-            Marketing-Cookies ermöglichen personalisierte Werbung und werden nur mit deiner Zustimmung aktiviert.
-          </small>
-        </div>
-
-        <div className="flex flex-wrap gap-3 flex-col md:justify-end md:min-w-[180px]">
-          <button
-            onClick={handleAcceptAll}
-            className="bg-[#003566] hover:bg-[#001D3D] text-white px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
-          >
-            Alle akzeptieren
-          </button>
-          <button
-            onClick={handleSavePreferences}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
-          >
-            Auswahl speichern
-          </button>
-          <button
-            onClick={handleDecline}
-            className="text-gray-600 hover:text-gray-900 px-5 py-2 transform hover:-translate-y-1 cursor-pointer rounded font-semibold transition"
-          >
-            Ablehnen
-          </button>
-        </div>
+        <button
+          onClick={handleDecline}
+          className="text-gray-600 px-5 py-2 cursor-pointer rounded font-semibold"
+        >
+          Ablehnen
+        </button>
       </div>
     </div>
   );

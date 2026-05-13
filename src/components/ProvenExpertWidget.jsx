@@ -18,7 +18,7 @@ export default function ProvenExpertWidget() {
           hideDate: true,
           hideName: false,
           hideOnMobile: false,
-          bottom: "30px",
+          bottom: "70px",
           stickyToSide: "right",
           googleStars: true,
           zIndex: "9999",
