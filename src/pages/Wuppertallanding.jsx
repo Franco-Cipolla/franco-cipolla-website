@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Hero from '../components/Wuppertal/Hero.jsx';
-import SEOJsonLD from '../components/SEOJsonLD.jsx';
 import ServiceMarquee from '../components/ServiceMarquee.jsx';
 import ProblemSolution from '../components/Wuppertal/ProblemSolution.jsx';
 import Service from '../components/Wuppertal/Service.jsx';
@@ -38,7 +37,6 @@ const Wuppertallanding = () => {
       </Helmet>
 
       {/* WICHTIG: page="Wuppertal" */}
-      <SEOJsonLD page="wuppertal" />
 
       <main>
         <Hero />

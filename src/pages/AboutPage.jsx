@@ -3,8 +3,6 @@ import React, { useRef, useLayoutEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import CTA1 from '../components/CTA1'
-import SEOJsonLD from '../components/SEOJsonLD';
-
 gsap.registerPlugin(ScrollTrigger)
 
 const AboutPage = () => {
@@ -78,23 +76,31 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>Über mich – Webdesigner aus Ennepetal | Franco Cipolla</title>
-        <meta
-          name="description"
-          content="Ich baue Websites für Unternehmen aus Ennepetal & Umgebung, die nicht nur gut aussehen, sondern auch wirklich Anfragen bringen – strukturiert, conversion-orientiert und ohne Schnickschnack."
-        />
-href="https://www.franco-cipolla.de/ueber-mich"
-        <meta property="og:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
-        <meta property="og:description" content="Websites, die wirklich Kunden bringen. Klar strukturiert, strategisch aufgebaut und auf Anfragen ausgelegt – für lokale Unternehmen." />
-        <meta property="og:image" content="https://franco-cipolla.de/og-preview.jpg" />
-content="https://www.franco-cipolla.de/ueber-mich"
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
-        <meta name="twitter:description" content="Websites, die wirklich Kunden bringen. Klar strukturiert, strategisch aufgebaut und auf Anfragen ausgelegt – für lokale Unternehmen." />
-        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
-      </Helmet>
-page="ueber-mich"
+  <title>Über mich – Webdesigner aus Ennepetal | Franco Cipolla</title>
+
+  <meta
+    name="description"
+    content="Ich baue Websites für Unternehmen aus Ennepetal & Umgebung, die nicht nur gut aussehen, sondern auch Anfragen bringen."
+  />
+
+  <link
+    rel="canonical"
+    href="https://www.franco-cipolla.de/ueber-mich"
+  />
+
+  {/* Open Graph */}
+  <meta property="og:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
+  <meta property="og:description" content="Websites, die wirklich Kunden bringen." />
+  <meta property="og:image" content="https://franco-cipolla.de/og-preview.jpg" />
+  <meta property="og:url" content="https://www.franco-cipolla.de/ueber-mich" />
+  <meta property="og:type" content="website" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
+  <meta name="twitter:description" content="Websites, die wirklich Kunden bringen." />
+  <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
+</Helmet>
 
       {/* Hintergrundkreise */}
       <div className="relative overflow-hidden">

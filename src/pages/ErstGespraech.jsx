@@ -3,7 +3,6 @@ import { Link,  } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Helmet } from "react-helmet-async";
-import SEOJsonLD from "../components/SEOJsonLD";
 import CheckIcon from "../components/CheckIcon";
 import CalendlyFallBackForm from "../components/CalendlyFallbackForm";
 import { FaChevronDown } from "react-icons/fa";
@@ -167,7 +166,6 @@ const ErstGespraech = () => {
         />
 <link rel="canonical" href="https://www.franco-cipolla.de/website-analyse"/>
       </Helmet>
-<SEOJsonLD page="website-analyse"/>
 
       <StickyMobileCTA formRef={formRef} />
 

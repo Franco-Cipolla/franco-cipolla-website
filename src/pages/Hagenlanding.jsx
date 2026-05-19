@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Hero from '../components/Hagen/Hero.jsx';
-import SEOJsonLD from '../components/SEOJsonLD';
 import ServiceMarquee from '../components/ServiceMarquee';
 import ProblemSolution from '../components/Hagen/ProblemSolution.jsx';
 import Service from '../components/Hagen/Service.jsx';
@@ -33,7 +32,6 @@ const HagenLanding = () => {
       </Helmet>
 
       {/* WICHTIG: page="hagen" */}
-      <SEOJsonLD page="hagen" />
 
       <main>
         <Hero />

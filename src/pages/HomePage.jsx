@@ -8,13 +8,12 @@ import ProcessSection from '../components/ProcessSection';
 import FAQSection from '../components/FAQSection';
 import CTAHome from '../components/CTAHome';
 import Contact from '../components/Contact';
-import SEOJsonLD from '../components/SEOJsonLD';
 import Testimonials from '../components/Testimonials';
 
 const HomePage = () => {
   return (
     <>
-    
+
       <Helmet>
 <title>Websites für mehr Kundenanfragen - Webdesign Ennepetal & Ruhrgebiet</title>        <meta name="description" content="Kostenlose Website-Analyse für Betriebe in Ennepetal & Umgebung. Ihr Webdesign-Experte für mehr Kundenanfragen durch SEO, Verkaufspsychologie & Conversion-Optimierung." />
         <link rel="canonical" href="https://www.franco-cipolla.de/" />
@@ -28,8 +27,6 @@ const HomePage = () => {
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
 
       </Helmet>
-      <SEOJsonLD page="home" />
-
       <main>
         <Hero />
         <Testimonials/>
