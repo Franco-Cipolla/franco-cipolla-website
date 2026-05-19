@@ -28,7 +28,7 @@ const Wuppertallanding = () => {
         <meta property="og:url" content="https://www.franco-cipolla.de/wuppertal" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Websites, die Kunden bringen – Franco Cipolla" />
+        <meta name="twitter:title" content="Websites als System für messbare Anfragen - Webdesign Wuppertal | Franco Cipolla " />
         <meta
           name="twitter:description"
           content="Individuelle Websites für Selbstständige & Unternehmen in Wuppertal, die planbare Kundenanfragen generieren."

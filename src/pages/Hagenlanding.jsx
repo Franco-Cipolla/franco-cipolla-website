@@ -26,7 +26,7 @@ const HagenLanding = () => {
         <meta property="og:url" content="https://www.franco-cipolla.de/hagen" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:title" content="Warum Ihre Website Kunden verliert (Hagen) - Franco Cipolla" />
+        <meta property="og:title" content="Websites für mehr Kundenanfragen - Webdesign Hagen | Franco Cipolla" />
 <meta property="og:description" content="Und wie Sie das in messbare Anfragen verwandeln ohne viel Zeit zu investieren." />
         <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
       </Helmet>
