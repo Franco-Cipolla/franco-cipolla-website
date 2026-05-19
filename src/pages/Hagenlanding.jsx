@@ -16,7 +16,7 @@ const HagenLanding = () => {
       <Helmet>
         <title>Websites für mehr Kundenanfragen - Webdesign Hagen | Franco Cipolla</title>        <meta
           name="description"
-                 content="Kostenlose Website-Analyse für Betriebe in Hagen. Ihr Webdesign-Experte für mehr Kundenanfragen durch SEO, Verkaufspsychologie & Conversion-Optimierung."    />
+                 content="Kostenlose Website-Analyse für Betriebe in Hagen. Ihr Webdesign-Experte in Hagen für mehr Kundenanfragen durch SEO, Verkaufspsychologie, Webdesign Hagen & Conversion-Optimierung."    />
         <link rel="canonical" href="https://www.franco-cipolla.de/hagen" />
         <meta
           property="og:description"
