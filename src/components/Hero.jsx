@@ -18,6 +18,7 @@ const Hero = () => {
   const ctaRef = useRef(null);
   const imageRef = useRef(null);
   const mobileImageRef = useRef(null);
+  const awardRef = useRef(null);
 
   const [, setIsXL] = useState(false);
 
@@ -68,7 +69,7 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const textRefs = [headlineRef, text1Ref, text2Ref, text3Ref, ctaRef, disclaimerRef];
+      const textRefs = [headlineRef, text1Ref, text2Ref, text3Ref, ctaRef, disclaimerRef, awardRef];
       gsap.from(textRefs.map(ref => ref.current).filter(Boolean), {
         y: 50,
         opacity: 0,
@@ -132,6 +133,7 @@ const Hero = () => {
               </div>
             </div>
 
+
             {/* Headline */}
             <h1
               ref={headlineRef}
@@ -193,6 +195,28 @@ const Hero = () => {
             >
               Unverbindlich · 15 Minuten · Keine Vorbereitung nötig
             </p>
+          <div ref={awardRef} className="mt-4 flex md:justify-center xl:justify-start">
+
+            <a
+              href="https://wirkungswerk.de/award/gewinner-2026/#:~:text=Franco%20Cipolla%20%E2%80%93%20Webdesign%20&%20Digitale%20Kundengewinnung"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex hover:underline items-center gap-2 max-w-full"
+            >
+
+              <img
+                src="/src/assets/neuroweb-award-logo.png"
+                alt="Neuroweb Award"
+                className="h-6 sm:h-6 md:h-6 w-auto object-contain "
+              />
+
+              <span className="text-[13px] sm:text-[13px] md:text-sm text-black/50 font-medium leading-tight">
+                Ausgezeichnet beim Neuro Web Award 2026
+              </span>
+
+            </a>
+
+          </div>
 
             {/* Bild + Badges – nur Mobile */}
            {/* Bild + Badges – nur Mobile */}
