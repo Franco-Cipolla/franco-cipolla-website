@@ -3,6 +3,7 @@ import { gsap, ScrollTrigger } from './gsapSetup';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import HeroIllustration from '../assets/Untitled design.avif';
+import awardLogo from '../assets/neuroweb-award-logo.png'
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -205,7 +206,7 @@ const Hero = () => {
             >
 
               <img
-                src="/public/neuroweb-award-logo.png"
+                src={awardLogo}
                 alt="Neuroweb Award Franco Cipolla Webdesign & Digitale Kundengewinnung"
                 className="h-6 sm:h-6 md:h-6 w-auto object-contain "
               />
