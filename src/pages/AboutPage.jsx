@@ -129,7 +129,7 @@ const AboutPage = () => {
             Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/wuppertal" className="cursor-pointer underline hover:text-[#001D3D] transition">Wuppertal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, über ihre Website gezielt neue Kunden zu gewinnen.
           </span>
           <span className="hidden md:block">
-            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/wuppertal" className="cursor-pointer underline hover:text-[#001D3D] transition">Wuppertal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, mit ihrer Website strategisch für Anfragen und Wachstum zu arbeiten – statt auf Empfehlungen angewiesen zu sein.
+            Ich helfe Unternehmen aus <a href="/" className="cursor-pointer underline hover:text-[#001D3D] transition">Ennepetal</a>, <a href="/wuppertal" className="cursor-pointer underline hover:text-[#001D3D] transition">Wuppertal</a>, <a href="/hagen" className="cursor-pointer underline hover:text-[#001D3D] transition">Hagen</a> & Umgebung, mit ihrer Website strategisch für Anfragen und Wachstum zu arbeiten, statt auf Empfehlungen angewiesen zu sein.
           </span>
         </p>
 
@@ -152,7 +152,7 @@ const AboutPage = () => {
               Kurz zu mir
             </h2>
             <p ref={(el) => (textBlockRefs.current[1] = el)} className="text-base leading-relaxed mb-4">
-              Ich bin <strong>Franco Cipolla</strong>. Ich mache Websites mit Fokus auf Conversion, Verkaufspsychologie und lokale Sichtbarkeit. Mein Anspruch ist simpel: Websites bauen, die wirklich etwas bringen – messbar, nicht nur schön.
+              Ich bin <strong>Franco Cipolla</strong>. Ich mache Websites mit Fokus auf Conversion, Verkaufspsychologie und lokale Sichtbarkeit. Mein Anspruch ist simpel: Websites bauen, die wirklich etwas bringen und das messbar, nicht nur schön.
             </p>
             <h2 ref={(el) => (textBlockRefs.current[2] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
               Die meisten Websites sehen gut aus und bringen nichts
@@ -168,7 +168,8 @@ const AboutPage = () => {
               Deshalb arbeite ich nicht nur „kreativ“, sondern systematisch
             </h2>
             <p ref={(el) => (textBlockRefs.current[6] = el)} className="text-base leading-relaxed mb-8">
-              Jede Website folgt einer klaren Struktur: Problem erkennen, Lösung verständlich machen, Vertrauen aufbauen, Handlung auslösen. Ziel ist immer dasselbe: <strong>Besucher → Anfrage → Kunde</strong>.
+              Jede Website folgt einer klaren Struktur: Problem erkennen, Lösung verständlich machen, Vertrauen aufbauen, Handlung auslösen. <br/><br/>Ziel ist immer dasselbe: <strong>Besucher → Anfrage → Kunde</strong>. <br/>
+              Dieses System wurde u.a. beim Neuro Web Award 2026 für seine Performance ausgezeichnet.
             </p>
 
             <h2 ref={(el) => (textBlockRefs.current[7] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
@@ -179,7 +180,7 @@ const AboutPage = () => {
             </p>
 
             <h2 ref={(el) => (textBlockRefs.current[9] = el)} className="text-xl sm:text-2xl font-semibold mb-4">
-              Für wen ich arbeite – und für wen nicht
+              Für wen ich arbeite und für wen nicht
             </h2>
             <p ref={(el) => (textBlockRefs.current[10] = el)} className="text-base leading-relaxed mb-4">
               Ich arbeite mit Unternehmen, die planbar wachsen wollen, Entscheidungen treffen und Ergebnisse wichtiger finden als Spielereien.
