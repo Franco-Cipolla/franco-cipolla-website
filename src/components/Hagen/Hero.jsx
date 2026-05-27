@@ -3,7 +3,7 @@ import { gsap, ScrollTrigger } from '../gsapSetup';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import HeroIllustration from '/src/assets/Untitled design.avif';
-import awardLogo from '../assets/neuroweb-award-logo.png'
+import awardLogo from '/src/assets/neuroweb-award-logo.png'
 const Hero = () => {
   const heroRef = useRef(null);
   const leftCircleRef = useRef(null);
