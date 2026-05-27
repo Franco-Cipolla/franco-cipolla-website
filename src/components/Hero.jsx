@@ -206,7 +206,7 @@ const Hero = () => {
 
               <img
                 src="/src/assets/neuroweb-award-logo.png"
-                alt="Neuroweb Award"
+                alt="Neuroweb Award Franco Cipolla Webdesign & Digitale Kundengewinnung"
                 className="h-6 sm:h-6 md:h-6 w-auto object-contain "
               />
 
