@@ -76,6 +76,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mt-3">
               <FiInstagram />
               <a href="https://instagram.com/francocipolla.de"
+              target="_blank"
                  className="text-[#000814] hover:text-[#003566]">
                 Instagram
               </a>
@@ -84,6 +85,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mt-3">
               <FiLinkedin />
               <a href="https://de.linkedin.com/in/franco-cipolla-00217a37a"
+              target="_blank"
                  className="text-[#000814] hover:text-[#003566]">
                 LinkedIn
               </a>
@@ -92,6 +94,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mt-3">
               <FiFacebook />
               <a href="https://www.facebook.com/people/Franco-Cipolla/61585491870754/#"
+              target="_blank"
                  className="text-[#000814] hover:text-[#003566]">
                 Facebook
               </a>
@@ -100,6 +103,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mt-3">
               <RiGoogleLine />
               <a href="https://share.google/Ms10yJGkXK6sjmL57"
+                  target="_blank"
                  className="text-[#000814] hover:text-[#003566]">
                 Google Profil
               </a>
