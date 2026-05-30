@@ -88,7 +88,7 @@ const faqs = [
 answer: (
   <div className="space-y-2">
     <p>
-    Eine Website die auf Anfragen ausgerichtet ist, fängt bei 800€ an.
+    Eine Website die auf Anfragen ausgerichtet ist, fängt bei 800€ Einführungspreis an.
   </p>
     <p>
       Sie zahlen <strong>50% Anzahlung</strong>, den Rest erst, wenn Ihre Website live geht.
