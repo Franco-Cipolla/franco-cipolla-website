@@ -140,8 +140,8 @@ const Hero = () => {
               ref={headlineRef}
               className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
             >
-              Websites, die gezielt
-              <span className="text-[#003566]"> auf Kundenanfragen ausgelegt sind.</span>
+             Websites, die Interessenten
+              <span className="text-[#003566]"> messbar zur Anfrage führen.</span>
             </h1>
 
 
