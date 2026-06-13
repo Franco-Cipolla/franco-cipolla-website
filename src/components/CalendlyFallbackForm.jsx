@@ -85,8 +85,8 @@ const CalendlyFallbackForm = () => {
   // ── Pain-Optionen: zusammengeführt, kein Overlap ────────────────────────
   const painOptions = [
     "Meine Website bringt kaum oder keine Anfragen",
-    "Ich bin von Empfehlungen abhängig – das ist nicht planbar",
-    "Ich hatte schon eine Agentur – hat nichts gebracht",
+    "Ich bin von Empfehlungen abhängig, das ist nicht planbar",
+    "Ich hatte schon eine Agentur, hat nichts gebracht",
     "Ich habe noch keine Website",
   ];
 
@@ -237,11 +237,15 @@ const CalendlyFallbackForm = () => {
             )}
             {/* Fix 2: Micro-commitment Bestätigung nach Auswahl */}
             {formData.pain.length > 0 && (
-              <p className="text-[12px] text-[#003566] mt-3 flex items-center gap-1.5">
-                <span>✓</span>
-                <span>Gut – genau das schaue ich mir in der Analyse an.</span>
-              </p>
-            )}
+  <p className="text-[12px] text-[#003566] mt-3 flex items-center gap-1.5">
+    <span>✓</span>
+    <span>
+      {hasNoWebsite
+        ? "Perfekt – dann wird daraus ein kurzes Strategiegespräch. Wir klären, was Sie wirklich brauchen und was nicht."
+        : "Gut – genau das schaue ich mir in der Analyse an."}
+    </span>
+  </p>
+)}
             <div className="mt-5">
               <button type="button" className={BTN_PRIMARY} onClick={() => goNext(1)}>
                 Weiter →
@@ -445,7 +449,7 @@ const CalendlyFallbackForm = () => {
               Unter welcher Nummer erreiche ich Sie?
             </p>
             <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
-              Ich schreibe sie zur Terminbestätigung kurz an – kein Spam
+              Ich schreibe sie zur Terminbestätigung kurz an, kein Spam
             </p>
             <input
               type="tel"
@@ -486,8 +490,7 @@ const CalendlyFallbackForm = () => {
             {formData.messageDate && formData.messageTime && (
               <div className="mt-4 border border-[#003566]/15 bg-[#003566]/[0.03] rounded-lg px-4 py-3">
                 <p className="text-[11px] sm:text-[12px] font-bold uppercase tracking-wide text-[#003566] mb-1.5">
-                  {hasNoWebsite ? "Ihr Erstgespräch" : "Ihre Website-Analyse"}
-                </p>
+{hasNoWebsite ? "Ihr Strategiegespräch" : "Ihre Website-Analyse"}                </p>
                 <p className="text-[12px] sm:text-[13px] text-[#000814]/65 leading-relaxed">
                   Termin:{" "}
                   <span className="font-semibold text-[#000814]">
@@ -501,8 +504,9 @@ const CalendlyFallbackForm = () => {
                 </p>
                 {hasNoWebsite ? (
                   <p className="text-[12px] sm:text-[13px] text-[#000814]/55 mt-1.5 leading-snug">
-                    Da Sie noch keine Website haben, sprechen wir im Gespräch darüber,
-                    was Sie brauchen – und ob eine neue Seite für Sie Sinn macht.
+                    Da Sie noch keine Website haben, sprechen wir im Strategiegespräch darüber,
+                    wie Sie messbar neue Anfragen gewinnen können,
+                    welchen Umfang ihre Website dafür wirklich benötigt und welche nächsten Schritte sinnvoll sind.
                   </p>
                 ) : formData.siteUrl ? (
                   <p className="text-[12px] sm:text-[13px] text-[#000814]/65 mt-0.5">
@@ -517,15 +521,17 @@ const CalendlyFallbackForm = () => {
                 disabled={submitting}
                 className={`${BTN_PRIMARY} ${submitting ? "opacity-60 cursor-not-allowed" : ""}`}
               >
-                {submitting ? "Wird gesendet…" : hasNoWebsite ? "Jetzt Erstgespräch anfragen" : "🔍 Jetzt Analyse anfragen"}
+                {submitting
+  ? "Wird gesendet…"
+  : hasNoWebsite
+    ? "Jetzt Strategiegespräch anfragen"
+    : "🔍 Jetzt Analyse anfragen"}
               </button>
               <button type="button" className={BTN_SECONDARY} onClick={() => goBack(5)}>
                 Zurück
               </button>
             </div>
-            <p className="text-[11px] text-[#000814]/35 mt-4">
-              🔒 Ihre Daten werden nicht weitergegeben.
-            </p>
+
           </div>
         )}
 

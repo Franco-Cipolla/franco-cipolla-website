@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import CheckIcon from "../components/CheckIcon";
 import CalendlyFallBackForm from "../components/CalendlyFallbackForm";
 import { FaChevronDown } from "react-icons/fa";
-
+import Testimonials from "../components/Testimonials";
 gsap.registerPlugin(ScrollTrigger);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -215,7 +215,7 @@ const ErstGespraech = () => {
           <div className="ha mb-8 sm:mb-10">
             <ul className="flex flex-col gap-3 sm:gap-3.5 max-w-[480px] mx-auto">
               {[
-                <>Für Betriebe aus <Link to="/" className="underline hover:text-[#003566] transition-colors">Ennepetal</Link>, <Link to="/hagen" className="underline hover:text-[#003566] transition-colors">Hagen</Link>, <Link to="/wuppertal" className="underline hover:text-[#003566] transition-colors">Wuppertal</Link> & Umgebung</>,
+                <>Für Betriebe aus <Link to="/" className="underline hover:text-[#003566] transition-colors">Ennepetal</Link>, <Link to="/hagen" className="underline hover:text-[#003566] transition-colors">Hagen</Link>, <Link to="/wuppertal" className="underline hover:text-[#003566] transition-colors">Wuppertal</Link> & NRW</>,
                 "Konkret auf Ihrer Seite gezeigt - keine Folien, keine Theorie",
                 "Kein Druck - Sie entscheiden danach, was als nächstes passiert",
                 "15 Minuten · keine Vorbereitung nötig · Bestätigung per Nachricht",
@@ -227,6 +227,10 @@ const ErstGespraech = () => {
               ))}
             </ul>
           </div>
+
+           <Testimonials showCta={false} hasPadding={false} />
+
+
 
           {/* ── Formular ── */}
           {/* ══ BOTTOM CTA ══════════════════════════════════════════════════════ */}
@@ -281,6 +285,7 @@ const ErstGespraech = () => {
 
         </div>
       </section>
+
 
       {/* ══ PAIN ════════════════════════════════════════════════════════════ */}
       <Section>

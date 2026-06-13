@@ -29,7 +29,7 @@ const Stars = () => (
   </div>
 );
 
-const Testimonials = () => {
+const Testimonials = ({ showCta = true,  hasPadding = true }) => {
   const sectionRef = useRef(null);
   const cardRef = useRef(null);
   const labelRef = useRef(null);
@@ -56,7 +56,7 @@ const Testimonials = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-16 sm:py-20 px-4 sm:px-6 xl:px-0"
+      className={`w-full py-16 sm:py-20 ${hasPadding ? 'px-4' : 'px-0'} sm:px-6 xl:px-0`}
     >
       <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px]">
 
@@ -102,13 +102,21 @@ const Testimonials = () => {
               </span>
 
               {/* Zitat */}
-              <p className="text-white font-black text-xl sm:text-2xl xl:text-3xl leading-snug tracking-tight">
-                Franco hat mir gezeigt, wo meine Website Anfragen verliert —
-                Stellen die sogar mein alter Webdesigner nicht gesehen hat.
-                Durch Franco habe ich nun spürbar mehr Anfragen.
-                Einer der besten Webdesigner in Ennepetal und Umgebung.
-                Klare Empfehlung!"
-              </p>
+              {/* Mobile-Version */}
+<p className="block sm:hidden text-white font-black text-xl leading-snug tracking-tight">
+  Franco hat mir gezeigt, warum meine Website Anfragen verliert.
+  Seitdem bekomme ich spürbar mehr Anfragen.
+  Klare Empfehlung.
+</p>
+
+{/* Desktop-Version */}
+<p className="hidden sm:block text-white font-black text-xl sm:text-2xl xl:text-3xl leading-snug tracking-tight">
+  Franco hat mir gezeigt, wo meine Website Anfragen verliert —
+  Stellen die sogar mein alter Webdesigner nicht gesehen hat.
+  Durch Franco habe ich nun spürbar mehr Anfragen.
+  Einer der besten Webdesigner in Ennepetal und Umgebung.
+  Klare Empfehlung!
+</p>
 
 
 
@@ -141,18 +149,19 @@ const Testimonials = () => {
           </div>
         </a>
 
-        {/* Sekundär-CTA */}
-        <div ref={ctaRef} className="mt-8 flex flex-col sm:flex-row items-center gap-4">
-          <p className="text-sm text-[#001D3D]/50 font-medium">
-            Auch mehr Anfragen durch Ihre Website?
-          </p>
-          <button
-            onClick={() => navigate('/website-analyse')}
-            className="text-sm font-black text-[#001D3D] border-b-2 border-[#003566] hover:border-[#00A6FB] transition-colors duration-200 pb-0.5 cursor-pointer"
-          >
-            Kostenlose Website-Analyse starten →
-          </button>
-        </div>
+        {showCta && (
+  <div ref={ctaRef} className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+    <p className="text-sm text-[#001D3D]/50 font-medium">
+      Auch mehr Anfragen durch Ihre Website?
+    </p>
+    <button
+      onClick={() => navigate('/website-analyse')}
+      className="text-sm font-black text-[#001D3D] border-b-2 border-[#003566] hover:border-[#00A6FB] transition-colors duration-200 pb-0.5 cursor-pointer"
+    >
+      Kostenlose Website-Analyse starten →
+    </button>
+  </div>
+)}
 
       </div>
     </section>
