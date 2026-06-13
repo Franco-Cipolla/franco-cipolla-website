@@ -50,10 +50,11 @@
     }
   ],
 
-  "rewrites": [
+    "rewrites": [
     {
       "source": "/((?!assets/|sitemap\\.xml|favicon\\.ico|robots\\.txt).*)",
       "destination": "/index.html"
     }
   ]
+
 }

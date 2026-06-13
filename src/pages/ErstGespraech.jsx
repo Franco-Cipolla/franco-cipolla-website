@@ -498,7 +498,7 @@ const ErstGespraech = () => {
               },
               {
                 q: "Meine Website ist doch eigentlich okay.",
-                a: "Möglich. Viele Seiten sehen ordentlich aus und funktionieren trotzdem nicht als Anfragekanal. In 15 Minuten wissen wir, ob das bei Ihnen so ist - oder ob wirklich alles passt. Wenn alles gut ist, sage ich das.",
+                a: "Möglich. Viele Seiten sehen ordentlich & gut aus und verlieren trotzdem mehrmals im Monat Anfragen. In 15 Minuten wissen wir, ob das bei Ihnen so ist oder ob wirklich alles passt. Wenn alles gut ist, sage ich das.",
               },
               {
                 q: "Ich habe schon eine Website - warum eine neue?",
@@ -506,7 +506,7 @@ const ErstGespraech = () => {
               },
               {
                 q: "Wie läuft das Gespräch ab - muss ich irgendwas vorbereiten?",
-                a: "Nein. Wir telefonieren kurz, ich teile meinen Bildschirm und zeige direkt auf Ihrer Seite, was mir auffällt. Keine Präsentation, keine Unterlagen. Nur Ihre Website-Adresse - die haben Sie ja.",
+                a: "Nein. Wir telefonieren kurz, ich teile meinen Bildschirm und zeige direkt auf Ihrer Seite, wo sie Anfragen verlieren und was sie dagegen tun könnten. Keine Präsentation, keine Unterlagen. Nur Ihre Website-Adresse, die haben Sie ja.",
               },
               {
                 q: "Ich kenne mich mit dem ganzen Internet-Kram nicht aus.",

@@ -15,18 +15,25 @@ const HomePage = () => {
     <>
 
       <Helmet>
-<title>Websites für mehr Kundenanfragen - für lokale Unternehmen im Ruhrgebiet & Ennepetal | Franco Cipolla</title>        <meta name="description" content="Kostenlose Website-Analyse für Betriebe in Ennepetal & Umgebung. Ihr Webdesign-Experte für mehr Kundenanfragen durch SEO, Verkaufspsychologie, Webdesign Ennepetal & Conversion-Optimierung." />
-        <link rel="canonical" href="https://www.franco-cipolla.de/" />
-        <meta property="og:title" content="Websites für mehr Kundenanfragen - Webdesign Ennepetal & Ruhrgebiet" />        <meta property="og:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
-        <meta property="og:image" content="https://franco-cipolla.de/og-preview.jpg" />
-        <meta property="og:url" content="https://www.franco-cipolla.de/" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Websites, die Kunden bringen – Franco Cipolla" />
-        <meta name="twitter:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
-        <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
+  {/* Perfekte Länge (56 Zeichen) – Positioniert Sie sofort lokal */}
+  <title>Webdesign Ennepetal | Websites für mehr Kundenanfragen</title>
 
-      </Helmet>
+  {/* Knackige 152 Zeichen – löst das Problem des Kunden direkt auf Google */}
+  <meta name="description" content="Sie wollen eine Website erstellen lassen, die messbar Kunden einbringt? Ihr Webdesigner für Ennepetal & Umgebung. Jetzt Gratis Website-Analyse sichern!" />
+
+  <link rel="canonical" href="https://www.franco-cipolla.de/" />
+
+  {/* Open Graph & Twitter */}
+  <meta property="og:title" content="Websites, die Kunden bringen | Webdesign Ennepetal" />
+  <meta property="og:description" content="Professionelle Websites für lokale Unternehmen im Ruhrgebiet, die messbar Anfragen generieren." />
+  <meta property="og:image" content="https://franco-cipolla.de/og-preview.jpg" />
+  <meta property="og:url" content="https://www.franco-cipolla.de/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Websites, die Kunden bringen – Franco Cipolla" />
+  <meta name="twitter:description" content="Individuelle Websites für Selbstständige & Unternehmen, die planbare Kundenanfragen generieren." />
+  <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
+</Helmet>
       <main>
         <Hero />
         <Testimonials/>

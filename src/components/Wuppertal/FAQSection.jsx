@@ -29,7 +29,7 @@ const faqsWuppertal = [
       <p>Im gemeinsamen Strategiegespräch klären wir vorab:</p>
 
       <ul className="list-disc pl-5 space-y-1">
-        <li>Wie Sie messbar <strong>neue Anfragen gewinnen</strong>.</li>
+        <li>Wie Sie messbar <strong>neue Anfragen gewinnen können</strong>.</li>
         <li>Welchen <strong>Umfang</strong> Ihre Website dafür wirklich benötigt.</li>
         <li>Welche <strong>nächsten Schritte</strong> für Sie sinnvoll sind.</li>
       </ul>
