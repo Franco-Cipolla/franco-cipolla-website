@@ -24,11 +24,22 @@ const faqsWuppertal = [
     question: 'Ich habe noch keine Website. Kann ich trotzdem starten?',
     answer: (
       <div className="space-y-2">
-        <p>Ja. Wir starten sofort, auch ohne bestehende Website.</p>
         <p>
-          Im Erstgespräch bekommen Sie einen <strong>kostenlosen Mini-Prototyp</strong>, der zeigt, wie Besucher aus Wuppertal zu Kunden werden.
+          Ja, absolut! Auch ohne bestehende Website können wir starten. <br /><br />
+      <p>Im gemeinsamen Strategiegespräch klären wir vorab:</p>
+
+      <ul className="list-disc pl-5 space-y-1">
+        <li>Wie Sie messbar <strong>neue Anfragen gewinnen</strong>.</li>
+        <li>Welchen <strong>Umfang</strong> Ihre Website dafür wirklich benötigt.</li>
+        <li>Welche <strong>nächsten Schritte</strong> für Sie sinnvoll sind.</li>
+      </ul>
+
+
+        </p><br/>
+        <p>
+          So sehen Sie schon vorher, welchen Mehrwert Ihre Website liefern könnte.
         </p>
-        <p><strong>Wichtig:</strong> Ich nehme nur 2 Projekte pro Monat an – Fokus statt Masse.</p>
+
       </div>
     ),
   },

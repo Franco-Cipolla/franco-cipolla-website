@@ -28,14 +28,20 @@ const faqs = [
       <div className="space-y-2">
         <p>
           Ja, absolut! Auch ohne bestehende Website können wir starten. <br /><br />
-          In einem kurzen Termin zeige ich Ihnen zuerst unverbindlich einen <strong>kostenlosen Design-Prototypen</strong> und erkläre, wie er funktioniert, um Anfragen zu generieren.
-        </p>
+      <p>Im gemeinsamen Strategiegespräch klären wir vorab:</p>
+
+      <ul className="list-disc pl-5 space-y-1">
+        <li>Wie Sie messbar <strong>neue Anfragen gewinnen</strong>.</li>
+        <li>Welchen <strong>Umfang</strong> Ihre Website dafür wirklich benötigt.</li>
+        <li>Welche <strong>nächsten Schritte</strong> für Sie sinnvoll sind.</li>
+      </ul>
+
+
+        </p><br/>
         <p>
           So sehen Sie schon vorher, welchen Mehrwert Ihre Website liefern könnte.
         </p>
-        <p>
-          Wenn Sie sich anschließend entscheiden, das Projekt mit mir zu starten, werden Sie in den nächsten verfügbaren Slot eingeteilt. Ich betreue nur <strong>2 Kunden pro Monat</strong>, um für meine Kunden die bestmöglichen Ergebnisse zu erreichen.
-        </p>
+
       </div>
     ),
   },

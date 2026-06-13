@@ -22,15 +22,26 @@ const faqsHagen = [
       </div>
     ),
   },
-  {
+ {
     question: 'Ich habe noch keine Website. Kann ich trotzdem starten?',
     answer: (
       <div className="space-y-2">
-        <p>Absolut! Auch ohne bestehende Website können wir sofort starten.</p>
         <p>
-          Sie erhalten einen <strong>kostenlosen Design-Prototypen in unserem Erstgespräch</strong>, der zeigt, wie Besucher aus zu Kunden werden können.
+          Ja, absolut! Auch ohne bestehende Website können wir starten. <br /><br />
+      <p>Im gemeinsamen Strategiegespräch klären wir vorab:</p>
+
+      <ul className="list-disc pl-5 space-y-1">
+        <li>Wie Sie messbar <strong>neue Anfragen gewinnen</strong>.</li>
+        <li>Welchen <strong>Umfang</strong> Ihre Website dafür wirklich benötigt.</li>
+        <li>Welche <strong>nächsten Schritte</strong> für Sie sinnvoll sind.</li>
+      </ul>
+
+
+        </p><br/>
+        <p>
+          So sehen Sie schon vorher, welchen Mehrwert Ihre Website liefern könnte.
         </p>
-        <p><strong>Wichtig:</strong> Ich betreue nur 2 Kunden pro Monat – volles Fokus auf meine Projekte.</p>
+
       </div>
     ),
   },
