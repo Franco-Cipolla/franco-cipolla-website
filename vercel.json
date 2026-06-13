@@ -1,4 +1,6 @@
 {
+  "outputDirectory": "dist/static",
+
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -50,11 +52,10 @@
     }
   ],
 
-    "rewrites": [
+  "rewrites": [
     {
       "source": "/((?!assets/|sitemap\\.xml|favicon\\.ico|robots\\.txt).*)",
       "destination": "/index.html"
     }
   ]
-
 }
