@@ -6,6 +6,7 @@ import HeroIllustration from '../assets/Untitled design.avif';
 import awardLogo from '../assets/neuroweb-award-logo.png'
 
 const Hero = () => {
+
   const heroRef = useRef(null);
   const leftCircleRef = useRef(null);
   const rightCircleRef = useRef(null);
@@ -21,6 +22,13 @@ const Hero = () => {
   const mobileImageRef = useRef(null);
   const awardRef = useRef(null);
 
+  const rotatingWordRef = useRef(null);
+  const rotatingWords = [
+  "Anfrage",
+  "Buchung",
+  "Erstberatung"
+];
+
   const [, setIsXL] = useState(false);
 
   const handleClick = () => {
@@ -35,72 +43,251 @@ const Hero = () => {
   }, []);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      ScrollTrigger.matchMedia({
-        '(max-width: 1023px)': () => {
-          gsap.to([leftCircleRef.current, rightCircleRef.current], {
-            opacity: 0,
-            duration: 1,
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true,
-            },
-          });
-        },
-        '(min-width: 1024px)': () => {
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom 5%',
-              scrub: 0.5,
-            },
-          });
-          tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
-          tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
-          tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '0', opacity: 0.8 }, 0.5);
-          tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '0', opacity: 0.8 }, 0.5);
-        },
-      });
-    }, heroRef);
-    return () => ctx.revert();
-  }, []);
+
+  const ctx = gsap.context(() => {
+
+
+    // Hintergrund Kreise Floating Loop
+
+    gsap.to(leftCircleRef.current, {
+      y: -360,
+      duration: 3,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true
+    });
+
+
+    gsap.to(rightCircleRef.current, {
+      y: 360,
+      duration: 3,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true
+    });
+
+
+
+    // Scroll Effekt Desktop
+
+    ScrollTrigger.matchMedia({
+
+      '(max-width: 1023px)': () => {
+
+  gsap.to(
+    [
+      leftCircleRef.current,
+      rightCircleRef.current
+    ],
+    {
+      opacity:0,
+      scrollTrigger:{
+        trigger:heroRef.current,
+        start:'top top',
+        end:'bottom top',
+        scrub:true
+      }
+    }
+  );
+
+},
+
+
+      '(min-width:1024px)':()=>{
+
+        const tl = gsap.timeline({
+
+          scrollTrigger:{
+            trigger:heroRef.current,
+            start:'top top',
+            end:'bottom 5%',
+            scrub:0.5
+          }
+
+        });
+
+
+        tl.to(
+          leftCircleRef.current,
+          {
+            x:-40,
+            opacity:0.8
+          }
+        );
+
+
+        tl.to(
+          rightCircleRef.current,
+          {
+            x:40,
+            opacity:0.8
+          },
+          0
+        );
+
+      }
+
+    });
+
+
+  }, heroRef);
+
+
+  return () => ctx.revert();
+
+
+}, []);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const textRefs = [headlineRef, text1Ref, text2Ref, text3Ref, ctaRef, disclaimerRef, awardRef];
-      gsap.from(textRefs.map(ref => ref.current).filter(Boolean), {
+
+  const ctx = gsap.context(() => {
+
+
+    // Magazin Textwechsel ohne Layout Shift
+
+    let wordIndex = 0;
+
+
+    const animateWordChange = () => {
+
+      const word = rotatingWordRef.current;
+
+      if (!word) return;
+
+
+      gsap.to(word, {
+
+        y: -10,
+        opacity: 0,
+
+        duration: 0.25,
+
+        ease: "power2.in",
+
+        onComplete: () => {
+
+
+          wordIndex =
+          (wordIndex + 1) %
+          rotatingWords.length;
+
+
+          word.textContent =
+          rotatingWords[wordIndex];
+
+
+          gsap.fromTo(
+            word,
+
+            {
+              y: 10,
+              opacity: 0
+            },
+
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.35,
+              ease: "power3.out"
+            }
+
+          );
+
+        }
+
+      });
+
+    };
+
+
+
+    const wordInterval = setInterval(
+      animateWordChange,
+      2200
+    );
+
+
+
+    const textRefs = [
+      headlineRef,
+      text1Ref,
+      text2Ref,
+      text3Ref,
+      ctaRef,
+      disclaimerRef,
+      awardRef
+    ];
+
+
+    gsap.from(
+      textRefs
+      .map(ref => ref.current)
+      .filter(Boolean),
+
+      {
         y: 50,
         opacity: 0,
         duration: 1,
         stagger: 0.2,
-        ease: 'power3.out',
+        ease: "power3.out"
+      }
+
+    );
+
+
+
+    const imgEl = imageRef.current;
+
+
+    if(imgEl){
+
+      gsap.from(imgEl, {
+
+        y:50,
+        opacity:0,
+        duration:1,
+        ease:"power3.out"
+
       });
 
-      // Desktop-Bild
-      const imgEl = imageRef.current;
-      if (imgEl) {
-        if (!imgEl.complete) {
-          const handleLoad = () => {
-            gsap.from(imgEl, { y: 50, opacity: 0, duration: 1, ease: 'power3.out' });
-          };
-          imgEl.addEventListener('load', handleLoad);
-          return () => imgEl.removeEventListener('load', handleLoad);
-        } else {
-          gsap.from(imgEl, { y: 50, opacity: 0, duration: 1, ease: 'power3.out' });
-        }
-      }
+    }
 
-      // Mobile-Bild
-      const mobileImg = mobileImageRef.current;
-      if (mobileImg) {
-        gsap.from(mobileImg, { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out', delay: 0.6 });
-      }
-    }, heroRef);
-    return () => ctx.revert();
-  }, []);
+
+
+    const mobileImg = mobileImageRef.current;
+
+
+    if(mobileImg){
+
+      gsap.from(mobileImg, {
+
+        y:30,
+        opacity:0,
+        duration:0.8,
+        ease:"power3.out",
+        delay:0.6
+
+      });
+
+    }
+
+
+
+    return () => {
+
+      clearInterval(wordInterval);
+
+    };
+
+
+  }, heroRef);
+
+
+
+  return () => ctx.revert();
+
+
+}, []);
 
   return (
     <>
@@ -135,14 +322,31 @@ const Hero = () => {
             </div>
 
 
-            {/* Headline */}
             <h1
-              ref={headlineRef}
-              className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
-            >
-             Websites, die Interessenten
-              <span className="text-[#003566]"> messbar zur Anfrage führen.</span>
-            </h1>
+  ref={headlineRef}
+  className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
+>
+
+  Websites, die Interessenten
+
+  <span className="text-[#003566]">
+
+    {" "}messbar zur{" "}
+
+    <span
+      ref={rotatingWordRef}
+      className="inline-block "
+    >
+      Anfrage
+    </span>
+
+    <br className='hidden md:block'/>
+
+    {" "}führen.
+
+  </span>
+
+</h1>
 
 
             {/* Subtext */}
