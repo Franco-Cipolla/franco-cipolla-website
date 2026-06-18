@@ -241,8 +241,8 @@ const CalendlyFallbackForm = () => {
     <span>✓</span>
     <span>
       {hasNoWebsite
-        ? "Perfekt – dann wird daraus ein kurzes Strategiegespräch. Wir klären, was Sie wirklich brauchen und was nicht."
-        : "Gut – genau das schaue ich mir in der Analyse an."}
+        ? "Perfekt, dann wird daraus ein kurzes Strategiegespräch. Wir klären, was Sie wirklich brauchen und was nicht."
+        : "Gut, genau das schaue ich mir in der Analyse an."}
     </span>
   </p>
 )}
@@ -261,10 +261,8 @@ const CalendlyFallbackForm = () => {
               Wie lautet Ihre Website-Adresse?
             </p>
             <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
-              Ich schaue sie mir vor unserem Gespräch an – damit wir keine Zeit verlieren.
-              <span className="block mt-2 text-[#000814]/35">
-                Noch keine Website? Einfach freilassen.
-              </span>
+              Ich schaue sie mir vor unserem Gespräch an, damit wir keine Zeit verlieren.
+
             </p>
             <input
               type="url"
@@ -281,7 +279,7 @@ const CalendlyFallbackForm = () => {
             {formData.siteUrl.trim() && (
               <p className="text-[11px] sm:text-[12px] text-[#003566] mt-2 flex items-center gap-1.5">
                 <span>✓</span>
-                <span>Ich schaue mir die Seite vorher an – Sie müssen im Gespräch nichts erklären.</span>
+                <span>Ich bereite 3 Punkte vor, an stellen an den sie Anfragen verlieren</span>
               </p>
             )}
             <div className="flex items-center gap-4 mt-5">
