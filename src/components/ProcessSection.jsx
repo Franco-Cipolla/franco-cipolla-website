@@ -163,45 +163,46 @@ const steps = [
     label: 'Schritt 1 · 0 € · 15 Minuten',
     title: 'Kostenlose Website-Analyse',
     titleHighlight: 'ich zeige Ihnen was Anfragen kostet',
-    // Effort↓ + Time↓ + Likelihood↑ (konkret, vorher anschauen)
-    description: 'Ich schaue mir Ihre Website vorher an und zeige Ihnen in 15 Minuten genau, wo Besucher abspringen – ohne Vorbereitung, ohne Technikgespräch.',
+    description:
+      'Ich schaue mir Ihre Website vorher an und zeige Ihnen in 15 Minuten genau, wo Besucher abspringen und potenzielle Kunden verloren gehen.',
     trustPills: [
-      { text: '✓ 0 € · Kostenlos', variant: 'green' },
-      { text: '⏱ 15 Minuten',      variant: 'blue'  },
+      { text: '✓ Kostenlos', variant: 'green' },
+      { text: '⏱ 15 Minuten', variant: 'blue' },
       { text: 'Keine Vorbereitung', variant: 'white' },
     ],
     badge: '📞 Telefonisch · 15 Min · keine Vorbereitung nötig',
     Illo: IlloBrowser,
   },
+
   {
     num: '02',
     label: 'Schritt 2 · Ihr einziger Aufwand',
-    title: 'Sie füllen ein kurzes Briefing aus',
-    titleHighlight: 'den Rest erledige ich',
-    // Effort↓: klare Fragen, alles mit Anleitung/Vorlage vorbereitet
-    // Transparency: Hosting + rechtliche Texte offen kommuniziert, aber als "kein Problem" geframt
-    description: 'Klare Fragen zu Ihrem Betrieb – für Hosting und rechtliche Texte gibt es fertige Schritt-für-Schritt-Anleitungen. Design, Texte, Entwicklung und Launch übernehme ich komplett. In 2–4 Wochen.',
+    title: 'Sie geben die Inhalte frei',
+    titleHighlight: 'den Rest übernehme ich',
+    description:
+      'Ich erstelle Design, Texte und Entwicklung. Sie geben die Inhalte frei und erhalten regelmäßige Updates zum Fortschritt. In 2-4 Wochen ist Ihre Website online.',
     trustPills: [
-      { text: '⚡ 2–4 Wochen',             variant: 'green'  },
-      { text: 'Hosting-Anleitung inklusive', variant: 'blue' },
-      { text: 'Rechtliche Texte: Anleitung inklusive', variant: 'white' },
+      { text: '⚡ 2-4 Wochen', variant: 'green' },
+      { text: 'Design & Texte inklusive', variant: 'blue' },
+      { text: 'Persönliche Betreuung', variant: 'white' },
     ],
-    badge: '📋 Nur ein Briefing · alles andere mache ich',
+    badge: '📋 Minimaler Aufwand für Sie',
     Illo: IlloForm,
   },
+
   {
     num: '03',
     label: 'Schritt 3 · Ihr Ergebnis',
     title: 'Ihre Website ist live',
     titleHighlight: 'und arbeitet täglich für Ihren Betrieb',
-    // Dream Outcome (Google, Anfragen) + Effort↓ (kein Werbebudget, keine Empfehlungen mehr)
-    description: 'Interessierte aus Ihrer Region finden Sie bei Google, verstehen Ihr Angebot sofort und wissen, wie sie Sie erreichen – ohne Werbebudget, ohne Abhängigkeit von Empfehlungen.',
+    description:
+      'Interessierte aus Ihrer Region finden Ihr Unternehmen online, verstehen Ihr Angebot schneller und können Sie direkt kontaktieren.',
     trustPills: [
-      { text: '📍 Lokal bei Google',  variant: 'green' },
-      { text: 'Bessere Kunden',     variant: 'blue'  },
-      { text: 'Messbare Anfragen',              variant: 'white' },
+      { text: '📍 Lokal auffindbar', variant: 'green' },
+      { text: 'Mehr Vertrauen', variant: 'blue' },
+
     ],
-    badge: '🚀 Lokal auffindbar · auf Anfragen optimiert',
+    badge: '🚀 Auf Anfragen optimiert',
     Illo: IlloPhone,
   },
 ];
@@ -268,11 +269,11 @@ const ProcessSection = () => {
             Effort↓ ("ein Briefing")  ×  Dream Outcome ("lokal gefunden, Anfragen")
             ÷ Time Delay ("2–4 Wochen")  ÷ Effort ("der Rest liegt bei mir")
           */}
-          <p className="text-[14.5px] md:text-[15px] text-[#000814]/52 max-w-[460px] mx-auto leading-[1.65]">
-            Ihr Aufwand: ein Briefing. Alles andere liegt bei mir.{' '}
-            <span className="font-semibold text-[#000814]/72">In 2–4 Wochen</span>{' '}
-            haben Sie eine Website, die lokal gefunden wird und Besucher zur Anfrage führt.
-          </p>
+         <p className="text-[14.5px] md:text-[15px] text-[#000814]/52 max-w-[460px] mx-auto leading-[1.65]">
+  Ihr Aufwand: ein Briefing. Alles andere liegt bei mir.
+  <span className="font-semibold text-[#000814]/72"> In 2-4 Wochen </span>
+  erhalten Sie eine Website, die Vertrauen aufbaut und Besucher gezielt zur Kontaktaufnahme führt.
+</p>
         </div>
 
         {/* ── Cards ── */}
