@@ -19,7 +19,7 @@ const HomePage = () => {
   <title>Webdesign Ennepetal | Websites für mehr Kundenanfragen</title>
 
   {/* Knackige 152 Zeichen – löst das Problem des Kunden direkt auf Google */}
-  <meta name="description" content="Sie wollen eine Website erstellen lassen, die messbar Kunden einbringt? Ihr Webdesigner für Ennepetal & Umgebung. Jetzt Gratis Website-Analyse sichern!" />
+  <meta name="description" content="Website erstellen lassen Ennepetal, die messbar Kunden einbringt. Ihr Webdesigner in Ennepetal & Umgebung. Jetzt Gratis Website-Analyse sichern!" />
 
   <link rel="canonical" href="https://www.franco-cipolla.de/" />
 

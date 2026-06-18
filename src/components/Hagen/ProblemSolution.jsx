@@ -1,147 +1,532 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger } from "../gsapSetup";
-import { FaExclamationTriangle, FaCheckCircle, FaUserTimes, FaPhone, FaMobileAlt, FaClock } from 'react-icons/fa';
+import {
+  FaExclamationTriangle,
+  FaCheckCircle,
+  FaUserTimes,
+  FaPhone,
+  FaMobileAlt,
+  FaClock
+} from 'react-icons/fa';
 import CTA1 from "../CTA1";
+
 gsap.registerPlugin(ScrollTrigger);
 
+
 const ProblemSolution = () => {
+
   const sectionRef = useRef(null);
-  const leftCircleRef = useRef(null);
-  const rightCircleRef = useRef(null);
   const problemRef = useRef(null);
   const solutionRef = useRef(null);
 
+
   useEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: isMobile ? 'top 90%' : 'top bottom',
-        end: 'bottom top',
-        scrub: 0.5,
+    gsap.fromTo(
+      [problemRef.current, solutionRef.current],
+      {
+        y: 40,
+        opacity: 0
       },
-    });
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.25,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%"
+        }
+      }
+    );
 
-    tl.fromTo(leftCircleRef.current, { x: '-100vw', opacity: 0 }, { x: '0vw', opacity: 0.3, ease: 'power3.out' });
-    tl.fromTo(rightCircleRef.current, { x: '100vw', opacity: 0 }, { x: '0vw', opacity: 0.3, ease: 'power3.out' }, 0);
-    tl.to(leftCircleRef.current, { x: isMobile ? '100vw' : '-100vw', opacity: 0, ease: 'power3.inOut' }, '+=0.2');
-    tl.to(rightCircleRef.current, { x: isMobile ? '200vw' : '100vw', opacity: 0, ease: 'power3.inOut' }, '<');
-
-    gsap.fromTo([problemRef.current, solutionRef.current],
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, stagger: 0.3, scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', end: 'bottom 20%' } });
   }, []);
 
-  const problems = [
-    { icon: <FaUserTimes className="text-red-600" />, title: "Besucher wissen nicht, was Sie anbieten", text: "Besucher finden sich auf Ihrer Seite nicht zurecht und springen zur Konkurrenz ab." },
-    { icon: <FaPhone className="text-red-600" />, title: "Interessenten schauen – und melden sich nie", text: "Ihre Website motiviert Interessenten nicht, Sie direkt zu kontaktieren." },
-    { icon: <FaMobileAlt className="text-red-600" />, title: "Neue Kunden kommen nur zufällig", text: "Neue Kunden kommen meist über Empfehlungen – planbare Anfragen fehlen." },
-    { icon: <FaClock className="text-red-600" />, title: "Die Website wirkt unprofessionell oder alt", text: "Besucher verlieren Geduld oder Vertrauen, bevor sie Ihr Angebot sehen." }
-  ];
 
-  const solutions = [
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Klare Orientierung", text: "Kunden erkennen sofort, was Sie anbieten und wie sie Kontakt aufnehmen." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Messbare Anfragen", text: "Ihre Website wird zum aktiven Verkäufer – Sie sehen genau, wer Interesse hat." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Unabhängig von Empfehlungen", text: "Gewinnen Sie neue Kunden, ohne auf Mundpropaganda warten zu müssen." },
-    { icon: <FaCheckCircle className="text-green-600" />, title: "Schnell & mobil", text: "Optimiert für Smartphones, Tablets und Desktop – keine verlorenen Interessenten." }
-  ];
+
+  const problems = [
+      {
+        icon: <FaUserTimes />,
+        title: "Interessenten springen ab",
+        text: "Unklare Websites verlieren Interessenten an die Konkurrenz."
+      },
+      {
+        icon: <FaPhone />,
+        title: "Keine Anfragen trotz Besucher",
+        text: "Besucher finden Informationen, aber keinen Grund zu handeln."
+      },
+      {
+        icon: <FaMobileAlt />,
+        title: "Kunden kommen zufällig",
+        text: "Sie bleiben abhängig von Empfehlungen und Zufall."
+      },
+      {
+        icon: <FaClock />,
+        title: "Der erste Eindruck kostet Vertrauen",
+        text: "Eine alte Website lässt potenzielle Kunden zweifeln."
+      }
+    ];
+
+
+
+    const solutions = [
+      {
+        icon: <FaCheckCircle />,
+        title: "Sofortige Klarheit für Besucher",
+        text: "Interessenten wissen direkt, warum sie Sie wählen sollten."
+      },
+      {
+        icon: <FaCheckCircle />,
+        title: "Mehr qualifizierte Anfragen",
+        text: "Ihre Website führt Besucher gezielt zum Kontakt."
+      },
+      {
+        icon: <FaCheckCircle />,
+        title: "Mehr Unabhängigkeit",
+        text: "Ihre Website arbeitet dauerhaft für neue Kunden."
+      },
+      {
+        icon: <FaCheckCircle />,
+        title: "Mehr Vertrauensaufbau ",
+        text: "Schnell, professionell und optimiert für Anfragen auf jedem Gerät"
+      }
+    ];
+
+
+
 
   return (
-    <>
-      <div className="relative overflow-hidden">
-        <span ref={leftCircleRef} className="fixed w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] blur-[80px] sm:blur-[100px] md:blur-[100px] bg-gradient-to-br from-red-600 via-red-700 to-red-800 rounded-full opacity-0 z-[-1]" />
-        <span ref={rightCircleRef} className="fixed w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] blur-[60px] sm:blur-[80px] md:blur-[100px] bg-gradient-to-tl from-green-600 via-green-700 to-green-800 rounded-full opacity-0 z-[-1]" />
-      </div>
 
-      <section ref={sectionRef} className="w-full mt-5 py-16 sm:py-20 md:py-24 xl:py-28 px-6 mx-auto max-w-[1100px]">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            Warum viele Websites in Hagen keine Anfragen liefern
-          </h2>
-          <p className="text-lg text-[#000814] max-w-2xl mx-auto">
-            Viele lokale Websites sehen professionell aus, liefern aber keine planbaren Anfragen.
-          </p>
-        </div>
+<section
+ref={sectionRef}
+className="
+w-full
+mt-5
+py-16
+sm:py-20
+md:py-24
+xl:py-28
+px-6
+mx-auto
+max-w-[1100px]
+"
+>
 
-        <div className="grid lg:grid-cols-2 gap-10 items-stretch">
 
-          {/* Problem */}
-          <div ref={problemRef} className="flex flex-col space-y-6">
-            <div className="text-center lg:text-left mb-4">
-              <div className="flex items-center justify-center lg:justify-start mb-2">
-                <FaExclamationTriangle className="text-red-600 text-2xl mr-2" />
-                <h3 className="text-2xl font-bold text-red-700">Die Herausforderungen</h3>
-              </div>
-              <p className="text-base text-[#000814]">
-                Ohne gezielte Strategie verlieren Sie wertvolle Interessenten in Hagen.
-              </p>
-            </div>
-            <div className="space-y-4 flex-grow">
-              {problems.map((p, i) => (
-                <div key={i} className="flex items-start p-4 bg-red-50 rounded-2xl shadow-md">
-                  <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-lg mr-3">{p.icon}</div>
-                  <div>
-                    <h4 className="font-bold text-red-800 mb-1">{p.title}</h4>
-                    <p className="text-[#000814] text-m">{p.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="p-5 bg-red-100 rounded-2xl text-center shadow-md">
-              <p className="text-red-800 font-bold text-base">
-                Mit einer klaren Website-Struktur gewinnen Konkurrenten in Hagen planbar neue Kunden.
-              </p>
-            </div>
-          </div>
+<div className="text-center mb-12">
 
-          {/* Solution */}
-          <div ref={solutionRef} className="flex flex-col space-y-6">
-            <div className="text-center lg:text-left mb-4">
-              <div className="flex items-center justify-center lg:justify-start mb-2">
-                <FaCheckCircle className="text-green-600 text-2xl mr-2" />
-                <h3 className="text-2xl font-bold text-green-700">Meine Lösung</h3>
-              </div>
-              <p className="text-base text-[#000814]">
-                Ein maßgeschneidertes Website-System, das gezielt Besucher aus Hagen zu Anfragen führt – einfach, messbar und zuverlässig.
-              </p>
-            </div>
-            <div className="space-y-4 flex-grow">
-              {solutions.map((s, i) => (
-                <div key={i} className="flex items-start p-4 bg-green-50 rounded-2xl shadow-md">
-                  <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-xl mr-3">{s.icon}</div>
-                  <div>
-                    <h4 className="font-bold text-green-800 mb-1">{s.title}</h4>
-                    <p className="text-[#000814] text-m">{s.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="p-5 bg-green-100 rounded-2xl text-center shadow-md">
-              <p className="text-green-800 font-bold text-base">
-                Eine Website, die Besucher aus Hagen & Umgebung gezielt zur Anfrage führen.
-                <span className="block mt-1 text-sm font-normal text-green-700">
-                  50% Anzahlung – Rest nach erfolgreichem Launch.
-                </span>
-              </p>
-            </div>
-          </div>
 
-        </div>
+<h2
+className="
+text-3xl
+md:text-4xl
+font-bold
+leading-tight
+mb-4
+text-[#000814]
+"
+>
+Warum viele Websites in Hagen keine Anfragen liefern
+</h2>
 
-        {/* CTA */}
-        <div className="w-full mt-10 flex justify-center">
-          <CTA1 bg="bg-white" />
-        </div>
 
-        <div className="text-center mt-8">
-          <p className="text-[15px] text-[#000814] max-w-xl mx-auto">
-            Lassen Sie uns Ihre Website zu einem echten Vertriebssystem machen.
-          </p>
-        </div>
-      </section>
-    </>
+<p
+className="
+text-lg
+text-[#000814]
+max-w-2xl
+mx-auto
+"
+>
+Viele Betriebe in Hagen haben eine Website, die gut aussieht, aber keine messbaren Anfragen bringt.
+</p>
+
+
+</div>
+
+
+
+<div
+className="
+grid
+lg:grid-cols-2
+gap-10
+items-stretch
+"
+>
+
+
+
+<div
+ref={problemRef}
+className="
+flex
+flex-col
+space-y-6
+"
+>
+
+
+<div>
+
+<div
+className="
+flex
+items-center
+mb-2
+"
+>
+
+<FaExclamationTriangle
+className="
+text-[#64748b]
+text-2xl
+mr-2
+"
+/>
+
+
+<h3
+className="
+text-2xl
+font-bold
+text-[#001D3D]
+"
+>
+Das Problem
+</h3>
+
+
+</div>
+
+
+<p className="text-base text-[#000814]">
+Besucher Vertrauen ihnen nicht und entscheiden sich für ihren Konkurrenten.
+</p>
+
+
+</div>
+
+
+
+
+<div className="space-y-4 flex-grow">
+
+
+{problems.map((p,i)=>(
+
+
+<div
+key={i}
+className="
+flex
+items-start
+p-4
+bg-[#001D3D]/5
+border
+border-[#001D3D]/10
+rounded-xl
+"
+>
+
+
+<div
+className="
+w-8
+h-8
+flex
+items-center
+justify-center
+mr-3
+text-[#64748b]
+"
+>
+{p.icon}
+</div>
+
+
+
+<div>
+
+<h4
+className="
+font-bold
+text-[#001D3D]
+mb-1
+"
+>
+{p.title}
+</h4>
+
+
+<p className="text-[#000814] text-sm">
+{p.text}
+</p>
+
+
+</div>
+
+
+</div>
+
+
+))}
+
+
+</div>
+
+
+
+
+<div
+className="
+p-5
+bg-[#001D3D]/10
+rounded-xl
+text-center
+"
+>
+
+<p
+className="
+text-[#001D3D]
+font-bold
+text-base
+"
+>
+Ohne eine optimierte Website verschenken Unternehmen täglich potenzielle Anfragen.
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div
+ref={solutionRef}
+className="
+flex
+flex-col
+space-y-6
+"
+>
+
+
+<div>
+
+
+<div
+className="
+flex
+items-center
+mb-2
+"
+>
+
+
+<FaCheckCircle
+className="
+text-[#00A6FB]
+text-2xl
+mr-2
+"
+/>
+
+
+<h3
+className="
+text-2xl
+font-bold
+text-[#003566]
+"
+>
+Die Lösung
+</h3>
+
+
+</div>
+
+
+<p className="text-base text-[#000814]">
+Eine Website, die aus Besuchern echte & messbare Kundenanfragen macht.
+</p>
+
+
+</div>
+
+
+
+
+<div className="space-y-4 flex-grow">
+
+
+{solutions.map((s,i)=>(
+
+
+<div
+key={i}
+className="
+flex
+items-start
+p-4
+bg-[#00A6FB]/5
+border
+border-[#00A6FB]/20
+rounded-xl
+"
+>
+
+
+<div
+className="
+w-8
+h-8
+flex
+items-center
+justify-center
+mr-3
+text-[#00A6FB]
+"
+>
+{s.icon}
+</div>
+
+
+
+<div>
+
+
+<h4
+className="
+font-bold
+text-[#003566]
+mb-1
+"
+>
+{s.title}
+</h4>
+
+
+<p className="text-[#000814] text-sm">
+{s.text}
+</p>
+
+
+</div>
+
+
+</div>
+
+
+))}
+
+
+</div>
+
+
+
+
+
+<div
+className="
+p-5
+bg-[#00A6FB]/10
+rounded-xl
+text-center
+"
+>
+
+
+<p
+className="
+text-[#003566]
+font-bold
+text-base
+"
+>
+
+Ihre Website wird zum digitalen Verkäufer Ihres Betriebs.
+
+<span
+className="
+block
+mt-1
+text-sm
+font-normal
+"
+>
+Mehr Klarheit, mehr Vertrauen und mehr Anfragen von Kunden aus Hagen & Umgebung.
+</span>
+
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div
+className="
+w-full
+mt-10
+flex
+justify-center
+"
+>
+
+<CTA1
+bg="bg-[#001D3D]"
+text2="text-white"
+hover="text-white"
+/>
+
+
+</div>
+
+
+
+
+<div className="text-center mt-8">
+
+<p
+className="
+text-[15px]
+text-[#000814]
+max-w-xl
+mx-auto
+"
+>
+Lassen Sie uns Ihre Website zu einem echten Vertriebssystem machen.
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
   );
 };
+
 
 export default ProblemSolution;

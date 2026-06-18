@@ -46,51 +46,53 @@ const ProblemSolution = () => {
 
 
  const problems = [
-  {
-    icon: <FaUserTimes />,
-    title: "Besucher verstehen Ihr Angebot nicht",
-    text: "Unklare Websites verlieren Interessenten an die Konkurrenz."
-  },
-  {
-    icon: <FaPhone />,
-    title: "Interesse entsteht, aber keine Anfrage",
-    text: "Besucher finden Informationen, aber keinen Grund zu handeln."
-  },
-  {
-    icon: <FaMobileAlt />,
-    title: "Keine planbare Kundengewinnung",
-    text: "Sie bleiben abhängig von Empfehlungen und Zufall."
-  },
-  {
-    icon: <FaClock />,
-    title: "Der erste Eindruck kostet Vertrauen",
-    text: "Eine alte Website lässt potenzielle Kunden zweifeln."
-  }
-];
+     {
+       icon: <FaUserTimes />,
+       title: "Interessenten springen ab",
+       text: "Unklare Websites verlieren Interessenten an die Konkurrenz."
+     },
+     {
+       icon: <FaPhone />,
+       title: "Keine Anfragen trotz Besucher",
+       text: "Besucher finden Informationen, aber keinen Grund zu handeln."
+     },
+     {
+       icon: <FaMobileAlt />,
+       title: "Kunden kommen zufällig",
+       text: "Sie bleiben abhängig von Empfehlungen und Zufall."
+     },
+     {
+       icon: <FaClock />,
+       title: "Der erste Eindruck kostet Vertrauen",
+       text: "Eine alte Website lässt potenzielle Kunden zweifeln."
+     }
+   ];
 
 
-const solutions = [
-  {
-    icon: <FaCheckCircle />,
-    title: "Ihr Angebot wird sofort verstanden",
-    text: "Interessenten wissen direkt, warum sie Sie wählen sollten."
-  },
-  {
-    icon: <FaCheckCircle />,
-    title: "Mehr qualifizierte Anfragen",
-    text: "Ihre Website führt Interessenten gezielt zum Kontakt."
-  },
-  {
-    icon: <FaCheckCircle />,
-    title: "Mehr Unabhängigkeit",
-    text: "Ihre Website gewinnt neue Kunden ohne Empfehlungen."
-  },
-  {
-    icon: <FaCheckCircle />,
-    title: "Moderner Auftritt auf jedem Gerät",
-    text: "Schnell, professionell und optimiert für Anfragen."
-  }
-];
+
+   const solutions = [
+     {
+       icon: <FaCheckCircle />,
+       title: "Sofortige Klarheit für Besucher",
+       text: "Interessenten wissen direkt, warum sie Sie wählen sollten."
+     },
+     {
+       icon: <FaCheckCircle />,
+       title: "Mehr qualifizierte Anfragen",
+       text: "Ihre Website führt Besucher gezielt zum Kontakt."
+     },
+     {
+       icon: <FaCheckCircle />,
+       title: "Mehr Unabhängigkeit",
+       text: "Ihre Website arbeitet dauerhaft für neue Kunden."
+     },
+     {
+       icon: <FaCheckCircle />,
+       title: "Mehr Vertrauensaufbau ",
+       text: "Schnell, professionell und optimiert für Anfragen auf jedem Gerät"
+     }
+   ];
+
 
 
   return (
@@ -358,7 +360,7 @@ const solutions = [
 
 
             <p className="text-base text-[#000814]">
-              Eine Website, die messbar neue Kundenanfragen generiert. Ohne Stress und Aufwand.
+              Eine Website, die messbar neue Kundenanfragen generiert. Ohne Stress und minimalen Aufwand.
             </p>
 
 

@@ -111,7 +111,7 @@ const Testimonials = ({ showCta = true,  hasPadding = true }) => {
 
 {/* Desktop-Version */}
 <p className="hidden sm:block text-white font-black text-xl sm:text-2xl xl:text-3xl leading-snug tracking-tight">
-  Franco hat mir gezeigt, wo meine Website Anfragen verliert —
+  Franco hat mir gezeigt, wo meine Website Anfragen verliert.
   Stellen die sogar mein alter Webdesigner nicht gesehen hat.
   Durch Franco habe ich nun spürbar mehr Anfragen.
   Einer der besten Webdesigner in Ennepetal und Umgebung.
