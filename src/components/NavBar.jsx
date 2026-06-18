@@ -48,7 +48,7 @@ const NavBar = () => {
       <div className="mx-auto w-full xl:max-w-[1100px] px-4 sm:px-6 xl:px-0 flex justify-between items-center py-4">
         {/* Desktop Navigation */}
         <ul className="gap-10 hidden lg:flex">
-          
+
           {deskMenuItems.map((item) => (
             <li key={item.label}>
               <Link
@@ -115,7 +115,7 @@ const NavBar = () => {
             : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <ul className="flex flex-col items-center justify-center h-full space-y-8"
+        <ul className="flex flex-col items-center justify-top pt-42 h-full space-y-8"
             role="menu"
             aria-label="Mobile Navigation"
             id="mobile-menu"
