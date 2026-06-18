@@ -199,7 +199,7 @@ const steps = [
       'Interessierte aus Ihrer Region finden Ihr Unternehmen online, verstehen Ihr Angebot schneller und können Sie direkt kontaktieren.',
     trustPills: [
       { text: '📍 Lokal auffindbar', variant: 'green' },
-      { text: 'Mehr Vertrauen', variant: 'blue' },
+      { text: '📊 Ergebnisse messbar', variant: 'blue' },
 
     ],
     badge: '🚀 Auf Anfragen optimiert',
