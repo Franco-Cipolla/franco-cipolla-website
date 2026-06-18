@@ -20,6 +20,13 @@ const Hero = () => {
   const imageRef = useRef(null);
   const mobileImageRef = useRef(null);
 
+  const rotatingWordRef = useRef(null);
+
+const rotatingWords = [
+  "Anfrage",
+  "Buchung",
+  "Erstberatung"
+];
   const [, setIsXL] = useState(false);
 
   const handleClick = () => {
@@ -34,71 +41,288 @@ const Hero = () => {
   }, []);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      ScrollTrigger.matchMedia({
-        '(max-width: 1023px)': () => {
-          gsap.to([leftCircleRef.current, rightCircleRef.current], {
-            opacity: 0,
-            duration: 1,
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true,
-            },
-          });
-        },
-        '(min-width: 1024px)': () => {
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom 5%',
-              scrub: 0.5,
-            },
-          });
-          tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
-          tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
-          tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
-          tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
-        },
-      });
-    }, heroRef);
-    return () => ctx.revert();
-  }, []);
+
+  const ctx = gsap.context(() => {
+
+
+    // Hintergrund Kreise Floating Loop Desktop
+
+    ScrollTrigger.matchMedia({
+
+      "(min-width:1024px)":()=>{
+
+
+        gsap.to(leftCircleRef.current,{
+          y:-220,
+          duration:3,
+          ease:"sine.inOut",
+          repeat:-1,
+          yoyo:true
+        });
+
+
+        gsap.to(rightCircleRef.current,{
+          y:220,
+          duration:3,
+          ease:"sine.inOut",
+          repeat:-1,
+          yoyo:true
+        });
+
+
+
+        // Scroll Bewegung
+
+        const tl = gsap.timeline({
+
+          scrollTrigger:{
+            trigger:heroRef.current,
+            start:"top top",
+            end:"bottom 5%",
+            scrub:0.5
+          }
+
+        });
+
+
+        tl.to(
+          leftCircleRef.current,
+          {
+            x:-40,
+            opacity:0.8
+          }
+        );
+
+
+        tl.to(
+          rightCircleRef.current,
+          {
+            x:40,
+            opacity:0.8
+          },
+          0
+        );
+
+
+      },
+
+
+
+      // Mobile Performance
+
+      "(max-width:1023px)":()=>{
+
+
+        gsap.set(
+          [
+            leftCircleRef.current,
+            rightCircleRef.current
+          ],
+          {
+            y:0
+          }
+        );
+
+
+        gsap.to(
+          [
+            leftCircleRef.current,
+            rightCircleRef.current
+          ],
+          {
+
+            opacity:0.25,
+
+            duration:1,
+
+            scrollTrigger:{
+
+              trigger:heroRef.current,
+
+              start:"top top",
+
+              end:"bottom top",
+
+              scrub:true
+
+            }
+
+          }
+
+        );
+
+
+      }
+
+
+    });
+
+
+  }, heroRef);
+
+
+
+  return () => ctx.revert();
+
+
+}, []);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const textRefs = [headlineRef, text1Ref, text2Ref, text3Ref, ctaRef, disclaimerRef, awardRef];
-      gsap.from(textRefs.map(ref => ref.current).filter(Boolean), {
+  const ctx = gsap.context(() => {
+
+    const textRefs = [
+      headlineRef,
+      text1Ref,
+      text2Ref,
+      text3Ref,
+      ctaRef,
+      disclaimerRef,
+      awardRef
+    ];
+
+    gsap.from(
+      textRefs.map(ref => ref.current).filter(Boolean),
+      {
         y: 50,
         opacity: 0,
         duration: 1,
         stagger: 0.2,
-        ease: 'power3.out',
+        ease: "power3.out",
+      }
+    );
+
+
+    const imgEl = imageRef.current;
+
+    if (imgEl) {
+
+      if (!imgEl.complete) {
+
+        const handleLoad = () => {
+
+          gsap.from(imgEl, {
+            y:50,
+            opacity:0,
+            duration:1,
+            ease:"power3.out"
+          });
+
+        };
+
+        imgEl.addEventListener("load", handleLoad);
+
+      } else {
+
+        gsap.from(imgEl,{
+          y:50,
+          opacity:0,
+          duration:1,
+          ease:"power3.out"
+        });
+
+      }
+
+    }
+
+
+    const mobileImg = mobileImageRef.current;
+
+    if(mobileImg){
+
+      gsap.from(mobileImg,{
+        y:30,
+        opacity:0,
+        duration:0.8,
+        ease:"power3.out",
+        delay:0.6
       });
 
-      const imgEl = imageRef.current;
-      if (imgEl) {
-        if (!imgEl.complete) {
-          const handleLoad = () => {
-            gsap.from(imgEl, { y: 50, opacity: 0, duration: 1, ease: 'power3.out' });
-          };
-          imgEl.addEventListener('load', handleLoad);
-          return () => imgEl.removeEventListener('load', handleLoad);
-        } else {
-          gsap.from(imgEl, { y: 50, opacity: 0, duration: 1, ease: 'power3.out' });
+    }
+
+
+  }, heroRef);
+
+
+  return () => ctx.revert();
+
+}, []);
+useLayoutEffect(() => {
+
+  const ctx = gsap.context(() => {
+
+    let wordIndex = 0;
+
+
+    const animateWordChange = () => {
+
+      const word = rotatingWordRef.current;
+
+      if(!word) return;
+
+
+      gsap.to(word,{
+
+        y:-8,
+        opacity:0,
+
+        duration:0.25,
+
+        ease:"power2.in",
+
+        onComplete:()=>{
+
+
+          wordIndex =
+          (wordIndex + 1) %
+          rotatingWords.length;
+
+
+          word.textContent =
+          rotatingWords[wordIndex];
+
+
+          gsap.fromTo(
+            word,
+
+            {
+              y:8,
+              opacity:0
+            },
+
+            {
+              y:0,
+              opacity:1,
+              duration:0.35,
+              ease:"power3.out"
+            }
+
+          );
+
+
         }
-      }
 
-      const mobileImg = mobileImageRef.current;
-      if (mobileImg) {
-        gsap.from(mobileImg, { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out', delay: 0.6 });
-      }
-    }, heroRef);
-    return () => ctx.revert();
-  }, []);
+      });
 
+    };
+
+
+    const interval = setInterval(
+      animateWordChange,
+      2200
+    );
+
+
+    return () => clearInterval(interval);
+
+
+  }, heroRef);
+
+
+
+  return () => ctx.revert();
+
+
+}, []);
   return (
     <>
       {/* Hintergrundkreise */}
@@ -131,14 +355,31 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Headline */}
             <h1
-              ref={headlineRef}
-              className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
-            >
-              Websites für lokale Unternehmen in Wuppertal
-              <span className="text-[#003566]"> mit Fokus auf Kundenanfragen</span>
-            </h1>
+  ref={headlineRef}
+  className="text-3xl md:text-5xl font-black text-black tracking-tight mb-6"
+>
+
+Websites, die Interessenten
+
+<span className="text-[#003566]">
+
+{" "}messbar zur{" "}
+
+<span
+ref={rotatingWordRef}
+className="inline-block"
+>
+Anfrage
+</span>
+
+<br className="hidden md:block"/>
+
+{" "}führen.
+
+</span>
+
+</h1>
 
             {/* Subtext */}
             <div className="max-w-xl md:mx-auto xl:mx-0 xl:max-w-2xl">

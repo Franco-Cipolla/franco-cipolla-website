@@ -50,7 +50,7 @@ const Hero = () => {
     // Hintergrund Kreise Floating Loop
 
     gsap.to(leftCircleRef.current, {
-      y: -360,
+      y: -220,
       duration: 3,
       ease: "sine.inOut",
       repeat: -1,
@@ -59,7 +59,7 @@ const Hero = () => {
 
 
     gsap.to(rightCircleRef.current, {
-      y: 360,
+      y: 220,
       duration: 3,
       ease: "sine.inOut",
       repeat: -1,
