@@ -60,8 +60,8 @@ const Hero = () => {
           });
           tl.fromTo(leftCircleRef.current, { y: 0 }, { y: -150 });
           tl.fromTo(rightCircleRef.current, { y: 0 }, { y: 150 }, 0);
-          tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '-105vw', opacity: 0 }, 0.5);
-          tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '105vw', opacity: 0 }, 0.5);
+          tl.fromTo(leftCircleRef.current, { x: 0, opacity: 1 }, { x: '0', opacity: 0.8 }, 0.5);
+          tl.fromTo(rightCircleRef.current, { x: 0, opacity: 1 }, { x: '0', opacity: 0.8 }, 0.5);
         },
       });
     }, heroRef);
