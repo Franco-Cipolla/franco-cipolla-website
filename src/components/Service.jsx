@@ -72,9 +72,9 @@ const stackItems = [
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
       </svg>
     ),
-    title: 'Besucher-Tracking',
+    title: 'Besucher-Messungen',
     descMobile: 'Keine Unwissenheit - Sie sehen was passiert',
-    descDesktop: 'Sie sehen wer Ihre Seite besucht und was passiert - keine Unwissenheit mehr',
+    descDesktop: 'Sie sehen wie viele Ihre Seite besuchen und was passiert - keine Unwissenheit mehr',
   },
   {
     icon: (
@@ -201,11 +201,7 @@ const Service = () => {
 
               <span className="text-[#003566]">Eine Website die für Sie arbeitet, auch wenn Sie es nicht tun</span>
             </h3>
-            <p className="text-[13px] sm:text-[14px] text-[#000814]/55 leading-relaxed border-l-[2.5px] border-[#003566] pl-4">
-              Interessenten aus Ihrer Region finden Sie bei Google, verstehen sofort Ihr Angebot -
-              und{' '}
-              <strong className="text-[#000814]">greifen von sich aus zum Telefon.</strong>
-            </p>
+
           </div>
 
           {/* BELIEF - Value Stack */}
