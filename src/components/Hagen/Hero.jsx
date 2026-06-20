@@ -623,7 +623,7 @@ useLayoutEffect(() => {
                 className="h-6 sm:h-6 md:h-6 w-auto object-contain "
               />
 
-              <span className="text-[13px] sm:text-[13px] md:text-sm text-black/50 font-medium leading-tight">
+              <span className="text-[13px]  hover:underline-offset-1 transition  underline-offset-4 underline  sm:text-[13px] md:text-sm text-black/50 font-medium leading-tight">
                 Ausgezeichnet beim Neuro Web Award 2026
               </span>
 
