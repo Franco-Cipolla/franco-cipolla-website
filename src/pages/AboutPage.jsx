@@ -80,7 +80,7 @@ const AboutPage = () => {
 
   <meta
     name="description"
-    content="Ich baue Websites für Unternehmen aus Ennepetal & Umgebung, die nicht nur gut aussehen, sondern auch Anfragen bringen."
+    content="Lernen Sie Franco Cipolla kennen. Webdesigner aus Ennepetal mit Fokus auf verkaufspsychologische Websites für lokale Unternehmen."
   />
 
   <link
@@ -100,6 +100,27 @@ const AboutPage = () => {
   <meta name="twitter:title" content="Über mich – Webdesigner aus Ennepetal | Franco Cipolla" />
   <meta name="twitter:description" content="Websites, die wirklich Kunden bringen." />
   <meta name="twitter:image" content="https://franco-cipolla.de/og-preview.jpg" />
+
+  <script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Startseite",
+      "item": "https://www.franco-cipolla.de"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Über mich",
+      "item": "https://www.franco-cipolla.de/ueber-mich"
+    }
+  ]
+})}
+</script>
 </Helmet>
 
       {/* Hintergrundkreise */}

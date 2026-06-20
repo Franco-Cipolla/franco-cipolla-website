@@ -1,96 +1,156 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
-     <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Diese Kommentare werden beim Prerendering durch echte Tags ersetzt -->
-  <!---HELMET_TITLE--->
-  <!---HELMET_META--->
-  <!---HELMET_LINK--->
+    <!-- Diese Kommentare werden beim Prerendering durch echte Tags ersetzt -->
+    <!---HELMET_TITLE--->
+    <!---HELMET_META--->
+    <!---HELMET_LINK--->
 
-  <!-- Gemeinsame Fallbacks, falls etwas schiefgeht -->
-  <title>Franco Cipolla Webdesign</title>
+    <!-- Gemeinsame Fallbacks, falls etwas schiefgeht -->
+    <title>Franco Cipolla Webdesign</title>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Mehr Kundenanfragen durch verkaufspsychologische Websites" />
-  <meta property="og:description" content="Webdesign mit Fokus auf messbare Kundenanfragen für lokale Unternehmen." />
-  <meta property="og:image" content="https://franco-cipolla.de/og-preview.jpg" />
-  <meta property="og:url" content="https://www.franco-cipolla.de" />
-  <meta property="og:type" content="website" />
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Mehr Kundenanfragen durch verkaufspsychologische Websites"
+    />
+    <meta
+      property="og:description"
+      content="Webdesign mit Fokus auf messbare Kundenanfragen für lokale Unternehmen."
+    />
+    <meta
+      property="og:image"
+      content="https://franco-cipolla.de/og-preview.jpg"
+    />
+    <meta property="og:url" content="https://www.franco-cipolla.de" />
+    <meta property="og:type" content="website" />
 
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon-180x180.png"
+    />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
 
     <!-- 🔥 CORE GEO / ENTITY LAYER -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": "https://www.franco-cipolla.de/#website",
-          "url": "https://www.franco-cipolla.de",
-          "name": "Franco Cipolla Webdesign",
-          "description": "Websites für lokale Unternehmen mit Fokus auf Kundenanfragen",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.franco-cipolla.de/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.franco-cipolla.de/#website",
+            "url": "https://www.franco-cipolla.de",
+            "name": "Franco Cipolla Webdesign",
+            "description": "Websites für lokale Unternehmen mit Fokus auf Kundenanfragen",
+            "publisher": {
+              "@id": "https://www.franco-cipolla.de/#localbusiness"
+            }
+          },
+
+          {
+            "@type": "SiteNavigationElement",
+            "name": "Kostenlose Website Analyse",
+            "url": "https://www.franco-cipolla.de/website-analyse"
+          },
+
+          {
+            "@type": "SiteNavigationElement",
+            "name": "Über mich",
+            "url": "https://www.franco-cipolla.de/ueber-mich"
+          },
+
+          {
+            "@type": "SiteNavigationElement",
+            "name": "Webdesign Hagen",
+            "url": "https://www.franco-cipolla.de/hagen"
+          },
+
+          {
+            "@type": "SiteNavigationElement",
+            "name": "Webdesign Wuppertal",
+            "url": "https://www.franco-cipolla.de/wuppertal"
+          },
+
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://www.franco-cipolla.de/#localbusiness",
+            "name": "Franco Cipolla Webdesign & Digitale Kundengewinnung",
+            "description": "webdesigner ennepetal, Website erstellen lassen ennepetal und digitale Kundengewinnung für lokale Unternehmen in Ennepetal, Hagen und Wuppertal.",
+            "url": "https://www.franco-cipolla.de",
+            "telephone": "+49 176 75398004",
+            "priceRange": "€€",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": 5,
+              "reviewCount": 1
+            },
+
+            "review": [
+              {
+                "@type": "Review",
+                "author": {
+                  "@type": "Person",
+                  "name": "Kevin Förster"
+                },
+                "reviewRating": {
+                  "@type": "Rating",
+                  "ratingValue": 5,
+                  "bestRating": 5
+                },
+                "reviewBody": "Franco hat meine Website analysiert und mir gezeigt, dass meine Website an verschiedenen Stellen Anfragen verliert. Teilweise gab es Stellen die sogar mein alter Webdesigner nicht gesehen hat. Francos Expertise ist wirklich auf einem ganz anderen Level. Ich bereue es zu keiner Sekunde mich auf ihn eingelassen zu haben. Er kann locker mit Dienstleistern mithalten die weitaus mehr Erfahrung haben. Durch Franco habe ich nun spürbar mehr Anfragen. Meiner Meinung nach einer der besten Webdesigner in ganz Ennepetal und Umgebung. Klare Empfehlung!"
+              }
+            ],
+
+            "image": "https://franco-cipolla.de/Franco2.jpeg",
+            "logo": "https://franco-cipolla.de/Franco2.jpeg",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Wuppermannstraße 14",
+              "addressLocality": "Ennepetal",
+              "postalCode": "58256",
+              "addressCountry": "DE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 51.2965,
+              "longitude": 7.3508
+            },
+            "areaServed": [
+              { "@type": "City", "name": "Ennepetal" },
+              { "@type": "City", "name": "Wuppertal" },
+              { "@type": "City", "name": "Hagen" },
+              { "@type": "AdministrativeArea", "name": "Ruhrgebiet" }
+            ],
+            "sameAs": [
+              "https://www.instagram.com/francocipolla.de",
+              "https://www.linkedin.com/in/franco-cipolla-00217a37a/",
+              "https://www.facebook.com/profile.php?id=61579454284278"
+            ]
+          },
+
+          {
+            "@type": "Person",
+            "@id": "https://www.franco-cipolla.de/#person",
+            "name": "Franco Cipolla",
+            "url": "https://www.franco-cipolla.de",
+            "image": "https://franco-cipolla.de/Franco2.jpeg",
+            "jobTitle": "Webdesigner",
+            "worksFor": {
+              "@id": "https://www.franco-cipolla.de/#localbusiness"
+            },
+            "sameAs": [
+              "https://www.instagram.com/francocipolla.de",
+              "https://www.linkedin.com/in/franco-cipolla-00217a37a/"
+            ]
           }
-        },
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://www.franco-cipolla.de/#localbusiness",
-          "name": "Franco Cipolla Webdesign & Digitale Kundengewinnung",
-          "url": "https://www.franco-cipolla.de",
-          "telephone": "+4917675398004",
-          "priceRange": "€€",
-          "image": "https://franco-cipolla.de/Franco2.jpeg",
-          "logo": "https://franco-cipolla.de/Franco2.jpeg",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Wuppermannstraße 14",
-            "addressLocality": "Ennepetal",
-            "postalCode": "58256",
-            "addressCountry": "DE"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 51.2965,
-            "longitude": 7.3508
-          },
-          "areaServed": [
-            { "@type": "City", "name": "Ennepetal" },
-            { "@type": "City", "name": "Wuppertal" },
-            { "@type": "City", "name": "Hagen" },
-            { "@type": "AdministrativeArea", "name": "Ruhrgebiet" }
-          ],
-          "sameAs": [
-            "https://www.instagram.com/francocipolla.de",
-            "https://www.linkedin.com/in/franco-cipolla-00217a37a/",
-            "https://www.facebook.com/profile.php?id=61579454284278"
-          ]
-        },
-        {
-          "@type": "Person",
-          "@id": "https://www.franco-cipolla.de/#person",
-          "name": "Franco Cipolla",
-          "url": "https://www.franco-cipolla.de",
-          "image": "https://franco-cipolla.de/Franco2.jpeg",
-          "jobTitle": "Webdesigner",
-          "worksFor": {
-            "@id": "https://www.franco-cipolla.de/#localbusiness"
-          },
-          "sameAs": [
-            "https://www.instagram.com/francocipolla.de",
-            "https://www.linkedin.com/in/franco-cipolla-00217a37a/"
-          ]
-        }
-      ]
-    }
+        ]
+      }
     </script>
 
     <script type="module" src="/src/main.jsx"></script>

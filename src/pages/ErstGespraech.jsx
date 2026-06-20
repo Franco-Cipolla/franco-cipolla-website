@@ -162,9 +162,49 @@ const ErstGespraech = () => {
         <title>Kostenlose Website-Analyse - Franco Cipolla</title>
         <meta
           name="description"
-          content="In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert - kostenlos, direkt auf Ihrer Seite gezeigt."
+          content="Finden Sie kostenlos heraus, warum Besucher nicht zu Kunden werden und welche Optimierungen mehr Anfragen bringen könnten."
         />
 <link rel="canonical" href="https://www.franco-cipolla.de/website-analyse"/>
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ist das wirklich kostenlos - was ist der Haken?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kein Haken. Ich zeige Ihnen in 15 Minuten konkret, was auf Ihrer Seite nicht funktioniert."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ich hatte schon mal eine Agentur - das hat nichts gebracht.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Viele Websites sehen gut aus, sind aber nicht auf Anfragen optimiert."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ich habe gerade keine Zeit für sowas.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deshalb dauert die Analyse nur 15 Minuten und erfordert keine Vorbereitung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Meine Website ist doch eigentlich okay.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In der Analyse prüfen wir, ob tatsächlich alles passt oder ob Anfragen verloren gehen."
+      }
+    }
+  ]
+})}
+</script>
       </Helmet>
 
       <StickyMobileCTA formRef={formRef} />
