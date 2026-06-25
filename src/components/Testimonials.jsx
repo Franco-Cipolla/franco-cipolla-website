@@ -38,17 +38,21 @@ const Testimonials = ({ showCta = true,  hasPadding = true }) => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from([labelRef.current, cardRef.current, ctaRef.current], {
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      });
+      const elements = [labelRef.current, cardRef.current, ctaRef.current].filter(Boolean);
+
+      if (elements.length > 0) {
+        gsap.from(elements, {
+          y: 40,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+          },
+        });
+      }
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -60,12 +64,10 @@ const Testimonials = ({ showCta = true,  hasPadding = true }) => {
     >
       <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px]">
 
-        {/* Abschnitts-Label */}
-        <div ref={labelRef} className="flex items-center gap-3 mb-8">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-[#001D3D]/40">
+        <div ref={labelRef} className="text-center mb-4 sm:mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight text-[#000814]">
             Kundenstimme
-          </span>
-          <div className="flex-1 h-px bg-[#001D3D]/10" />
+          </h2>
         </div>
 
         {/* Card */}

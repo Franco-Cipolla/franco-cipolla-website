@@ -31,17 +31,21 @@ const NeuroWebAward = ({ showCta = true, hasPadding = true }) => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from([labelRef.current, cardRef.current, ctaRef.current], {
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      });
+      const elements = [labelRef.current, cardRef.current, ctaRef.current].filter(Boolean);
+
+      if (elements.length > 0) {
+        gsap.from(elements, {
+          y: 40,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+          },
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -53,11 +57,10 @@ const NeuroWebAward = ({ showCta = true, hasPadding = true }) => {
       className={`w-full py-12 sm:py-14 ${hasPadding ? 'px-4 sm:px-6 xl:px-0' : 'px-0'} xl:px-0`}
     >
       <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px]">
-        <div ref={labelRef} className="mb-10 flex items-center gap-3 sm:mb-8">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-[#001D3D]/40">
+        <div ref={labelRef} className="mb-4 sm:mb-6 text-center ">
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight text-[#000814]">
             Auszeichnung
-          </span>
-          <div className="h-px flex-1 bg-[#001D3D]/10" />
+          </h2>
         </div>
 
         <div
@@ -109,9 +112,9 @@ const NeuroWebAward = ({ showCta = true, hasPadding = true }) => {
         </div>
 
         {showCta && (
-          <div ref={ctaRef} className="mt-10 flex flex-col items-start gap-4 sm:mt-8 sm:flex-row sm:items-center">
+          <div ref={ctaRef} className="mt-10 flex flex-col items-center gap-4 sm:mt-8 sm:flex-row sm:items-center">
             <p className="text-sm text-[#001D3D]/50 font-medium">
-              Auch mehr Anfragen durch Ihre Website?
+              Überzeugen Sie sich selbst
             </p>
             <button
               onClick={() => navigate('/website-analyse')}
