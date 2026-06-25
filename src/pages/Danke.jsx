@@ -195,34 +195,48 @@ const Danke = () => {
           {/* ── HERO ───────────────────────────────────────────────────── */}
           <div className="ca flex flex-col items-center text-center pt-20 pb-10 sm:pt-20 sm:pb-20">
 
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/10 via-[#001D3D]/5 to-[#00A6FB]/10 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 sm:px-5 py-2 sm:py-2.5 shadow-sm mb-5 sm:mb-6">
-              <span className="text-xs sm:text-[13px] font-semibold text-[#003566] tracking-tight">
-                🚀 Anfrage erfolgreich übermittelt
-              </span>
-            </div>
+  {/* Badge */}
+  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#003566]/10 via-[#001D3D]/5 to-[#00A6FB]/10 backdrop-blur-sm border border-[#003566]/15 rounded-full px-4 sm:px-5 py-2 sm:py-2.5 shadow-sm mb-5 sm:mb-6">
+    <span className="text-xs sm:text-[13px] font-semibold text-[#003566] tracking-tight">
+      🚀 Anfrage erfolgreich übermittelt
+    </span>
+  </div>
 
-            {/* Headline */}
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-black tracking-tight leading-[1.18] mb-3 max-w-[90%] sm:max-w-none">
-              Moment! Ihr Termin<br className="hidden sm:block" /> ist noch nicht bestätigt.
-            </h1>
+  {/* Headline */}
+  <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-black tracking-tight leading-[1.18] mb-3 max-w-[90%] sm:max-w-none">
+    Moment! Ihr Termin<br className="hidden sm:block" /> ist noch nicht bestätigt.
+  </h1>
 
-            <p className="text-[15px] sm:text-lg text-[#000814]/50 font-semibold mb-4">
-              Ich melde mich persönlich. Versprochen.
-            </p>
-            <p className="text-[13px] sm:text-base text-[#000814]/55 leading-relaxed max-w-[90%] sm:max-w-[460px]">
-              Sie haben den ersten Schritt gemacht. Ich schaue mir Ihre Situation jetzt genau an und melde mich innerhalb von 24 Stunden per WhatsApp.
-            </p>
+  <p className="text-[15px] sm:text-lg text-[#000814]/50 font-semibold mb-4">
+    Ich melde mich persönlich. Versprochen.
+  </p>
+
+  <p className="text-[13px] sm:text-base text-[#000814]/55 leading-relaxed max-w-[90%] sm:max-w-[460px]">
+    Sie haben den ersten Schritt gemacht. Ich schaue mir Ihre Situation jetzt genau an und melde mich innerhalb von 24 Stunden per WhatsApp.
+  </p>
 
 
-            {/* Scarcity */}
-            <p className="mt-4 sm:mt-5 text-xs sm:text-sm text-black/45 text-center">
-              ⚡ Ich nehme nur <strong className="text-black/65">2 Projekte pro Monat</strong> an.
-            </p>
-          </div>
+  {/* Scroll Hinweis */}
+  <div className="mt-12 animate-bounce">
+    <svg
+      className="w-6 h-6 text-[#003566]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </div>
+
+</div>
 
           {/* ── NEXT STEPS  flex row desktop, stacked mobile ─────────── */}
-          <div className="ca py-10 sm:py-20">
+          <div className="ca py-10 pt-5 sm:py-20">
             <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#001D3D]/35 mb-4 sm:mb-6 text-center sm:text-left">
               Ihr kurzer Check vor dem Termin
             </p>
