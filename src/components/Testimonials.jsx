@@ -29,7 +29,7 @@ const Stars = () => (
   </div>
 );
 
-const Testimonials = ({ showCta = true,  hasPadding = true }) => {
+const Testimonials = ({ showCta = true, hasPadding = true, showTitle = true }) => {
   const sectionRef = useRef(null);
   const cardRef = useRef(null);
   const labelRef = useRef(null);
@@ -64,11 +64,13 @@ const Testimonials = ({ showCta = true,  hasPadding = true }) => {
     >
       <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px]">
 
-        <div ref={labelRef} className="text-center mb-4 sm:mb-6">
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight text-[#000814]">
-            Kundenstimme
-          </h2>
-        </div>
+        {showTitle && (
+          <div ref={labelRef} className="text-center mb-4 sm:mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight text-[#000814]">
+              Kundenstimme
+            </h2>
+          </div>
+        )}
 
         {/* Card */}
         <a

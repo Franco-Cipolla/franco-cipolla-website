@@ -22,7 +22,7 @@ const AwardBadge = () => (
   </a>
 );
 
-const NeuroWebAward = ({ showCta = true, hasPadding = true }) => {
+const NeuroWebAward = ({ showCta = true, hasPadding = true, showTitle = true }) => {
   const sectionRef = useRef(null);
   const labelRef = useRef(null);
   const cardRef = useRef(null);
@@ -57,11 +57,13 @@ const NeuroWebAward = ({ showCta = true, hasPadding = true }) => {
       className={`w-full py-12 sm:py-14 ${hasPadding ? 'px-4 sm:px-6 xl:px-0' : 'px-0'} xl:px-0`}
     >
       <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px]">
-        <div ref={labelRef} className="mb-4 sm:mb-6 text-center ">
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight text-[#000814]">
-            Auszeichnung
-          </h2>
-        </div>
+        {showTitle && (
+          <div ref={labelRef} className="mb-4 sm:mb-6 text-center ">
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight text-[#000814]">
+              Auszeichnung
+            </h2>
+          </div>
+        )}
 
         <div
           ref={cardRef}

@@ -271,8 +271,8 @@ const ErstGespraech = () => {
             </ul>
           </div>
 
-           <Testimonials showCta={false} hasPadding={false} />
-           <NeuroWebAward  showCta={false} hasPadding={false} />
+           <Testimonials showCta={false} hasPadding={false}   showTitle={false}/>
+           <NeuroWebAward  showCta={false} hasPadding={false}  showTitle={false} />
 
 
 
