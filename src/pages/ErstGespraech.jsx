@@ -160,73 +160,81 @@ const ErstGespraech = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Kostenlose Website-Analyse - Franco Cipolla</title>
-        <meta
-          name="description"
-          content="Finden Sie kostenlos heraus, warum Besucher nicht zu Kunden werden und welche Optimierungen mehr Anfragen bringen könnten."
-        />
-        <meta name="keywords" content="Kostenlose Website-Analyse, Website-Analyse Ennepetal, Website prüfen lassen, Conversion-Analyse, Webdesign Ennepetal, Website optimieren lassen" />
-<link rel="canonical" href="https://www.franco-cipolla.de/website-analyse"/>
-<script type="application/ld+json">
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Ist das wirklich kostenlos - was ist der Haken?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Kein Haken. Ich zeige Ihnen in 15 Minuten konkret, was auf Ihrer Seite nicht funktioniert."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Ich hatte schon mal eine Agentur - das hat nichts gebracht.",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Viele Websites sehen gut aus, sind aber nicht auf Anfragen optimiert."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Ich habe gerade keine Zeit für sowas.",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Deshalb dauert die Analyse nur 15 Minuten und erfordert keine Vorbereitung."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Meine Website ist doch eigentlich okay.",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In der Analyse prüfen wir, ob tatsächlich alles passt oder ob Anfragen verloren gehen."
-      }
-    }
-  ]
-})}
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Startseite",
-      "item": "https://www.franco-cipolla.de"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Über mich",
-      "item": "https://www.franco-cipolla.de/website-analyse"
-    }
-  ]
-})}
-</script>
-      </Helmet>
+     <Helmet>
+  <title>Kostenlose Website-Analyse für mehr Anfragen | Franco Cipolla</title>
+
+  <meta
+    name="description"
+    content="Kostenlose Website-Analyse: Erfahren Sie, warum Ihre Website Besucher verliert und welche Optimierungen mehr Anfragen bringen können."
+  />
+
+  <link
+    rel="canonical"
+    href="https://www.franco-cipolla.de/website-analyse"
+  />
+
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Ist die Website-Analyse wirklich kostenlos?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ja. Sie erhalten eine konkrete Einschätzung Ihrer Website und sehen, welche Punkte Besucher davon abhalten können, eine Anfrage zu stellen."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Ich hatte schon einmal eine Agentur – warum sollte das diesmal anders sein?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Viele Websites sehen modern aus, sind aber nicht darauf optimiert, Besucher in Anfragen umzuwandeln."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Wie viel Zeit muss ich investieren?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Die Analyse dauert ungefähr 15 Minuten und benötigt keine Vorbereitung."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Meine Website funktioniert doch eigentlich schon.",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Die Analyse zeigt, ob tatsächlich alles optimal läuft oder ob potenzielle Kunden verloren gehen."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Startseite",
+              "item": "https://www.franco-cipolla.de"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Kostenlose Website-Analyse",
+              "item": "https://www.franco-cipolla.de/website-analyse"
+            }
+          ]
+        }
+      ]
+    })}
+  </script>
+</Helmet>
 
       <StickyMobileCTA formRef={formRef} />
 
