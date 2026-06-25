@@ -99,7 +99,7 @@ const NeuroWebAward = ({ showCta = true, hasPadding = true }) => {
                     rel="noopener noreferrer"
                     className="text-sm font-semibold text-white transition-colors duration-200 hover:text-[#00A6FB]"
                   >
-                    Neuro Web Award
+                    Neuro Web Award Gewinner 2026
                   </a>
                   <p className="mt-1 text-sm text-white/45">
                     Auszeichnung für starkes Webdesign mit klarer Wirkung · 2026
