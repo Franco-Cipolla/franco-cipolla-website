@@ -9,6 +9,7 @@ import FAQSection from '../components/FAQSection';
 import CTAHome from '../components/CTAHome';
 import Contact from '../components/Contact';
 import Testimonials from '../components/Testimonials';
+import NeuroWebAward from '../components/NeuroWebAward';
 
 const HomePage = () => {
   return (
@@ -38,6 +39,7 @@ const HomePage = () => {
       <main>
         <Hero />
         <Testimonials/>
+        <NeuroWebAward />
         <ServiceMarquee />
         <ProblemSolution />
         <Service />

@@ -9,6 +9,7 @@ import FAQSection from '../components/Wuppertal/FAQSection.jsx';
 import CTAHome from '../components/Wuppertal/CTAHome.jsx';
 import Contact from '../components/Wuppertal/Contact.jsx';
 import Testimonials from '../components/Testimonials';
+import NeuroWebAward from '../components/NeuroWebAward';
 
 const Wuppertallanding = () => {
   return (
@@ -42,6 +43,7 @@ const Wuppertallanding = () => {
       <main>
         <Hero />
         <Testimonials />
+        <NeuroWebAward />
         <ServiceMarquee />
         <ProblemSolution />
         <Service />

@@ -9,6 +9,7 @@ import FAQSection from '../components/Hagen/FAQSection.jsx';
 import CTAHome from '../components/Hagen/CTAHome';
 import Contact from '../components/Hagen/Contact';
 import Testimonials from '../components/Testimonials';
+import NeuroWebAward from '../components/NeuroWebAward';
 
 const HagenLanding = () => {
   return (
@@ -37,6 +38,7 @@ const HagenLanding = () => {
       <main>
         <Hero />
         <Testimonials />
+        <NeuroWebAward />
         <ServiceMarquee />
         <ProblemSolution />
         <Service />
