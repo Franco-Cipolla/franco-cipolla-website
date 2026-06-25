@@ -18,6 +18,7 @@ const Wuppertallanding = () => {
         <meta
           name="description"
        content="Kostenlose Website-Analyse für Betriebe in Wuppertal. Ihr Webdesign-Experte für mehr Kundenanfragen durch SEO, Verkaufspsychologie, Webdesign Wuppertal & Conversion-Optimierung."   />
+        <meta name="keywords" content="Webdesign Wuppertal, Webdesigner Wuppertal, Homepage erstellen Wuppertal, Website Wuppertal, Website erstellen lassen Wuppertal, SEO Wuppertal, Conversion-Optimierung Wuppertal, Webdesign Ennepe-Ruhr-Kreis" />
         <link rel="canonical" href="https://www.franco-cipolla.de/wuppertal" />
         <meta property="og:title" content="Websites, die Kunden bringen – Franco Cipolla" />
         <meta

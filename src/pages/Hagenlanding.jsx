@@ -17,6 +17,7 @@ const HagenLanding = () => {
         <title>Websites für mehr Kundenanfragen - Webdesign Hagen | Franco Cipolla</title>        <meta
           name="description"
                  content="Kostenlose Website-Analyse für Betriebe in Hagen. Ihr Webdesign-Experte in Hagen für mehr Kundenanfragen durch SEO, Verkaufspsychologie, Webdesign Hagen & Conversion-Optimierung."    />
+        <meta name="keywords" content="Webdesign Hagen, Webdesigner Hagen, Homepage erstellen Hagen, Website Hagen, Website erstellen lassen Hagen, SEO Hagen, Conversion-Optimierung Hagen, Webdesign Ennepe-Ruhr-Kreis" />
         <link rel="canonical" href="https://www.franco-cipolla.de/hagen" />
         <meta
           property="og:description"

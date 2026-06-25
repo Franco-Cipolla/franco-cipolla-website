@@ -82,6 +82,7 @@ const AboutPage = () => {
     name="description"
     content="Lernen Sie Franco Cipolla kennen. Webdesigner aus Ennepetal mit Fokus auf verkaufspsychologische Websites für lokale Unternehmen."
   />
+  <meta name="keywords" content="Franco Cipolla, Webdesigner Ennepetal, Webdesign Ennepetal, Website erstellen Ennepetal, Websiteberatung Ennepetal, Online-Marketing Ennepetal, Webdesign Ennepe-Ruhr-Kreis" />
 
   <link
     rel="canonical"

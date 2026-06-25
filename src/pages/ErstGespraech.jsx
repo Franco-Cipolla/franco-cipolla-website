@@ -164,6 +164,7 @@ const ErstGespraech = () => {
           name="description"
           content="Finden Sie kostenlos heraus, warum Besucher nicht zu Kunden werden und welche Optimierungen mehr Anfragen bringen könnten."
         />
+        <meta name="keywords" content="Kostenlose Website-Analyse, Website-Analyse Ennepetal, Website prüfen lassen, Conversion-Analyse, Webdesign Ennepetal, Website optimieren lassen" />
 <link rel="canonical" href="https://www.franco-cipolla.de/website-analyse"/>
 <script type="application/ld+json">
 {JSON.stringify({
