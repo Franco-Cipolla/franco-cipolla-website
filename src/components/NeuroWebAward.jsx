@@ -102,7 +102,7 @@ const NeuroWebAward = ({ showCta = true, hasPadding = true }) => {
                     Auszeichnung für starkes Webdesign mit klarer Wirkung · 2026
                   </p>
                 </div>
-                
+
               </div>
             </div>
           </div>
