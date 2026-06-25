@@ -22,7 +22,7 @@ const AwardBadge = () => (
   </a>
 );
 
-const NeuroWebAward = ({ showCta = true, hasPadding = true, showTitle = true }) => {
+const NeuroWebAward = ({ showCta = true, hasPadding = true, showTitle = true, eyebrowStyle = false }) => {
   const sectionRef = useRef(null);
   const labelRef = useRef(null);
   const cardRef = useRef(null);
@@ -58,10 +58,19 @@ const NeuroWebAward = ({ showCta = true, hasPadding = true, showTitle = true }) 
     >
       <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px]">
         {showTitle && (
-          <div ref={labelRef} className="mb-4 sm:mb-6 text-center ">
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight text-[#000814]">
-              Auszeichnung
-            </h2>
+          <div ref={labelRef} className={`mb-4 sm:mb-6 ${eyebrowStyle ? 'w-full' : 'text-center'}`}>
+            {eyebrowStyle ? (
+              <div className="flex items-center gap-3 mb-8">
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#001D3D]/40">
+                  Auszeichnung
+                </span>
+                <div className="flex-1 h-px bg-[#001D3D]/10" />
+              </div>
+            ) : (
+              <h2 className="text-3xl md:text-4xl font-bold leading-tight text-[#000814]">
+                Auszeichnung
+              </h2>
+            )}
           </div>
         )}
 
