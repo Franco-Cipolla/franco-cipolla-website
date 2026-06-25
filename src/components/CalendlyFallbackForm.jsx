@@ -502,9 +502,8 @@ const CalendlyFallbackForm = () => {
                 </p>
                 {hasNoWebsite ? (
                   <p className="text-[12px] sm:text-[13px] text-[#000814]/55 mt-1.5 leading-snug">
-                    Da Sie noch keine Website haben, sprechen wir im Strategiegespräch darüber,
-                    wie Sie messbar neue Anfragen gewinnen können,
-                    welchen Umfang ihre Website dafür wirklich benötigt und welche nächsten Schritte sinnvoll sind.
+                    Wir sprechen im Strategiegespräch darüber,
+                    welchen Umfang ihre Website für messbare Anfragen wirklich benötigt und welche nächsten Schritte sinnvoll sind.
                   </p>
                 ) : formData.siteUrl ? (
                   <p className="text-[12px] sm:text-[13px] text-[#000814]/65 mt-0.5">
