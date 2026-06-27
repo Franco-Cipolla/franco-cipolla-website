@@ -445,7 +445,7 @@ const ErstGespraech = () => {
               ref: step3Ref, num: "03",
               badge: "Danach · Ihre Entscheidung · kein Druck",
               title: "Sie entscheiden. Ich akzeptiere jede Antwort.",
-              body: "Manche setzen die Hinweise selbst um gut. Manche fragen, ob ich das übernehmen kann auch gut. Und manche sagen einfach Danke und gehen. Das ist völlig in Ordnung. ",
+              body: "Manche setzen die Hinweise selbst um. Manche fragen, ob ich das übernehmen kann. Und manche sagen einfach Danke und gehen. Das ist völlig in Ordnung. ",
               result: "→ Sie sind zu nichts verpflichtet. Sie entscheiden, was als nächstes passiert.",
             },
           ].map(({ ref, num, badge, title, body, result }, i, arr) => (
