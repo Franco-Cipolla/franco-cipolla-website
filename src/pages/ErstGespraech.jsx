@@ -190,7 +190,7 @@ const ErstGespraech = () => {
             },
             {
               "@type": "Question",
-              "name": "Ich hatte schon einmal eine Agentur – warum sollte das diesmal anders sein?",
+              "name": "Ich hatte schon einmal eine Agentur warum sollte das diesmal anders sein?",
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Viele Websites sehen modern aus, sind aber nicht darauf optimiert, Besucher in Anfragen umzuwandeln."
@@ -430,22 +430,22 @@ const ErstGespraech = () => {
             {
               ref: step1Ref, num: "01",
               badge: "Vor dem Gespräch · 0 € · Sie machen: nichts",
-              title: "Ich analysiere Ihre Website – bevor wir telefonieren",
+              title: "Ich analysiere Ihre Website bevor wir telefonieren",
               body: "Sie müssen mir nichts erklären, nichts vorbereiten. Ich schaue mir Ihre Seite vorher an und weiß beim Gespräch bereits, wo das Problem liegt.",
               result: "→ Sie kommen nicht vorbereitet. Sie kommen neugierig.",
             },
             {
               ref: step2Ref, num: "02",
               badge: "Im Gespräch · 15 Minuten · live auf Ihrer Seite",
-              title: "Sie sehen genau, warum Besucher kommen – aber nicht anrufen",
-              body: "Ich teile meinen Bildschirm und zeige Ihnen direkt auf Ihrer Seite 2–3 Stellen, die Interessenten still wieder verschwinden lassen. Keine Theorie – nur das, was bei Ihnen konkret passiert.",
-              result: "→ Nach 15 Minuten wissen Sie mehr als vorher – ganz sicher.",
+              title: "Sie sehen genau, warum Besucher kommen aber nicht anrufen",
+              body: "Ich teile meinen Bildschirm und zeige Ihnen direkt auf Ihrer Seite 2–3 Stellen, die Interessenten still wieder verschwinden lassen. Keine Theorie nur das, was bei Ihnen konkret passiert.",
+              result: "→ Nach 15 Minuten wissen Sie mehr als vorher ganz sicher.",
             },
             {
               ref: step3Ref, num: "03",
               badge: "Danach · Ihre Entscheidung · kein Druck",
               title: "Sie entscheiden. Ich akzeptiere jede Antwort.",
-              body: "Manche setzen die Hinweise selbst um – gut. Manche fragen, ob ich das übernehmen kann – auch gut. Und manche sagen einfach Danke und gehen. Das ist völlig in Ordnung. ",
+              body: "Manche setzen die Hinweise selbst um gut. Manche fragen, ob ich das übernehmen kann auch gut. Und manche sagen einfach Danke und gehen. Das ist völlig in Ordnung. ",
               result: "→ Sie sind zu nichts verpflichtet. Sie entscheiden, was als nächstes passiert.",
             },
           ].map(({ ref, num, badge, title, body, result }, i, arr) => (
@@ -481,7 +481,7 @@ const ErstGespraech = () => {
                   {body}
                 </p>
 
-                {/* Result line – konkrete Konsequenz pro Schritt */}
+                {/* Result line konkrete Konsequenz pro Schritt */}
                 <p className="text-[12px] sm:text-[13px] font-semibold text-[#003566] leading-snug">
                   {result}
                 </p>
