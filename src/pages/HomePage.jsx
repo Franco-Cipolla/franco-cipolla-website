@@ -17,7 +17,7 @@ const HomePage = () => {
 
       <Helmet>
   {/* Perfekte Länge (56 Zeichen) – Positioniert Sie sofort lokal */}
-  <title>Webdesign Ennepetal | Websites für mehr Kundenanfragen</title>
+  <title>Webdesigner Ennepetal | Websites für mehr Kundenanfragen</title>
 
   {/* Knackige 152 Zeichen – löst das Problem des Kunden direkt auf Google */}
   <meta name="description" content="Website erstellen lassen Ennepetal, die messbar Kunden einbringt. Ihr Webdesigner in Ennepetal & Umgebung. Jetzt Gratis Website-Analyse sichern!" />
