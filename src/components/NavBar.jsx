@@ -85,7 +85,7 @@ const NavBar = () => {
               className="text-black hover:text-[#003566] text-lg  transition"
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
-              }} >Franco Cipolla <span className='block lg:text-[18px] font-normal  text-black/90 text-[0.87rem]'>Webdesign & Digitale Kundengewinnung</span></Link></h2>
+              }} >Franco Cipolla <span className='block -mt-1 lg:text-[18px] font-normal  text-black/90 text-[0.87rem]'>Webdesign & Digitale Kundengewinnung</span></Link></h2>
 
         {/* Burger div */}
         <button
