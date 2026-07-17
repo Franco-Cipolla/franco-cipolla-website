@@ -231,13 +231,15 @@ const Service = () => {
             <p className="text-[10px] font-bold tracking-[0.13em] uppercase text-[#000814]/30 mb-1">
               Ihre Investition
             </p>
-            <p className="text-[20px] sm:text-[22px] font-black text-[#001D3D] tracking-tight">
- Einführungspreis Ab 800€
-            </p>
+           <p className="text-[20px] sm:text-[22px] font-black text-[#001D3D] tracking-tight">
+  <span className="text-[#000814]/35 line-through">2.500€</span>
+  <span className="mx-2 text-[#000814]/25">→</span>
+  Einführungspreis ab 800€
+</p>
             <p className="text-[12px] text-[#000814]/38 mt-1 mb-4 leading-relaxed">
-              <strong className="text-[#003566]">50 % bei Start · 50 % vor Launch</strong><br />
-              Kostenlose Analyse zuerst - Sie entscheiden danach
-            </p>
+  <strong className="text-[#003566]">Aktuelle Einführungsphase · 50 % bei Start · 50 % vor Launch</strong><br />
+  Kostenlose Analyse zuerst - Sie entscheiden danach
+</p>
             <div className="flex flex-wrap gap-2">
               {valueBadges.map((b, i) => (
                 <div
