@@ -39,7 +39,7 @@ const Impressum = () => {
               <p className="font-semibold">Angaben gemäß § 5 DDG</p>
               <p className="mt-2">
                 Franco Cipolla<br />
-                Einzelunternehmen / Kleingewerbe<br />
+                Einzelunternehmen<br />
                 Wuppermannstraße 14<br />
                 58256 Ennepetal<br />
                 Deutschland
@@ -131,7 +131,7 @@ const Impressum = () => {
           </div>
 
           <p className="text-sm text-gray-500 mt-12">
-            Zuletzt aktualisiert: 19. Januar 2026
+            Zuletzt aktualisiert: 19. Juli 2026
           </p>
         </div>
       </section>
