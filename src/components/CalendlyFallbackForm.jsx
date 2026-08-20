@@ -447,7 +447,7 @@ const CalendlyFallbackForm = () => {
               Unter welcher Nummer erreiche ich Sie?
             </p>
             <p className="text-[12px] sm:text-[13px] text-[#000814]/45 mb-3">
-              Ich schreibe sie zur Terminbestätigung kurz an, kein Spam
+              Ich schreibe sie zur Terminbestätigung per Whatsapp kurz an, kein Spam
             </p>
             <input
               type="tel"
