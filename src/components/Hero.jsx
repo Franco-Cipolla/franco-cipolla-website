@@ -427,7 +427,7 @@ const Hero = () => {
            {/* Bild + Badges – nur Mobile */}
 <div
   ref={mobileImageRef}
-  className="block md:hidden mt-10 w-full"
+  className="block xl:hidden mt-10 w-full"
 >
   <div className="relative max-w-[420px] mx-auto">
 
