@@ -7,7 +7,7 @@ import CheckIcon from "../components/CheckIcon";
 import CalendlyFallBackForm from "../components/CalendlyFallbackForm";
 import { FaChevronDown } from "react-icons/fa";
 import Testimonials from "../components/Testimonials";
-import NeuroWebAward from "../components/NeuroWebAward";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -298,7 +298,7 @@ const ErstGespraech = () => {
           </div>
 
            <Testimonials showCta={false} hasPadding={false} showTitle={true} eyebrowStyle={true} />
-           <NeuroWebAward showCta={false} hasPadding={false} showTitle={true} eyebrowStyle={true} />
+         
 
 
 
