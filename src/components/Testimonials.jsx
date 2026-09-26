@@ -2,6 +2,10 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from './gsapSetup';
 import { useNavigate } from 'react-router-dom';
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const GoogleIcon = () => (
   <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -39,20 +43,24 @@ const Testimonials = ({ showCta = true, hasPadding = true, showTitle = true, eye
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const elements = [labelRef.current, cardRef.current, ctaRef.current].filter(Boolean);
+      if (elements.length === 0) return;
 
-      if (elements.length > 0) {
-        gsap.from(elements, {
-          y: 40,
-          opacity: 0,
-          duration: 0.9,
-          stagger: 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-          },
-        });
+      if (prefersReducedMotion()) {
+        gsap.set(elements, { clearProps: 'all' });
+        return;
       }
+
+      gsap.from(elements, {
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+        },
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -60,12 +68,12 @@ const Testimonials = ({ showCta = true, hasPadding = true, showTitle = true, eye
   return (
     <section
       ref={sectionRef}
-      className={`w-full py-16 sm:py-20 ${hasPadding ? 'px-4' : 'px-0'} sm:px-6 xl:px-0`}
+      className={`w-full py-[clamp(4rem,9vw,6.5rem)] ${hasPadding ? 'px-[clamp(1rem,4vw,2.5rem)]' : 'px-0'}`}
     >
       <div className="mx-auto w-full max-w-[700px] xl:max-w-[1100px]">
 
         {showTitle && (
-          <div ref={labelRef} className={`mb-4 sm:mb-6 ${eyebrowStyle ? 'w-full' : 'text-center'}`}>
+          <div ref={labelRef} className={`mb-[clamp(1.25rem,3vw,1.75rem)] ${eyebrowStyle ? 'w-full' : 'text-center'}`}>
             {eyebrowStyle ? (
               <div className="flex items-center gap-3 mb-8">
                 <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-[#001D3D]/40">
@@ -81,15 +89,28 @@ const Testimonials = ({ showCta = true, hasPadding = true, showTitle = true, eye
           </div>
         )}
 
-        {/* Card */}
+        {/* Card — mehrschichtiger Verlauf + hellblauer Hover-Glow statt flacher Flat-Farbe */}
         <a
           ref={cardRef}
           href="https://share.google/YqweQocfV3ABWOjb1"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-xl block bg-gradient-to-br from-[#001D3D] to-[#003566] px-8 py-10 sm:px-12 sm:py-12 border border-[#003566] hover:border-[#00A6FB]/40 transition-colors duration-300 cursor-pointer"
+          className="group relative isolate block overflow-hidden rounded-2xl border border-[#003566] px-[clamp(1.75rem,4.5vw,3rem)] py-[clamp(2.25rem,5vw,3rem)] shadow-[0_20px_50px_-24px_rgba(0,8,20,0.6)] transition-[border-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-[#00A6FB]/45 hover:shadow-[0_32px_70px_-22px_rgba(0,166,251,0.38)]"
+          style={{ background: 'linear-gradient(155deg, #012c57 0%, #001D3D 45%, #00101f 100%)' }}
         >
-          <div className="flex flex-col gap-8">
+          {/* Weicher Licht-Blob, wandert/verstärkt sich beim Hover */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-[#00A6FB]/[0.16] blur-[80px] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:bg-[#00A6FB]/[0.3] group-hover:scale-110 group-hover:-translate-y-2"
+          />
+          {/* Zusätzlicher Sheen, blendet nur beim Hover ein */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
+            style={{ background: 'radial-gradient(ellipse 75% 55% at 15% 0%, rgba(0,166,251,0.14) 0%, transparent 65%)' }}
+          />
+
+          <div className="relative flex flex-col gap-8">
 
             {/* Sterne – nur Mobile oben als eigene Zeile */}
             <div className="xl:hidden">
@@ -105,40 +126,38 @@ const Testimonials = ({ showCta = true, hasPadding = true, showTitle = true, eye
               </div>
 
               {/* Summary Header */}
-              <p className="text-[#00A6FB] text-xs font-black uppercase tracking-widest ">
+              <p className="text-[#00A6FB] text-xs font-black uppercase tracking-widest">
                 "Spürbar mehr Anfragen nach der Website-Analyse"
               </p>
 
               {/* Öffnendes Anführungszeichen */}
-              <span className="block text-[80px] leading-none font-black text-[#00A6FB]/20 -mt-8 lg:-mt-6 mb-4 select-none">
+              <span className="block text-[80px] leading-none font-black text-[#00A6FB]/20 -mt-8 lg:-mt-6 mb-4 select-none transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-[#00A6FB]/40">
                 „
               </span>
 
               {/* Zitat */}
               {/* Mobile-Version */}
-<p className="block sm:hidden text-white font-black text-xl leading-snug tracking-tight">
-  Franco hat mir gezeigt, warum meine Website Anfragen verliert.
-  Seitdem bekomme ich spürbar mehr Anfragen.
-  Klare Empfehlung.
-</p>
+              <p className="block sm:hidden text-white font-black text-xl leading-snug tracking-tight">
+                Franco hat mir gezeigt, warum meine Website Anfragen verliert.
+                Seitdem bekomme ich spürbar mehr Anfragen.
+                Klare Empfehlung.
+              </p>
 
-{/* Desktop-Version */}
-<p className="hidden sm:block text-white font-black text-xl sm:text-2xl xl:text-3xl leading-snug tracking-tight">
-  Franco hat mir gezeigt, wo meine Website Anfragen verliert.
-  Stellen die sogar mein alter Webdesigner nicht gesehen hat.
-  Durch Franco habe ich nun spürbar mehr Anfragen.
-  Einer der besten Webdesigner in Ennepetal und Umgebung.
-  Klare Empfehlung!
-</p>
-
-
+              {/* Desktop-Version */}
+              <p className="hidden sm:block text-white font-black text-xl sm:text-2xl xl:text-3xl leading-snug tracking-tight">
+                Franco hat mir gezeigt, wo meine Website Anfragen verliert.
+                Stellen die sogar mein alter Webdesigner nicht gesehen hat.
+                Durch Franco habe ich nun spürbar mehr Anfragen.
+                Einer der besten Webdesigner in Ennepetal und Umgebung.
+                Klare Empfehlung!
+              </p>
 
               {/* Trennlinie + Attribution + Link */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4 pt-6 border-t border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4 pt-6 border-t border-white/10 transition-colors duration-500 group-hover:border-[#00A6FB]/20">
 
                 <div className="flex items-center gap-3">
                   {/* Avatar */}
-                  <div className="hidden lg:flex w-8 h-8 rounded-full bg-[#00A6FB]/20 border border-[#00A6FB]/30 items-center justify-center shrink-0">
+                  <div className="hidden lg:flex w-8 h-8 rounded-full bg-[#00A6FB]/20 border border-[#00A6FB]/30 items-center justify-center shrink-0 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:bg-[#00A6FB]/30 group-hover:border-[#00A6FB]/55">
                     <span className="text-[#00A6FB] text-xs font-black">KF</span>
                   </div>
                   {/*
@@ -163,18 +182,18 @@ const Testimonials = ({ showCta = true, hasPadding = true, showTitle = true, eye
         </a>
 
         {showCta && (
-  <div ref={ctaRef} className="mt-8 flex flex-col sm:flex-row items-center gap-4">
-    <p className="text-sm text-[#001D3D]/50 font-medium">
-      Auch mehr Anfragen durch Ihre Website?
-    </p>
-    <button
-      onClick={() => navigate('/website-analyse')}
-      className="text-sm font-black text-[#001D3D] border-b-2 border-[#003566] hover:border-[#00A6FB] transition-colors duration-200 pb-0.5 cursor-pointer"
-    >
-      Kostenlose Website-Analyse starten →
-    </button>
-  </div>
-)}
+          <div ref={ctaRef} className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+            <p className="text-sm text-[#001D3D]/50 font-medium">
+              Auch mehr Anfragen durch Ihre Website?
+            </p>
+            <button
+              onClick={() => navigate('/website-analyse')}
+              className="text-sm font-black text-[#001D3D] border-b-2 border-[#003566] hover:border-[#00A6FB] transition-colors duration-200 pb-0.5 cursor-pointer"
+            >
+              Kostenlose Website-Analyse starten →
+            </button>
+          </div>
+        )}
 
       </div>
     </section>
