@@ -182,7 +182,7 @@ const Testimonials = ({ showCta = true, hasPadding = true, showTitle = true, eye
         </a>
 
         {showCta && (
-          <div ref={ctaRef} className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+          <div ref={ctaRef} className="mt-16 flex flex-col sm:flex-row items-center gap-4">
             <p className="text-sm text-[#001D3D]/50 font-medium">
               Auch mehr Anfragen durch Ihre Website?
             </p>
