@@ -22,12 +22,12 @@ const services = [
   {
     number: '03',
     title: 'Anfragen & Messung',
-    text: 'Klare Handlungsaufforderungen, lokale Sichtbarkeit und Tracking machen sichtbar, was Ihre Website tatsächlich leistet.',
+    text: 'Klare Handlungsaufforderungen, lokale Sichtbarkeit und Tracking führen zu Anfragen und machen sichtbar, was Ihre Website tatsächlich leistet.',
     video: leadsVideo,
   },
 ];
 
-const Services = () => {
+const Service = () => {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const cardRefs = useRef([]);
@@ -132,4 +132,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Service;
