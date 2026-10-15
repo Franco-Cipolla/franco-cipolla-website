@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Hero from '../components/Wuppertal/Hero.jsx';
 import ServiceMarquee from '../components/ServiceMarquee.jsx';
 import ProblemSolution from '../components/Wuppertal/ProblemSolution.jsx';
-import Service from '../components/Wuppertal/Service.jsx';
+import Service from '../components/Service.jsx';
 import ProcessSection from '../components/Wuppertal/ProcessSection.jsx';
 import FAQSection from '../components/Wuppertal/FAQSection.jsx';
 import CTAHome from '../components/Wuppertal/CTAHome.jsx';

@@ -458,9 +458,12 @@ Anfrage
             >
               <div className="relative max-w-[420px] mx-auto">
                 <img
-                  src={HeroIllustration}
-                  alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen in Wuppertal"
-                  className="w-full rounded-2xl"
+                    src={HeroIllustration}
+                alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen"
+                className="w-full rounded-2xl"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 />
 
                 {/* Badge linke Schulter – Augenhöhe */}
@@ -495,6 +498,9 @@ Anfrage
               src={HeroIllustration}
               alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen in Wuppertal"
               className="w-full rounded-2xl max-w-[600px]"
+              loading="eager"
+  fetchPriority="high"
+  decoding="async"
             />
 
             <div className="absolute top-0 left-60">

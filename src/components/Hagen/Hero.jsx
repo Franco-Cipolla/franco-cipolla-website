@@ -641,6 +641,9 @@ useLayoutEffect(() => {
                   src={HeroIllustration}
                   alt="Franco Cipolla – Webdesigner für Hagen – Websites für mehr Kundenanfragen"
                   className="w-full rounded-2xl"
+                  loading="eager"
+  fetchPriority="high"
+  decoding="async"
                 />
 
                 {/* Badge linke Schulter – Augenhöhe */}
@@ -675,6 +678,9 @@ useLayoutEffect(() => {
               src={HeroIllustration}
               alt="Franco Cipolla – Webdesigner für Hagen – Websites für mehr Kundenanfragen"
               className="w-full rounded-2xl max-w-[600px]"
+              loading="eager"
+  fetchPriority="high"
+  decoding="async"
             />
 
             <div className="absolute top-0 left-60">

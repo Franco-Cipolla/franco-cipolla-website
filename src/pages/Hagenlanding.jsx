@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Hero from '../components/Hagen/Hero.jsx';
 import ServiceMarquee from '../components/ServiceMarquee';
 import ProblemSolution from '../components/Hagen/ProblemSolution.jsx';
-import Service from '../components/Hagen/Service.jsx';
+import Service from '../components/Service.jsx';
 import ProcessSection from '../components/Hagen/ProcessSection.jsx';
 import FAQSection from '../components/Hagen/FAQSection.jsx';
 import CTAHome from '../components/Hagen/CTAHome';
