@@ -66,7 +66,6 @@ const VisualBuild = () => (
     <Row who="Ich">Design erstellen</Row>
     <Row who="Ich">Website entwickeln</Row>
     <Row who="Sie">Ergebnis prüfen und freigeben</Row>
-    <p className="mt-1 text-xs text-white/45">Ihr Aufwand: Briefing und Freigabe.</p>
   </div>
 );
 
