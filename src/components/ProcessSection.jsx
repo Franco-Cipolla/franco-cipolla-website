@@ -38,7 +38,7 @@ const VisualCall = () => (
     <Bubble side="left">
       Brauche ich für das Gespräch erstmal eine Website?
     </Bubble>
-    <Bubble side="right">Nein. Ein Gespräch mit mir ist immer dann sinnvoll, wenn sie wissen möchten ob & wie mehr Anfragen rauszuholen sind.</Bubble>
+    <Bubble side="right">Nein. Aus dem Gespräch erfährst du ob & wie mehr Anfragen rauszuholen sind.</Bubble>
   </div>
 );
 
