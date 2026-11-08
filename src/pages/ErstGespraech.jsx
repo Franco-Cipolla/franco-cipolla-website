@@ -464,10 +464,16 @@ const ErstGespraech = () => {
       <section className="relative w-full pb-14 pt-24 sm:pb-20 sm:pt-32 lg:pb-24 lg:pt-40">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:items-start lg:gap-16">
           <div>
-            <p data-hero="fade" className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#003566] sm:text-[13px]">
-              <span className="h-2 w-2 flex-none animate-pulse rounded-full bg-green-500 motion-reduce:animate-none" />
-              Lokal für Betriebe in Ennepetal und NRW
-            </p>
+            {/* Badge */}
+            <div className="flex justify-center xl:justify-start mb-5 md:mb-6">
+              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-1deg]">
+                <span className="text-[13px] md:text-sm font-bold text-[#001D3D] tracking-tight">
+                   📍 Lokal für Betriebe in Ennepetal und NRW
+                </span>
+              </div>
+            </div>
+
+
 
             <h1 data-hero="h1" className="text-[clamp(26px,4.2vw,46px)] font-semibold leading-[1.15] tracking-tight text-[#000814]">
               In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert und was Sie konkret dagegen tun können.
