@@ -36,9 +36,9 @@ const VisualCall = () => (
     <Bubble side="left">Ist das wirklich kostenlos?</Bubble>
     <Bubble side="right">Ja. Das Gespräch kostet nichts und verpflichtet Sie zu nichts.</Bubble>
     <Bubble side="left">
-      Spielt es eine Rolle, wenn ich noch keine Website habe? Oder brauche ich für ein Gespräch erstmal eine?
+      Brauche ich für das Gespräch erstmal eine Website?
     </Bubble>
-    <Bubble side="right">Nein. Haben Sie eine, zeige ich Ihnen die 3 Stellen, an denen Sie die meisten Anfragen verlieren. Haben Sie keine, klären wir, was Ihre erste leisten muss.</Bubble>
+    <Bubble side="right">Nein. Ein Gespräch mit mir ist immer dann sinnvoll, wenn sie wissen möchten ob & wie mehr Anfragen rauszuholen sind.</Bubble>
   </div>
 );
 
@@ -107,7 +107,7 @@ const steps = [
     title: 'Ein kurzes Gespräch',
     highlight: 'mit oder ohne bestehende Website',
     description:
-      'Sie erzählen mir in 15 Minuten, was Ihr Betrieb braucht und welche Aufträge Sie sich wünschen. Haben Sie schon eine Website, analysiere ich sie vorab kostenlos und zeige Ihnen die 3 Stellen, an denen Sie am meisten Anfragen verlieren. Haben Sie keine, klären wir, was Ihre erste Website leisten muss, damit Anfragen kommen.',
+      'Haben Sie schon eine Website, analysiere ich sie vorab kostenlos und zeige Ihnen die 3 Stellen, an denen Sie am meisten Anfragen verlieren. Haben Sie keine, klären wir, was Ihre erste Website leisten muss, damit Anfragen kommen.',
     pills: [
       { text: 'Kostenlos', v: 'green' },
       { text: '15 Minuten', v: 'blue' },
