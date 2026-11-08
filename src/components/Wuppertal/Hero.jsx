@@ -499,7 +499,7 @@ Anfrage
               alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen in Wuppertal"
               className="w-full rounded-2xl max-w-[600px]"
               loading="eager"
-  fetchPriority="high"
+  fetchpriority="high"
   decoding="async"
             />
 

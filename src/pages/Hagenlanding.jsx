@@ -4,7 +4,7 @@ import Hero from '../components/Hagen/Hero.jsx';
 import ServiceMarquee from '../components/ServiceMarquee';
 import ProblemSolution from '../components/Hagen/ProblemSolution.jsx';
 import Service from '../components/Service.jsx';
-import ProcessSection from '../components/Hagen/ProcessSection.jsx';
+import ProcessSection from '../components/ProcessSection.jsx';
 import FAQSection from '../components/Hagen/FAQSection.jsx';
 import CTAHome from '../components/Hagen/CTAHome';
 import Contact from '../components/Hagen/Contact';

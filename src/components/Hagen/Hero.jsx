@@ -672,35 +672,35 @@ useLayoutEffect(() => {
           </div>
 
           {/* Illustration – nur Desktop (xl+) */}
-          <div className="hidden xl:flex flex-1 justify-center lg:justify-end pt-6 lg:pt-0 relative">
-            <img
-              ref={imageRef}
-              src={HeroIllustration}
-              alt="Franco Cipolla – Webdesigner für Hagen – Websites für mehr Kundenanfragen"
-              className="w-full rounded-2xl max-w-[600px]"
-              loading="eager"
-  fetchPriority="high"
-  decoding="async"
-            />
+                    <div className="hidden xl:flex flex-1 justify-center lg:justify-end pt-6 lg:pt-0 relative">
+                      <img
+                        ref={imageRef}
+                        src={HeroIllustration}
+                        alt="Franco Cipolla – Webdesigner aus Ennepetal – Website für mehr Kundenanfragen in Wuppertal"
+                        className="w-full rounded-2xl max-w-[600px]"
+                        loading="eager"
+            fetchpriority="high"
+            decoding="async"
+                      />
 
-            <div className="absolute top-0 left-60">
-              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[2deg]">
-                <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">📈 Mehr Anfragen</span>
-              </div>
-            </div>
+                      <div className="absolute top-0 left-60">
+                        <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[2deg]">
+                          <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">📈 Mehr Anfragen</span>
+                        </div>
+                      </div>
 
-            <div className="absolute bottom-6 right-6">
-              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-2deg]">
-                <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">🛡️ DSGVO-konform</span>
-              </div>
-            </div>
+                      <div className="absolute bottom-6 right-6">
+                        <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-2deg]">
+                          <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">🛡️ DSGVO-konform</span>
+                        </div>
+                      </div>
 
-            <div className="absolute top-1/2 -translate-y-1/2 left-1">
-              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[1.5deg]">
-                <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">📍 Lokal bei Google auffindbar</span>
-              </div>
-            </div>
-          </div>
+                      <div className="absolute top-1/2 -translate-y-1/2 left-1">
+                        <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[1.5deg]">
+                          <span className="text-[12px] font-bold text-[#001D3D] whitespace-nowrap">📍 Lokal bei Google auffindbar</span>
+                        </div>
+                      </div>
+                    </div>
 
         </div>
       </main>
