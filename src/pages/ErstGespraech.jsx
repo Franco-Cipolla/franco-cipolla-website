@@ -59,7 +59,7 @@ const faqs = [
 const SITE = "https://www.franco-cipolla.de";
 const VIDEO = {
   src: "/video/erklaervideo.mp4",
-  poster: "/video/erklaervideo-poster.jpg", // Standbild als JPG/WebP, 1280x720
+  poster: "/video/erklaervideo-poster.png", // Standbild als JPG/WebP, 1280x720
   title: "So funktioniert die kostenlose Website-Analyse",
   description:
     "Franco Cipolla erklärt, wie Handwerksbetriebe und Dienstleister mit einer kostenlosen 15-Minuten-Analyse mehr Anfragen über ihre Website gewinnen.",
