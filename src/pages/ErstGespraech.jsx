@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Helmet } from "react-helmet-async";
-import CheckIcon from "../components/CheckIcon";
 import CalendlyFallBackForm from "../components/CalendlyFallbackForm";
 import Testimonials from "../components/Testimonials";
+import VideoPlayer from "../components/VideoPlayer";
 import { FaChevronDown } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -55,6 +55,21 @@ const faqs = [
   },
 ];
 
+/* ── Erklärvideo: Dateien in /public/video/ ablegen ───────────── */
+const SITE = "https://www.franco-cipolla.de";
+const VIDEO = {
+  src: "/video/erklaervideo.mp4",
+  poster: "/video/erklaervideo-poster.jpg", // Standbild als JPG/WebP, 1280x720
+  title: "So funktioniert die kostenlose Website-Analyse",
+  description:
+    "Franco Cipolla erklärt, wie Handwerksbetriebe und Dienstleister mit einer kostenlosen 15-Minuten-Analyse mehr Anfragen über ihre Website gewinnen.",
+  uploadDate: "2026-11-18",
+  captions: null, // z. B. { src: "/video/untertitel.vtt", srcLang: "de", label: "Deutsch" }
+};
+
+const TRANSCRIPT =
+  "Ihre Website sieht gut aus, bringt aber kaum Anfragen? Besucher finden Informationen, aber keinen Grund zu handeln. Anfragen kommen fast nur über Empfehlungen. Ihre Website wirkt wie eine reine Visitenkarte. Franco Cipolla hilft Handwerksbetrieben und Dienstleistern in Ennepetal und Schwelm, mehr Anfragen über Ihre Website zu gewinnen. Alles beginnt mit einer kostenlosen 15-Minuten-Analyse Ihrer Website. Danach folgen Briefing und Freigabe. Franco übernimmt die Umsetzung. Vorher kamen Anfragen nur zufällig über Empfehlungen. Nachher führt die Website Besucher gezielt zur Anfrage. Kostenlose Vorab-Analyse, verkaufspsychologisch optimiertes Design und ein digitaler Verkäufer, der rund um die Uhr arbeitet. Buchen Sie jetzt die kostenlose Website-Analyse bei Franco Cipolla.";
+
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -75,6 +90,15 @@ const schema = {
     },
   ],
 };
+schema["@graph"].push({
+  "@type": "VideoObject",
+  name: VIDEO.title,
+  description: VIDEO.description,
+  thumbnailUrl: `${SITE}${VIDEO.poster}`,
+  uploadDate: VIDEO.uploadDate,
+  contentUrl: `${SITE}${VIDEO.src}`,
+  transcript: TRANSCRIPT,
+});
 
 /* ── Helfer ──────────────────────────────────────────────────── */
 const scrollToEl = (ref) =>
@@ -134,7 +158,7 @@ const StickyMobileCTA = ({ formRef }) => {
       <div className="flex items-center gap-3 border-t border-black/10 bg-white/95 px-4 py-3 shadow-[0_-6px_24px_rgba(0,0,0,0.08)] backdrop-blur pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <div className="min-w-0 flex-1">
           <p className="text-[13px] font-semibold leading-tight text-[#000814]">Kostenlose Website-Analyse</p>
-          <p className="mt-0.5 text-[12px] text-black/50">15 Minuten, kostenlos, kein Druck</p>
+          <p className="mt-0.5 text-[12px] text-black/50">15 Minuten, unverbindlich</p>
         </div>
         <button
           type="button"
@@ -149,215 +173,656 @@ const StickyMobileCTA = ({ formRef }) => {
   );
 };
 
-/* ── Visuals (nur HTML/CSS, dekorativ) ───────────────────────── */
-const ScanRow = ({ children }) => (
-  <div className="flex items-center gap-3">
-    <span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#00A6FB]/20 text-[#60d4ff]">
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-        <path d="M2.5 6.5l2.5 2.5 4.5-5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+/* ─────────────────────────────────────────────────────────────
+   Karten-Sections im Stil "So geht es weiter":
+   Eyebrow + Headline + Subline, darunter drei Karten mit kleinen
+   UI-Szenen. Gemeinsames Grundgerüst für "So geht es weiter" und
+   "Beispiel aus einer Website-Analyse".
+   Kein GSAP: IntersectionObserver + CSS. Ohne JS / bei
+   prefers-reduced-motion ist alles sofort sichtbar.
+───────────────────────────────────────────────────────────── */
+const NS_BLUE = "#2F7BFF";
+
+const NS_CSS = `
+.ns[data-armed="true"] .ns-item{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.22,.61,.36,1) var(--rd,0s),transform .6s cubic-bezier(.22,.61,.36,1) var(--rd,0s)}
+.ns[data-armed="true"] .ns-item.is-in{opacity:1;transform:none}
+.ns[data-armed="true"] .ns-pop{opacity:0;transform:translateY(10px);transition:opacity .55s cubic-bezier(.22,.61,.36,1) calc(var(--rd,0s) + .3s),transform .55s cubic-bezier(.22,.61,.36,1) calc(var(--rd,0s) + .3s)}
+.ns[data-armed="true"] .is-in .ns-pop{opacity:1;transform:none}
+.ns[data-armed="true"] .ns-tick{opacity:0;transform:translateX(-6px);transition:opacity .4s ease calc(var(--rd,0s) + .5s + var(--i,0) * .12s),transform .4s ease calc(var(--rd,0s) + .5s + var(--i,0) * .12s)}
+.ns[data-armed="true"] .is-in .ns-tick{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .ns .ns-item,.ns .ns-pop,.ns .ns-tick{opacity:1!important;transform:none!important;transition:none!important}
+}`;
+
+const nsShadow = "shadow-[0_1px_2px_rgba(15,30,60,0.06),0_12px_28px_-12px_rgba(15,30,60,0.22)]";
+const nsTint = (rgb) => ({ background: `radial-gradient(90% 70% at 50% 0%, rgba(${rgb},.13), transparent 70%)` });
+const nsTag = { color: NS_BLUE, background: "rgba(47,123,255,.12)" };
+
+const useNsReveal = (ref) => {
+  const [armed, setArmed] = useState(false);
+  useLayoutEffect(() => {
+    const root = ref.current;
+    if (!root || !("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    setArmed(true);
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.2, rootMargin: "0px 0px -6% 0px" }
+    );
+    root.querySelectorAll(".ns-item").forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [ref]);
+  return armed;
+};
+
+/* Gemeinsamer Header (Eyebrow + Headline mit Highlight + Subline), wie bei Pain/FAQ */
+const NsHeader = ({ id, eyebrow, title, highlight, sub }) => (
+  <div className="ns-item mx-auto mb-10 max-w-[40rem] text-center sm:mb-14">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <H2 id={`${id}-heading`}>
+      {title} <span className="text-[#003566]">{highlight}</span>
+    </H2>
+    {sub && (
+      <p className="mx-auto mt-4 max-w-[34rem] text-[clamp(15px,1.5vw,18px)] leading-[1.7] text-black/65">{sub}</p>
+    )}
+  </div>
+);
+
+/* Gemeinsames Grundgerüst: Header wie bei Pain/FAQ (Eyebrow + Headline mit Highlight + Subline) */
+const NsSection = ({ id, eyebrow, title, highlight, sub, items }) => {
+  const rootRef = useRef(null);
+  const armed = useNsReveal(rootRef);
+
+  return (
+    <section
+      ref={rootRef}
+      id={id}
+      data-armed={armed}
+      aria-labelledby={`${id}-heading`}
+      className={`ns w-full ${sectionPad}`}
+    >
+      <style>{NS_CSS}</style>
+      <Container>
+        <NsHeader id={id} eyebrow={eyebrow} title={title} highlight={highlight} sub={sub} />
+
+        <ol className="m-0 grid list-none grid-cols-1 justify-items-center gap-4 p-0 lg:grid-cols-3 lg:justify-items-stretch">
+          {items.map((it, i) => (
+            <li
+              key={it.label}
+              className="ns-item w-full max-w-[36rem] rounded-[22px] border border-black/10 bg-[#F3F4F7] p-2.5 lg:max-w-none"
+              style={{ "--rd": `${i * 0.08}s` }}
+            >
+              <div
+                aria-hidden="true"
+                className="relative h-[230px] overflow-hidden rounded-2xl border border-black/[0.06] bg-white"
+              >
+                {it.scene}
+              </div>
+              <div className="px-3.5 pb-4 pt-5">
+                <span className="text-[13px] font-semibold tabular-nums" style={{ color: NS_BLUE }}>
+                  {it.label}
+                </span>
+                <h3 className="mt-1.5 text-[clamp(19px,1.8vw,21px)] font-semibold leading-snug tracking-tight text-[#0B2540]">
+                  {it.heading}
+                </h3>
+                <p className="mt-2 text-[15px] leading-[1.6] text-[#5B6B80]">{it.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Container>
+    </section>
+  );
+};
+
+/* ── Szenen: So geht es weiter ───────────────────────────────── */
+const NsAvatar = ({ name, src, size = "h-10 w-10" }) => {
+  const initials = name.split(" ").map((p) => p[0]).join("").slice(0, 2);
+  return src ? (
+    <img src={src} alt={name} width="40" height="40" loading="lazy" className={`${size} flex-none rounded-full object-cover`} />
+  ) : (
+    <span
+      aria-hidden="true"
+      className={`${size} flex flex-none items-center justify-center rounded-full bg-[#001D3D] text-[12px] font-semibold text-white`}
+    >
+      {initials}
     </span>
-    <span className="text-[13px] text-white/85 sm:text-sm">{children}</span>
+  );
+};
+
+const NsSceneMessage = ({ name, avatarSrc }) => (
+  <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8" style={nsTint("47,123,255")}>
+    <div className={`ns-pop relative z-10 flex items-start gap-3 rounded-2xl bg-white p-3 ${nsShadow}`}>
+      <NsAvatar name={name} src={avatarSrc} />
+      <span className="min-w-0 flex-1 leading-snug">
+        <span className="flex items-baseline justify-between gap-2">
+          <b className="truncate text-[14px] font-semibold text-[#0B2540]">{name}</b>
+          <small className="flex-none text-[12px] text-[#8A97A8]">jetzt</small>
+        </span>
+        <small className="mt-0.5 block text-[13px] leading-[1.4] text-[#33435A]">
+          Hallo, danke für Ihre Anfrage! Passt Ihnen morgen ein kurzer Call?
+        </small>
+      </span>
+    </div>
+    <div
+      className={`ns-pop relative z-0 -mt-2 ml-6 flex items-center gap-2.5 rounded-2xl bg-white/80 px-3 pb-2.5 pt-4 opacity-80 ${nsShadow}`}
+      style={{ "--rd": ".15s" }}
+    >
+      <NsAvatar name={name} src={avatarSrc} size="h-8 w-8" />
+      <span className="min-w-0 leading-tight">
+        <b className="block truncate text-[13px] font-semibold text-[#5B6B80]">{name}</b>
+        <small className="block truncate text-[12px] text-[#8A97A8]">Termin für Ihre Analyse</small>
+      </span>
+    </div>
+    <span className="ns-pop mt-2.5 self-end rounded-lg px-2.5 py-1 text-[12px] font-semibold" style={{ "--rd": ".25s", ...nsTag }}>
+      unter 24 Std.
+    </span>
   </div>
 );
 
-const VisualScan = () => (
-  <div className="flex w-full flex-col justify-center gap-3 p-5 sm:gap-3.5 sm:p-8">
-    <p className="mb-1 text-xs font-semibold text-[#60d4ff]">Vorab-Check Ihrer Website</p>
-    <ScanRow>Ist die Telefonnummer sofort sichtbar?</ScanRow>
-    <ScanRow>Weiß der Besucher, was er als Nächstes tun soll?</ScanRow>
-    <ScanRow>Wie schnell lädt die Seite auf dem Handy?</ScanRow>
-    <ScanRow>Erklärt die Seite den Nutzen für den Kunden?</ScanRow>
-    <p className="mt-1 text-xs text-white/45">Ihr Aufwand: keiner.</p>
+const NsSceneCalendar = ({ name }) => (
+  <div className="absolute inset-0 flex items-center px-5 sm:px-8" style={nsTint("34,197,94")}>
+    <div className="relative w-full">
+      {["10:00", "10:30", "11:00"].map((t, i) => (
+        <div key={t} className="flex h-11 items-center gap-4">
+          <small className="w-10 flex-none text-[12px] tabular-nums text-[#8A97A8]">{t}</small>
+          {i === 2 ? <i className="h-px flex-1 bg-[#0B2540]/12" /> : <i className="flex-1" />}
+        </div>
+      ))}
+      <div
+        className="ns-pop absolute left-[3.5rem] right-0 top-[3px] flex items-center gap-3 rounded-xl px-3.5 py-3 text-white"
+        style={{ "--rd": ".1s", background: NS_BLUE, boxShadow: "0 14px 24px -10px rgba(47,123,255,.6)" }}
+      >
+        <span className="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-white/20">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+            <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+          </svg>
+        </span>
+        <span className="min-w-0 leading-tight">
+          <b className="block truncate text-[13px] font-semibold">Analyse mit {name.split(" ")[0]}</b>
+          <small className="block truncate text-[12px] text-white/85">10:00 bis 10:15 · Telefon</small>
+        </span>
+      </div>
+    </div>
   </div>
 );
 
-const Marker = ({ n, className }) => (
-  <span
-    className={`absolute flex h-6 w-6 items-center justify-center rounded-full bg-[#00A6FB] text-[11px] font-bold text-[#001226] ring-4 ring-[#00A6FB]/25 ${className}`}
-  >
-    {n}
+const NsSceneOffer = () => (
+  <div className="absolute inset-0 flex items-center justify-center px-5" style={nsTint("139,92,246")}>
+    <div className="ns-pop w-full max-w-[15.5rem]">
+      <div className={`-rotate-[2.5deg] rounded-2xl bg-white p-4 ${nsShadow}`}>
+        <b className="block text-[14px] font-semibold text-[#0B2540]">Angebot</b>
+        <small className="block text-[12px] text-[#8A97A8]">für Ihr Projekt</small>
+        <ul className="m-0 mt-3 list-none space-y-2 p-0">
+          {["Fester Preis", "Klarer Zeitplan", "Fester Ansprechpartner"].map((t, i) => (
+            <li key={t} className="ns-tick flex items-center gap-2.5 text-[13px] text-[#33435A]" style={{ "--i": i }}>
+              <span className="flex h-4 w-4 flex-none items-center justify-center rounded bg-[#22C55E] text-white">
+                <svg viewBox="0 0 16 16" width="10" height="10" aria-hidden="true">
+                  <path d="M3.5 8.4 6.6 11.4 12.5 5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              {t}
+            </li>
+          ))}
+        </ul>
+        <span className="mt-3.5 block rounded-lg bg-[#0B2540] py-2 text-center text-[12px] font-semibold text-white">
+          Angebot annehmen
+        </span>
+      </div>
+    </div>
+  </div>
+);
+
+const NextSteps = ({ name = "Franco Cipolla", avatarSrc }) => (
+  <NsSection
+    id="ablauf"
+    eyebrow="So geht es weiter"
+    title="Drei Schritte."
+    highlight="Keine Warteschleife."
+    sub="Von Ihrer Anfrage bis zum Angebot, ohne Aufwand für Sie."
+    items={[
+      {
+        label: "01",
+        heading: "Antwort in 24 Stunden",
+        text: "Ich melde mich persönlich, per Nachricht oder kurz am Telefon. Kein Autoresponder.",
+        scene: <NsSceneMessage name={name} avatarSrc={avatarSrc} />,
+      },
+      {
+        label: "02",
+        heading: "Kostenlose Analyse, 15 Minuten",
+        text: "Ich schaue mir Ihre Website vorab an und zeige Ihnen, wo Sie Anfragen verlieren. Keine Vorbereitung nötig.",
+        scene: <NsSceneCalendar name={name} />,
+      },
+      {
+        label: "03",
+        heading: "Klares Angebot, wenn Sie möchten",
+        text: "Passt es, bekommen Sie ein Angebot mit festem Preis und Zeitplan. Passt es nicht, ist das völlig in Ordnung.",
+        scene: <NsSceneOffer />,
+      },
+    ]}
+  />
+);
+
+/* ─────────────────────────────────────────────────────────────
+   "Beispiel aus einer Website-Analyse": bewusst ANDERS als die
+   Karten bei "So geht es weiter". Eine große Tafel mit drei Zeilen,
+   rechts/links abwechselnd ein Vorher/Nachher-Vergleich:
+   zeigt nicht nur den Fehler, sondern auch die bessere Lösung.
+───────────────────────────────────────────────────────────── */
+const bar = (w, tone = "10") => (
+  <span className={`block h-2 rounded-full ${w}`} style={{ background: `rgba(11,37,64,.${tone})` }} />
+);
+
+const CmpSide = ({ kind, children, delay }) => {
+  const before = kind === "before";
+  return (
+    <div className={`flex flex-col items-center gap-2.5 ${before ? "" : "ns-pop"}`} style={before ? undefined : { "--rd": delay }}>
+      <div className={before ? "opacity-70 saturate-50" : ""}>{children}</div>
+      <span
+        className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${before ? "bg-[#0B2540]/[0.06] text-[#5B6B80]" : ""}`}
+        style={before ? undefined : nsTag}
+      >
+        {before ? "Vorher" : "Besser"}
+      </span>
+    </div>
+  );
+};
+
+const CmpArrow = () => (
+  <span className="hidden h-7 w-7 flex-none items-center justify-center rounded-full bg-white text-[#0B2540] shadow-[0_1px_2px_rgba(15,30,60,0.12)] sm:flex">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   </span>
 );
 
-const VisualScreen = () => (
-  <div className="flex w-full flex-col items-center justify-center gap-3 p-5 sm:p-8">
-    <div className="relative w-full max-w-[22rem] overflow-hidden rounded-xl border border-white/10 bg-white/[0.05]">
-      <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-2">
-        <span className="h-2 w-2 rounded-full bg-white/25" />
-        <span className="h-2 w-2 rounded-full bg-white/15" />
-        <span className="h-2 w-2 rounded-full bg-white/10" />
-        <span className="ml-2 h-3 flex-1 rounded-full bg-white/10" />
-      </div>
-      <div className="space-y-3 p-4 pb-6">
-        <div className="h-3 w-2/3 rounded bg-white/25" />
-        <div className="h-2 w-full rounded bg-white/10" />
-        <div className="h-2 w-4/5 rounded bg-white/10" />
-        <div className="h-8 w-28 rounded-full bg-white/15" />
-        <div className="h-2 w-3/5 rounded bg-white/10" />
-      </div>
-      <Marker n={1} className="right-3 top-1.5" />
-      <Marker n={2} className="left-[48%] top-[58%]" />
-      <Marker n={3} className="right-[12%] top-[42%]" />
-    </div>
-    <p className="text-xs text-white/45">Bildschirm geteilt, 2 bis 3 Stellen markiert</p>
+const Mini = ({ children }) => (
+  <div className={`w-[8.2rem] overflow-hidden rounded-lg bg-white sm:w-[10rem] ${nsShadow}`}>{children}</div>
+);
+
+const Phone = ({ children }) => (
+  <div className={`relative h-[10.5rem] w-[5.9rem] overflow-hidden rounded-[18px] border-[3px] border-[#0B2540] bg-white sm:h-[12rem] sm:w-[6.8rem] ${nsShadow}`}>
+    <span className="absolute left-1/2 top-1 h-1 w-7 -translate-x-1/2 rounded-full bg-[#0B2540]" />
+    <div className="px-2 pb-2 pt-4">{children}</div>
   </div>
 );
 
-const Choice = ({ children }) => (
-  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-[13px] text-white/85 sm:text-sm">
-    <span className="h-2 w-2 flex-none rounded-full bg-[#60d4ff]" />
+const TextCard = ({ children }) => (
+  <div className={`w-[8.4rem] rounded-xl bg-white p-3 sm:w-[12rem] ${nsShadow}`}>{children}</div>
+);
+
+const Line = ({ ok, children }) => (
+  <li className="flex items-center gap-1.5 text-[10.5px] leading-tight text-[#33435A] sm:text-[11.5px]">
+    {ok ? (
+      <span className="flex h-3.5 w-3.5 flex-none items-center justify-center rounded bg-[#22C55E] text-white">
+        <svg viewBox="0 0 16 16" width="9" height="9" aria-hidden="true">
+          <path d="M3.5 8.4 6.6 11.4 12.5 5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </span>
+    ) : (
+      <span className="h-3.5 w-3.5 flex-none rounded-full border-[1.5px] border-[#C3CAD6]" />
+    )}
     {children}
-  </div>
+  </li>
 );
 
-const VisualChoice = () => (
-  <div className="flex w-full flex-col justify-center gap-3 p-5 sm:p-8">
-    <Choice>Sie setzen die Hinweise selbst um</Choice>
-    <Choice>Wir besprechen, ob ich helfen kann</Choice>
-    <Choice>Sie sagen Danke, und das war es</Choice>
-    <p className="mt-1 text-xs text-white/45">Jede Antwort ist in Ordnung.</p>
-  </div>
+/* Zeile 1: Telefonnummer, zwei Mini-Browser */
+const CmpPhone = () => (
+  <>
+    <CmpSide kind="before">
+      <Mini>
+        <div className="flex items-center justify-between border-b border-[#0B2540]/[0.08] px-2 py-1.5">
+          {bar("w-8", "30")}
+          <span className="flex gap-1">{bar("w-4", "12")}{bar("w-4", "12")}</span>
+        </div>
+        <div className="space-y-1.5 px-2 py-2.5">
+          {bar("w-3/4", "25")}
+          {bar("w-full")}
+          {bar("w-5/6")}
+          <span className="block h-9 rounded bg-[#0B2540]/[0.06]" />
+        </div>
+        <div className="border-t border-[#0B2540]/[0.08] bg-[#F3F4F7] px-2 py-1.5">
+          <span className="rounded border border-dashed border-[#8A97A8] px-1 py-px text-[9px] text-[#8A97A8]">Tel. 0 23 33 …</span>
+        </div>
+      </Mini>
+    </CmpSide>
+    <CmpArrow />
+    <CmpSide kind="after" delay=".15s">
+      <Mini>
+        <div className="flex items-center justify-between border-b border-[#0B2540]/[0.08] px-2 py-1.5">
+          {bar("w-8", "30")}
+          <span className="rounded-full px-1.5 py-0.5 text-[9px] font-semibold text-white" style={{ background: NS_BLUE }}>
+            Anrufen
+          </span>
+        </div>
+        <div className="space-y-1.5 px-2 py-2.5">
+          {bar("w-3/4", "25")}
+          {bar("w-full")}
+          {bar("w-5/6")}
+          <span className="block h-9 rounded bg-[#0B2540]/[0.06]" />
+        </div>
+        <div className="border-t border-[#0B2540]/[0.08] bg-[#F3F4F7] px-2 py-1.5">{bar("w-10", "12")}</div>
+      </Mini>
+    </CmpSide>
+  </>
 );
 
-/* ── Timeline (gleiche Mechanik wie ProcessSection) ──────────── */
-const steps = [
-  {
-    num: "01",
-    label: "Vor dem Gespräch, Sie machen nichts",
-    title: "Ich analysiere Ihre Website,",
-    highlight: "bevor wir telefonieren",
-    body: "Sie müssen mir nichts erklären, nichts vorbereiten. Ich schaue mir Ihre Seite vorher an und weiß beim Gespräch bereits, wo das Problem liegt.",
-    result: "Sie kommen nicht vorbereitet. Sie kommen neugierig.",
-    Visual: VisualScan,
-  },
-  {
-    num: "02",
-    label: "Im Gespräch, 15 Minuten live auf Ihrer Seite",
-    title: "Sie sehen genau, warum Besucher kommen,",
-    highlight: "aber nicht anrufen",
-    body: "Ich teile meinen Bildschirm und zeige Ihnen direkt auf Ihrer Seite 2 bis 3 Stellen, die Interessenten still wieder verschwinden lassen. Keine Theorie, nur das, was bei Ihnen konkret passiert.",
-    result: "Nach 15 Minuten wissen Sie mehr als vorher.",
-    Visual: VisualScreen,
-  },
-  {
-    num: "03",
-    label: "Danach, Ihre Entscheidung",
-    title: "Sie entscheiden.",
-    highlight: "Ich akzeptiere jede Antwort",
-    body: "Manche setzen die Hinweise selbst um. Manche fragen, ob ich das übernehmen kann. Und manche sagen einfach Danke und gehen. Das ist völlig in Ordnung.",
-    result: "Sie sind zu nichts verpflichtet.",
-    Visual: VisualChoice,
-  },
-];
+/* Zeile 2: nächster Schritt, zwei Handys */
+const CmpStep = () => (
+  <>
+    <CmpSide kind="before">
+      <Phone>
+        <div className="flex items-center justify-between">
+          {bar("w-6", "30")}
+          <span className="text-[8px] text-[#8A97A8] underline">Kontakt</span>
+        </div>
+        <div className="mt-3 space-y-1.5">
+          {bar("w-5/6", "25")}
+          {bar("w-full")}
+          {bar("w-2/3")}
+          <span className="mt-2 block h-12 rounded bg-[#0B2540]/[0.06]" />
+        </div>
+      </Phone>
+    </CmpSide>
+    <CmpArrow />
+    <CmpSide kind="after" delay=".15s">
+      <Phone>
+        <div className="flex items-center justify-between">
+          {bar("w-6", "30")}
+          {bar("w-5", "12")}
+        </div>
+        <div className="mt-3 space-y-1.5">
+          {bar("w-5/6", "25")}
+          {bar("w-full")}
+          {bar("w-2/3")}
+        </div>
+        <span
+          className="mt-3 block rounded-md px-1 py-2 text-center text-[8px] font-semibold leading-tight text-white"
+          style={{ background: NS_BLUE }}
+        >
+          Jetzt kostenlose Einschätzung anfragen
+        </span>
+        <span className="mt-2 block text-center text-[7.5px] text-[#8A97A8]">Antwort in 24 Std.</span>
+      </Phone>
+    </CmpSide>
+  </>
+);
 
-const Timeline = () => {
+/* Zeile 3: Nutzen, zwei Text-Karten */
+const CmpBenefit = () => (
+  <>
+    <CmpSide kind="before">
+      <TextCard>
+        <b className="block text-[11px] font-semibold leading-snug text-[#0B2540] sm:text-[12px]">
+          „Seit 20 Jahren in Ennepetal tätig“
+        </b>
+        <ul className="m-0 mt-2.5 list-none space-y-1.5 p-0">
+          <Line>Löst der mein Problem?</Line>
+          <Line>Wie schnell geht das?</Line>
+          <Line>Was kostet das?</Line>
+        </ul>
+      </TextCard>
+    </CmpSide>
+    <CmpArrow />
+    <CmpSide kind="after" delay=".15s">
+      <TextCard>
+        <b className="block text-[11px] font-semibold leading-snug text-[#0B2540] sm:text-[12px]">
+          Undichtes Dach? Wir kommen schnell und nennen vorab den Preis.
+        </b>
+        <ul className="m-0 mt-2.5 list-none space-y-1.5 p-0">
+          <Line ok>Problem wird gelöst</Line>
+          <Line ok>Schneller Termin</Line>
+          <Line ok>Preis vorab</Line>
+        </ul>
+      </TextCard>
+    </CmpSide>
+  </>
+);
+
+const NsCompare = ({ id, eyebrow, title, highlight, sub, items }) => {
   const rootRef = useRef(null);
-  const listRef = useRef(null);
-  const fillRef = useRef(null);
-  const nodeRefs = useRef([]);
-  const itemRefs = useRef([]);
-
-  useLayoutEffect(() => {
-    const mm = gsap.matchMedia(rootRef);
-
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.fromTo(
-        fillRef.current,
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: { trigger: listRef.current, start: "top 65%", end: "bottom 65%", scrub: 0.3 },
-        }
-      );
-      itemRefs.current.forEach((item, i) => {
-        const node = nodeRefs.current[i];
-        if (!item || !node) return;
-        ScrollTrigger.create({
-          trigger: item,
-          start: "top 65%",
-          onEnter: () => node.classList.add("is-active"),
-          onLeaveBack: () => node.classList.remove("is-active"),
-        });
-      });
-    });
-
-    mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set(fillRef.current, { scaleY: 1 });
-      nodeRefs.current.forEach((n) => n && n.classList.add("is-active"));
-    });
-
-    let cancelled = false;
-    document.fonts?.ready.then(() => {
-      if (!cancelled) ScrollTrigger.refresh();
-    });
-    return () => {
-      cancelled = true;
-      mm.revert();
-    };
-  }, []);
+  const armed = useNsReveal(rootRef);
 
   return (
-    <div ref={rootRef} id="ablauf">
-      <style>{`
-        #ablauf .ps-node{background:#fff;border-color:rgba(0,8,20,.16);transition:background-color .2s,border-color .2s,box-shadow .2s}
-        #ablauf .ps-node.is-active{background:#003566;border-color:#003566;box-shadow:0 0 0 6px rgba(0,166,251,.16)}
-        #ablauf .ps-num{color:transparent;-webkit-text-stroke:1.5px rgba(0,53,102,.35)}
-        @media (prefers-reduced-motion:reduce){#ablauf .ps-node{transition:none}}
-      `}</style>
+    <section
+      ref={rootRef}
+      id={id}
+      data-armed={armed}
+      aria-labelledby={`${id}-heading`}
+      className={`ns w-full ${sectionPad}`}
+    >
+      <style>{NS_CSS}</style>
+      <Container>
+        <NsHeader id={id} eyebrow={eyebrow} title={title} highlight={highlight} sub={sub} />
 
-      <ol ref={listRef} className="relative m-0 mx-auto w-full max-w-[44rem] list-none p-0 lg:mx-0 lg:max-w-none">
-        <div aria-hidden="true" className="absolute bottom-0 left-[9px] top-0 w-[2px] bg-black/10">
-          <div ref={fillRef} className="h-full w-full origin-top scale-y-0 bg-[#003566] will-change-transform" />
-        </div>
-
-        {steps.map((step, i) => {
-          const { Visual } = step;
-          return (
+        <ol className="m-0 mx-auto max-w-[68rem] list-none divide-y divide-black/10 overflow-hidden rounded-[22px] border border-black/10 bg-white p-0">
+          {items.map((it, i) => (
             <li
-              key={step.num}
-              ref={(el) => (itemRefs.current[i] = el)}
-              style={{ "--n": "clamp(46px, 7vw, 76px)" }}
-              className={`relative pl-9 sm:pl-12 md:pl-16 ${i < steps.length - 1 ? "pb-12 md:pb-20" : ""}`}
+              key={it.label}
+              className="ns-item grid gap-6 p-5 sm:p-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-12 lg:p-10"
             >
-              <span
-                ref={(el) => (nodeRefs.current[i] = el)}
-                aria-hidden="true"
-                style={{ top: "calc(var(--n) * 0.425 - 10px)" }}
-                className="ps-node absolute left-0 h-5 w-5 rounded-full border-2"
-              />
-
-              <div className="mb-4 flex flex-wrap items-end gap-x-4 gap-y-1">
-                <span className="ps-num font-black leading-[0.85]" style={{ fontSize: "var(--n)" }} aria-hidden="true">
-                  {step.num}
+              <div className={i % 2 === 1 ? "lg:order-2" : ""}>
+                <span className="inline-flex rounded-full bg-[#FDECEF] px-2.5 py-1 text-[12px] font-semibold text-[#D4304A]">
+                  {it.label}
                 </span>
-                <span className="pb-0.5 text-[13px] font-semibold text-[#003566]/80 sm:text-sm">
-                  Schritt {i + 1}: {step.label}
-                </span>
+                <h3 className="mt-3 text-[clamp(21px,2.2vw,28px)] font-semibold leading-[1.2] tracking-tight text-[#0B2540]">
+                  {it.heading}
+                </h3>
+                <p className="mt-3 max-w-[30rem] text-[15px] leading-[1.65] text-[#5B6B80] sm:text-base">{it.text}</p>
               </div>
 
               <div
                 aria-hidden="true"
-                className="mb-5 flex min-h-[230px] w-full overflow-hidden rounded-[20px] bg-gradient-to-b from-[#021830] to-[#010d1a] sm:mb-6 sm:min-h-[260px]"
+                className="flex min-h-[240px] items-center justify-center gap-3 rounded-2xl border border-black/[0.06] px-3 py-6 sm:gap-5 sm:px-6"
+                style={nsTint(it.tint)}
               >
-                <Visual />
+                {it.scene}
               </div>
-
-              <h3 className="max-w-[34rem] text-[clamp(20px,2.2vw,28px)] font-semibold leading-[1.22] tracking-tight text-[#000814]">
-                {step.title} <span className="text-[#003566]">{step.highlight}.</span>
-              </h3>
-              <p className="mt-3 max-w-[34rem] text-[15px] leading-[1.7] text-black/75 sm:text-base">{step.body}</p>
-              <p className="mt-3 max-w-[34rem] text-[15px] font-semibold leading-snug text-[#003566] sm:text-base">
-                {step.result}
-              </p>
             </li>
-          );
-        })}
-      </ol>
-    </div>
+          ))}
+        </ol>
+      </Container>
+    </section>
   );
 };
+
+const NsMistakes = () => (
+  <NsCompare
+    id="beispiel"
+    eyebrow="Beispiel aus einer Website-Analyse"
+    title="Was ich auf lokalen Websites"
+    highlight="immer wieder sehe"
+    sub="Drei Stellen, an denen Besucher still wieder verschwinden."
+    items={[
+      {
+        label: "Fehler 1",
+        heading: "Die Telefonnummer ist nicht sofort sichtbar",
+        text: "Sie ist irgendwo im unteren Bereich der Seite versteckt. Der Interessent muss erst suchen und sucht dann woanders.",
+        tint: "47,123,255",
+        scene: <CmpPhone />,
+      },
+      {
+        label: "Fehler 2",
+        heading: "Der Besucher weiß nicht, was er als Nächstes tun soll",
+        text: "„Kontakt“ als einziger Hinweis reicht nicht. „Jetzt kostenlose Einschätzung anfragen“ ist ein Unterschied: klein im Text, groß in der Wirkung.",
+        tint: "34,197,94",
+        scene: <CmpStep />,
+      },
+      {
+        label: "Fehler 3",
+        heading: "Die Seite erklärt den Betrieb, aber nicht, was der Kunde davon hat",
+        text: "„Seit 20 Jahren in Ennepetal tätig“ beantwortet nicht: Kannst du mein Problem lösen? Wie schnell? Was kostet das?",
+        tint: "139,92,246",
+        scene: <CmpBenefit />,
+      },
+    ]}
+  />
+);
+
+/* ── Hero: Hintergrund, Trust-Badges, schwebende Chips ─────────── */
+const HeroBackground = () => (
+  <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <style>{`
+      @keyframes hb-a{0%{transform:translate3d(-4%,0,0) scale(1)}100%{transform:translate3d(6%,8%,0) scale(1.12)}}
+      @keyframes hb-b{0%{transform:translate3d(4%,2%,0) scale(1.08)}100%{transform:translate3d(-6%,-6%,0) scale(1)}}
+      @keyframes hb-c{0%{transform:translate3d(0,-3%,0) scale(1)}100%{transform:translate3d(-5%,6%,0) scale(1.1)}}
+      @keyframes hb-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+      @media (prefers-reduced-motion:no-preference){
+        .hb-a{animation:hb-a 18s ease-in-out infinite alternate}
+        .hb-b{animation:hb-b 22s ease-in-out infinite alternate}
+        .hb-c{animation:hb-c 26s ease-in-out infinite alternate}
+        .hb-float{animation:hb-float 6s ease-in-out infinite}
+      }
+    `}</style>
+
+    <div className="absolute inset-0" style={{ background: "linear-gradient(180deg,#F4F7FC 0%,#FFFFFF 80%)" }} />
+
+    {/* weiche Farbflächen, nur transform animiert (günstig für die GPU) */}
+    <div className="hb-a absolute -left-[12%] -top-[20%] h-[40rem] w-[40rem] rounded-full will-change-transform" style={{ background: "radial-gradient(closest-side, rgba(47,123,255,.22), transparent)" }} />
+    <div className="hb-b absolute -right-[10%] top-[2%] h-[36rem] w-[36rem] rounded-full will-change-transform" style={{ background: "radial-gradient(closest-side, rgba(34,197,94,.15), transparent)" }} />
+    <div className="hb-c absolute left-[26%] top-[40%] h-[32rem] w-[32rem] rounded-full will-change-transform" style={{ background: "radial-gradient(closest-side, rgba(139,92,246,.13), transparent)" }} />
+
+    {/* Gitter, zur Mitte hin sichtbar, an den Rändern ausgeblendet */}
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(11,37,64,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(11,37,64,.055) 1px, transparent 1px)",
+        backgroundSize: "56px 56px",
+        WebkitMaskImage: "radial-gradient(ellipse 75% 65% at 50% 30%, #000 25%, transparent 80%)",
+        maskImage: "radial-gradient(ellipse 75% 65% at 50% 30%, #000 25%, transparent 80%)",
+      }}
+    />
+
+    {/* Ringe wie ein Radar hinter dem Video */}
+    <svg className="absolute left-1/2 top-[46%] h-[64rem] w-[64rem] -translate-x-1/2 -translate-y-1/2 text-[#003566]" viewBox="0 0 800 800" fill="none">
+      <circle cx="400" cy="400" r="210" stroke="currentColor" strokeOpacity=".09" />
+      <circle cx="400" cy="400" r="300" stroke="currentColor" strokeOpacity=".07" strokeDasharray="3 9" />
+      <circle cx="400" cy="400" r="392" stroke="currentColor" strokeOpacity=".06" />
+    </svg>
+
+    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
+  </div>
+);
+
+const STAR = "M12 2.8l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.7l-5.9 3.1 1.2-6.5L2.5 9.7l6.6-.9z";
+
+const Stars = ({ size = 16 }) => (
+  <span role="img" aria-label="5 von 5 Sternen" className="flex gap-0.5">
+    {[0, 1, 2, 3, 4].map((i) => (
+      <svg key={i} width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+        <path d={STAR} fill="#F5A524" />
+      </svg>
+    ))}
+  </span>
+);
+
+const scrollToId = (e, id) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    block: "center",
+  });
+};
+
+const trustBadges = [
+  { text: "Persönlich aus Ennepetal", d: "M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 1 1 13 0c0 5.4-6.5 11-6.5 11z M12 12.2a2.3 2.3 0 1 0 0-4.6 2.3 2.3 0 0 0 0 4.6z" },
+  { text: "Antwort meist in 24 Std.", d: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7.5V12l3 2" },
+  { text: "In 2 bis 4 Wochen online", d: "M5 5.5h14V20H5z M5 10h14 M9 3.5v3.5 M15 3.5v3.5" },
+];
+
+const badgeCls =
+  "inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-3.5 py-2 text-[13px] font-medium text-[#0B2540] backdrop-blur";
+
+const HeroTrust = () => (
+  <ul data-hero="fade" className="mt-8 flex max-w-[48rem] list-none flex-wrap justify-center gap-2.5 p-0">
+    <li>
+      <a
+        href="#bewertung"
+        onClick={(e) => scrollToId(e, "bewertung")}
+        className={`${badgeCls} outline-none transition-colors hover:border-[#F5A524]/60 focus-visible:ring-2 focus-visible:ring-[#00A6FB]`}
+      >
+        <Stars size={14} />
+        5 Sterne Bewertung
+      </a>
+    </li>
+    {trustBadges.map(({ text, d }) => (
+      <li key={text} className={badgeCls}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ color: NS_BLUE }}>
+          <path d={d} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        {text}
+      </li>
+    ))}
+  </ul>
+);
+
+const FloatChip = ({ d, title, sub, className, delay }) => (
+  <div
+    aria-hidden="true"
+    className={`hb-float absolute hidden w-[11.5rem] items-center gap-2.5 rounded-2xl bg-white/90 p-2.5 backdrop-blur xl:flex ${nsShadow} ${className}`}
+    style={{ animationDelay: delay }}
+  >
+    <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full" style={nsTag}>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d={d} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+    <span className="min-w-0 text-left leading-tight">
+      <b className="block truncate text-[12px] font-semibold text-[#0B2540]">{title}</b>
+      <small className="block truncate text-[11px] text-[#8A97A8]">{sub}</small>
+    </span>
+  </div>
+);
+
+/* ── Bewertung: eigene Karte im Stil der restlichen Seite ───────
+   Trag Text, Name usw. unten in REVIEW ein. Solange text leer ist,
+   wird weiterhin die alte <Testimonials />-Komponente angezeigt. */
+const REVIEW = {
+  text: "",
+  name: "",
+  role: "", // z. B. "Dachdeckerbetrieb, Ennepetal"
+  source: "", // z. B. "Google" oder leer lassen
+  avatarSrc: "", // optional
+};
+
+const ReviewCard = ({ text, name, role, source, avatarSrc }) => (
+  <figure data-reveal className="mx-auto w-full max-w-[56rem] rounded-[22px] border border-black/10 bg-[#F3F4F7] p-2.5">
+    <div
+      className="relative overflow-hidden rounded-2xl border border-black/[0.06] bg-white px-6 py-10 text-center sm:px-14 sm:py-14"
+      style={nsTint("47,123,255")}
+    >
+      <svg aria-hidden="true" width="120" height="120" viewBox="0 0 24 24" className="absolute left-5 top-3 text-[#003566] opacity-[0.06] sm:left-10 sm:top-6">
+        <path fill="currentColor" d="M9.5 6C6.5 7 4.5 9.6 4.5 13v5h6v-6h-3c0-2 1-3.3 3-4L9.5 6zm9 0c-3 1-5 3.6-5 7v5h6v-6h-3c0-2 1-3.3 3-4L18.5 6z" />
+      </svg>
+
+      <div className="relative flex flex-col items-center">
+        <Stars size={22} />
+        <blockquote className="mt-5 max-w-[40rem] text-[clamp(19px,2.5vw,28px)] font-semibold leading-[1.35] tracking-tight text-[#0B2540]">
+          „{text}“
+        </blockquote>
+        <figcaption className="mt-7 flex items-center gap-3 text-left">
+          <NsAvatar name={name} src={avatarSrc || undefined} />
+          <span className="leading-tight">
+            <b className="block text-[15px] font-semibold text-[#0B2540]">{name}</b>
+            <small className="block text-[13px] text-[#5B6B80]">
+              {[role, source].filter(Boolean).join(" · ")}
+            </small>
+          </span>
+        </figcaption>
+      </div>
+    </div>
+  </figure>
+);
 
 /* ── Pain-Icons ──────────────────────────────────────────────── */
 const PainIcon = ({ d }) => (
@@ -383,21 +848,6 @@ const pains = [
     d: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7v5l3 2",
     title: "Für Online-Kram ist sowieso keine Zeit",
     body: "Das Tagesgeschäft läuft. Wann soll man sich da noch um die Website kümmern? Also bleibt es, wie es ist.",
-  },
-];
-
-const mistakes = [
-  {
-    title: "Die Telefonnummer ist nicht sofort sichtbar",
-    body: "Sie ist irgendwo im unteren Bereich der Seite versteckt. Der Interessent muss erst suchen und sucht dann woanders.",
-  },
-  {
-    title: "Der Besucher weiß nicht, was er als Nächstes tun soll",
-    body: "„Kontakt“ als einziger Hinweis reicht nicht. „Jetzt kostenlose Einschätzung anfragen“ ist ein Unterschied: klein im Text, groß in der Wirkung.",
-  },
-  {
-    title: "Die Seite erklärt den Betrieb, aber nicht, was der Kunde davon hat",
-    body: "„Seit 20 Jahren in Ennepetal tätig“ beantwortet nicht: Kannst du mein Problem lösen? Wie schnell? Was kostet das?",
   },
 ];
 
@@ -427,12 +877,11 @@ const ErstGespraech = () => {
       const q = (sel) => gsap.utils.toArray(sel, pageRef.current);
 
       const intro = gsap.timeline({ defaults: { ease: "power3.out", clearProps: "transform" } });
+      /* LCP-sicher: H1 und Video bewegen sich nur (transform), bleiben sichtbar */
       intro
-        .fromTo(q('[data-hero="fade"]').filter((el) => el.tagName !== "H1"),
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.7, stagger: 0.1 }, 0.05)
         .fromTo(q('[data-hero="h1"]'), { y: 24 }, { y: 0, duration: 0.9 }, 0)
-        .fromTo(q('[data-hero="card"]'), { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 0.9 }, 0.25);
+        .fromTo(q('[data-hero="fade"]'), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.08 }, 0.05)
+        .fromTo(q('[data-hero="video"]'), { y: 36, scale: 0.985 }, { y: 0, scale: 1, duration: 1 }, 0.15);
 
       const items = gsap.utils.toArray("[data-reveal]", pageRef.current);
       gsap.set(items, { opacity: 0, y: 24 });
@@ -455,107 +904,165 @@ const ErstGespraech = () => {
           content="Kostenlose Website-Analyse: Erfahren Sie, warum Ihre Website Besucher verliert und welche Optimierungen mehr Anfragen bringen können."
         />
         <link rel="canonical" href="https://www.franco-cipolla.de/website-analyse" />
+        <link rel="preload" as="image" type="image/jpeg" href={VIDEO.poster} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 
       <StickyMobileCTA formRef={formRef} />
 
-      {/* ══ HERO: Text links, Formular rechts (ein einziges Formular auf der Seite) ══ */}
-      <section className="relative w-full pb-14 pt-24 sm:pb-20 sm:pt-32 lg:pb-24 lg:pt-40">
-        <Container className="grid gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:items-start lg:gap-16">
-          <div>
-            {/* Badge */}
-            <div className="flex justify-center xl:justify-start mb-5 md:mb-6">
-              <div className="inline-flex items-center gap-2 bg-white border-2 border-[#001D3D] rounded-xl px-4 py-2 shadow-[3px_3px_0px_#001D3D] rotate-[-1deg]">
-                <span className="text-[13px] md:text-sm font-bold text-[#001D3D] tracking-tight">
-                   📍 Lokal für Betriebe in Ennepetal und NRW
-                </span>
-              </div>
-            </div>
+      {/* ══ HERO: zentriert, Headline, Subline, Video, Trust ══ */}
+      <section className="relative isolate w-full overflow-x-clip pb-14 pt-24 sm:pb-20 sm:pt-32 lg:pb-24 lg:pt-36">
+        <HeroBackground />
 
-
-
-            <h1 data-hero="h1" className="text-[clamp(26px,4.2vw,46px)] font-semibold leading-[1.15] tracking-tight text-[#000814]">
-              In 15 Minuten Klarheit, wo Ihre Website Anfragen verliert und was Sie konkret dagegen tun können.
-            </h1>
-
-            <p data-hero="fade" className="mt-5 max-w-[34rem] text-[clamp(15px,1.5vw,18px)] leading-[1.7] text-black/70">
-              Danach wissen Sie genau, was fehlt, damit Ihr Telefon öfter klingelt, und zwar von Leuten aus Ihrer
-              Region, die Sie noch nicht kennen.
-            </p>
-
-            <ul data-hero="fade" className="mt-5 flex list-none flex-wrap gap-2 p-0">
-              {["Kostenlos", "Keine Vorbereitung nötig", "Unverbindlich"].map((t) => (
-                <li
-                  key={t}
-                  className="inline-flex items-center rounded-full border border-[#00A6FB]/30 bg-[#00A6FB]/10 px-3 py-1 text-xs font-semibold text-[#003566]"
-                >
-                  {t}
-                </li>
-              ))}
-            </ul>
-
-            <ul data-hero="fade" className="mt-7 flex max-w-[34rem] list-none flex-col gap-3 p-0">
-              {[
-                <>
-                  Für Betriebe aus{" "}
-                  <Link to="/" className="underline transition-colors hover:text-[#003566]">Ennepetal</Link>,{" "}
-                  <Link to="/hagen" className="underline transition-colors hover:text-[#003566]">Hagen</Link>,{" "}
-                  <Link to="/wuppertal" className="underline transition-colors hover:text-[#003566]">Wuppertal</Link>{" "}
-                  und NRW
-                </>,
-                "Konkret auf Ihrer Seite gezeigt, keine Folien, keine Theorie",
-                "Kein Druck: Sie entscheiden danach, was als Nächstes passiert",
-                "15 Minuten, keine Vorbereitung nötig, Bestätigung per Nachricht",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5">
-                  <span className="mt-[3px] flex-shrink-0"><CheckIcon /></span>
-                  <span className="text-[14px] leading-snug text-black/70 sm:text-[15px]">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Formular-Karte */}
-          <div
-            ref={formRef}
-            data-hero="card"
-            id="termin"
-            className="scroll-mt-28 rounded-[20px] border border-black/10 bg-white shadow-[0_8px_40px_rgba(0,21,61,0.08)]"
+        <Container className="flex flex-col items-center text-center">
+          <p
+            data-hero="fade"
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-3.5 py-1.5 text-[12px] font-medium text-[#003566] backdrop-blur sm:text-[13px]"
           >
-            <div className="border-b border-black/10 px-5 pb-4 pt-5 sm:px-7 sm:pb-5 sm:pt-6">
-              <p className="mb-1.5 text-[13px] font-semibold text-[#003566]/80">Kostenlose Website-Analyse</p>
-              <h2 className="text-[clamp(20px,2.2vw,26px)] font-semibold leading-snug tracking-tight text-[#000814]">
-                Termin sichern, <span className="text-[#003566]">kostenlos und unverbindlich.</span>
-              </h2>
-              <p className="mt-1.5 text-[13px] text-black/50">15 Minuten, keine Vorbereitung nötig</p>
-              <div className="mt-3 flex items-center gap-2">
-                <span className="h-2 w-2 flex-none animate-pulse rounded-full bg-green-500 motion-reduce:animate-none" />
-                <p className="text-[13px] text-black/50">Noch Plätze verfügbar diesen Monat</p>
-              </div>
+            <span className="h-2 w-2 flex-none animate-pulse rounded-full bg-green-500 motion-reduce:animate-none" />
+            Lokal für Betriebe in Ennepetal und NRW
+          </p>
+
+          <h1
+            data-hero="h1"
+            className="max-w-[48rem] text-[clamp(30px,5.2vw,58px)] font-semibold leading-[1.07] tracking-tight text-[#000814]"
+          >
+            In 15 Minuten Klarheit, wo Ihre Website <span className="text-[#003566]">Anfragen verliert</span>
+          </h1>
+
+          <p
+            data-hero="fade"
+            className="mt-5 max-w-[38rem] text-[clamp(16px,1.6vw,19px)] leading-[1.65] text-black/65"
+          >
+            Für Handwerksbetriebe und Dienstleister. Danach wissen Sie genau, was fehlt, damit Ihr Telefon öfter
+            klingelt, und zwar von Leuten aus Ihrer Region.
+          </p>
+
+          {/* Video mit eigenem Player */}
+          <div data-hero="video" className="relative mt-10 w-full max-w-[52rem] sm:mt-12">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-10 -z-10"
+              style={{ background: "radial-gradient(55% 55% at 50% 50%, rgba(47,123,255,.26), transparent 70%)" }}
+            />
+            <div className="rounded-[26px] border border-black/10 bg-white/60 p-1.5 shadow-[0_30px_80px_-30px_rgba(11,37,64,0.45)] backdrop-blur sm:p-2">
+              <VideoPlayer
+                src={VIDEO.src}
+                poster={VIDEO.poster}
+                title={VIDEO.title}
+                captions={VIDEO.captions || undefined}
+                ctaLabel="Kostenlose Analyse sichern"
+                onCta={() => scrollToEl(formRef)}
+                onEvent={(name, data) => {
+                  /* Tracking: hier z. B. window.plausible?.(`video_${name}`) */
+                  if (typeof window !== "undefined" && window.plausible) window.plausible(`video_${name}`, { props: data });
+                }}
+              />
             </div>
 
-            <div className="px-5 py-5 sm:px-7 sm:py-6">
-              <CalendlyFallBackForm />
-            </div>
-
-            <div className="px-5 pb-5 sm:px-7 sm:pb-6">
-              <p className="text-center text-[12px] text-black/45">
-                Ihre Daten werden nicht weitergegeben.{" "}
-                <Link to="/datenschutz" className="underline transition-colors hover:text-[#003566]">
-                  Datenschutz
-                </Link>
-              </p>
-            </div>
+            <FloatChip
+              d="M4 6h16v12H4z M4 7l8 6 8-6"
+              title="Neue Anfrage"
+              sub="Dachsanierung, Ennepetal"
+              className="right-[calc(100%+1.25rem)] top-[14%]"
+              delay="0s"
+            />
+            <FloatChip
+              d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"
+              title="Eingehender Anruf"
+              sub="Elektroinstallation, Hagen"
+              className="left-[calc(100%+1.25rem)] bottom-[20%]"
+              delay="1.6s"
+            />
           </div>
+
+          {/* CTA */}
+          <div data-hero="fade" className="mt-9 flex flex-col items-center gap-3">
+            <button
+              type="button"
+              onClick={() => scrollToEl(formRef)}
+              className="group inline-flex items-center gap-3 rounded-full bg-[#001D3D] px-8 py-4 text-[16px] font-semibold text-white shadow-[0_14px_30px_-12px_rgba(0,29,61,0.7)] outline-none transition-transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#00A6FB] focus-visible:ring-offset-2 active:scale-95"
+            >
+              Kostenlose Analyse sichern
+              <span
+                aria-hidden="true"
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-y-0.5 motion-reduce:transition-none"
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 2.5v7M3 6.5l3 3 3-3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </button>
+            <p className="text-[13px] text-black/50">Unverbindlich, 15 Minuten, keine Vorbereitung nötig</p>
+          </div>
+
+          <HeroTrust />
+
+          {/* Transkript: im DOM (SEO, Barrierefreiheit), eingeklappt */}
+          <details data-hero="fade" className="group mt-7 w-full max-w-[40rem] text-left">
+            <summary className="mx-auto flex w-fit cursor-pointer list-none items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-medium text-black/55 outline-none transition hover:text-[#003566] focus-visible:ring-2 focus-visible:ring-[#00A6FB] [&::-webkit-details-marker]:hidden">
+              Transkript des Videos lesen
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" className="transition-transform group-open:rotate-180">
+                <path d="M2.5 4.5l3.5 3.5 3.5-3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </summary>
+            <p className="mt-3 rounded-2xl border border-black/10 bg-white/80 p-5 text-[14px] leading-[1.7] text-black/65 backdrop-blur">
+              {TRANSCRIPT}
+            </p>
+          </details>
+
+          <p data-hero="fade" className="mt-6 text-[13px] leading-relaxed text-black/50">
+            Für Betriebe aus{" "}
+            <Link to="/" className="underline transition-colors hover:text-[#003566]">Ennepetal</Link>,{" "}
+            <Link to="/hagen" className="underline transition-colors hover:text-[#003566]">Hagen</Link>,{" "}
+            <Link to="/wuppertal" className="underline transition-colors hover:text-[#003566]">Wuppertal</Link> und NRW.
+          </p>
         </Container>
       </section>
 
-      {/* ══ TESTIMONIALS ══ */}
-      <section className="w-full py-6 sm:py-10">
-        <Container>
-          <Testimonials showCta={false} hasPadding={false} showTitle={true} eyebrowStyle={true} />
-        </Container>
+      {/* ══ TERMIN / FORMULAR ══ */}
+      <section className="w-full px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8" aria-labelledby="termin-heading">
+        <div
+          ref={formRef}
+          id="termin"
+          data-reveal
+          className="mx-auto w-full max-w-[40rem] scroll-mt-28 rounded-[20px] border border-black/10 bg-white shadow-[0_8px_40px_rgba(0,21,61,0.08)]"
+        >
+          <div className="border-b border-black/10 px-5 pb-4 pt-5 text-center sm:px-8 sm:pb-5 sm:pt-7">
+            <p className="mb-1.5 text-[13px] font-semibold text-[#003566]/80">Ihr Termin</p>
+            <h2
+              id="termin-heading"
+              className="text-[clamp(22px,2.6vw,30px)] font-semibold leading-snug tracking-tight text-[#000814]"
+            >
+              Wann passt es <span className="text-[#003566]">Ihnen?</span>
+            </h2>
+            <p className="mt-1.5 text-[13px] text-black/50">Ich melde mich persönlich zur Bestätigung.</p>
+          </div>
+
+          <div className="px-5 py-5 sm:px-8 sm:py-7">
+            <CalendlyFallBackForm />
+          </div>
+
+          <div className="px-5 pb-5 sm:px-8 sm:pb-6">
+            <p className="text-center text-[12px] text-black/45">
+              Ihre Daten werden nicht weitergegeben.{" "}
+              <Link to="/datenschutz" className="underline transition-colors hover:text-[#003566]">
+                Datenschutz
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ BEWERTUNG ══ */}
+      <section id="bewertung" className="w-full px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
+        {REVIEW.text ? (
+          <ReviewCard {...REVIEW} />
+        ) : (
+          <Container>
+            <Testimonials showCta={false} hasPadding={false} showTitle={true} eyebrowStyle={true} />
+          </Container>
+        )}
       </section>
 
       {/* ══ PAIN ══ */}
@@ -592,100 +1099,54 @@ const ErstGespraech = () => {
         </Container>
       </section>
 
-      {/* ══ ABLAUF (Timeline) ══ */}
-      <section className={`w-full ${sectionPad}`} aria-labelledby="ablauf-heading">
-        <Container className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
-          <div data-reveal className="mx-auto w-full max-w-[44rem] lg:sticky lg:top-28 lg:mx-0 lg:max-w-none lg:self-start">
-            <Eyebrow>So läuft es ab</Eyebrow>
-            <H2 id="ablauf-heading">
-              15 Minuten. <span className="text-[#003566]">Kein Aufwand für Sie.</span>
-            </H2>
-            <p className="mt-5 max-w-[30rem] text-[clamp(15px,1.5vw,18px)] leading-[1.7] text-black/70">
-              Ich bereite alles vor. Sie bringen nur Ihre Website-Adresse und 15 Minuten mit.
-            </p>
-          </div>
-          <Timeline />
-        </Container>
-      </section>
+      {/* ══ ABLAUF ══ */}
+      <NextSteps />
 
-      {/* ══ DEMO-EINBLICK ══ */}
-      <section className={`w-full ${sectionPad}`} aria-labelledby="demo-heading">
+      {/* ══ BEISPIEL AUS EINER WEBSITE-ANALYSE ══ */}
+      <NsMistakes />
+
+      {/* ══ FAQ (gleiche Boxen wie vorher, skaliert auf die neue Seite) ══ */}
+      <section id="faq" className={`w-full ${sectionPad}`} aria-labelledby="faq-heading">
         <Container>
-          <div data-reveal className="mx-auto mb-10 max-w-[40rem] text-center sm:mb-14">
-            <Eyebrow>Beispiel aus einer Website-Analyse</Eyebrow>
-            <H2 id="demo-heading">
-              Was ich auf lokalen Websites <span className="text-[#003566]">immer wieder sehe</span>
-            </H2>
-          </div>
+          <div className="mx-auto w-full max-w-[64rem]">
+            <div data-reveal className="mb-10 text-center sm:mb-14">
+              <H2 id="faq-heading">Häufige Fragen</H2>
+            </div>
 
-          <ol className="m-0 list-none p-0">
-            {mistakes.map(({ title, body }, i) => (
-              <li
-                key={title}
-                data-reveal
-                className="grid gap-x-10 gap-y-3 border-t border-black/10 py-7 last:border-b sm:py-9 lg:grid-cols-[5rem_minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start"
-              >
-                <span
-                  aria-hidden="true"
-                  className="text-[clamp(40px,5vw,56px)] font-black leading-none"
-                  style={{ color: "transparent", WebkitTextStroke: "1.5px rgba(0,53,102,.35)" }}
+            <div className="space-y-3 sm:space-y-4">
+              {faqs.map((faq, i) => (
+                <div
+                  key={faq.q}
+                  data-reveal
+                  className="faq-item overflow-hidden rounded-xl border border-gray-200 shadow-sm"
                 >
-                  {i + 1}
-                </span>
-                <h3 className="text-[clamp(19px,2vw,24px)] font-semibold leading-snug tracking-tight text-[#000814]">
-                  <span className="sr-only">Fehler {i + 1}: </span>
-                  {title}
-                </h3>
-                <p className="text-[15px] leading-[1.7] text-black/65 sm:text-base">{body}</p>
-              </li>
-            ))}
-          </ol>
+                  <button
+                    type="button"
+                    aria-expanded={openIndex === i}
+                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                    className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-gray-50 sm:px-7 sm:py-6"
+                  >
+                    <span className="pr-2 text-[16px] font-semibold leading-snug text-[#000814] sm:text-[17px] lg:text-[19px]">
+                      {faq.q}
+                    </span>
+                    <FaChevronDown
+                      className={`flex-shrink-0 text-[13px] text-[#003566] transition-transform duration-300 sm:text-[15px] ${
+                        openIndex === i ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {openIndex === i && (
+                    <div className="border-t border-gray-100 px-5 pb-5 sm:px-7 sm:pb-6">
+                      <p className="pt-4 text-[15px] leading-[1.75] text-[#000814]/65 sm:pt-5 sm:text-base lg:text-[17px]">
+                        {faq.a}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </Container>
-      </section>
-
-      {/* ══ FAQ (ursprüngliches Design) ══ */}
-      <section
-        id="faq"
-        className="w-full border-t border-[#003566]/12 py-14 sm:py-20 lg:py-24 px-5 sm:px-8 lg:px-0"
-      >
-        <div className="mx-auto w-full max-w-[600px] sm:max-w-[720px] lg:max-w-[860px]">
-          <h2 data-reveal className="text-[22px] sm:text-[28px] lg:text-[36px] font-bold text-center mb-8 sm:mb-12">
-            Häufige Fragen
-          </h2>
-
-          <div className="space-y-3 sm:space-y-4">
-            {faqs.map((faq, i) => (
-              <div
-                key={faq.q}
-                data-reveal
-                className="faq-item border border-gray-200 rounded-xl overflow-hidden shadow-sm"
-              >
-                <button
-                  type="button"
-                  aria-expanded={openIndex === i}
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="w-full flex justify-between items-center text-left gap-4 px-4 sm:px-6 py-4 sm:py-5 cursor-pointer hover:bg-gray-50 transition-colors"
-                >
-                  <span className="font-semibold text-[13px] sm:text-[14px] lg:text-[15px] text-[#000814] leading-snug pr-2">
-                    {faq.q}
-                  </span>
-                  <FaChevronDown
-                    className={`flex-shrink-0 text-[#003566] text-[11px] sm:text-[13px] transition-transform duration-300 ${
-                      openIndex === i ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {openIndex === i && (
-                  <div className="px-4 sm:px-6 pb-4 sm:pb-5 border-t border-gray-100">
-                    <p className="text-[13px] sm:text-[14px] text-[#000814]/65 leading-[1.7] pt-3 sm:pt-4">
-                      {faq.a}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ══ BOTTOM CTA (kein zweites Formular, scrollt zum Formular oben) ══ */}
@@ -704,7 +1165,7 @@ const ErstGespraech = () => {
           <button
             type="button"
             onClick={() => scrollToEl(formRef)}
-            className="group mt-8 cursor-pointer inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 text-[15px] font-semibold text-[#001D3D] outline-none transition-transform focus-visible:ring-2 focus-visible:ring-[#00A6FB] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021830] active:scale-95"
+            className="group mt-8 inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 text-[15px] font-semibold text-[#001D3D] outline-none transition-transform focus-visible:ring-2 focus-visible:ring-[#00A6FB] focus-visible:ring-offset-2 focus-visible:ring-offset-[#021830] active:scale-95"
           >
             Termin sichern
             <span
